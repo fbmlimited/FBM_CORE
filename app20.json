@@ -15,12 +15,18 @@
       "id": "9d836a4f-3b97-4179-ae7d-608f099ba7f3",
       "name": "FBM Data Dictionary",
       "publisher": "FBM Group",
-      "version": "1.0.0.1"
+      "version": "1.0.0.0"
+    },
+    {
+      "appId": "abc622d1-0d07-40e3-9518-9a9adc77322a",
+      "name": "Philippine Localization",
+      "version": "1.0.0.32",
+      "publisher": "PASI"
     }
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "22.0.0.0",
+  "application": "20.0.0.0",
   "idRanges": [
     {
       "from": 60100,
@@ -32,7 +38,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "11.0",
+  "runtime": "9.0",
   "features": [
     "NoImplicitWith"
   ]
