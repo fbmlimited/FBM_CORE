@@ -5,7 +5,7 @@ report 60130 FBM_SalesSummaryNTTPosted_CO
 {
     DefaultLayout = RDLC;
     UsageCategory = Administration;
-    RDLCLayout = './OTSalesSummaryNTTPosted.rdl';
+    RDLCLayout = './RDLC/OTSalesSummaryNTTPosted.rdl';
     ApplicationArea = All;
     Caption = 'Summary of Invoices Posted NTT';
 

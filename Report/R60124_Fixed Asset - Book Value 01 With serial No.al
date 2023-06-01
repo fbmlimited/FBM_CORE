@@ -1,7 +1,7 @@
 report 60124 "FBM_FA - Book Value 01 SN_CO"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './FixedAssetBookValue01SerialNo.rdl';
+    RDLCLayout = './RDLC/FixedAssetBookValue01SerialNo.rdl';
     ApplicationArea = FixedAssets;
     Caption = 'Fixed Asset Book Value 01 with Serial No.';
     PreviewMode = PrintLayout;

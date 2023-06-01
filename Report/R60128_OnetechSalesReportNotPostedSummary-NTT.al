@@ -5,7 +5,7 @@ report 60128 FBM_SalSumNTTNOTPosted_CO
 {
     DefaultLayout = RDLC;
     UsageCategory = Administration;
-    RDLCLayout = './OTSalesSummaryNTTNotPosted.rdl';
+    RDLCLayout = './RDLC/OTSalesSummaryNTTNotPosted.rdl';
     ApplicationArea = All;
     Caption = 'Summary of Invoices Not Posted NTT';
 

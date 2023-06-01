@@ -1,7 +1,7 @@
 report 60133 "FBM_Vendor Order Detailes_CO"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './Vendor Order Detailes.rdl';
+    RDLCLayout = './RDLC/Vendor Order Detailes.rdl';
 
     dataset
     {

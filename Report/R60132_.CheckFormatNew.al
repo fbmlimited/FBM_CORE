@@ -2,7 +2,7 @@ report 60132 FBM_CheckFormatNew_CO
 
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './CheckDrakoNewFormat.rdl';
+    RDLCLayout = './RDLC/CheckDrakoNewFormat.rdl';
     Caption = 'Check';
     Permissions = TableData "Bank Account" = m;
 

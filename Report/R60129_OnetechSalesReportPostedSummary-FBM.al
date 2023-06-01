@@ -5,7 +5,7 @@ report 60129 FBM_SalesSummaryFBMPosted_CO
 {
     DefaultLayout = RDLC;
     UsageCategory = Administration;
-    RDLCLayout = './OTSalesSummaryFBMPosted.rdl';
+    RDLCLayout = './RDLC/OTSalesSummaryFBMPosted.rdl';
     ApplicationArea = All;
     Caption = 'Summary of Invoices Posted FBM';
 

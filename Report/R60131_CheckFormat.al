@@ -1,7 +1,7 @@
 report 60131 FBM_CheckDrako_CO
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './CheckDrako.rdl';
+    RDLCLayout = './RDLC/CheckDrako.rdl';
     Caption = 'Check';
     Permissions = TableData "Bank Account" = m;
 

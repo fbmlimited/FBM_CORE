@@ -5,7 +5,7 @@ report 60127 FBM_SalSummFBMNotPosted_CO
 {
     DefaultLayout = RDLC;
     UsageCategory = Administration;
-    RDLCLayout = './OTSalesSummaryFBMNotPosted.rdl';
+    RDLCLayout = './RDLC/OTSalesSummaryFBMNotPosted.rdl';
     ApplicationArea = All;
     Caption = 'Summary of Invoices Not Posted FBM';
 

@@ -3,7 +3,7 @@ report 60125 FBM_SalesReport_CO
     DefaultLayout = RDLC;
     UsageCategory = Administration;
 
-    RDLCLayout = './OnetechSalesReport.rdl';
+    RDLCLayout = './RDLC/OnetechSalesReport.rdl';
     ApplicationArea = All;
     Caption = 'Sales Report';
 
