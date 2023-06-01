@@ -1,4 +1,4 @@
-pageextension 60103 FBM_Country_CO extends "Countries/Regions"
+pageextension 60103 FBM_CountryExt_CO extends "Countries/Regions"
 {
     layout
     {

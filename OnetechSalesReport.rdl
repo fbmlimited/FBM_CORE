@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="invpostingdate">
+          <DataField>invpostingdate</DataField>
+        </Field>
+        <Field Name="filters">
+          <DataField>filters</DataField>
+        </Field>
+        <Field Name="compname">
+          <DataField>compname</DataField>
+        </Field>
+        <Field Name="invdocumentno">
+          <DataField>invdocumentno</DataField>
+        </Field>
+        <Field Name="invNo">
+          <DataField>invNo</DataField>
+        </Field>
+        <Field Name="invcurrency">
+          <DataField>invcurrency</DataField>
+        </Field>
+        <Field Name="invDescr">
+          <DataField>invDescr</DataField>
+        </Field>
+        <Field Name="invGenBUsPost">
+          <DataField>invGenBUsPost</DataField>
+        </Field>
+        <Field Name="invenProd">
+          <DataField>invenProd</DataField>
+        </Field>
+        <Field Name="invamount">
+          <DataField>invamount</DataField>
+        </Field>
+        <Field Name="invamountFormat">
+          <DataField>invamountFormat</DataField>
+        </Field>
+        <Field Name="invperiodstart">
+          <DataField>invperiodstart</DataField>
+        </Field>
+        <Field Name="invperiodend">
+          <DataField>invperiodend</DataField>
+        </Field>
+        <Field Name="invglaccountname">
+          <DataField>invglaccountname</DataField>
+        </Field>
+        <Field Name="invContract">
+          <DataField>invContract</DataField>
+        </Field>
+        <Field Name="invsite">
+          <DataField>invsite</DataField>
+        </Field>
+        <Field Name="invGlEntryAmount">
+          <DataField>invGlEntryAmount</DataField>
+        </Field>
+        <Field Name="invGlEntryAmountFormat">
+          <DataField>invGlEntryAmountFormat</DataField>
+        </Field>
+        <Field Name="invGlEntryAmountAdditionalcurr">
+          <DataField>invGlEntryAmountAdditionalcurr</DataField>
+        </Field>
+        <Field Name="invGlEntryAmountAdditionalcurrFormat">
+          <DataField>invGlEntryAmountAdditionalcurrFormat</DataField>
+        </Field>
+        <Field Name="invGlEntryGlAccountNo">
+          <DataField>invGlEntryGlAccountNo</DataField>
+        </Field>
+        <Field Name="invGlEntryGlAccountName">
+          <DataField>invGlEntryGlAccountName</DataField>
+        </Field>
+        <Field Name="linetype">
+          <DataField>linetype</DataField>
+        </Field>
+        <Field Name="startmonth">
+          <DataField>startmonth</DataField>
+        </Field>
+        <Field Name="endmonth">
+          <DataField>endmonth</DataField>
+        </Field>
+        <Field Name="DayMonthEnd">
+          <DataField>DayMonthEnd</DataField>
+        </Field>
+        <Field Name="DaysMonthBegin">
+          <DataField>DaysMonthBegin</DataField>
+        </Field>
+        <Field Name="daysperiod">
+          <DataField>daysperiod</DataField>
+        </Field>
+        <Field Name="SalesMonthBegin">
+          <DataField>SalesMonthBegin</DataField>
+        </Field>
+        <Field Name="SalesMonthBeginFormat">
+          <DataField>SalesMonthBeginFormat</DataField>
+        </Field>
+        <Field Name="SalesMonthEnd">
+          <DataField>SalesMonthEnd</DataField>
+        </Field>
+        <Field Name="SalesMonthEndFormat">
+          <DataField>SalesMonthEndFormat</DataField>
+        </Field>
+        <Field Name="SalesCustomerNo">
+          <DataField>SalesCustomerNo</DataField>
+        </Field>
+        <Field Name="SalesCustomerName">
+          <DataField>SalesCustomerName</DataField>
+        </Field>
+        <Field Name="RegistrationDate">
+          <DataField>RegistrationDate</DataField>
+        </Field>
+        <Field Name="crmemopostingdate">
+          <DataField>crmemopostingdate</DataField>
+        </Field>
+        <Field Name="crmemodocumentno">
+          <DataField>crmemodocumentno</DataField>
+        </Field>
+        <Field Name="crmemoNo">
+          <DataField>crmemoNo</DataField>
+        </Field>
+        <Field Name="crcurreny">
+          <DataField>crcurreny</DataField>
+        </Field>
+        <Field Name="crmemoDescr">
+          <DataField>crmemoDescr</DataField>
+        </Field>
+        <Field Name="crmemoGenBUsPost">
+          <DataField>crmemoGenBUsPost</DataField>
+        </Field>
+        <Field Name="crmemoenProd">
+          <DataField>crmemoenProd</DataField>
+        </Field>
+        <Field Name="crmemoamount">
+          <DataField>crmemoamount</DataField>
+        </Field>
+        <Field Name="crmemoamountFormat">
+          <DataField>crmemoamountFormat</DataField>
+        </Field>
+        <Field Name="crmemoperiodstart">
+          <DataField>crmemoperiodstart</DataField>
+        </Field>
+        <Field Name="crmemoperiodend">
+          <DataField>crmemoperiodend</DataField>
+        </Field>
+        <Field Name="crmemoglaccountname">
+          <DataField>crmemoglaccountname</DataField>
+        </Field>
+        <Field Name="crmemoContract">
+          <DataField>crmemoContract</DataField>
+        </Field>
+        <Field Name="crmemosite">
+          <DataField>crmemosite</DataField>
+        </Field>
+        <Field Name="linecrtype">
+          <DataField>linecrtype</DataField>
+        </Field>
+        <Field Name="crmemoGlEntryAmount">
+          <DataField>crmemoGlEntryAmount</DataField>
+        </Field>
+        <Field Name="crmemoGlEntryAmountFormat">
+          <DataField>crmemoGlEntryAmountFormat</DataField>
+        </Field>
+        <Field Name="crmemoGlEntryAmountAdditionalcurr">
+          <DataField>crmemoGlEntryAmountAdditionalcurr</DataField>
+        </Field>
+        <Field Name="crmemoGlEntryAmountAdditionalcurrFormat">
+          <DataField>crmemoGlEntryAmountAdditionalcurrFormat</DataField>
+        </Field>
+        <Field Name="crmemoGlEntryGlAccountNo">
+          <DataField>crmemoGlEntryGlAccountNo</DataField>
+        </Field>
+        <Field Name="crmemoGlEntryGlAccountName">
+          <DataField>crmemoGlEntryGlAccountName</DataField>
+        </Field>
+        <Field Name="crstartmonth">
+          <DataField>crstartmonth</DataField>
+        </Field>
+        <Field Name="crendmonth">
+          <DataField>crendmonth</DataField>
+        </Field>
+        <Field Name="crDayMonthEnd">
+          <DataField>crDayMonthEnd</DataField>
+        </Field>
+        <Field Name="crDaysMonthBegin">
+          <DataField>crDaysMonthBegin</DataField>
+        </Field>
+        <Field Name="crdaysperiod">
+          <DataField>crdaysperiod</DataField>
+        </Field>
+        <Field Name="crSalesMonthBegin">
+          <DataField>crSalesMonthBegin</DataField>
+        </Field>
+        <Field Name="crSalesMonthBeginFormat">
+          <DataField>crSalesMonthBeginFormat</DataField>
+        </Field>
+        <Field Name="crSalesMonthEnd">
+          <DataField>crSalesMonthEnd</DataField>
+        </Field>
+        <Field Name="crSalesMonthEndFormat">
+          <DataField>crSalesMonthEndFormat</DataField>
+        </Field>
+        <Field Name="crSalesCustomerNo">
+          <DataField>crSalesCustomerNo</DataField>
+        </Field>
+        <Field Name="crSalesCustomerName">
+          <DataField>crSalesCustomerName</DataField>
+        </Field>
+        <Field Name="crRegistrationDate">
+          <DataField>crRegistrationDate</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

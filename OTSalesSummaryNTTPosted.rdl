@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="invpostingdate">
+          <DataField>invpostingdate</DataField>
+        </Field>
+        <Field Name="filters">
+          <DataField>filters</DataField>
+        </Field>
+        <Field Name="invTotalAmount">
+          <DataField>invTotalAmount</DataField>
+        </Field>
+        <Field Name="invTotalAmountFormat">
+          <DataField>invTotalAmountFormat</DataField>
+        </Field>
+        <Field Name="customerno">
+          <DataField>customerno</DataField>
+        </Field>
+        <Field Name="compname">
+          <DataField>compname</DataField>
+        </Field>
+        <Field Name="invdocumentno">
+          <DataField>invdocumentno</DataField>
+        </Field>
+        <Field Name="invNo">
+          <DataField>invNo</DataField>
+        </Field>
+        <Field Name="invDescr">
+          <DataField>invDescr</DataField>
+        </Field>
+        <Field Name="invGenBUsPost">
+          <DataField>invGenBUsPost</DataField>
+        </Field>
+        <Field Name="invenProd">
+          <DataField>invenProd</DataField>
+        </Field>
+        <Field Name="invamount">
+          <DataField>invamount</DataField>
+        </Field>
+        <Field Name="invamountFormat">
+          <DataField>invamountFormat</DataField>
+        </Field>
+        <Field Name="invperiodstart">
+          <DataField>invperiodstart</DataField>
+        </Field>
+        <Field Name="invperiodend">
+          <DataField>invperiodend</DataField>
+        </Field>
+        <Field Name="invglaccountname">
+          <DataField>invglaccountname</DataField>
+        </Field>
+        <Field Name="invContract">
+          <DataField>invContract</DataField>
+        </Field>
+        <Field Name="invsite">
+          <DataField>invsite</DataField>
+        </Field>
+        <Field Name="invsitename">
+          <DataField>invsitename</DataField>
+        </Field>
+        <Field Name="crmemopostingdate">
+          <DataField>crmemopostingdate</DataField>
+        </Field>
+        <Field Name="crmemodocumentno">
+          <DataField>crmemodocumentno</DataField>
+        </Field>
+        <Field Name="crmemocustomerno">
+          <DataField>crmemocustomerno</DataField>
+        </Field>
+        <Field Name="crmemoNo">
+          <DataField>crmemoNo</DataField>
+        </Field>
+        <Field Name="crmemoDescr">
+          <DataField>crmemoDescr</DataField>
+        </Field>
+        <Field Name="crmemoGenBUsPost">
+          <DataField>crmemoGenBUsPost</DataField>
+        </Field>
+        <Field Name="crmemoenProd">
+          <DataField>crmemoenProd</DataField>
+        </Field>
+        <Field Name="crmemoamount">
+          <DataField>crmemoamount</DataField>
+        </Field>
+        <Field Name="crmemoamountFormat">
+          <DataField>crmemoamountFormat</DataField>
+        </Field>
+        <Field Name="crmemoperiodstart">
+          <DataField>crmemoperiodstart</DataField>
+        </Field>
+        <Field Name="crmemoperiodend">
+          <DataField>crmemoperiodend</DataField>
+        </Field>
+        <Field Name="crmemoglaccountname">
+          <DataField>crmemoglaccountname</DataField>
+        </Field>
+        <Field Name="crmemoContract">
+          <DataField>crmemoContract</DataField>
+        </Field>
+        <Field Name="crmemosite">
+          <DataField>crmemosite</DataField>
+        </Field>
+        <Field Name="crmemositename">
+          <DataField>crmemositename</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

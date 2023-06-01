@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="Text1100003___GLDateFilter">
+          <DataField>Text1100003___GLDateFilter</DataField>
+        </Field>
+        <Field Name="FirstPageNum">
+          <DataField>FirstPageNum</DataField>
+        </Field>
+        <Field Name="G_L_Register__TABLECAPTION___________GLFilter">
+          <DataField>G_L_Register__TABLECAPTION___________GLFilter</DataField>
+        </Field>
+        <Field Name="GLFilter">
+          <DataField>GLFilter</DataField>
+        </Field>
+        <Field Name="HeaderText">
+          <DataField>HeaderText</DataField>
+        </Field>
+        <Field Name="LineID">
+          <DataField>LineID</DataField>
+        </Field>
+        <Field Name="IntNumber">
+          <DataField>IntNumber</DataField>
+        </Field>
+        <Field Name="TFTotalDebitAmt">
+          <DataField>TFTotalDebitAmt</DataField>
+        </Field>
+        <Field Name="TFTotalDebitAmtFormat">
+          <DataField>TFTotalDebitAmtFormat</DataField>
+        </Field>
+        <Field Name="TFTotalCreditAmt">
+          <DataField>TFTotalCreditAmt</DataField>
+        </Field>
+        <Field Name="TFTotalCreditAmtFormat">
+          <DataField>TFTotalCreditAmtFormat</DataField>
+        </Field>
+        <Field Name="TFTotalDebitAmt_Control61">
+          <DataField>TFTotalDebitAmt_Control61</DataField>
+        </Field>
+        <Field Name="TFTotalDebitAmt_Control61Format">
+          <DataField>TFTotalDebitAmt_Control61Format</DataField>
+        </Field>
+        <Field Name="TFTotalCreditAmt_Control72">
+          <DataField>TFTotalCreditAmt_Control72</DataField>
+        </Field>
+        <Field Name="TFTotalCreditAmt_Control72Format">
+          <DataField>TFTotalCreditAmt_Control72Format</DataField>
+        </Field>
+        <Field Name="TotalDebitAmt">
+          <DataField>TotalDebitAmt</DataField>
+        </Field>
+        <Field Name="TotalDebitAmtFormat">
+          <DataField>TotalDebitAmtFormat</DataField>
+        </Field>
+        <Field Name="TotalCreditAmt">
+          <DataField>TotalCreditAmt</DataField>
+        </Field>
+        <Field Name="TotalCreditAmtFormat">
+          <DataField>TotalCreditAmtFormat</DataField>
+        </Field>
+        <Field Name="Official_Accounting_BookCaption">
+          <DataField>Official_Accounting_BookCaption</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO___FirstPageCaption">
+          <DataField>CurrReport_PAGENO___FirstPageCaption</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Document_Type_Caption">
+          <DataField>G_L_Entry__Document_Type_Caption</DataField>
+        </Field>
+        <Field Name="G_L_Entry__G_L_Account_No__Caption">
+          <DataField>G_L_Entry__G_L_Account_No__Caption</DataField>
+        </Field>
+        <Field Name="GLAccount_NameCaption">
+          <DataField>GLAccount_NameCaption</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Debit_Amount_Caption">
+          <DataField>G_L_Entry__Debit_Amount_Caption</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Credit_Amount_Caption">
+          <DataField>G_L_Entry__Credit_Amount_Caption</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Document_No__Caption">
+          <DataField>G_L_Entry__Document_No__Caption</DataField>
+        </Field>
+        <Field Name="G_L_Entry_Description_Control48Caption">
+          <DataField>G_L_Entry_Description_Control48Caption</DataField>
+        </Field>
+        <Field Name="ContinuedCaption">
+          <DataField>ContinuedCaption</DataField>
+        </Field>
+        <Field Name="ContinuedCaption_Control60">
+          <DataField>ContinuedCaption_Control60</DataField>
+        </Field>
+        <Field Name="TotalCaption">
+          <DataField>TotalCaption</DataField>
+        </Field>
+        <Field Name="V1">
+          <DataField>V1</DataField>
+        </Field>
+        <Field Name="NORMALDATE_OpenCloseDate_">
+          <DataField>NORMALDATE_OpenCloseDate_</DataField>
+        </Field>
+        <Field Name="ShowGLHeader1">
+          <DataField>ShowGLHeader1</DataField>
+        </Field>
+        <Field Name="OpenClosePerTransNo">
+          <DataField>OpenClosePerTransNo</DataField>
+        </Field>
+        <Field Name="NORMALDATE_OpenCloseDate__Control29">
+          <DataField>NORMALDATE_OpenCloseDate__Control29</DataField>
+        </Field>
+        <Field Name="ShowGLHeader2">
+          <DataField>ShowGLHeader2</DataField>
+        </Field>
+        <Field Name="CreditAmt">
+          <DataField>CreditAmt</DataField>
+        </Field>
+        <Field Name="CreditAmtFormat">
+          <DataField>CreditAmtFormat</DataField>
+        </Field>
+        <Field Name="DebitAmt">
+          <DataField>DebitAmt</DataField>
+        </Field>
+        <Field Name="DebitAmtFormat">
+          <DataField>DebitAmtFormat</DataField>
+        </Field>
+        <Field Name="G_L_Account_Name">
+          <DataField>G_L_Account_Name</DataField>
+        </Field>
+        <Field Name="G_L_Account__No__">
+          <DataField>G_L_Account__No__</DataField>
+        </Field>
+        <Field Name="OpenTransactDesc">
+          <DataField>OpenTransactDesc</DataField>
+        </Field>
+        <Field Name="ShowGLBody1">
+          <DataField>ShowGLBody1</DataField>
+        </Field>
+        <Field Name="V1Caption">
+          <DataField>V1Caption</DataField>
+        </Field>
+        <Field Name="NORMALDATE_OpenCloseDate_Caption">
+          <DataField>NORMALDATE_OpenCloseDate_Caption</DataField>
+        </Field>
+        <Field Name="OpenClosePerTransNoCaption">
+          <DataField>OpenClosePerTransNoCaption</DataField>
+        </Field>
+        <Field Name="NORMALDATE_OpenCloseDate__Control29Caption">
+          <DataField>NORMALDATE_OpenCloseDate__Control29Caption</DataField>
+        </Field>
+        <Field Name="TFTotalDebitAmt_Control47">
+          <DataField>TFTotalDebitAmt_Control47</DataField>
+        </Field>
+        <Field Name="TFTotalDebitAmt_Control47Format">
+          <DataField>TFTotalDebitAmt_Control47Format</DataField>
+        </Field>
+        <Field Name="TFTotalCreditAmt_Control55">
+          <DataField>TFTotalCreditAmt_Control55</DataField>
+        </Field>
+        <Field Name="TFTotalCreditAmt_Control55Format">
+          <DataField>TFTotalCreditAmt_Control55Format</DataField>
+        </Field>
+        <Field Name="TFTotalDebitAmt1">
+          <DataField>TFTotalDebitAmt1</DataField>
+        </Field>
+        <Field Name="TFTotalDebitAmt1Format">
+          <DataField>TFTotalDebitAmt1Format</DataField>
+        </Field>
+        <Field Name="TFTotalCreditAmt1">
+          <DataField>TFTotalCreditAmt1</DataField>
+        </Field>
+        <Field Name="TFTotalCreditAmt1Format">
+          <DataField>TFTotalCreditAmt1Format</DataField>
+        </Field>
+        <Field Name="G_L_Register__Posting_Date_">
+          <DataField>G_L_Register__Posting_Date_</DataField>
+        </Field>
+        <Field Name="G_L_Register__Posting_Date__Control39">
+          <DataField>G_L_Register__Posting_Date__Control39</DataField>
+        </Field>
+        <Field Name="ContinuedCaption_Control43">
+          <DataField>ContinuedCaption_Control43</DataField>
+        </Field>
+        <Field Name="G_L_Register__Posting_Date_Caption">
+          <DataField>G_L_Register__Posting_Date_Caption</DataField>
+        </Field>
+        <Field Name="ContinuedCaption_Control42">
+          <DataField>ContinuedCaption_Control42</DataField>
+        </Field>
+        <Field Name="G_L_Register__Posting_Date__Control39Caption">
+          <DataField>G_L_Register__Posting_Date__Control39Caption</DataField>
+        </Field>
+        <Field Name="G_L_Entry__G_L_Account_No__">
+          <DataField>G_L_Entry__G_L_Account_No__</DataField>
+        </Field>
+        <Field Name="GLAccount_Name">
+          <DataField>GLAccount_Name</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Document_Type_">
+          <DataField>G_L_Entry__Document_Type_</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Debit_Amount_">
+          <DataField>G_L_Entry__Debit_Amount_</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Debit_Amount_Format">
+          <DataField>G_L_Entry__Debit_Amount_Format</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Credit_Amount_">
+          <DataField>G_L_Entry__Credit_Amount_</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Credit_Amount_Format">
+          <DataField>G_L_Entry__Credit_Amount_Format</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Document_No__">
+          <DataField>G_L_Entry__Document_No__</DataField>
+        </Field>
+        <Field Name="G_L_Entry_Description">
+          <DataField>G_L_Entry_Description</DataField>
+        </Field>
+        <Field Name="ShowGLEntryBody1">
+          <DataField>ShowGLEntryBody1</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Add__Currency_Credit_Amount_">
+          <DataField>G_L_Entry__Add__Currency_Credit_Amount_</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Add__Currency_Credit_Amount_Format">
+          <DataField>G_L_Entry__Add__Currency_Credit_Amount_Format</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Add__Currency_Debit_Amount_">
+          <DataField>G_L_Entry__Add__Currency_Debit_Amount_</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Add__Currency_Debit_Amount_Format">
+          <DataField>G_L_Entry__Add__Currency_Debit_Amount_Format</DataField>
+        </Field>
+        <Field Name="GLAccount_Name_Control34">
+          <DataField>GLAccount_Name_Control34</DataField>
+        </Field>
+        <Field Name="G_L_Entry__G_L_Account_No___Control40">
+          <DataField>G_L_Entry__G_L_Account_No___Control40</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Document_Type__Control41">
+          <DataField>G_L_Entry__Document_Type__Control41</DataField>
+        </Field>
+        <Field Name="G_L_Entry__Document_No___Control74">
+          <DataField>G_L_Entry__Document_No___Control74</DataField>
+        </Field>
+        <Field Name="G_L_Entry_Description_Control48">
+          <DataField>G_L_Entry_Description_Control48</DataField>
+        </Field>
+        <Field Name="ShowGLEntryBody2">
+          <DataField>ShowGLEntryBody2</DataField>
+        </Field>
+        <Field Name="G_L_Entry_Entry_No_">
+          <DataField>G_L_Entry_Entry_No_</DataField>
+        </Field>
+        <Field Name="FORMAT_CLOSINGDATE_OpenCloseDate__">
+          <DataField>FORMAT_CLOSINGDATE_OpenCloseDate__</DataField>
+        </Field>
+        <Field Name="OpenClosePerTransNo_Control58">
+          <DataField>OpenClosePerTransNo_Control58</DataField>
+        </Field>
+        <Field Name="CloseTransactDesc">
+          <DataField>CloseTransactDesc</DataField>
+        </Field>
+        <Field Name="GLAccount2__No__">
+          <DataField>GLAccount2__No__</DataField>
+        </Field>
+        <Field Name="DebitAmt_Control24">
+          <DataField>DebitAmt_Control24</DataField>
+        </Field>
+        <Field Name="DebitAmt_Control24Format">
+          <DataField>DebitAmt_Control24Format</DataField>
+        </Field>
+        <Field Name="CreditAmt_Control25">
+          <DataField>CreditAmt_Control25</DataField>
+        </Field>
+        <Field Name="CreditAmt_Control25Format">
+          <DataField>CreditAmt_Control25Format</DataField>
+        </Field>
+        <Field Name="GLAccount2_Name">
+          <DataField>GLAccount2_Name</DataField>
+        </Field>
+        <Field Name="ShowGLAcc2Body1">
+          <DataField>ShowGLAcc2Body1</DataField>
+        </Field>
+        <Field Name="OpenClosePerTransNo_Control58Caption">
+          <DataField>OpenClosePerTransNo_Control58Caption</DataField>
+        </Field>
+        <Field Name="FORMAT_CLOSINGDATE_OpenCloseDate__Caption">
+          <DataField>FORMAT_CLOSINGDATE_OpenCloseDate__Caption</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

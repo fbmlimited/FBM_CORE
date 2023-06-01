@@ -16,6 +16,12 @@
       "name": "FBM Data Dictionary",
       "publisher": "FBM Group",
       "version": "1.0.0.1"
+    },
+    {
+      "appId": "abc622d1-0d07-40e3-9518-9a9adc77322a",
+      "name": "Philippine Localization",
+      "version": "1.0.0.33",
+      "publisher": "PASI"
     }
   ],
   "screenshots": [],
@@ -35,5 +41,7 @@
   "runtime": "11.0",
   "features": [
     "NoImplicitWith"
-  ]
+  ],
+  "target": "OnPrem"
+
 }

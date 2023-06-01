@@ -1,4 +1,4 @@
-page 60100 FBM_SubsidiaryList
+page 60100 FBM_SubsidiaryList_CO
 {
     Caption = 'Subsidiary List';
     PageType = List;
