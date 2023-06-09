@@ -13,7 +13,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
         }
         addafter("Bal. Account No.")
         {
-            field("Check No. PHL"; rec."Check No. PHL")//restore
+            field("Check No. PHL"; rec."Check No. PHL")
             {
                 ApplicationArea = all;
             }
@@ -22,7 +22,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
         {
             trigger OnBeforeValidate();
             var
-                Publisher: Codeunit FBM_MyPublishers_CO;
+                Publisher: Codeunit FBM_Events_CO;
             begin
                 Publisher.OnReasonCodeChanged(CurrPage.Banks.Page);
             end;
@@ -32,7 +32,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
         {
             trigger OnBeforeValidate();
             var
-                Publisher: Codeunit FBM_MyPublishers_CO;
+                Publisher: Codeunit FBM_Events_CO;
             begin
                 Publisher.OnReasonCodeChanged(CurrPage.Banks.Page);
             end;

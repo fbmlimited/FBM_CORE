@@ -2,6 +2,13 @@ pageextension 60108 FBM_CustomerLEExt_CO extends "Customer Ledger Entries"
 {
     layout
     {
+        addafter("Customer No.")
+        {
+            field("Customer Name15262"; Rec."Customer Name")
+            {
+                ApplicationArea = All;
+            }
+        }
 
         addafter("External Document No.")
         {

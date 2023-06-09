@@ -2,6 +2,8 @@ pageextension 60120 FBM_FASetupExt_CO extends "Fixed Asset Setup"
 {
     layout
     {
+
+
         addafter(Numbering)
         {
             group(CustomerSiteTracking)

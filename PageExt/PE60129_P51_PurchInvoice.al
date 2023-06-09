@@ -13,6 +13,13 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
                 ApplicationArea = all;
             }
         }
+        addafter("Vendor Invoice No.")
+        {
+            field("Posting Description89380"; Rec."Posting Description")
+            {
+                ApplicationArea = All;
+            }
+        }
     }
     actions
     {

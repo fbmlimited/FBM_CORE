@@ -42,6 +42,6 @@
   "features": [
     "NoImplicitWith"
   ],
-  "target": "OnPrem"
+  "target": "Cloud"
 
 }

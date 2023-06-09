@@ -895,7 +895,7 @@ report 60106 "FBM_Main Accounting Book_CO"
         Num_Account_Caption_Control62Lbl: Label 'Num.Cuenta:';
         TotalCaption_Control64Lbl: Label 'Total';
 
-    [Scope('OnPrem')]
+
     procedure CalcPeriod(InitialDate: Date): Date
     var
         AccPeriod: Record "Accounting Period";
@@ -908,7 +908,7 @@ report 60106 "FBM_Main Accounting Book_CO"
         Error(Text1100005);
     end;
 
-    [Scope('OnPrem')]
+
     procedure CalcAccountingPeriod(DateAux: Date; Lastdate: Date): Integer
     var
         AccPeriod: Record "Accounting Period";
@@ -918,7 +918,7 @@ report 60106 "FBM_Main Accounting Book_CO"
         exit(AccPeriod.Count);
     end;
 
-    [Scope('OnPrem')]
+
     procedure CalcEntries(EndDate: Date): Boolean
     var
         GLEntry: Record "G/L Entry";
@@ -939,7 +939,7 @@ report 60106 "FBM_Main Accounting Book_CO"
         exit(false);
     end;
 
-    [Scope('OnPrem')]
+
     procedure CalcPeriodEnd(EndPeriodDate: Date): Date
     var
         AccPeriod: Record "Accounting Period";

@@ -2,6 +2,36 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
 {
     layout
     {
+        addafter("FA Subclass Code")
+        {
+            field(Brand71635; Rec.FBM_Brand)
+            {
+                ApplicationArea = All;
+            }
+            field(Lessee77282; Rec.FBM_Lessee)
+            {
+                ApplicationArea = All;
+            }
+        }
+        modify("FA Location Code")
+        {
+            Visible = false;
+        }
+        modify("Responsible Employee")
+        {
+            Visible = false;
+        }
+        addafter("Search Description")
+        {
+            field("Global Dimension 1 Code80514"; Rec."Global Dimension 1 Code")
+            {
+                ApplicationArea = All;
+            }
+            field("Global Dimension 2 Code06138"; Rec."Global Dimension 2 Code")
+            {
+                ApplicationArea = All;
+            }
+        }
         addafter("No.")
         {
             field("Serial No."; rec."Serial No.")

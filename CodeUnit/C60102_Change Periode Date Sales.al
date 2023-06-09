@@ -1,4 +1,4 @@
-codeunit 60108 "FBM_ChangePerDateSales_CO"
+codeunit 60102 "FBM_ChangePerDateSales_CO"
 {
     Permissions = TableData "Sales Invoice Header" = rm,
                   TableData "Sales Cr.Memo Header" = rm,

@@ -2,6 +2,7 @@ pageextension 60177 FBM_CashRecJnlExt_CO extends "Cash Receipt Journal"
 {
     layout
     {
+
         addafter("Document No.")
         {
             field("Line No."; rec."Line No.")

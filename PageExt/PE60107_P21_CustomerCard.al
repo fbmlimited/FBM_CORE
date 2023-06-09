@@ -11,10 +11,10 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         }
         addafter(Name)
         {
-            //field("Name 2"; "Name 2")
-            //{
-            //ApplicationArea = all;
-            //}
+            field("FBM_Name 3"; Rec."FBM_Name 3")
+            {
+                ApplicationArea = all;
+            }
 
             field("Customer Since"; rec."FBM_Customer Since")
             {

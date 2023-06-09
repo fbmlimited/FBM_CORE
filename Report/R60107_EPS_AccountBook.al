@@ -667,7 +667,6 @@ report 60107 "FBM_Account - Off.Acc.Book_CO"
         GroupPostingDate: Date;
         GroupPeriodTransNo: Integer;
 
-    [Scope('OnPrem')]
     procedure CalcPeriod(InitialDate: Date): Date
     begin
         AccPeriod.SetRange("New Fiscal Year", true);

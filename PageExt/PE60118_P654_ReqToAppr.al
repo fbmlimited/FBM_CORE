@@ -2,6 +2,25 @@ pageextension 60118 RequestToApproveExt extends "Requests to approve"
 {
     layout
     {
+        modify("Sender ID")
+        {
+            Visible = false;
+        }
+        addafter(Comment)
+        {
+            field("Sender ID31524"; Rec."Sender ID")
+            {
+                ApplicationArea = All;
+            }
+            field("Salespers./Purch. Code88712"; Rec."Salespers./Purch. Code")
+            {
+                ApplicationArea = All;
+            }
+            field("Approver ID92297"; Rec."Approver ID")
+            {
+                ApplicationArea = All;
+            }
+        }
         addafter("Currency Code")
         {
             field(PostingDescription; PostingDescription)

@@ -2,6 +2,20 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
 {
     layout
     {
+        addafter("Location Code")
+        {
+            field("User ID77263"; Rec."User ID")
+            {
+                ApplicationArea = All;
+            }
+        }
+        addafter("Sell-to Customer Name")
+        {
+            field("Posting Description63170"; Rec."Posting Description")
+            {
+                ApplicationArea = All;
+            }
+        }
         addafter("No.")
         {
 

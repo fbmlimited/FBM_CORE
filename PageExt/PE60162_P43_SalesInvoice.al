@@ -2,17 +2,34 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
 {
     layout
     {
+        modify("Sell-to Contact")
+        {
+            Importance = Additional;
+        }
+
+        moveafter(Status; "Shortcut Dimension 1 Code")
+        moveafter(Status; "Shortcut Dimension 2 Code")
+        addafter("Shortcut Dimension 1 Code")
+        {
+            field("Posting Description63167"; Rec."Posting Description")
+            {
+                ApplicationArea = All;
+            }
+        }
         modify("Sell-to Customer No.")
         {
             trigger
             OnAfterValidate()
             var
                 mediaid: Guid;
+                index: Integer;
             begin
                 if usersetup.get(UserId) then begin
-                    mediaid := usersetup."Signature PHL".Item(1);
-                    rec.FBM_Signature_pic.Insert(mediaid);
-                    rec.Modify();
+                    FOR Index := 1 to usersetup."Signature PHL".COUNT DO BEGIN
+                        mediaid := usersetup."Signature PHL".Item(1);
+                        rec.FBM_Signature_pic.Insert(mediaid);
+                        rec.Modify();
+                    end;
 
                 end;
 
@@ -27,7 +44,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             field(Site; rec.FBM_Site)
             {
                 ApplicationArea = All;
-
+                Importance = Additional;
                 trigger OnLookup(var Text: Text): Boolean
                 var
                     CustSite: Record FBM_CustomerSite_C;
@@ -72,6 +89,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             {
                 ApplicationArea = All;
                 Editable = false;
+                Importance = Additional;
             }
             field(Segment; rec.FBM_Segment)
             {
@@ -95,6 +113,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             field("Billing Statement"; rec."FBM_Billing Statement")
             {
                 ApplicationArea = all;
+                Importance = Additional;
             }
 
         }
@@ -118,6 +137,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             {
                 ApplicationArea = all;
                 Editable = false;
+                Importance = Additional;
             }
 
             field("Customer Payment Bank Code2"; rec."FBM_Cust Payment Bank Code2")
@@ -141,6 +161,9 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                 SubPageLink = "No." = field("No.");
             }
         }
+
+
+
 
     }
 
