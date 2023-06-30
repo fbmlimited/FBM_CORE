@@ -187,7 +187,7 @@ page 60104 "FBM_SalRep-Unposted Entries_CO"
         CustSite.Reset();
         clear(SiteName);
         if CustSite.get(SH."Sell-to Customer No.", SH.FBM_Site) then
-            SiteName := CustSite."Site Name"
+            SiteName := CustSite."Site Name_FF"
         else
             SiteName := '';
     end;

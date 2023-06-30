@@ -44,15 +44,15 @@ page 60113 FBM_CustSite_CO
                 {
                     ApplicationArea = All;
                 }
-                field(SName; rec."Site Name")
+                field(SName; rec."Site Name_FF")
                 {
                     ApplicationArea = All;
                 }
-                field(SAddress; rec.Address)
+                field(SAddress; rec.Address_FF)
                 {
                     ApplicationArea = All;
                 }
-                field(SCity; rec.City)
+                field(SCity; rec.City_FF)
                 {
                     ApplicationArea = All;
                 }

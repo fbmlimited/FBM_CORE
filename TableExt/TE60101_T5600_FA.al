@@ -2,6 +2,19 @@ tableextension 60101 FBM_FAExt_CO extends "Fixed Asset"
 {
     fields
     {
+        field(60100; "FBM_Fa Posting Group Depr_FF"; Code[20])
+        {
+            Caption = 'Fa Posting Group Depr';
+            FieldClass = FlowField;
+            CalcFormula = lookup("FA Depreciation Book"."FA Posting Group" where("FA No." = field("No."), "Depreciation Book Code" = filter('COMPANY')));
+        }
+        field(60101; FBM_Is_EGM_FF; Boolean)
+        {
+            Caption = 'Is EGM';
+            FieldClass = FlowField;
+            CalcFormula = lookup("FA Subclass".FBM_EGM where(code = field("FA Subclass Code")));
+
+        }
         modify("Serial No.")
         {
             trigger OnAfterValidate()

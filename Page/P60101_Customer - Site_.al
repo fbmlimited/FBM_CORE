@@ -16,28 +16,28 @@ page 60101 "FBM_CustomerSite_CO"
                     ApplicationArea = All;
                     Caption = 'Site Code';
                 }
-                field("Site Name"; rec."Site Name")
+                field("Site Name"; rec."Site Name_FF")
                 {
                     ApplicationArea = All;
                     Caption = 'Site Name';
                 }
-                field(Address; rec.Address)
+                field(Address; rec.Address_FF)
                 {
                     ApplicationArea = All;
                 }
-                field("Address 2"; rec."Address 2")
+                field("Address 2"; rec."Address 2_FF")
                 {
                     ApplicationArea = All;
                 }
-                field(City; rec.City)
+                field(City; rec.City_FF)
                 {
                     ApplicationArea = All;
                 }
-                field("Post Code"; rec."Post Code")
+                field("Post Code"; rec."Post Code_FF")
                 {
                     ApplicationArea = All;
                 }
-                field("Country/Region Code"; rec."Country/Region Code")
+                field("Country/Region Code"; rec."Country/Region Code_FF")
                 {
                     ApplicationArea = All;
                 }
@@ -57,6 +57,7 @@ page 60101 "FBM_CustomerSite_CO"
                     ApplicationArea = all;
                     visible = EnableSpin;
                 }
+
 
             }
         }

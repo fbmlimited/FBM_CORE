@@ -1,4 +1,4 @@
-tableextension 60104 FBM_SalesHeaderExt_CO extends "Sales Header"
+tableextension 60111 FBM_SInvHeaderExt_CO extends "Sales Invoice Header"
 {
     fields
     {
@@ -15,9 +15,8 @@ tableextension 60104 FBM_SalesHeaderExt_CO extends "Sales Header"
         {
 
             FieldClass = "Flowfield";
-            CalcFormula = lookup(Customer."FBM_Payment Bank Code" where("No." = field("Sell-to Customer No.")));
+            CalcFormula = lookup(Customer."FBM_Payment Bank Code2" where("No." = field("Sell-to Customer No.")));
         }
-
 
 
 

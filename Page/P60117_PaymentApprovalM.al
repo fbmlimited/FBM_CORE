@@ -260,8 +260,8 @@ page 60117 FBM_PaymentApprovalM_CO
                     vlem."Exported to Payment File" := vle."Exported to Payment File";
                     vlem."Dimension Set ID" := vle."Dimension Set ID";
                     vlem.approved := vle.FBM_approved;
-                    vle.CalcFields("FBM_Default Bank Account");
-                    vlem."Default Bank Account" := vle."FBM_Default Bank Account";
+                    vle.CalcFields("FBM_Default Bank Account_FF");
+                    vlem."Default Bank Account" := vle."FBM_Default Bank Account_FF";
                     vlem."approved date" := vle."FBM_approved date";
                     vlem."approved user" := vle."FBM_approved user";
                     vlem."Approver Comment" := vle."FBM_Approver Comment";

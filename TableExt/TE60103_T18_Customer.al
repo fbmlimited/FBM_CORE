@@ -4,7 +4,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
     {
 
 
-        field(60100; "FBM_Current Month"; Decimal)
+        field(60100; "FBM_Current Month_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -20,7 +20,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             FieldClass = FlowField;
         }
 
-        field(60101; "FBM_1 Month"; Decimal)
+        field(60101; "FBM_1 Month_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -35,7 +35,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60102; "FBM_2 Months"; Decimal)
+        field(60102; "FBM_2 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -50,7 +50,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60103; "FBM_3 Months"; Decimal)
+        field(60103; "FBM_3 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -65,7 +65,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60104; "FBM_4 Months"; Decimal)
+        field(60104; "FBM_4 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -80,7 +80,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60105; "FBM_5 Months"; Decimal)
+        field(60105; "FBM_5 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -95,7 +95,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60106; "FBM_6 Months"; Decimal)
+        field(60106; "FBM_6 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -152,7 +152,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
 
             FieldClass = FlowFilter;
         }
-        field(60114; "FBM_7 Months"; Decimal)
+        field(60114; "FBM_7 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -167,7 +167,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60115; "FBM_8 Months"; Decimal)
+        field(60115; "FBM_8 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -182,7 +182,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60116; "FBM_9 Months"; Decimal)
+        field(60116; "FBM_9 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -197,7 +197,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60117; "FBM_10 Months"; Decimal)
+        field(60117; "FBM_10 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -212,7 +212,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60118; "FBM_11 Months"; Decimal)
+        field(60118; "FBM_11 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -227,7 +227,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
             Editable = false;
             FieldClass = FlowField;
         }
-        field(60119; "FBM_12 Months"; Decimal)
+        field(60119; "FBM_12 Months_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),
@@ -280,7 +280,7 @@ tableextension 60103 FBM_CustomerExt_CO extends Customer
         }
 
 
-        field(60126; "FBM_Amounts Not Due"; Decimal)
+        field(60126; "FBM_Amounts Not Due_FF"; Decimal)
         {
             AutoFormatType = 1;
             CalcFormula = Sum("Detailed Cust. Ledg. Entry"."Amount (LCY)" WHERE("Customer No." = FIELD("No."),

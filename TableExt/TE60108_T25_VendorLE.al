@@ -3,7 +3,7 @@ tableextension 60108 FBM_VendorLEExt_CO extends "Vendor Ledger Entry"
     fields
     {
 
-        field(70004; "FBM_Default Bank Account"; Code[20])
+        field(70004; "FBM_Default Bank Account_FF"; Code[20])
         {
             TableRelation = "Bank Account";
             Caption = 'Default Bank Account';

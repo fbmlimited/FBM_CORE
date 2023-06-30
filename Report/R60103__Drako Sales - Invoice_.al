@@ -1441,7 +1441,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                 Handled: Boolean;
             begin
 
-                CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
+                CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
 
                 FormatSiteAddress("Sales Invoice Header");
                 FormatAddressFields("Sales Invoice Header");
@@ -1586,9 +1586,9 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             if "Sales Invoice Header".FindSet then
                 repeat
                     if "Sales Invoice Header"."Bill-to Contact No." <> '' then
-                        SegManagement.LogDocument(SegManagement.SalesInvoiceInterDocType, "Sales Invoice Header"."No.", 0, 0, DATABASE::Contact, "Sales Invoice Header"."Bill-to Contact No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '')
+                        SegManagement.LogDocument(enum::"Interaction Log Entry Document Type"::"Sales Inv.".AsInteger(), "Sales Invoice Header"."No.", 0, 0, DATABASE::Contact, "Sales Invoice Header"."Bill-to Contact No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '')
                     else
-                        SegManagement.LogDocument(SegManagement.SalesInvoiceInterDocType, "Sales Invoice Header"."No.", 0, 0, DATABASE::Customer, "Sales Invoice Header"."Bill-to Customer No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '');
+                        SegManagement.LogDocument(enum::"Interaction Log Entry Document Type"::"Sales Inv.".AsInteger(), "Sales Invoice Header"."No.", 0, 0, DATABASE::Customer, "Sales Invoice Header"."Bill-to Customer No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '');
                 until "Sales Invoice Header".Next = 0;
     end;
 
@@ -1620,7 +1620,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         TempPostedAsmLine: Record "Posted Assembly Line" temporary;
         VATClause: Record "VAT Clause";
         TempLineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist." temporary;
-        Language: Codeunit Language;
+        Lang: Codeunit Language;
         FormatAddr: Codeunit "Format Address";
         FormatDocument: Codeunit "Format Document";
         SegManagement: Codeunit SegManagement;
@@ -1780,7 +1780,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
     //BFT-001 -- end
     procedure InitLogInteraction()
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
+        LogInteraction := SegManagement.FindInteractionTemplateCode(enum::"Interaction Log Entry Document Type"::"Sales Inv.") <> '';
     end;
 
     local procedure IsReportInPreviewMode(): Boolean
@@ -1922,15 +1922,15 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             SalesShipmentBuffer.Modify;
             exit;
         end;
-        with SalesShipmentBuffer do begin
-            "Document No." := SalesInvoiceLine."Document No.";
-            "Line No." := SalesInvoiceLine."Line No.";
-            "Entry No." := NextEntryNo;
-            Type := SalesInvoiceLine.Type;
-            "No." := SalesInvoiceLine."No.";
-            Quantity := QtyOnShipment;
-            "Posting Date" := PostingDate;
-            Insert;
+        begin
+            SalesShipmentBuffer."Document No." := SalesInvoiceLine."Document No.";
+            SalesShipmentBuffer."Line No." := SalesInvoiceLine."Line No.";
+            SalesShipmentBuffer."Entry No." := NextEntryNo;
+            SalesShipmentBuffer.Type := SalesInvoiceLine.Type;
+            SalesShipmentBuffer."No." := SalesInvoiceLine."No.";
+            SalesShipmentBuffer.Quantity := QtyOnShipment;
+            SalesShipmentBuffer."Posting Date" := PostingDate;
+            SalesShipmentBuffer.Insert;
             NextEntryNo := NextEntryNo + 1
         end;
     end;
@@ -1958,15 +1958,15 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
 
     local procedure FormatDocumentFields(SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
-        with SalesInvoiceHeader do begin
+        begin
             //BFT-001
             //FormatDocument.SetTotalLabels("Currency Code", TotalText, TotalInclVATText, TotalExclVATText);            
-            FormatDocument.SetSalesPerson(SalesPurchPerson, "Salesperson Code", SalesPersonText);
-            FormatDocument.SetPaymentTerms(PaymentTerms, "Payment Terms Code", "Language Code");
-            FormatDocument.SetShipmentMethod(ShipmentMethod, "Shipment Method Code", "Language Code");
-            OrderNoText := FormatDocument.SetText("Order No." <> '', FieldCaption("Order No."));
-            ReferenceText := FormatDocument.SetText("Your Reference" <> '', FieldCaption("Your Reference"));
-            VATNoText := FormatDocument.SetText("VAT Registration No." <> '', FieldCaption("VAT Registration No."));
+            FormatDocument.SetSalesPerson(SalesPurchPerson, SalesInvoiceHeader."Salesperson Code", SalesPersonText);
+            FormatDocument.SetPaymentTerms(PaymentTerms, SalesInvoiceHeader."Payment Terms Code", SalesInvoiceHeader."Language Code");
+            FormatDocument.SetShipmentMethod(ShipmentMethod, SalesInvoiceHeader."Shipment Method Code", SalesInvoiceHeader."Language Code");
+            OrderNoText := FormatDocument.SetText(SalesInvoiceHeader."Order No." <> '', SalesInvoiceHeader.FieldCaption("Order No."));
+            ReferenceText := FormatDocument.SetText(SalesInvoiceHeader."Your Reference" <> '', SalesInvoiceHeader.FieldCaption("Your Reference"));
+            VATNoText := FormatDocument.SetText(SalesInvoiceHeader."VAT Registration No." <> '', SalesInvoiceHeader.FieldCaption("VAT Registration No."));
         end;
     end;
 
@@ -1990,13 +1990,13 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
     begin
         TempPostedAsmLine.DeleteAll;
         if "Sales Invoice Line".Type <> "Sales Invoice Line".Type::Item then exit;
-        with ValueEntry do begin
-            SetCurrentKey("Document No.");
-            SetRange("Document No.", "Sales Invoice Line"."Document No.");
-            SetRange("Document Type", "Document Type"::"Sales Invoice");
-            SetRange("Document Line No.", "Sales Invoice Line"."Line No.");
-            SetRange(Adjustment, false);
-            if not FindSet then exit;
+        begin
+            ValueEntry.SetCurrentKey("Document No.");
+            ValueEntry.SetRange("Document No.", "Sales Invoice Line"."Document No.");
+            ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
+            ValueEntry.SetRange("Document Line No.", "Sales Invoice Line"."Line No.");
+            ValueEntry.SetRange(Adjustment, false);
+            if not ValueEntry.FindSet then exit;
         end;
         repeat
             if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then
@@ -2064,7 +2064,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             until LineFeeNoteOnReportHist.Next = 0;
         end
         else begin
-            LineFeeNoteOnReportHist.SetRange("Language Code", Language.GetUserLanguageCode);
+            LineFeeNoteOnReportHist.SetRange("Language Code", Lang.GetUserLanguageCode);
             if LineFeeNoteOnReportHist.FindSet then
                 repeat
                     InsertTempLineFeeNoteOnReportHist(LineFeeNoteOnReportHist, TempLineFeeNoteOnReportHist);
@@ -2084,9 +2084,9 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         if (not GLSetup."Print VAT specification in LCY") or (SalesInvoiceHeader."Currency Code" = '') then exit;
         TempVATAmountLineLCY2.Init;
         TempVATAmountLineLCY2 := TempVATAmountLine2;
-        with SalesInvoiceHeader do begin
-            VATBaseLCY := CurrExchRate.ExchangeAmtFCYToLCY("Posting Date", "Currency Code", TempVATAmountLine2."VAT Base", "Currency Factor") + VATBaseRemainderAfterRoundingLCY2;
-            AmtInclVATLCY := CurrExchRate.ExchangeAmtFCYToLCY("Posting Date", "Currency Code", TempVATAmountLine2."Amount Including VAT", "Currency Factor") + AmtInclVATRemainderAfterRoundingLCY2;
+        begin
+            VATBaseLCY := CurrExchRate.ExchangeAmtFCYToLCY(SalesInvoiceHeader."Posting Date", SalesInvoiceHeader."Currency Code", TempVATAmountLine2."VAT Base", SalesInvoiceHeader."Currency Factor") + VATBaseRemainderAfterRoundingLCY2;
+            AmtInclVATLCY := CurrExchRate.ExchangeAmtFCYToLCY(SalesInvoiceHeader."Posting Date", SalesInvoiceHeader."Currency Code", TempVATAmountLine2."Amount Including VAT", SalesInvoiceHeader."Currency Factor") + AmtInclVATRemainderAfterRoundingLCY2;
         end;
         TempVATAmountLineLCY2."VAT Base" := Round(VATBaseLCY);
         TempVATAmountLineLCY2."Amount Including VAT" := Round(AmtInclVATLCY);
@@ -2309,17 +2309,18 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
             Site.SetFilter(Site."Site Code", SalesInvoiceHeader.FBM_Site);
             if (Site.FindFirst()) then begin
+                site.SetAutoCalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;
-                SiteAddr[1] := Site."Site Name";
-                SiteAddr[2] := Site.Address;
-                SiteAddr[3] := Site."Address 2";
+                SiteAddr[1] := Site."Site Name_FF";
+                SiteAddr[2] := Site.Address_FF;
+                SiteAddr[3] := Site."Address 2_FF";
                 //SiteAddr[4] := STRSUBSTNO('%1, ', Site.City);
-                if Site.City <> '' then
-                    SiteAddr[4] := STRSUBSTNO('%1, ', Site.City)
+                if Site.City_FF <> '' then
+                    SiteAddr[4] := STRSUBSTNO('%1, ', Site.City_FF)
                 else
-                    SiteAddr[4] := Site.City;
-                SiteAddr[5] := Site."Post Code";
-                if Cnt.Get(Site."Country/Region Code") then;
+                    SiteAddr[4] := Site.City_FF;
+                SiteAddr[5] := Site."Post Code_FF";
+                if Cnt.Get(Site."Country/Region Code_FF") then;
                 SiteAddr[6] := Cnt.Name;
                 SiteAddr[7] := Site."Site Code";
             end

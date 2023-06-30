@@ -25,13 +25,13 @@ codeunit 60100 "FBM_Format Addr_CO"
     procedure CompanyCountry(var AddrArray: array[8] of Text[100];
     var CompanyInfo: Record "Company Information")
     begin
-        with CompanyInfo do FormatAddress.FormatAddr(AddrArray, Name, "Name 2", '', Address, "Address 2", City, "Post Code", County, "Country/Region Code");
+        FormatAddress.FormatAddr(AddrArray, CompanyInfo.Name, CompanyInfo."Name 2", '', CompanyInfo.Address, CompanyInfo."Address 2", CompanyInfo.City, CompanyInfo."Post Code", CompanyInfo.County, CompanyInfo."Country/Region Code");
     end;
 
     procedure RespCenterCountry(var AddrArray: array[8] of Text[100];
     var RespCenter: Record "Responsibility Center")
     begin
-        with RespCenter do FormatAddress.FormatAddr(AddrArray, Name, "Name 2", Contact, Address, "Address 2", City, "Post Code", County, "Country/Region Code");
+        FormatAddress.FormatAddr(AddrArray, RespCenter.Name, RespCenter."Name 2", RespCenter.Contact, RespCenter.Address, RespCenter."Address 2", RespCenter.City, RespCenter."Post Code", RespCenter.County, RespCenter."Country/Region Code");
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Format Address", 'OnBeforeSalesInvSellTo', '', true, true)]
@@ -39,10 +39,10 @@ codeunit 60100 "FBM_Format Addr_CO"
     var
         format: codeunit "Format Address";
     begin
-        with SalesInvoiceHeader do
-            format.FormatAddr(
-              AddrArray, "Sell-to Customer Name", "Sell-to Customer Name 2", '', "Sell-to Address", "Sell-to Address 2",
-              "Sell-to City", "Sell-to Post Code", "Sell-to County", "Sell-to Country/Region Code");
+
+        format.FormatAddr(
+          AddrArray, SalesInvoiceHeader."Sell-to Customer Name", SalesInvoiceHeader."Sell-to Customer Name 2", '', SalesInvoiceHeader."Sell-to Address", SalesInvoiceHeader."Sell-to Address 2",
+          SalesInvoiceHeader."Sell-to City", SalesInvoiceHeader."Sell-to Post Code", SalesInvoiceHeader."Sell-to County", SalesInvoiceHeader."Sell-to Country/Region Code");
         Handled := true;
     end;
 }

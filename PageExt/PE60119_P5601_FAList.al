@@ -38,7 +38,7 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
             {
                 ApplicationArea = all;
             }
-            field(Is_EGM; rec.FBM_Is_EGM)
+            field(Is_EGM; rec.FBM_Is_EGM_FF)
             {
                 ApplicationArea = all;
             }
@@ -46,7 +46,7 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
 
         addafter("FA Class Code")
         {
-            field("Fa Posting Group Depr"; rec."FBM_Fa Posting Group Depr")
+            field("Fa Posting Group Depr"; rec."FBM_Fa Posting Group Depr_FF")
             {
                 ApplicationArea = all;
             }

@@ -47,13 +47,13 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
         }
         addafter("Currency Code")
         {
-            field("Customer Payment Bank Code"; rec."FBM_Cust Payment Bank Code")
+            field("Customer Payment Bank Code"; rec."FBM_Cust Payment Bank Code_FF")
             {
                 ApplicationArea = all;
                 Editable = false;
             }
 
-            field("Customer Payment Bank Code2"; rec."FBM_Cust Payment Bank Code2")
+            field("Customer Payment Bank Code2"; rec."FBM_Cust Payment Bank Code2_FF")
             {
                 ApplicationArea = all;
                 Editable = false;

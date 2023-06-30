@@ -1014,7 +1014,7 @@ report 60112 "FBM_NTT Billing Stat.-CrM_CO"
 
         trigger OnOpenPage()
         begin
-            LogInteraction := SegManagement.FindInteractTmplCode(6) <> '';
+            LogInteraction := SegManagement.FindInteractionTemplateCode(enum::"Interaction Log Entry Document Type"::"Sales Cr. Memo") <> '';
             LogInteractionEnable := LogInteraction;
         end;
     }
@@ -1152,7 +1152,7 @@ report 60112 "FBM_NTT Billing Stat.-CrM_CO"
 
     procedure InitLogInteraction()
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(6) <> '';
+        LogInteraction := SegManagement.FindInteractionTemplateCode(enum::"Interaction Log Entry Document Type"::"Sales Cr. Memo") <> '';
     end;
 
     local procedure DocumentCaption(): Text[250]
@@ -1190,13 +1190,13 @@ report 60112 "FBM_NTT Billing Stat.-CrM_CO"
 
     local procedure FormatDocumentFields(SalesCrMemoHeader: Record "Sales Cr.Memo Header")
     begin
-        with SalesCrMemoHeader do begin
-            FormatDocument.SetTotalLabels("Currency Code", TotalText, TotalInclVATText, TotalExclVATText);
-            FormatDocument.SetSalesPerson(SalesPurchPerson, "Salesperson Code", SalesPersonText);
-            ReturnOrderNoText := FormatDocument.SetText("Return Order No." <> '', FieldCaption("Return Order No."));
-            ReferenceText := FormatDocument.SetText("Your Reference" <> '', FieldCaption("Your Reference"));
-            VATNoText := FormatDocument.SetText("VAT Registration No." <> '', FieldCaption("VAT Registration No."));
-            AppliedToText := FormatDocument.SetText("Applies-to Doc. No." <> '', Format(StrSubstNo(Text003, Format("Applies-to Doc. Type"), "Applies-to Doc. No.")));
+        begin
+            FormatDocument.SetTotalLabels(SalesCrMemoHeader."Currency Code", TotalText, TotalInclVATText, TotalExclVATText);
+            FormatDocument.SetSalesPerson(SalesPurchPerson, SalesCrMemoHeader."Salesperson Code", SalesPersonText);
+            ReturnOrderNoText := FormatDocument.SetText(SalesCrMemoHeader."Return Order No." <> '', SalesCrMemoHeader.FieldCaption("Return Order No."));
+            ReferenceText := FormatDocument.SetText(SalesCrMemoHeader."Your Reference" <> '', SalesCrMemoHeader.FieldCaption("Your Reference"));
+            VATNoText := FormatDocument.SetText(SalesCrMemoHeader."VAT Registration No." <> '', SalesCrMemoHeader.FieldCaption("VAT Registration No."));
+            AppliedToText := FormatDocument.SetText(SalesCrMemoHeader."Applies-to Doc. No." <> '', Format(StrSubstNo(Text003, Format(SalesCrMemoHeader."Applies-to Doc. Type"), SalesCrMemoHeader."Applies-to Doc. No.")));
         end;
     end;
 
@@ -1207,16 +1207,17 @@ report 60112 "FBM_NTT Billing Stat.-CrM_CO"
         if (SalesCrMemoHeader.FBM_Site <> '') then begin
             Site.SetFilter(Site."Site Code", SalesCrMemoHeader.FBM_Site);
             if (Site.FindFirst()) then begin
+                site.SetAutoCalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;
-                SiteAddr[1] := Site."Site Name";
-                SiteAddr[2] := Site.Address;
-                SiteAddr[3] := Site."Address 2";
-                if Site.City <> '' then
-                    SiteAddr[4] := STRSUBSTNO('%1, ', Site.City)
+                SiteAddr[1] := Site."Site Name_FF";
+                SiteAddr[2] := Site.Address_FF;
+                SiteAddr[3] := Site."Address 2_FF";
+                if Site.City_FF <> '' then
+                    SiteAddr[4] := STRSUBSTNO('%1, ', Site.City_FF)
                 else
-                    SiteAddr[4] := Site.City;
-                SiteAddr[5] := Site."Post Code";
-                Cnt.Get(Site."Country/Region Code");
+                    SiteAddr[4] := Site.City_FF;
+                SiteAddr[5] := Site."Post Code_FF";
+                Cnt.Get(Site."Country/Region Code_FF");
                 SiteAddr[6] := Cnt.Name;
                 SiteAddr[7] := Site."Site Code";
             end

@@ -1,5 +1,6 @@
 pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 {
+    Editable = false;
     layout
     {
         addbefore(Name)
@@ -49,8 +50,22 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             }
         }
 
+        modify("IDPIRPF IRPF Group")
+        {
+            Visible = isvisES;
 
+        }
+        modify("WHT Business Posting Group PHL")
+        {
+            Visible = isvisPH;
+
+        }
     }
+
+
+
+
+
     actions
     {
         addlast(navigation)
@@ -77,7 +92,14 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             }
         }
     }
+
+
+
     var
+        isvisES: Boolean;
+        isvisPH: Boolean;
+        compinfo: record "Company Information";
+
         CustomerSiteP: Page FBM_CustomerSite_CO;
         CustomerSite: Record FBM_CustomerSite_C;
         Operators: Record "Dimension Value";
@@ -95,6 +117,9 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
                 ShowSites := true
             else
                 ShowSites := false;
+            compinfo.get;
+            isvisES := compinfo."Country/Region Code" = 'ES';
+            isvisPH := compinfo."Country/Region Code" = 'PH';
         end;
     end;
 }

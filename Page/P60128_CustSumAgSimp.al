@@ -1,4 +1,4 @@
-page 60121 "FBM_Aged Accounts by Months_CO"
+page 60128 "FBM_Aged Accounts by Months"
 {
     // version ONETECH
 
@@ -64,31 +64,31 @@ page 60121 "FBM_Aged Accounts by Months_CO"
 
                 field("Gen. Bus. Posting Group"; rec."Gen. Bus. Posting Group")
                 { }
-                field("Current Month"; rec."FBM_Current Month_FF")
+                field("FBM_Current Month_FF"; rec."FBM_Current Month_FF")
                 {
                     BlankZero = true;
                 }
-                field("1 Month"; rec."FBM_1 Month_FF")
+                field("FBM_1 Month_FF"; rec."FBM_1 Month_FF")
                 {
                     BlankZero = true;
                 }
-                field("2 Months"; rec."FBM_2 Months_FF")
+                field("FBM_2 Months_FF"; rec."FBM_2 Months_FF")
                 {
                     BlankZero = true;
                 }
-                field("3 Months"; rec."FBM_3 Months_FF")
+                field("FBM_3 Months_FF"; rec."FBM_3 Months_FF")
                 {
                     BlankZero = true;
                 }
-                field("4 Months"; rec."FBM_4 Months_FF")
+                field("FBM_4 Months_FF"; rec."FBM_4 Months_FF")
                 {
                     BlankZero = true;
                 }
-                field("5 Months"; rec."FBM_5 Months_FF")
+                field("FBM_5 Months_FF"; rec."FBM_5 Months_FF")
                 {
                     BlankZero = true;
                 }
-                field("6 Months"; rec."FBM_6 Months_FF")
+                field("FBM_6 Months_FF"; rec."FBM_6 Months_FF")
                 {
                     BlankZero = true;
                 }

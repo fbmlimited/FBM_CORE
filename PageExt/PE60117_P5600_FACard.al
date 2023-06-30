@@ -15,7 +15,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
         }
         addafter("FA Subclass Code")
         {
-            field(Is_EGM; rec.FBM_Is_EGM)
+            field(Is_EGM; rec.FBM_Is_EGM_FF)
             {
                 ApplicationArea = all;
             }

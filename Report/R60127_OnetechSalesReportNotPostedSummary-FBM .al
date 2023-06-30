@@ -118,9 +118,10 @@ report 60127 FBM_SalSummFBMNotPosted_CO
                     invsite := invheader.FBM_Site;
                     siterec.SetRange("Site Code", invsite);
                     siterec.SetRange("Customer No.", invheader."Sell-to Customer No.");
-                    if siterec.FindFirst() then
-                        invsitename := siterec."Site Name";
-
+                    if siterec.FindFirst() then begin
+                        siterec.calcfields("Site Name_FF");
+                        invsitename := siterec."Site Name_FF";
+                    end;
                     invContract := invheader."FBM_Contract Code";
                 end;
                 if glaccount.Get("No.") then begin

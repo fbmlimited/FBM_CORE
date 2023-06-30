@@ -1,4 +1,4 @@
-report 60105 "FBM_EPS Sales - Invoice_CO"
+report 60105 "EPS Sales - Invoice_CO"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './RDLC/R50025 EPS Sales Invoice.rdl';
@@ -71,6 +71,10 @@ report 60105 "FBM_EPS Sales - Invoice_CO"
             DisplayAdditionalFeeNote)
             {
             }
+            column(Bill_to_Country_Region_Code; "Bill-to Country/Region Code")
+            {
+            }
+
             dataitem(CopyLoop; "Integer")
             {
                 DataItemTableView = SORTING(Number);
@@ -396,10 +400,10 @@ report 60105 "FBM_EPS Sales - Invoice_CO"
                     PeriodEndCaption)
                     {
                     }
-                    column(CompanyInfoBankAddress;
-                    CompanyInfo.FBM_BankAddress)
-                    {
-                    }
+                    // column(CompanyInfoBankAddress;
+                    // CompanyInfo.fb)
+                    // {
+                    // }
                     column(SIH_Currency;
                     Curr2)
                     {
@@ -534,7 +538,7 @@ report 60105 "FBM_EPS Sales - Invoice_CO"
                         end;
                     }
 
-                    dataitem(TC;
+                    dataitem(TermsCondition;
                     FBM_TermsConditions)
                     {
 
@@ -544,13 +548,21 @@ report 60105 "FBM_EPS Sales - Invoice_CO"
                         "Terms Conditions")
                         {
                         }
+                        trigger
+                        OnPreDataItem()
+                        begin
+                            setrange(Country, g_Customer."Country/Region Code");
+                            if count = 0 then
+                                setrange(Country, '');
+                        end;
+
                         trigger OnAfterGetRecord()
                         begin
-                            if ((g_Customer."Country/Region Code" = 'MX') OR (g_Customer."Country/Region Code" = 'PH')) then begin
-                                if (TC.Country <> g_Customer."Country/Region Code") then CurrReport.Skip();
-                            end
-                            else
-                                if (TC.Country <> '') then CurrReport.Skip();
+                            // if ((g_Customer."Country/Region Code" = 'MX') OR (g_Customer."Country/Region Code" = 'PH')) then begin
+                            //     if (TermsCondition.Country <> g_Customer."Country/Region Code") then CurrReport.Skip();
+                            // end
+                            // else
+                            //     if (TermsCondition.Country <> '') then CurrReport.Skip();
                         end;
                     }
                     dataitem("Sales Invoice Line";
@@ -886,11 +898,11 @@ report 60105 "FBM_EPS Sales - Invoice_CO"
                         {
                         }
                         column(Period_Start;
-                        Format("FBM_Period Start", 0, '<Day,2>-<Month Text,3>-<Year4>'))
+                        Format("fbm_Period Start", 0, '<Day,2>-<Month Text,3>-<Year4>'))
                         {
                         }
                         column(Period_End;
-                        Format("FBM_Period End", 0, '<Day,2>-<Month Text,3>-<Year4>'))
+                        Format("fbm_Period End", 0, '<Day,2>-<Month Text,3>-<Year4>'))
                         {
                         }
                         //BFT-001 -- end
@@ -2215,17 +2227,19 @@ report 60105 "FBM_EPS Sales - Invoice_CO"
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
             Site.SetFilter(Site."Site Code", SalesInvoiceHeader.FBM_Site);
             if (Site.FindFirst()) then begin
+                site.SetAutoCalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;
-                SiteAddr[1] := Site."Site Name";
-                SiteAddr[2] := Site.Address;
-                SiteAddr[3] := Site."Address 2";
+                site.CalcFields("Site Name_FF");
+                SiteAddr[1] := Site."Site Name_FF";
+                SiteAddr[2] := Site.Address_FF;
+                SiteAddr[3] := Site."Address 2_FF";
                 //SiteAddr[4] := STRSUBSTNO('%1, ', Site.City);
-                if Site.City <> '' then
-                    SiteAddr[4] := STRSUBSTNO('%1, ', Site.City)
+                if Site.City_FF <> '' then
+                    SiteAddr[4] := STRSUBSTNO('%1, ', Site.City_FF)
                 else
-                    SiteAddr[4] := Site.City;
-                SiteAddr[5] := Site."Post Code";
-                if Cnt.Get(Site."Country/Region Code") then;
+                    SiteAddr[4] := Site.City_FF;
+                SiteAddr[5] := Site."Post Code_FF";
+                if Cnt.Get(Site."Country/Region Code_FF") then;
                 SiteAddr[6] := Cnt.Name;
                 SiteAddr[7] := Site."Site Code";
             end
@@ -2249,7 +2263,7 @@ report 60105 "FBM_EPS Sales - Invoice_CO"
                 BankDetails[4] := PaymentBank."SWIFT Code";
                 BankDetails[5] := PaymentBank.IBAN;
                 BankDetails[6] := PaymentBank."Currency Code";
-                BankDetails[7] := PaymentBank."Address";
+                BankDetails[7] := PaymentBank.Address;
                 BankDetails[8] := PaymentBank."Address 2";
                 HasBank := true;
                 if ((BankDetails[1] = '') OR (BankDetails[2] = '')) then

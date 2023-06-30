@@ -19,6 +19,14 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
                         rec."FBM_Consignee Post Code" := compinfo."Post Code";
                         rec."FBM_Consignee Country" := compinfo."Country/Region Code";
                         rec."FBM_Consignee County" := compinfo.County;
+                        // rec."Consignee Address" := compinfo.Address;
+                        // rec."Consignee Address 2" := compinfo."Address 2";
+                        // rec."Consignee Name" := compinfo.Name;
+                        // rec."Consignee City" := compinfo.City;
+                        // rec."Consignee Contact" := compinfo."Name 2";
+                        // rec."Consignee Post Code" := compinfo."Post Code";
+                        // rec."Consignee Country" := compinfo."Country/Region Code";
+                        // rec."Consignee County" := compinfo.County;
                         rec.Modify();
                     END;
                     if rec."Ship-to Name" = '' then begin
@@ -63,14 +71,15 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
                         compinfo.get();
                         cs.SetRange("Site Code", rec.FBM_Site);
                         if cs.FindFirst() then begin
-                            rec."Ship-to Address" := cs.Address;
-                            rec."Ship-to Address 2" := cs."Address 2";
-                            rec."Ship-to Name" := cs."Site Name";
-                            rec."Ship-to City" := cs.City;
+                            cs.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
+                            rec."Ship-to Address" := cs.Address_FF;
+                            rec."Ship-to Address 2" := cs."Address 2_FF";
+                            rec."Ship-to Name" := cs."Site Name_FF";
+                            rec."Ship-to City" := cs.City_FF;
                             rec."Ship-to Contact" := cs.Contact;
-                            rec."Ship-to Post Code" := cs."Post Code";
-                            rec."Ship-to Country/Region Code" := cs."Country/Region Code";
-                            rec."Ship-to County" := cs.County;
+                            rec."Ship-to Post Code" := cs."Post Code_FF";
+                            rec."Ship-to Country/Region Code" := cs."Country/Region Code_FF";
+                            rec."Ship-to County" := cs.County_FF;
                             rec."Ship-to Contact" := cs.Contact;
                             rec.Modify();
                         end
@@ -200,6 +209,14 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
                         rec."FBM_Consignee Post Code" := cust."Post Code";
                         rec."FBM_Consignee Country" := cust."Country/Region Code";
                         rec."FBM_Consignee County" := cust.County;
+                        // rec."Consignee Address" := cust.Address;
+                        // rec."Consignee Address 2" := cust."Address 2";
+                        // rec."Consignee Name" := cust.Name;
+                        // rec."Consignee City" := cust.City;
+                        // rec."Consignee Contact" := cust."Name 2";
+                        // rec."Consignee Post Code" := cust."Post Code";
+                        // rec."Consignee Country" := cust."Country/Region Code";
+                        // rec."Consignee County" := cust.County;
                     end
                     else begin
                         rec."FBM_Consignee Address" := compinfo.Address;
@@ -210,6 +227,14 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
                         rec."FBM_Consignee Post Code" := compinfo."Post Code";
                         rec."FBM_Consignee Country" := compinfo."Country/Region Code";
                         rec."FBM_Consignee County" := compinfo.County;
+                        // rec."Consignee Address" := compinfo.Address;
+                        // rec."Consignee Address 2" := compinfo."Address 2";
+                        // rec."Consignee Name" := compinfo.Name;
+                        // rec."Consignee City" := compinfo.City;
+                        // rec."Consignee Contact" := compinfo."Name 2";
+                        // rec."Consignee Post Code" := compinfo."Post Code";
+                        // rec."Consignee Country" := compinfo."Country/Region Code";
+                        // rec."Consignee County" := compinfo.County;
                     end;
 
 
@@ -456,6 +481,14 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
             rec."FBM_Consignee Post Code" := compinfo."Post Code";
             rec."FBM_Consignee Country" := compinfo."Country/Region Code";
             rec."FBM_Consignee County" := compinfo.County;
+            // rec."Consignee Address" := compinfo.Address;
+            // rec."Consignee Address 2" := compinfo."Address 2";
+            // rec."Consignee Name" := compinfo.Name;
+            // rec."Consignee City" := compinfo.City;
+            // rec."Consignee Contact" := compinfo."Name 2";
+            // rec."Consignee Post Code" := compinfo."Post Code";
+            // rec."Consignee Country" := compinfo."Country/Region Code";
+            // rec."Consignee County" := compinfo.County;
             //rec.Modify();
         end;
         if rec."Ship-to Name" = '' then begin

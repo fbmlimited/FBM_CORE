@@ -19,7 +19,6 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
         addafter("No.")
         {
 
-
             field("FBM_Billing Statement"; Rec."FBM_Billing Statement")
             {
                 ApplicationArea = all;

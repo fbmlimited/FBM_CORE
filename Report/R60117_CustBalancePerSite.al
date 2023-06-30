@@ -25,7 +25,7 @@ report 60117 CustBalancePerSite
             {
             }
             column(Site_Name;
-            "Site Name")
+            "Site Name_FF")
             {
             }
             column(CustName;

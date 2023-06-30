@@ -32,7 +32,7 @@ pageextension 60108 FBM_CustomerLEExt_CO extends "Customer Ledger Entries"
         addafter("External Document No.")
         {
 
-            field("Gen. Bus. Posting Group"; rec."FBM_Gen. Bus. Posting Group")
+            field("Gen. Bus. Posting Group"; rec."FBM_Gen. Bus. Posting Group_FF")
             {
                 ApplicationArea = All;
                 Editable = false;

@@ -26,7 +26,7 @@
                   </TablixColumns>
                   <TablixRows>
                     <TablixRow>
-                      <Height>20.67587cm</Height>
+                      <Height>23.21642cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -9983,7 +9983,11 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                   <TablixRowHierarchy>
                                     <TablixMembers>
                                       <TablixMember />
-                                      <TablixMember />
+                                      <TablixMember>
+                                        <Visibility>
+                                          <Hidden>true</Hidden>
+                                        </Visibility>
+                                      </TablixMember>
                                       <TablixMember>
                                         <Visibility>
                                           <Hidden>=IIF(Last(Fields!TotalInvDiscAmount.Value)=0,TRUE,FALSE)</Hidden>
@@ -10525,6 +10529,51 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                         </TablixCells>
                                       </TablixRow>
                                       <TablixRow>
+                                        <Height>0.6cm</Height>
+                                        <TablixCells>
+                                          <TablixCell>
+                                            <CellContents>
+                                              <Textbox Name="Textbox53">
+                                                <CanGrow>true</CanGrow>
+                                                <KeepTogether>true</KeepTogether>
+                                                <Paragraphs>
+                                                  <Paragraph>
+                                                    <TextRuns>
+                                                      <TextRun>
+                                                        <Value> Terms &amp; Conditions</Value>
+                                                        <Style>
+                                                          <FontSize>8pt</FontSize>
+                                                          <FontWeight>Bold</FontWeight>
+                                                        </Style>
+                                                      </TextRun>
+                                                    </TextRuns>
+                                                    <Style />
+                                                  </Paragraph>
+                                                </Paragraphs>
+                                                <rd:DefaultName>Textbox53</rd:DefaultName>
+                                                <Style>
+                                                  <Border>
+                                                    <Style>None</Style>
+                                                  </Border>
+                                                  <LeftBorder>
+                                                    <Style>Solid</Style>
+                                                  </LeftBorder>
+                                                  <RightBorder>
+                                                    <Style>Solid</Style>
+                                                  </RightBorder>
+                                                  <PaddingLeft>5pt</PaddingLeft>
+                                                  <PaddingRight>5pt</PaddingRight>
+                                                  <PaddingTop>2pt</PaddingTop>
+                                                  <PaddingBottom>2pt</PaddingBottom>
+                                                </Style>
+                                              </Textbox>
+                                              <ColSpan>2</ColSpan>
+                                            </CellContents>
+                                          </TablixCell>
+                                          <TablixCell />
+                                        </TablixCells>
+                                      </TablixRow>
+                                      <TablixRow>
                                         <Height>0.49742cm</Height>
                                         <TablixCells>
                                           <TablixCell>
@@ -10614,18 +10663,18 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                         </TablixCells>
                                       </TablixRow>
                                       <TablixRow>
-                                        <Height>0.26133cm</Height>
+                                        <Height>0.59647cm</Height>
                                         <TablixCells>
                                           <TablixCell>
                                             <CellContents>
-                                              <Textbox Name="Textbox53">
+                                              <Textbox Name="EMail">
                                                 <CanGrow>true</CanGrow>
                                                 <KeepTogether>true</KeepTogether>
                                                 <Paragraphs>
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value />
+                                                        <Value>=Fields!EMail.Value</Value>
                                                         <Style>
                                                           <FontFamily>Segoe UI</FontFamily>
                                                           <FontSize>8pt</FontSize>
@@ -10635,7 +10684,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                                     <Style />
                                                   </Paragraph>
                                                 </Paragraphs>
-                                                <rd:DefaultName>Textbox53</rd:DefaultName>
+                                                <rd:DefaultName>EMail</rd:DefaultName>
                                                 <Style>
                                                   <Border>
                                                     <Style>None</Style>
@@ -10709,6 +10758,54 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                           <TablixCell />
                                         </TablixCells>
                                       </TablixRow>
+                                      <TablixRow>
+                                        <Height>1.65833cm</Height>
+                                        <TablixCells>
+                                          <TablixCell>
+                                            <CellContents>
+                                              <Textbox Name="Textbox61">
+                                                <CanGrow>true</CanGrow>
+                                                <KeepTogether>true</KeepTogether>
+                                                <Paragraphs>
+                                                  <Paragraph>
+                                                    <TextRuns>
+                                                      <TextRun>
+                                                        <Value>De conformidad con lo dispuesto en el Reglamento (UE) 2016/679 de 27 de abril de 2016 (GDPR), le informamos que los datos personales y dirección de correo electrónico, recabados del propio interesado serán tratados bajo la responsabilidad de Fbm Systems and Electronics Spain, S.L. para la gestión de facturación, administración y fiscalidad sobre los productos o servicios prestados a nuestros clientes y se conservarán mientras exista un interés mutuo para ello. Los datos no serán comunicados a terceros, salvo obligación legal. Le informamos que puede ejercer los derechos de acceso, rectificación, portabilidad y supresión de sus datos y los de limitación y oposición a su tratamiento dirigiéndose a C/ Acequia del Primer Braç nº 27 C. P. 46470 Massanassa- Valencia, o enviando un mensaje al correo electrónico a fbm@fbmgaming.es Si considera que el tratamiento no se ajusta a la normativa vigente, podrá presentar una reclamación ante la autoridad de control en www.agpd.es</Value>
+                                                        <Style>
+                                                          <FontStyle>Normal</FontStyle>
+                                                          <FontFamily>Times New Roman</FontFamily>
+                                                          <FontSize>6pt</FontSize>
+                                                          <FontWeight>Normal</FontWeight>
+                                                          <TextDecoration>None</TextDecoration>
+                                                          <Color>#000000</Color>
+                                                        </Style>
+                                                      </TextRun>
+                                                    </TextRuns>
+                                                    <Style />
+                                                  </Paragraph>
+                                                </Paragraphs>
+                                                <rd:DefaultName>Textbox61</rd:DefaultName>
+                                                <Style>
+                                                  <Border>
+                                                    <Style>None</Style>
+                                                  </Border>
+                                                  <BottomBorder>
+                                                    <Color>Black</Color>
+                                                    <Style>Solid</Style>
+                                                    <Width>1pt</Width>
+                                                  </BottomBorder>
+                                                  <PaddingLeft>5pt</PaddingLeft>
+                                                  <PaddingRight>5pt</PaddingRight>
+                                                  <PaddingTop>2pt</PaddingTop>
+                                                  <PaddingBottom>2pt</PaddingBottom>
+                                                </Style>
+                                              </Textbox>
+                                              <ColSpan>2</ColSpan>
+                                            </CellContents>
+                                          </TablixCell>
+                                          <TablixCell />
+                                        </TablixCells>
+                                      </TablixRow>
                                     </TablixRows>
                                   </TablixBody>
                                   <TablixColumnHierarchy>
@@ -10723,6 +10820,15 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                         <KeepWithGroup>After</KeepWithGroup>
                                       </TablixMember>
                                       <TablixMember>
+                                        <Visibility>
+                                          <Hidden>=iif(Fields!Bill_to_Country_Region_Code.Value="ES",true,false)</Hidden>
+                                        </Visibility>
+                                        <KeepWithGroup>After</KeepWithGroup>
+                                      </TablixMember>
+                                      <TablixMember>
+                                        <Visibility>
+                                          <Hidden>=iif(Fields!Bill_to_Country_Region_Code.Value="ES",false,true)</Hidden>
+                                        </Visibility>
                                         <KeepWithGroup>After</KeepWithGroup>
                                       </TablixMember>
                                       <TablixMember>
@@ -10735,13 +10841,23 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                         <KeepWithGroup>Before</KeepWithGroup>
                                       </TablixMember>
                                       <TablixMember>
+                                        <Visibility>
+                                          <Hidden>=iif(Fields!Bill_to_Country_Region_Code.Value="ES",false,true)</Hidden>
+                                        </Visibility>
+                                        <KeepWithGroup>Before</KeepWithGroup>
+                                      </TablixMember>
+                                      <TablixMember>
+                                        <Visibility>
+                                          <Hidden>=iif(Fields!Bill_to_Country_Region_Code.Value="ES",true,false)</Hidden>
+                                        </Visibility>
                                         <KeepWithGroup>Before</KeepWithGroup>
                                       </TablixMember>
                                     </TablixMembers>
                                   </TablixRowHierarchy>
+                                  <DataSetName>DataSet_Result</DataSetName>
                                   <Top>17.59528cm</Top>
                                   <Left>0.02328cm</Left>
-                                  <Height>3.02767cm</Height>
+                                  <Height>5.62114cm</Height>
                                   <Width>19.93439cm</Width>
                                   <ZIndex>4</ZIndex>
                                   <Style>
@@ -10797,7 +10913,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                 </TablixRowHierarchy>
                 <DataSetName>DataSet_Result</DataSetName>
                 <Top>0.01411cm</Top>
-                <Height>20.67587cm</Height>
+                <Height>23.21642cm</Height>
                 <Width>19.96611cm</Width>
                 <Style>
                   <Border>
@@ -10816,7 +10932,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Left>0.06761cm</Left>
-            <Height>20.72525cm</Height>
+            <Height>23.23053cm</Height>
             <Width>19.96611cm</Width>
             <Style>
               <Border>
@@ -10836,7 +10952,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
             </Style>
           </Line>
         </ReportItems>
-        <Height>20.90164cm</Height>
+        <Height>23.23053cm</Height>
         <Style>
           <Border>
             <Style>None</Style>

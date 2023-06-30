@@ -286,7 +286,7 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
             DimValue_Site."Dimension Code" := FASetup."FBM_Site Dimension";
             DimValue_Site."Code" := CustSite."Site Code";
             //DimValue_Site.Name := CustSite."Site Name";
-            DimValue_Site.Name := TrimDimName(CustSite."Site Name");
+            DimValue_Site.Name := TrimDimName(CustSite."Site Name_FF");
             //DimValue_Site."Parent Code" := CustSite.Operator;   //link site to operator
             DimValue_Site.Insert(true);
             //message('created- %1', CustSite."Site Code");
@@ -294,10 +294,10 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
         else begin
             //Message('2.. start here - %1', CustSite."Site Code");
             //update name
-            if DimValue_Site.Name <> CustSite."Site Name" then begin
+            if DimValue_Site.Name <> CustSite."Site Name_FF" then begin
                 //Message('rename - %1', CustSite."Site Code");
                 //DimValue_Site.Name := CustSite."Site Name";
-                DimValue_Site.Name := TrimDimName(CustSite."Site Name");
+                DimValue_Site.Name := TrimDimName(CustSite."Site Name_FF");
                 DimValue_Site.Modify();
             end;
         end;
@@ -336,9 +336,9 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
         DimValue_Site.SetFilter(DimValue_Site."Code", CustSite."Site Code");
         if DimValue_Site.FindFirst() then begin
             //update Name
-            if DimValue_Site.Name <> CustSite."Site Name" then begin
+            if DimValue_Site.Name <> CustSite."Site Name_FF" then begin
                 //DimValue_Site.Name := CustSite."Site Name";
-                DimValue_Site.Name := TrimDimName(CustSite."Site Name");
+                DimValue_Site.Name := TrimDimName(CustSite."Site Name_FF");
                 DimValue_Site.Modify();
             end;
 
@@ -409,8 +409,8 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
         DimensionValue_Site.SetFilter(DimensionValue_Site."Dimension Code", FASetup."FBM_Site Dimension");
         DimensionValue_Site.SetFilter(DimensionValue_Site."Code", "Cust-Site"."Site Code");
         if DimensionValue_Site.FindFirst() then begin
-            if DimensionValue_Site.Name <> "xCust-Site"."Site Name" then begin
-                DimensionValue_Site.Validate(DimensionValue_Site.Name, "Cust-Site"."Site Name");
+            if DimensionValue_Site.Name <> "xCust-Site"."Site Name_FF" then begin
+                DimensionValue_Site.Validate(DimensionValue_Site.Name, "Cust-Site"."Site Name_FF");
                 DimensionValue_Site.Modify();
             end;
         end;

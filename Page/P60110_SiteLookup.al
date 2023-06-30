@@ -17,7 +17,7 @@ page 60110 FBM_SiteLookup_CO
                 {
                     ApplicationArea = All;
                 }
-                field("Site Name"; Rec."Site Name")
+                field("Site Name"; Rec."Site Name_FF")
                 {
                     ApplicationArea = All;
                 }

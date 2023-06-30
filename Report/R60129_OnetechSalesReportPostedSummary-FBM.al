@@ -119,7 +119,7 @@ report 60129 FBM_SalesSummaryFBMPosted_CO
                     siterec.SetRange("Site Code", invsite);
                     siterec.SetRange("Customer No.", invheader."Sell-to Customer No.");
                     if siterec.FindFirst() then
-                        invsitename := siterec."Site Name";
+                        invsitename := siterec."Site Name_FF";
 
                     invContract := invheader."FBM_Contract Code";
                 end;
@@ -225,8 +225,10 @@ report 60129 FBM_SalesSummaryFBMPosted_CO
                     crmemosite := invheader.FBM_Site;
                     siterec.SetRange("Site Code", crmemosite);
                     siterec.SetRange("Customer No.", invheader."Sell-to Customer No.");
-                    if siterec.FindFirst() then
-                        crmemositename := siterec."Site Name";
+                    if siterec.FindFirst() then begin
+                        siterec.CalcFields("Site Name_FF");
+                        crmemositename := siterec."Site Name_FF";
+                    end;
                     invContract := crmemoheader."FBM_Contract Code";
                 end;
                 if glaccount.Get("No.") then begin

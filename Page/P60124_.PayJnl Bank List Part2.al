@@ -1,4 +1,4 @@
-page 60123 "FBM_PayJnl Bank List Part_CO"
+page 60124 "FBM_PaymJnl Bank List Part2_CO"
 {
     Caption = 'Banks List';
     Editable = false;
@@ -25,7 +25,7 @@ page 60123 "FBM_PayJnl Bank List Part_CO"
                     DrillDown = true;
 
                 }
-                field("Approval Batch Amount"; rec."FBM_Approval Batch Amount")
+                field("Approval Batch Amount2"; rec."FBM_Approval Batch Amount2_FF")
                 {
                     ApplicationArea = Basic, Suite;
                     DrillDown = true;
@@ -33,7 +33,7 @@ page 60123 "FBM_PayJnl Bank List Part_CO"
 
                 }
 
-                field("Projected Balance"; rec."Balance" + rec."FBM_Approval Batch Amount")
+                field("Projected Balance"; rec."Balance" + rec."FBM_Approval Batch Amount2_FF")
                 {
                     ApplicationArea = Basic, Suite;
                     DrillDown = true;
@@ -43,8 +43,5 @@ page 60123 "FBM_PayJnl Bank List Part_CO"
         }
     }
 
-    actions
-    {
-    }
-}
 
+}

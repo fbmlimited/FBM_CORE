@@ -62,7 +62,7 @@ page 60122 "FBM_Payment Approval_CO"
                     ToolTip = 'Specifies the value of the Currency Code field.';
                     Editable = false;
                 }
-                field("FBM_Default Bank Account"; Rec."FBM_Default Bank Account")
+                field("FBM_Default Bank Account"; Rec."FBM_Default Bank Account_FF")
                 {
 
                 }

@@ -61,7 +61,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                     if companyinfo.FBM_CustIsOp then begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
                         if CustSite.FindFirst() then begin
-                            if page.RunModal(50001, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
+                            if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
                             /*CustmoerSiteP.Editable := false;
                                             if CustmoerSiteP.RunModal = Action::LookupOK then
                                                 Rec.Validate(Site, CustSite."Site Code");*/
@@ -100,10 +100,11 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             {
                 ApplicationArea = all;
             }
-            field("Period End"; rec.FBM_LocalCurrAmt)
+            field("Period End"; rec."FBM_Period End")
             {
                 ApplicationArea = all;
             }
+
             field(signature_pic; rec.FBM_Signature_pic)
             {
                 ApplicationArea = all;
@@ -114,6 +115,8 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             {
                 ApplicationArea = all;
                 Importance = Additional;
+
+
             }
 
         }
@@ -133,14 +136,14 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
         }
         addafter("Currency Code")
         {
-            field("Customer Payment Bank Code"; rec."FBM_Cust Payment Bank Code")
+            field("Customer Payment Bank Code"; rec."FBM_Cust Payment Bank Code_FF")
             {
                 ApplicationArea = all;
                 Editable = false;
                 Importance = Additional;
             }
 
-            field("Customer Payment Bank Code2"; rec."FBM_Cust Payment Bank Code2")
+            field("Customer Payment Bank Code2"; rec."FBM_Cust Payment Bank Code2_FF")
             {
                 ApplicationArea = all;
                 Editable = false;

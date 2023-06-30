@@ -3,7 +3,7 @@ tableextension 60105 FBM_SCrMHeaderExt_CO extends "Sales Cr.Memo Header"
     fields
     {
 
-        field(70006; "FBM_Cust Payment Bank Code2"; Code[100])
+        field(70006; "FBM_Cust Payment Bank Code2_FF"; Code[100])
         {
 
             FieldClass = "Flowfield";
@@ -11,7 +11,7 @@ tableextension 60105 FBM_SCrMHeaderExt_CO extends "Sales Cr.Memo Header"
         }
 
 
-        field(70011; "FBM_Cust Payment Bank Code"; Code[100])
+        field(70011; "FBM_Cust Payment Bank Code_FF"; Code[100])
         {
 
             FieldClass = "Flowfield";

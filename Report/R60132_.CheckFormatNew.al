@@ -478,15 +478,15 @@ report 60132 FBM_CheckFormatNew_CO
                         CheckLedgEntryAmount: Decimal;
                     begin
                         if not TestPrint then begin
-                            with GenJnlLine do begin
+                            begin
                                 CheckLedgEntry.Init;
                                 CheckLedgEntry."Bank Account No." := BankAcc2."No.";
-                                CheckLedgEntry."Posting Date" := "Posting Date";
-                                CheckLedgEntry."Document Type" := "Document Type";
+                                CheckLedgEntry."Posting Date" := GenJnlLine."Posting Date";
+                                CheckLedgEntry."Document Type" := GenJnlLine."Document Type";
                                 CheckLedgEntry."Document No." := UseCheckNo;
-                                CheckLedgEntry.Description := Description;
-                                CheckLedgEntry."Bank Payment Type" := "Bank Payment Type";
-                                CheckLedgEntry."Bal. Account Type" := BalancingType;
+                                CheckLedgEntry.Description := GenJnlLine.Description;
+                                CheckLedgEntry."Bank Payment Type" := GenJnlLine."Bank Payment Type";
+                                CheckLedgEntry."Bal. Account Type" := enum::"Gen. Journal Account Type".FromInteger(BalancingType);
                                 CheckLedgEntry."Bal. Account No." := BalancingNo;
                                 if FoundLast and AddedRemainingAmount then begin
                                     if TotalLineAmount <= 0 then
@@ -499,7 +499,7 @@ report 60132 FBM_CheckFormatNew_CO
                                     CheckLedgEntry."Entry Status" := CheckLedgEntry."Entry Status"::Voided;
                                     CheckLedgEntry.Amount := 0;
                                 end;
-                                CheckLedgEntry."Check Date" := "Posting Date";
+                                CheckLedgEntry."Check Date" := GenJnlLine."Posting Date";
                                 CheckLedgEntry."Check No." := UseCheckNo;
                                 CheckManagement.InsertCheck(CheckLedgEntry, RecordId);
 
@@ -531,24 +531,23 @@ report 60132 FBM_CheckFormatNew_CO
                                     VoidText := Text022;
                                 end;
                             end;
-                        end else
-                            with GenJnlLine do begin
-                                CheckLedgEntry.Init;
-                                CheckLedgEntry."Bank Account No." := BankAcc2."No.";
-                                CheckLedgEntry."Posting Date" := "Posting Date";
-                                CheckLedgEntry."Document No." := UseCheckNo;
-                                CheckLedgEntry.Description := Text023;
-                                CheckLedgEntry."Bank Payment Type" := "Bank Payment Type"::"Computer Check";
-                                CheckLedgEntry."Entry Status" := CheckLedgEntry."Entry Status"::"Test Print";
-                                CheckLedgEntry."Check Date" := "Posting Date";
-                                CheckLedgEntry."Check No." := UseCheckNo;
-                                CheckManagement.InsertCheck(CheckLedgEntry, RecordId);
+                        end else begin
+                            CheckLedgEntry.Init;
+                            CheckLedgEntry."Bank Account No." := BankAcc2."No.";
+                            CheckLedgEntry."Posting Date" := GenJnlLine."Posting Date";
+                            CheckLedgEntry."Document No." := UseCheckNo;
+                            CheckLedgEntry.Description := Text023;
+                            CheckLedgEntry."Bank Payment Type" := "Bank Payment Type"::"Computer Check";
+                            CheckLedgEntry."Entry Status" := CheckLedgEntry."Entry Status"::"Test Print";
+                            CheckLedgEntry."Check Date" := GenJnlLine."Posting Date";
+                            CheckLedgEntry."Check No." := UseCheckNo;
+                            CheckManagement.InsertCheck(CheckLedgEntry, RecordId);
 
-                                CheckAmountText := Text024;
-                                DescriptionLine[1] := Text025;
-                                DescriptionLine[2] := DescriptionLine[1];
-                                VoidText := Text022;
-                            end;
+                            CheckAmountText := Text024;
+                            DescriptionLine[1] := Text025;
+                            DescriptionLine[2] := DescriptionLine[1];
+                            VoidText := Text022;
+                        end;
 
                         ChecksPrinted := ChecksPrinted + 1;
                         FirstPage := false;
@@ -682,7 +681,7 @@ report 60132 FBM_CheckFormatNew_CO
                         CurrReport.Skip;
 
                     if ("Account No." <> '') and ("Bal. Account No." <> '') then begin
-                        BalancingType := "Account Type";
+                        BalancingType := "Account Type".AsInteger();
                         BalancingNo := "Account No.";
                         RemainingAmount := Amount;
                         if OneCheckPrVendor then begin

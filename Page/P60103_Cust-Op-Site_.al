@@ -71,7 +71,7 @@ page 60103 "FBM_Cust-Op-Site_CO"
         else
             "Operator Name" := '';
         if Site.Get(rec."Customer No.", Rec."Site Code") then
-            "Site Name" := Site."Site Name"
+            "Site Name" := Site."Site Name_FF"
         else
             "Site Name" := '';
     end;
