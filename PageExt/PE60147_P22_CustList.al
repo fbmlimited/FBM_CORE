@@ -4,8 +4,17 @@
 
 pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
 {
+
     layout
     {
+        addafter(Name)
+        {
+            field(FBM_GrCode; Rec.FBM_GrCode)
+            {
+                ApplicationArea = all;
+            }
+
+        }
         addafter("Phone No.")
         {
             field("Payment Bank Code"; rec."FBM_Payment Bank Code")
@@ -37,6 +46,8 @@ pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
             }
         }
 
+
+
     }
     actions
     {
@@ -59,8 +70,25 @@ pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
             }
         }
     }
+    trigger
+    OnOpenPage()
     var
-        myInt: Integer;
+        customer: record Customer;
+        custlist2: page "FBM_Customer List_CO";
+
+    begin
+        if GuiAllowed then begin
+            customer.CopyFilters(rec);
+
+            custlist2.SetTableView(customer);
+            custlist2.Run();
+            Error('');
+        end;
+
+    end;
+
+
+
 }
 
 

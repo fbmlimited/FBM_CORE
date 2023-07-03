@@ -74,10 +74,10 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             column(Showperiod; Showperiod)
             {
             }
-            column(FBM_LocalCurrAmt; FBM_LocalCurrAmt)
+            column(LocalCurrAmt; FBM_LocalCurrAmt)
             {
             }
-            column(FBM_Currency2; FBM_Currency2)
+            column(Currency2; FBM_Currency2)
             {
             }
             column(Curr1Name; Curr1Name)
@@ -95,10 +95,10 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             column(ForPaymentCaption; ForPaymentCaption)
             {
             }
-            column(FBM_Segment; FBM_Segment)
+            column(Segment; FBM_Segment)
             {
             }
-            column(FBM_Contract_Code; "FBM_Contract Code")
+            column(Contract_Code; "FBM_Contract Code")
             {
             }
             dataitem(CopyLoop; "Integer")

@@ -3,6 +3,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
     Editable = false;
     layout
     {
+
         addbefore(Name)
         {
             field("No. 2"; rec.FBM_GrCode)
@@ -109,6 +110,8 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         // FAMH: Record "FA Movement History";
         companyinfo: Record "Company Information";
         ShowSites: boolean;
+
+
 
     trigger OnOpenPage()
     begin

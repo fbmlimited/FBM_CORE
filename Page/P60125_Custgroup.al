@@ -2,8 +2,8 @@ page 60125 "Groups"
 {
     Caption = 'Groups';
     PageType = List;
-    //ApplicationArea = All;
-    //UsageCategor y = Lists;
+    ApplicationArea = All;
+    UsageCategory = Lists;
     SourceTable = FBM_CustGroup;
     layout
     {

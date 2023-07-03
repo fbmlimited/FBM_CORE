@@ -1,10 +1,10 @@
-page 60110 FBM_SiteLookup_CO
+page 60131 FBM_CustLookup_CO
 {
-    Caption = 'Site Lookup';
+    Caption = 'Customer Lookup';
     PageType = List;
     UsageCategory = Lists;
     ApplicationArea = All;
-    SourceTable = FBM_Site;
+    SourceTable = FBM_Customer;
 
 
     layout
@@ -13,11 +13,15 @@ page 60110 FBM_SiteLookup_CO
         {
             repeater(Group)
             {
-                field("Site Code"; rec."Site Code")
+                field("Customer Code"; rec."No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Site Name"; Rec."Site Name")
+                field(Version; Rec.Version)
+                {
+                    ApplicationArea = All;
+                }
+                field("Customer Name"; Rec.Name)
                 {
                     ApplicationArea = All;
                 }

@@ -2,8 +2,8 @@ page 60126 "FBM_SubGroups_CO"
 {
     Caption = 'SubGroups';
     PageType = List;
-    //ApplicationArea = All;
-    //UsageCategor y = Lists;
+    ApplicationArea = All;
+    UsageCategory = Lists;
     SourceTable = FBM_CustGroup;
     layout
     {

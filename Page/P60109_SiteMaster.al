@@ -82,6 +82,16 @@ page 60109 FBM_SiteMaster_CO
                     ApplicationArea = All;
 
                 }
+                field(Company2; Rec.Company2)
+                {
+                    ApplicationArea = All;
+
+                }
+                field(Company3; Rec.Company3)
+                {
+                    ApplicationArea = All;
+
+                }
             }
         }
 

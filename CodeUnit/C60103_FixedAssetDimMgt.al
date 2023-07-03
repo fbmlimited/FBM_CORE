@@ -308,6 +308,44 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
         //end;
     end;
 
+    procedure CreateSiteDim2(CustSite: Record FBM_Site)
+    var
+        DimValue_Site: Record "Dimension Value";
+        FASetup: Record "FA Setup";
+        companyinfo: Record "Company Information";
+    begin
+        //Message('start here - %1', CustSite."Site Code");
+        //create Site Dimension Value 
+        FASetup.Get();
+        //if FASetup."Enable FA Site Tracking" then begin
+        DimValue_Site.Reset();
+        DimValue_Site.SetFilter(DimValue_Site."Dimension Code", FASetup."FBM_Site Dimension");
+        DimValue_Site.SetFilter(DimValue_Site."Code", CustSite."Site Code");
+        if not DimValue_Site.FindFirst() then begin
+            //message('not found - creating- %1', CustSite."Site Code");
+            DimValue_Site.Reset();
+            DimValue_Site.Init();
+            DimValue_Site."Dimension Code" := FASetup."FBM_Site Dimension";
+            DimValue_Site."Code" := CustSite."Site Code";
+            //DimValue_Site.Name := CustSite."Site Name";
+            DimValue_Site.Name := TrimDimName(CustSite."Site Name");
+            //DimValue_Site."Parent Code" := CustSite.Operator;   //link site to operator
+            DimValue_Site.Insert(true);
+            //message('created- %1', CustSite."Site Code");
+        end
+        else begin
+            //Message('2.. start here - %1', CustSite."Site Code");
+            //update name
+            if DimValue_Site.Name <> CustSite."Site Name" then begin
+                //Message('rename - %1', CustSite."Site Code");
+                //DimValue_Site.Name := CustSite."Site Name";
+                DimValue_Site.Name := TrimDimName(CustSite."Site Name");
+                DimValue_Site.Modify();
+            end;
+        end;
+
+    end;
+
     procedure CreateCustOpSite(CustomerSite: Record FBM_CustomerSite_C)
     var
         COS: Record FBM_CustOpSite;
@@ -358,6 +396,42 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
         //end;
     end;
 
+    procedure UpdateSiteDim2(CustSite: Record FBM_Site)
+    var
+        DimValue_Site: Record "Dimension Value";
+        //ParentChild: Record "Parent Child Relation";
+        FASetup: Record "FA Setup";
+        companyinfo: Record "Company Information";
+    begin
+        FASetup.Get();
+        //if FASetup."Enable FA Site Tracking" then begin
+        DimValue_Site.Reset();
+        DimValue_Site.SetFilter(DimValue_Site."Dimension Code", FASetup."FBM_Site Dimension");
+        DimValue_Site.SetFilter(DimValue_Site."Code", CustSite."Site Code");
+        if DimValue_Site.FindFirst() then begin
+            //update Name
+            if DimValue_Site.Name <> CustSite."Site Name" then begin
+                //DimValue_Site.Name := CustSite."Site Name";
+                DimValue_Site.Name := TrimDimName(CustSite."Site Name");
+                DimValue_Site.Modify();
+            end;
+
+            //update operator
+            //get parent
+            /*  ParentChild.Reset();
+             ParentChild.SetFilter(ParentChild.Child, FASetup."Site Dimension");
+             if ParentChild.FindFirst() then begin
+                 if DimValue_Site."Parent Dimension" = ParentChild.Parent then begin
+                     if DimValue_Site."Parent Code" <> CustSite.Operator then begin
+                         DimValue_Site."Parent Code" := CustSite.Operator;
+                         DimValue_Site.Modify();
+                     end;
+                 end;
+             end; */
+        end;
+        //end;
+    end;
+
     procedure RenameCustOpSite(xCustomerSite: Record FBM_CustomerSite_C;
     CustomerSite: Record FBM_CustomerSite_C)
     var
@@ -371,8 +445,46 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
         end;
     end;
 
+    procedure RenameCustOpSite(xCustomerSite: Record FBM_Site;
+    CustomerSite: Record FBM_Site)
+    var
+        COS: Record FBM_CustOpSite;
+    begin
+        COS.Reset();
+        // COS.SetFilter(COS."Customer No.", CustomerSite."Customer No.");
+        COS.SetFilter(COS."Site Code", xCustomerSite."Site Code");
+        if COS.FindFirst() then begin
+            if COS."Site Code" <> CustomerSite."Site Code" then COS.Rename(cos."Customer No.", cos."Customer No.", CustomerSite."Site Code");
+        end;
+    end;
+
     procedure RenameSiteDim(xCustSite: Record FBM_CustomerSite_C;
     CustSite: Record FBM_CustomerSite_C)
+    var
+        DimValue_Site: Record "Dimension Value";
+        FASetup: Record "FA Setup";
+        companyinfo: Record "Company Information";
+        COS: Record FBM_CustOpSite;
+    begin
+        FASetup.Get();
+        //if FASetup."Enable FA Site Tracking" then begin
+        DimValue_Site.Reset();
+        DimValue_Site.SetFilter(DimValue_Site."Dimension Code", FASetup."FBM_Site Dimension");
+        DimValue_Site.SetFilter(DimValue_Site."Code", xCustSite."Site Code");
+        if DimValue_Site.FindFirst() then begin
+            if DimValue_Site.Code <> CustSite."Site Code" then begin
+                DimValue_Site.Rename(FASetup."FBM_Site Dimension", CustSite."Site Code");
+            end;
+        end;
+        //rename entry in CustOpSite table
+        if companyinfo.Get() then begin
+            if companyinfo.FBM_CustIsOp then RenameCustOpSite(xCustSite, CustSite);
+        end;
+        // end;
+    end;
+
+    procedure RenameSiteDim2(xCustSite: Record FBM_Site;
+    CustSite: Record FBM_Site)
     var
         DimValue_Site: Record "Dimension Value";
         FASetup: Record "FA Setup";

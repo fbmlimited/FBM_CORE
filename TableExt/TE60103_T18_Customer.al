@@ -1,5 +1,6 @@
 tableextension 60103 FBM_CustomerExt_CO extends Customer
 {
+
     fields
     {
 

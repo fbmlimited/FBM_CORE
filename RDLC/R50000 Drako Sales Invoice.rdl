@@ -12606,14 +12606,14 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="Showperiod">
           <DataField>Showperiod</DataField>
         </Field>
-        <Field Name="FBM_LocalCurrAmt">
-          <DataField>FBM_LocalCurrAmt</DataField>
+        <Field Name="LocalCurrAmt">
+          <DataField>LocalCurrAmt</DataField>
         </Field>
-        <Field Name="FBM_LocalCurrAmtFormat">
-          <DataField>FBM_LocalCurrAmtFormat</DataField>
+        <Field Name="LocalCurrAmtFormat">
+          <DataField>LocalCurrAmtFormat</DataField>
         </Field>
-        <Field Name="FBM_Currency2">
-          <DataField>FBM_Currency2</DataField>
+        <Field Name="Currency2">
+          <DataField>Currency2</DataField>
         </Field>
         <Field Name="Curr1Name">
           <DataField>Curr1Name</DataField>
@@ -12630,11 +12630,11 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="ForPaymentCaption">
           <DataField>ForPaymentCaption</DataField>
         </Field>
-        <Field Name="FBM_Segment">
-          <DataField>FBM_Segment</DataField>
+        <Field Name="Segment">
+          <DataField>Segment</DataField>
         </Field>
-        <Field Name="FBM_Contract_Code">
-          <DataField>FBM_Contract_Code</DataField>
+        <Field Name="Contract_Code">
+          <DataField>Contract_Code</DataField>
         </Field>
         <Field Name="HomePage">
           <DataField>HomePage</DataField>

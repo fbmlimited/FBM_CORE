@@ -4,13 +4,67 @@ page 60101 "FBM_CustomerSite_CO"
     //ApplicationArea = All;
     //UsageCategory = Lists;
     SourceTable = FBM_CustomerSite_C;
+    Editable = false;
 
     layout
     {
         area(Content)
         {
+            group(Selection)
+            {
+
+                field(selsite; selsite)
+                {
+
+                    ApplicationArea = all;
+                    trigger
+                    OnLookup(var Text: Text): Boolean
+                    var
+                        compinfo: record "Company Information";
+                        csite: record FBM_CustomerSite_C;
+                    begin
+                        compinfo.get;
+                        site.SetRange(Company1, compinfo."Custom System Indicator Text");
+                        if site.findfirst then
+                            repeat
+                                csite.setrange(sitegrcode, site."Site Code");
+                                if csite.IsEmpty then
+                                    site.Mark(true);
+                            until site.Next() = 0;
+                        site.SetRange(Company2, compinfo."Custom System Indicator Text");
+                        if site.findfirst then
+                            repeat
+                                csite.setrange(sitegrcode, site."Site Code");
+                                if csite.IsEmpty then
+                                    site.Mark(true);
+                            until site.Next() = 0;
+                        site.SetRange(Company3, compinfo."Custom System Indicator Text");
+                        if site.findfirst then
+                            repeat
+                                csite.setrange(sitegrcode, site."Site Code");
+                                if csite.IsEmpty then
+                                    site.Mark(true);
+                            until site.Next() = 0;
+                        site.setrange(Company1);
+                        site.SetRange(Company2);
+                        site.SetRange(Company3);
+                        site.MarkedOnly(true);
+
+                        if page.RunModal(page::FBM_SiteLookup_CO, site) = action::LookupOK then begin
+                            selsite := site."Site Code";
+
+                            rec.SiteGrCode := site."Site Code";
+                        end
+                    end;
+                }
+            }
             repeater(GroupName)
             {
+                field(SiteGrCode; Rec.SiteGrCode)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Site Gr. Code';
+                }
                 field("Site Code"; rec."Site Code")
                 {
                     ApplicationArea = All;
@@ -80,4 +134,6 @@ page 60101 "FBM_CustomerSite_CO"
         FASetup: Record "FA Setup";
         EnableSpin: Boolean;
         compinfo: record "Company Information";
+        selsite: code[20];
+        site: record FBM_Site;
 }
