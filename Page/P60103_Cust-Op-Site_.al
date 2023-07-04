@@ -1,5 +1,6 @@
 page 60103 "FBM_Cust-Op-Site_CO"
 {
+    caption = 'Cust-Op-Site';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;

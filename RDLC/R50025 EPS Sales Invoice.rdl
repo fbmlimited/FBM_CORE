@@ -12162,9 +12162,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="DisplayAdditionalFeeNote">
           <DataField>DisplayAdditionalFeeNote</DataField>
         </Field>
-        <Field Name="Bill_to_Country_Region_Code">
-          <DataField>Bill_to_Country_Region_Code</DataField>
-        </Field>
         <Field Name="HomePage">
           <DataField>HomePage</DataField>
         </Field>
@@ -12398,6 +12395,9 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         </Field>
         <Field Name="PeriodEndCaption">
           <DataField>PeriodEndCaption</DataField>
+        </Field>
+        <Field Name="CompanyInfoBankAddress">
+          <DataField>CompanyInfoBankAddress</DataField>
         </Field>
         <Field Name="SIH_Currency">
           <DataField>SIH_Currency</DataField>

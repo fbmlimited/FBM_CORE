@@ -4,7 +4,7 @@ page 60101 "FBM_CustomerSite_CO"
     //ApplicationArea = All;
     //UsageCategory = Lists;
     SourceTable = FBM_CustomerSite_C;
-    Editable = false;
+
 
     layout
     {
@@ -15,35 +15,46 @@ page 60101 "FBM_CustomerSite_CO"
 
                 field(selsite; selsite)
                 {
-
+                    caption = 'Select New Site';
                     ApplicationArea = all;
                     trigger
                     OnLookup(var Text: Text): Boolean
                     var
                         compinfo: record "Company Information";
                         csite: record FBM_CustomerSite_C;
+                        maxnum: Integer;
                     begin
+                        clear(site);
                         compinfo.get;
                         site.SetRange(Company1, compinfo."Custom System Indicator Text");
                         if site.findfirst then
                             repeat
                                 csite.setrange(sitegrcode, site."Site Code");
                                 if csite.IsEmpty then
-                                    site.Mark(true);
+                                    site.Mark(true)
+                                else
+                                    site.mark(false);
                             until site.Next() = 0;
+
+                        site.setrange(Company1);
                         site.SetRange(Company2, compinfo."Custom System Indicator Text");
                         if site.findfirst then
                             repeat
                                 csite.setrange(sitegrcode, site."Site Code");
                                 if csite.IsEmpty then
-                                    site.Mark(true);
+                                    site.Mark(true)
+                                else
+                                    site.mark(false);
                             until site.Next() = 0;
+                        site.SetRange(Company2);
                         site.SetRange(Company3, compinfo."Custom System Indicator Text");
                         if site.findfirst then
                             repeat
                                 csite.setrange(sitegrcode, site."Site Code");
                                 if csite.IsEmpty then
-                                    site.Mark(true);
+                                    site.Mark(true)
+                                else
+                                    site.mark(false);
                             until site.Next() = 0;
                         site.setrange(Company1);
                         site.SetRange(Company2);
@@ -52,9 +63,21 @@ page 60101 "FBM_CustomerSite_CO"
 
                         if page.RunModal(page::FBM_SiteLookup_CO, site) = action::LookupOK then begin
                             selsite := site."Site Code";
+                            if rec.SiteGrCode = '' then begin
+                                rec.SiteGrCode := site."Site Code";
+                                csite.Reset();
+                                csite.setrange("Customer No.", rec."Customer No.");
+                                if csite.FindLast() then
+                                    if strpos(csite."Site Code", '-') > 0 then
+                                        evaluate(maxnum, copystr(csite."Site Code", strpos(csite."Site Code", '-') + 1))
+                                    else
+                                        maxnum := 0
+                                else
+                                    maxnum := 0;
+                                rec."Site Code" := rec."Customer No." + '-' + PADSTR('', 4 - strlen(FORMAT(MAXNUM + 1)), '0') + FORMAT(MAXNUM + 1);
 
-                            rec.SiteGrCode := site."Site Code";
-                        end
+                            end;
+                        end;
                     end;
                 }
             }

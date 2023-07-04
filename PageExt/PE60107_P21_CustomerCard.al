@@ -1,6 +1,6 @@
 pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 {
-    Editable = false;
+
     layout
     {
 
@@ -16,6 +16,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             field("FBM_Name 3"; Rec."FBM_Name 3")
             {
                 ApplicationArea = all;
+                Editable = false;
             }
 
             field("Customer Since"; rec."FBM_Customer Since")
@@ -61,6 +62,42 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             Visible = isvisPH;
 
         }
+        modify(Name)
+        {
+            Editable = false;
+
+        }
+        modify(Address)
+        {
+            Editable = false;
+
+        }
+        modify("Address 2")
+        {
+            Editable = false;
+
+        }
+        modify(County)
+        {
+            Editable = false;
+
+        }
+        modify("Country/Region Code")
+        {
+            Editable = false;
+
+        }
+        modify("Post Code")
+        {
+            Editable = false;
+
+        }
+        modify("VAT Registration No.")
+        {
+            Editable = false;
+
+        }
+
     }
 
 

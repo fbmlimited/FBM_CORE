@@ -3,7 +3,7 @@ page 60132 "FBM_Customer List_CO"
     ApplicationArea = Basic, Suite, Service;
     Caption = 'Customers';
     CardPageID = "Customer Card";
-    Editable = false;
+    InsertAllowed = false;
     PageType = List;
     QueryCategory = 'Customer List';
     SourceTable = Customer;
@@ -29,6 +29,7 @@ page 60132 "FBM_Customer List_CO"
                     var
                         compinfo: record "Company Information";
                         customer: record Customer;
+                        newno: code[20];
 
                     begin
                         clear(cust);
@@ -38,23 +39,29 @@ page 60132 "FBM_Customer List_CO"
                             repeat
                                 customer.setrange("FBM_GrCode", cust."No.");
                                 if customer.IsEmpty then
-                                    cust.Mark(true);
+                                    cust.Mark(true)
+                                else
+                                    cust.mark(false);
                             until cust.Next() = 0;
-
+                        cust.setrange(FBM_Company1);
                         cust.SetRange(FBM_Company2, compinfo."Custom System Indicator Text");
                         if cust.findfirst then
                             repeat
                                 customer.setrange("FBM_GrCode", cust."No.");
                                 if customer.IsEmpty then
-                                    cust.Mark(true);
+                                    cust.Mark(true)
+                                else
+                                    cust.mark(false);
                             until cust.Next() = 0;
-
+                        cust.SetRange(FBM_Company2);
                         cust.SetRange(FBM_Company3, compinfo."Custom System Indicator Text");
                         if cust.findfirst then
                             repeat
                                 customer.setrange("FBM_GrCode", cust."No.");
                                 if customer.IsEmpty then
-                                    cust.Mark(true);
+                                    cust.Mark(true)
+                                else
+                                    cust.mark(false);
                             until cust.Next() = 0;
                         cust.setrange(FBM_Company1);
                         cust.SetRange(FBM_Company2);
@@ -63,20 +70,28 @@ page 60132 "FBM_Customer List_CO"
 
                         if page.RunModal(page::FBM_CustLookup_CO, cust) = action::LookupOK then begin
                             selcust := cust."No.";
-                            rec.CreateNewCustomer(cust.name, true);
+                            CUSTOMER."No." := customer.CreateNewCustomer(cust.name, FALSE);
+                            newno := customer."No.";
+                            customer.FBM_GrCode := cust."No.";
+                            customer.name := cust.Name;
+                            customer."Name 2" := cust."Name 2";
+                            customer.Address := cust.Address;
+                            customer."Address 2" := cust."Address 2";
+                            customer.City := cust.City;
+                            customer."Post Code" := cust."Post Code";
+                            customer.County := cust.County;
+                            customer."Country/Region Code" := cust."Country/Region Code";
+                            customer."Customer Posting Group" := cust."Customer Posting Group";
+                            customer."VAT Bus. Posting Group" := cust."VAT Bus. Posting Group";
+                            customer."VAT Registration No." := cust."VAT Registration No.";
+                            customer.Modify();
+                            commit;
 
-                            rec.FBM_GrCode := cust."No.";
-                            rec.name := cust.Name;
-                            rec."Name 2" := cust."Name 2";
-                            rec.Address := cust.Address;
-                            rec."Address 2" := cust."Address 2";
-                            rec.City := cust.City;
-                            rec."Post Code" := cust."Post Code";
-                            rec.County := cust.County;
-                            rec."Country/Region Code" := cust."Country/Region Code";
-                            rec."Customer Posting Group" := cust."Customer Posting Group";
-                            rec."VAT Bus. Posting Group" := cust."VAT Bus. Posting Group";
-                            rec."VAT Registration No." := cust."VAT Registration No.";
+                            rec.Setrange(FBM_GrCode, cust."No.");
+
+                            CurrPage.Update();
+                            PAGE.RunModal(PAGE::"Customer Card", rec);
+
                             exit(true);
                         end
                     end;
@@ -87,206 +102,183 @@ page 60132 "FBM_Customer List_CO"
                 ShowCaption = false;
                 field("No."; Rec."No.")
                 {
+                    Editable = false;
                     ApplicationArea = All;
                     ToolTip = 'Specifies a unique number that identifies the customer. The number can be generated automatically from a number series, or you can number each of them manually.';
                 }
                 field(Name; Rec.Name)
                 {
+                    Editable = false;
                     ApplicationArea = All;
                     ToolTip = 'Specifies the customer''s name that appears on all related documents. For companies, specify the company''s name here, and then add the relevant people as contacts that you link to this customer.';
                 }
                 field("Name 2"; Rec."Name 2")
                 {
+                    Editable = false;
                     ApplicationArea = All;
                     ToolTip = 'Specifies an additional part of the name.';
                     Visible = false;
                 }
                 field(FBM_GrCode; Rec.FBM_GrCode)
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                 }
-                field("Responsibility Center"; Rec."Responsibility Center")
-                {
-                    ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies the code of the responsibility center, such as a distribution hub, that is associated with the involved user, company, customer, or vendor.';
-                }
-                field("Location Code"; Rec."Location Code")
-                {
-                    ApplicationArea = Location;
-                    ToolTip = 'Specifies from which location sales to this customer will be processed by default.';
-                }
+
                 field("Post Code"; Rec."Post Code")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the postal code.';
                     Visible = false;
                 }
                 field("Country/Region Code"; Rec."Country/Region Code")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the country/region of the address.';
                     Visible = false;
                 }
                 field("Phone No."; Rec."Phone No.")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the customer''s telephone number.';
                 }
-                field("IC Partner Code"; Rec."IC Partner Code")
-                {
-                    ApplicationArea = Intercompany;
-                    ToolTip = 'Specifies the customer''s intercompany partner code.';
-                    Visible = false;
-                }
+
                 field(Contact; rec.Contact)
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the name of the person you regularly contact when you do business with this customer.';
                 }
                 field("Salesperson Code"; Rec."Salesperson Code")
                 {
+                    Editable = false;
                     ApplicationArea = Suite;
                     ToolTip = 'Specifies a code for the salesperson who normally handles this customer''s account.';
                     Visible = false;
                 }
                 field("Customer Posting Group"; Rec."Customer Posting Group")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the customer''s market type to link business transactions to.';
                     Visible = IsAllowMultiplePostingGroupsVisible;
                 }
                 field("Allow Multiple Posting Groups"; Rec."Allow Multiple Posting Groups")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies if multiple posting groups can be used for posting business transactions for this customer.';
                     Visible = false;
                 }
                 field("Gen. Bus. Posting Group"; Rec."Gen. Bus. Posting Group")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the customer''s trade type to link transactions made for this customer with the appropriate general ledger account according to the general posting setup.';
                     Visible = false;
                 }
                 field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the VAT specification of the involved customer or vendor to link transactions made for this record with the appropriate general ledger account according to the VAT posting setup.';
                     Visible = false;
                 }
                 field("Customer Price Group"; Rec."Customer Price Group")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the customer price group code, which you can use to set up special sales prices in the Sales Prices window.';
                     Visible = false;
                 }
                 field("Customer Disc. Group"; Rec."Customer Disc. Group")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the customer discount group code, which you can use as a criterion to set up special discounts in the Sales Line Discounts window.';
                     Visible = false;
                 }
                 field("Payment Terms Code"; Rec."Payment Terms Code")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies a formula that calculates the payment due date, payment discount date, and payment discount amount.';
                     Visible = false;
                 }
                 field("Reminder Terms Code"; Rec."Reminder Terms Code")
                 {
+                    Editable = false;
                     ApplicationArea = Suite;
                     ToolTip = 'Specifies how reminders about late payments are handled for this customer.';
                     Visible = false;
                 }
                 field("Fin. Charge Terms Code"; Rec."Fin. Charge Terms Code")
                 {
+                    Editable = false;
                     ApplicationArea = Suite;
                     ToolTip = 'Specifies the code for the involved finance charges in case of late payment.';
                     Visible = false;
                 }
                 field("Currency Code"; Rec."Currency Code")
                 {
+                    Editable = false;
                     ApplicationArea = Suite;
                     ToolTip = 'Specifies the default currency for the customer.';
                     Visible = false;
                 }
                 field("Language Code"; Rec."Language Code")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the language that is used when translating specified text on documents to foreign business partner, such as an item description on an order confirmation.';
                     Visible = false;
                 }
                 field("Search Name"; Rec."Search Name")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies an alternate name that you can use to search for the record in question when you cannot remember the value in the Name field.';
                     Visible = false;
                 }
                 field("Credit Limit (LCY)"; Rec."Credit Limit (LCY)")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the maximum amount you allow the customer to exceed the payment balance before warnings are issued.';
                     Visible = false;
                 }
                 field(Blocked; rec.Blocked)
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies that the related record is blocked from being posted in transactions, for example a customer that is declared insolvent or an item that is placed in quarantine.';
                     Visible = false;
                 }
                 field("Privacy Blocked"; Rec."Privacy Blocked")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies whether to limit access to data for the data subject during daily operations. This is useful, for example, when protecting data from changes while it is under privacy review.';
                     Visible = false;
                 }
                 field("Last Date Modified"; Rec."Last Date Modified")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies when the customer card was last modified.';
                     Visible = false;
                 }
                 field("Application Method"; Rec."Application Method")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies how to apply payments to entries for this customer.';
                     Visible = false;
                 }
-                field("Combine Shipments"; Rec."Combine Shipments")
-                {
-                    ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies if several orders delivered to the customer can appear on the same sales invoice.';
-                    Visible = false;
-                }
-                field(Reserve; rec.Reserve)
-                {
-                    ApplicationArea = Reservation;
-                    ToolTip = 'Specifies whether items will never, automatically (Always), or optionally be reserved for this customer. Optional means that you must manually reserve items for this customer.';
-                    Visible = false;
-                }
-                field("Ship-to Code"; Rec."Ship-to Code")
-                {
-                    ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies the code for another shipment address than the customer''s own address, which is entered by default.';
-                    Visible = false;
-                }
-                field("Shipping Advice"; Rec."Shipping Advice")
-                {
-                    ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies if the customer accepts partial shipment of orders.';
-                    Visible = false;
-                }
-                field("Shipping Agent Code"; Rec."Shipping Agent Code")
-                {
-                    ApplicationArea = Suite;
-                    ToolTip = 'Specifies the code for the shipping agent who is transporting the items.';
-                    Visible = false;
-                }
-                field("Base Calendar Code"; Rec."Base Calendar Code")
-                {
-                    ApplicationArea = Basic, Suite;
-                    ToolTip = 'Specifies a customizable calendar for shipment planning that holds the customer''s working days and holidays.';
-                    Visible = false;
-                }
+
                 field("Balance (LCY)"; Rec."Balance (LCY)")
                 {
                     ApplicationArea = Basic, Suite;
@@ -314,26 +306,11 @@ page 60132 "FBM_Customer List_CO"
                 }
                 field("Payments (LCY)"; Rec."Payments (LCY)")
                 {
+                    Editable = false;
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the sum of payments received from the customer.';
                 }
-#if not CLEAN23
-                field("Coupled to CRM"; Rec."Coupled to CRM")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies that the customer is coupled to an account in Dataverse.';
-                    Visible = false;
-                    ObsoleteState = Pending;
-                    ObsoleteReason = 'Replaced by flow field Coupled to Dataverse';
-                    ObsoleteTag = '23.0';
-                }
-#endif
-                field("Coupled to Dataverse"; Rec."Coupled to Dataverse")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies that the customer is coupled to an account in Dataverse.';
-                    Visible = CRMIntegrationEnabled or CDSIntegrationEnabled;
-                }
+
             }
         }
         area(factboxes)
