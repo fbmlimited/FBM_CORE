@@ -23,16 +23,16 @@ pageextension 60165 FBM_SalesOrdExt_CO extends "Sales Order"
                     if companyinfo.FBM_CustIsOp then begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
                         if CustSite.FindFirst() then begin
-                            if page.RunModal(50001, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
+                            if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
                         end
                     end
                     else begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
                         if CustSite.FindFirst() then begin
-                            if page.RunModal(50001, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
+                            if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
                         end
                         else begin
-                            if page.RunModal(50001, CustSiteFull) = Action::LookupOK then Rec.Validate(fbm_Site, CustSiteFull."Site Code");
+                            if page.RunModal(60101, CustSiteFull) = Action::LookupOK then Rec.Validate(fbm_Site, CustSiteFull."Site Code");
                         end;
                     end;
                     CurrPage.Update(true);

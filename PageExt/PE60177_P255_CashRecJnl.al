@@ -46,7 +46,7 @@ pageextension 60177 FBM_CashRecJnlExt_CO extends "Cash Receipt Journal"
                     else
                         if rec."Bal. Account Type" = rec."Bal. Account Type"::Customer then CustSite.SetFilter("Customer No.", rec."Bal. Account No.");
                     if CustSite.FindFirst() then begin
-                        if page.RunModal(50001, CustSite) = Action::LookupOK then SD3 := CustSite."Site Code";
+                        if page.RunModal(60101, CustSite) = Action::LookupOK then SD3 := CustSite."Site Code";
                     end
                 end
                 else begin
