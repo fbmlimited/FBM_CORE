@@ -9,6 +9,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             field("No. 2"; rec.FBM_GrCode)
             {
                 ApplicationArea = All;
+                Editable = issup;
             }
         }
         addafter(Name)
@@ -147,10 +148,13 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         // FAMH: Record "FA Movement History";
         companyinfo: Record "Company Information";
         ShowSites: boolean;
+        issup: boolean;
 
 
 
     trigger OnOpenPage()
+    var
+        uper: Codeunit "User Permissions";
     begin
         if companyinfo.Get() then begin
             if companyinfo.FBM_CustIsOp then
@@ -161,5 +165,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             isvisES := compinfo."Country/Region Code" = 'ES';
             isvisPH := compinfo."Country/Region Code" = 'PH';
         end;
+        issup := uper.IsSuper(UserSecurityId())
+
     end;
 }

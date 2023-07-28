@@ -12,6 +12,10 @@ pageextension 60176 FBM_BankAccListExt_CO extends "Bank Account List"
             {
                 ApplicationArea = All;
             }
+            field(FBM_IsPayment; Rec.FBM_IsPayment)
+            {
+                ApplicationArea = All;
+            }
         }
     }
     actions

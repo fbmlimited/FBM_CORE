@@ -1,7 +1,7 @@
 report 60116 FBM_Check_CO
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './rdlc/R50041_FBM_Check.rdl';
+    RDLCLayout = './rdlc/R60116_FBM_Check.rdl';
     Caption = 'Check';
     Permissions = TableData "Bank Account" = m;
 
@@ -19,8 +19,8 @@ report 60116 FBM_Check_CO
 
             trigger OnPreDataItem()
             begin
-                if CurrReport.Preview then
-                    Error(Text000);
+                // if CurrReport.Preview then
+                //     Error(Text000);
 
                 if UseCheckNo = '' then
                     Error(Text001);
@@ -772,12 +772,14 @@ report 60116 FBM_Check_CO
 
             trigger OnPreDataItem()
             begin
+
                 Copy(VoidGenJnlLine);
                 CompanyInfo.Get();
                 if not TestPrint then begin
                     FormatAddr.Company(CompanyAddr, CompanyInfo);
                     BankAcc2.Get(BankAcc2."No.");
                     BankAcc2.TestField(Blocked, false);
+
                     Copy(VoidGenJnlLine);
                     SetRange("Bank Payment Type", "Bank Payment Type"::"Computer Check");
                     SetRange("Check Printed", false);
@@ -851,7 +853,9 @@ report 60116 FBM_Check_CO
                         ToolTip = 'Specifies if you use check forms with preprinted stubs.';
                     }
                 }
+
             }
+
         }
 
         actions
@@ -860,6 +864,9 @@ report 60116 FBM_Check_CO
 
         trigger OnOpenPage()
         begin
+
+            InitializeRequest(BankAcc2."No.", BankAcc2."Last Check No.", OneCheckPrVendor, ReprintChecks, TestPrint, PreprintedStub);
+
             if BankAcc2."No." <> '' then
                 if BankAcc2.Get(BankAcc2."No.") then
                     UseCheckNo := BankAcc2."Last Check No."
@@ -876,17 +883,20 @@ report 60116 FBM_Check_CO
     trigger
     OnInitReport()
     var
-        rls: record "Report Layout Selection";
+
     begin
-        rls.SetTempLayoutSelected('50041-000002');
+
     end;
 
     trigger OnPreReport()
     begin
         InitTextVariable;
+
     end;
 
     var
+
+
         Text000: Label 'Preview is not allowed.';
         Text001: Label 'Last Check No. must be filled in.';
         Text002: Label 'Filters on %1 and %2 are not allowed.';

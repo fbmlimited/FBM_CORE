@@ -71,9 +71,7 @@ report 60105 "EPS Sales - Invoice_CO"
             DisplayAdditionalFeeNote)
             {
             }
-            column(Bill_to_Country_Region_Code; "Bill-to Country/Region Code")
-            {
-            }
+
 
             dataitem(CopyLoop; "Integer")
             {
@@ -490,6 +488,9 @@ report 60105 "EPS Sales - Invoice_CO"
                     }
                     column(TINNo;
                     CompanyInfo.FBM_TINNumber)
+                    {
+                    }
+                    column(Country; "Sales Invoice Header"."Bill-to Country/Region Code")
                     {
                     }
                     //BFT-001 -- end                
@@ -2227,7 +2228,7 @@ report 60105 "EPS Sales - Invoice_CO"
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
             Site.SetFilter(Site."Site Code", SalesInvoiceHeader.FBM_Site);
             if (Site.FindFirst()) then begin
-                site.SetAutoCalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
+                site.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;
                 site.CalcFields("Site Name_FF");
                 SiteAddr[1] := Site."Site Name_FF";

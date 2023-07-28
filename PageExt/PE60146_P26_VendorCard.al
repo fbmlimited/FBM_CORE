@@ -17,6 +17,8 @@ pageextension 60146 FBM_VendorCardExt_CO extends "Vendor Card"
             {
                 ApplicationArea = All;
             }
+
         }
     }
+
 }

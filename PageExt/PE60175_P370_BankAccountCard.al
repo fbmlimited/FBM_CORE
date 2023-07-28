@@ -14,6 +14,11 @@ pageextension 60175 BankAccountCard extends "Bank Account Card"
                 ApplicationArea = all;
 
             }
+            field(FBM_IsPayment; Rec.FBM_IsPayment)
+            {
+                ApplicationArea = all;
+
+            }
         }
 
     }

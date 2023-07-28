@@ -132,6 +132,11 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                 ApplicationArea = all;
 
             }
+            field(LYC; glsetup."LCY Code")
+            {
+                ApplicationArea = All;
+                Editable = false;
+            }
 
         }
         addafter("Currency Code")
@@ -174,6 +179,14 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
     actions
     {
     }
+    trigger
+   OnOpenPage()
+    begin
+        glsetup.get
+    end;
+
     var
+        glsetup: record "General Ledger Setup";
+
         usersetup: record "User Setup";
 }

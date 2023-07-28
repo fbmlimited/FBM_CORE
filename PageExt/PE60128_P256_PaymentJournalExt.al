@@ -48,8 +48,48 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
     }
     actions
     {
+        addfirst("&Payments")
+        {
+            action(PrintCheck2)
+            {
+                AccessByPermission = TableData "Check Ledger Entry" = R;
+                ApplicationArea = Basic, Suite;
+                Caption = 'Print Check';
+                Ellipsis = true;
+                Image = PrintCheck;
+                ToolTip = 'Prepare to print the check.';
+
+                trigger OnAction()
+                var
+                    GenJournalLine: Record "Gen. Journal Line";
+                    DocumentPrint: Codeunit "Document-Print";
+                    bankacc: record "Bank Account";
+                    repsel: Record "Report Selections";
+                begin
+
+                    GenJournalLine.Reset();
+                    GenJournalLine.Copy(Rec);
+                    GenJournalLine.SetRange("Journal Template Name", Rec."Journal Template Name");
+                    GenJournalLine.SetRange("Journal Batch Name", Rec."Journal Batch Name");
+                    bankacc.get(rec."Account No.");
+                    rls.SetTempLayoutSelected(BankAcc."FBM_Check Layout Code");
+                    repsel.setrange(Usage, repsel.Usage::"B.Check");
+                    if repsel.FindFirst() then
+                        report.RunModal(repsel."Report ID");
+                    //DocumentPrint.PrintCheck(GenJournalLine);
+                    CODEUNIT.Run(CODEUNIT::"Adjust Gen. Journal Balance", Rec);
+                end;
+            }
+
+        }
+        modify(PrintCheck)
+        {
+            Visible = false;
+
+        }
     }
     var
+        rls: record "Report Layout Selection";
         UserSetup: Record "User Setup";
         SeeLCY: Boolean;
 

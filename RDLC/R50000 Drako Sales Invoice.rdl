@@ -36,25 +36,25 @@
                                   <TablixBody>
                                     <TablixColumns>
                                       <TablixColumn>
-                                        <Width>0.4278in</Width>
+                                        <Width>0.86949in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
                                         <Width>3.3319in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
-                                        <Width>0.82103in</Width>
+                                        <Width>0.77936in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
-                                        <Width>0.82103in</Width>
+                                        <Width>0.74797in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
-                                        <Width>0.82103in</Width>
+                                        <Width>0.70297in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
-                                        <Width>0.82103in</Width>
+                                        <Width>0.76296in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
-                                        <Width>0.82103in</Width>
+                                        <Width>0.65434in</Width>
                                       </TablixColumn>
                                     </TablixColumns>
                                     <TablixRows>
@@ -5510,7 +5510,7 @@
                                   </Filters>
                                   <Left>0.00002cm</Left>
                                   <Height>6.60879cm</Height>
-                                  <Width>7.86485in</Width>
+                                  <Width>7.84899in</Width>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
@@ -10227,7 +10227,6 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                                 </Style>
                                               </Textbox>
                                               <ColSpan>3</ColSpan>
-                                              <rd:Selected>true</rd:Selected>
                                             </CellContents>
                                           </TablixCell>
                                           <TablixCell />
@@ -10556,7 +10555,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                       <TablixMember />
                                       <TablixMember>
                                         <Visibility>
-                                          <Hidden>=IIf(Fields!Currency2.Value = "", TRUE, FALSE)</Hidden>
+                                          <Hidden>=IIf(last(Fields!Currency2.Value) = "", TRUE, FALSE)</Hidden>
                                         </Visibility>
                                       </TablixMember>
                                     </TablixMembers>
@@ -11426,6 +11425,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>DataSet_Result</DataSetName>
+                <Top>0.01411cm</Top>
                 <Height>21.07042cm</Height>
                 <Width>19.98515cm</Width>
                 <Style>
@@ -11444,9 +11444,8 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
               </Tablix>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0.01411cm</Top>
             <Left>0.03176cm</Left>
-            <Height>21.07042cm</Height>
+            <Height>21.08453cm</Height>
             <Width>19.98515cm</Width>
             <Style>
               <Border>

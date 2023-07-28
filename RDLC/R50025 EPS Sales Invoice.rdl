@@ -10821,14 +10821,11 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                       </TablixMember>
                                       <TablixMember>
                                         <Visibility>
-                                          <Hidden>=iif(Fields!Bill_to_Country_Region_Code.Value="ES",true,false)</Hidden>
+                                          <Hidden>true</Hidden>
                                         </Visibility>
                                         <KeepWithGroup>After</KeepWithGroup>
                                       </TablixMember>
                                       <TablixMember>
-                                        <Visibility>
-                                          <Hidden>=iif(Fields!Bill_to_Country_Region_Code.Value="ES",false,true)</Hidden>
-                                        </Visibility>
                                         <KeepWithGroup>After</KeepWithGroup>
                                       </TablixMember>
                                       <TablixMember>
@@ -10841,14 +10838,11 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                         <KeepWithGroup>Before</KeepWithGroup>
                                       </TablixMember>
                                       <TablixMember>
-                                        <Visibility>
-                                          <Hidden>=iif(Fields!Bill_to_Country_Region_Code.Value="ES",false,true)</Hidden>
-                                        </Visibility>
                                         <KeepWithGroup>Before</KeepWithGroup>
                                       </TablixMember>
                                       <TablixMember>
                                         <Visibility>
-                                          <Hidden>=iif(Fields!Bill_to_Country_Region_Code.Value="ES",true,false)</Hidden>
+                                          <Hidden>true</Hidden>
                                         </Visibility>
                                         <KeepWithGroup>Before</KeepWithGroup>
                                       </TablixMember>

@@ -5,6 +5,7 @@ page 60125 "Groups"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = FBM_CustGroup;
+    SourceTableView = where(isgroup = const(true));
     layout
     {
         area(Content)

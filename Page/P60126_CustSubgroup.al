@@ -5,6 +5,7 @@ page 60126 "FBM_SubGroups_CO"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = FBM_CustGroup;
+    SourceTableView = where(isgroup = const(false));
     layout
     {
         area(Content)

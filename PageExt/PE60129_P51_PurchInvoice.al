@@ -12,6 +12,12 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
             {
                 ApplicationArea = all;
             }
+            field(LYC; glsetup."LCY Code")
+            {
+                ApplicationArea = All;
+                Editable = false;
+
+            }
         }
         addafter("Vendor Invoice No.")
         {
@@ -39,4 +45,12 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
             }
         }
     }
+    trigger
+   OnOpenPage()
+    begin
+        glsetup.get
+    end;
+
+    var
+        glsetup: record "General Ledger Setup";
 }

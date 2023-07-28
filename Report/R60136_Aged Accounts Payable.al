@@ -153,14 +153,14 @@ report 60136 "FBM_AgedAccPayable New_CO"
                     VendorLedgEntry.SetRange("Closed by Entry No.", "Entry No.");
                     VendorLedgEntry.SetRange("Posting Date", 0D, EndingDate);
                     CopyDimFiltersFromVendor(VendorLedgEntry);
-                    if not VendorLedgEntry.IsEmpty then
+                    if VendorLedgEntry.FindSet(false) then
                         repeat
                             InsertTemp(VendorLedgEntry);
                         until VendorLedgEntry.Next = 0;
 
                     if "Closed by Entry No." <> 0 then begin
                         VendorLedgEntry.SetRange("Closed by Entry No.", "Closed by Entry No.");
-                        if not VendorLedgEntry.IsEmpty then
+                        if VendorLedgEntry.FindSet(false) then
                             repeat
                                 InsertTemp(VendorLedgEntry);
                             until VendorLedgEntry.Next = 0;
@@ -170,7 +170,7 @@ report 60136 "FBM_AgedAccPayable New_CO"
                     VendorLedgEntry.SetRange("Entry No.", "Closed by Entry No.");
                     VendorLedgEntry.SetRange("Posting Date", 0D, EndingDate);
                     CopyDimFiltersFromVendor(VendorLedgEntry);
-                    if not VendorLedgEntry.IsEmpty then
+                    if VendorLedgEntry.FindSet(false) then
                         repeat
                             InsertTemp(VendorLedgEntry);
                         until VendorLedgEntry.Next = 0;
@@ -323,7 +323,7 @@ report 60136 "FBM_AgedAccPayable New_CO"
                         PurchCrm: Record "Purch. Cr. Memo Hdr.";
                     begin
                         if Number = 1 then begin
-                            if TempVendorLedgEntry.IsEmpty then
+                            if not TempVendorLedgEntry.FindSet(false) then
                                 CurrReport.Break;
                         end else
                             if TempVendorLedgEntry.Next = 0 then
@@ -331,7 +331,7 @@ report 60136 "FBM_AgedAccPayable New_CO"
 
                         VendorLedgEntryEndingDate := TempVendorLedgEntry;
                         DetailedVendorLedgerEntry.SetRange("Vendor Ledger Entry No.", VendorLedgEntryEndingDate."Entry No.");
-                        if not DetailedVendorLedgerEntry.IsEmpty then
+                        if DetailedVendorLedgerEntry.FindSet(false) then
                             repeat
                                 if (DetailedVendorLedgerEntry."Entry Type" =
                                     DetailedVendorLedgerEntry."Entry Type"::"Initial Entry") and
@@ -454,7 +454,7 @@ report 60136 "FBM_AgedAccPayable New_CO"
                     Clear(TotalVendorLedgEntry);
 
                     if Number = 1 then begin
-                        if TempCurrency.IsEmpty then
+                        if not TempCurrency.FindSet(false) then
                             CurrReport.Break;
                     end else
                         if TempCurrency.Next = 0 then
@@ -543,7 +543,7 @@ report 60136 "FBM_AgedAccPayable New_CO"
             trigger OnAfterGetRecord()
             begin
                 if Number = 1 then begin
-                    if TempCurrency2.IsEmpty then
+                    if not TempCurrency2.FindSet(false) then
                         CurrReport.Break;
                 end else
                     if TempCurrency2.Next = 0 then
@@ -551,7 +551,7 @@ report 60136 "FBM_AgedAccPayable New_CO"
 
                 Clear(AgedVendorLedgEntry);
                 TempCurrencyAmount.SetRange("Currency Code", TempCurrency2.Code);
-                if not TempCurrencyAmount.IsEmpty then
+                if TempCurrencyAmount.FindSet(false) then
                     repeat
                         if TempCurrencyAmount.Date <> DMY2Date(31, 12, 9999) then
                             AgedVendorLedgEntry[GetPeriodIndex(TempCurrencyAmount.Date)]."Remaining Amount" :=
