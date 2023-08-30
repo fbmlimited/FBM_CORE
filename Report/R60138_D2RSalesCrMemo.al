@@ -1346,7 +1346,7 @@ report 60138 "D2R Sales - CrMemo_CO"
                         DataItemLink = Country = field("Sell-to Country/Region code");
 
 
-                        column(Terms_Conditions; "Terms Conditions")
+                        column(TermsConditions; "Terms Conditions")
                         {
                         }
                         column(termslineno;
@@ -1413,7 +1413,7 @@ report 60138 "D2R Sales - CrMemo_CO"
 
                 trigger OnPostDataItem()
                 begin
-                    if not IsReportInPreviewMode then CODEUNIT.Run(CODEUNIT::"Sales Inv.-Printed", "Sales Cr.Memo Header");
+                    if not IsReportInPreviewMode then CODEUNIT.Run(CODEUNIT::"Sales Cr. Memo-Printed", "Sales Cr.Memo Header");
                 end;
 
                 trigger OnPreDataItem()

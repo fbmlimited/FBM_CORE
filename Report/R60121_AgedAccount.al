@@ -194,7 +194,7 @@ report 60121 "FBM_Aged AccRec New_CO"
                             CustLedgEntry.SetRange("Closed by Entry No.", "Entry No.");
                         CustLedgEntry.SetRange("Posting Date", 0D, EndingDate);
                         CopyDimFiltersFromCustomer(CustLedgEntry);
-                        if not CustLedgEntry.IsEmpty then
+                        if CustLedgEntry.FindSet(false) then
                             repeat
                                 InsertTemp(CustLedgEntry);
                             until CustLedgEntry.Next = 0;
@@ -203,7 +203,7 @@ report 60121 "FBM_Aged AccRec New_CO"
                         CustLedgEntry.SetRange("Entry No.", "Closed by Entry No.");
                         CustLedgEntry.SetRange("Posting Date", 0D, EndingDate);
                         CopyDimFiltersFromCustomer(CustLedgEntry);
-                        if not CustLedgEntry.IsEmpty then
+                        if CustLedgEntry.FindSet(false) then
                             repeat
                                 InsertTemp(CustLedgEntry);
                             until CustLedgEntry.Next = 0;
@@ -409,7 +409,7 @@ report 60121 "FBM_Aged AccRec New_CO"
                             customersite: record FBM_CustomerSite_C;
                         begin
                             if Number = 1 then begin
-                                if TempCustLedgEntry.IsEmpty then
+                                if not TempCustLedgEntry.FindSet(false) then
                                     CurrReport.Break;
                             end else
                                 if TempCustLedgEntry.Next = 0 then
@@ -417,7 +417,7 @@ report 60121 "FBM_Aged AccRec New_CO"
 
                             CustLedgEntryEndingDate := TempCustLedgEntry;
                             DetailedCustomerLedgerEntry.SetRange("Cust. Ledger Entry No.", CustLedgEntryEndingDate."Entry No.");
-                            if not DetailedCustomerLedgerEntry.IsEmpty then
+                            if DetailedCustomerLedgerEntry.FindSet(false) then
                                 repeat
                                     if (DetailedCustomerLedgerEntry."Entry Type" =
                                         DetailedCustomerLedgerEntry."Entry Type"::"Initial Entry") and
@@ -553,7 +553,7 @@ report 60121 "FBM_Aged AccRec New_CO"
                         Clear(TotalCustLedgEntry);
 
                         if Number = 1 then begin
-                            if TempCurrency.IsEmpty then
+                            if not TempCurrency.FindSet(false) then
                                 CurrReport.Break;
                         end else
                             if TempCurrency.Next = 0 then
@@ -648,7 +648,7 @@ report 60121 "FBM_Aged AccRec New_CO"
                 trigger OnAfterGetRecord()
                 begin
                     if Number = 1 then begin
-                        if TempCurrency2.IsEmpty then
+                        if not TempCurrency2.FindSet(false) then
                             CurrReport.Break;
                     end else
                         if TempCurrency2.Next = 0 then
@@ -656,7 +656,7 @@ report 60121 "FBM_Aged AccRec New_CO"
 
                     Clear(AgedCustLedgEntry);
                     TempCurrencyAmount.SetRange("Currency Code", TempCurrency2.Code);
-                    if not TempCurrencyAmount.IsEmpty then
+                    if TempCurrencyAmount.FindSet(false) then
                         repeat
                             if TempCurrencyAmount.Date <> DMY2Date(31, 12, 9999) then
                                 AgedCustLedgEntry[GetPeriodIndex(TempCurrencyAmount.Date)]."Remaining Amount" :=

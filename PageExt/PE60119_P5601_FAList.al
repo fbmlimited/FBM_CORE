@@ -42,6 +42,12 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
             {
                 ApplicationArea = all;
             }
+
+            field(FBM_Dupecomp; Rec.FBM_Dupecomp)
+            {
+                ApplicationArea = all;
+                Visible = visdupe;
+            }
         }
 
         addafter("FA Class Code")
@@ -134,8 +140,32 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
         FASetup: Record "FA Setup";
         Show: Boolean;
 
+        dupecomp: text[3];
+        comp: record Company;
+        fa: record "Fixed Asset";
+        compinfo: record "Company Information";
+        compinfob: record "Company Information";
+        uper: Codeunit "User Permissions";
+        visdupe: boolean;
+
     trigger OnAfterGetRecord()
     begin
+        if comp.FindFirst() and uper.IsSuper(UserSecurityId()) then begin
+            visdupe := true;
+            repeat
+                fa.ChangeCompany(comp.Name);
+                compinfo.ChangeCompany(comp.Name);
+                if compinfo.Name <> compinfob.Name then begin
+                    fa.SetRange("Serial No.", rec."Serial No.");
+                    fa.SetRange(FBM_Is_EGM_FF, true);
+                    if fa.FindFirst() then begin//and rec.IsActive and fa.IsActive
+
+                        rec.FBM_Dupecomp := compinfo."Custom System Indicator Text";
+                        rec.Modify();
+                    end;
+                end;
+            until comp.Next() = 0;
+        end
     end;
 
     trigger OnOpenPage()

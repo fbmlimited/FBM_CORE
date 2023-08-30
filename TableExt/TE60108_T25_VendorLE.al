@@ -3,7 +3,7 @@ tableextension 60108 FBM_VendorLEExt_CO extends "Vendor Ledger Entry"
     fields
     {
 
-        field(70004; "FBM_Default Bank Account_FF"; Code[20])
+        field(70100; "FBM_Default Bank Account_FF"; Code[20])
         {
             TableRelation = "Bank Account";
             Caption = 'Default Bank Account';
@@ -11,5 +11,6 @@ tableextension 60108 FBM_VendorLEExt_CO extends "Vendor Ledger Entry"
             FieldClass = FlowField;
             CalcFormula = lookup(Vendor."FBM_Default Bank Account" where("No." = field("Vendor No.")));
         }
+
     }
 }

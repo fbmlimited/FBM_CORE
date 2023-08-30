@@ -32,6 +32,10 @@ page 60103 "FBM_Cust-Op-Site_CO"
                 {
                     ApplicationArea = All;
                 }
+                field("Site Loc Code"; Rec."Site Loc Code")
+                {
+                    ApplicationArea = All;
+                }
                 field("Site Name"; "Site Name")
                 {
                     ApplicationArea = All;

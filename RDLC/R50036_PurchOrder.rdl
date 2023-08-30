@@ -46,7 +46,8 @@
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="BuyFromAddr">
+                                          <Textbox Name="Textbox21">
+                                            <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
@@ -62,58 +63,30 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <ZIndex>8</ZIndex>
+                                            <rd:DefaultName>Textbox21</rd:DefaultName>
                                             <Visibility>
-                                              <Hidden>=Code.SetData(Cstr(Fields!BuyFromAddr1.Value) + Chr(177) + 
-Cstr(Fields!BuyFromAddr2.Value) + Chr(177) + 
-Cstr(Fields!BuyFromAddr3.Value) + Chr(177) + 
-Cstr(Fields!BuyFromAddr4.Value) + Chr(177) + 
-Cstr(Fields!BuyFromAddr5.Value) + Chr(177) + 
-Cstr(Fields!BuyFromAddr6.Value) + Chr(177) + 
-Cstr(Fields!BuyFromAddr7.Value) + Chr(177) + 
-Cstr(Fields!BuyFromAddr8.Value) + Chr(177) + 
-Cstr(Fields!BuyFrmVendNo_PurchHeader.Value) + Chr(177) + 
-Cstr(Fields!VATRegNo_PurchHeader.Value) + Chr(177) + 
-Cstr(Fields!SalesPurchPersonName.Value) + Chr(177) + 
-Cstr(Fields!YourRef_PurchHeader.Value) + Chr(177) + 
-Cstr(Fields!PaymentTermsDesc.Value) + Chr(177) + 
-Cstr(Fields!ShipmentMethodDesc.Value) + Chr(177) + 
-Cstr(Fields!PrepmtPaymentTermsDesc.Value) + Chr(177) + 
-Cstr(Fields!No_PurchHeader.Value) + Chr(177) + 
-Cstr(Fields!PricesInclVATtxt.Value) + Chr(177) + 
-Cstr(Fields!ReportTitleCopyText.Value) + Chr(177) + 
-Cstr(Fields!BuyFrmVendNo_PurchHeaderCaption.Value) + Chr(177) + 
-Cstr(Fields!ReferenceText.Value) + Chr(177) + 
-Cstr(Fields!PurchaserText.Value) + Chr(177) + 
-Cstr(Fields!VATNoText.Value) + Chr(177) + 
-Cstr(Fields!PricesInclVAT_PurchHeaderCaption.Value) + Chr(177) + 
-Cstr(Fields!OrderNoCaption.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoBankAccNoCaption.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoBankNameCaption.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoGiroNoCaption.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoVATRegNoCaption.Value) + Chr(177) + 
-Cstr(Fields!EmailIDCaption.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoPhoneNoCaption.Value) + Chr(177) + 
-Cstr(Fields!PageCaption.Value) + Chr(177) + 
-Cstr(Fields!CompanyAddr6.Value) + Chr(177) + 
-Cstr(Fields!CompanyAddr5.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoBankAccNo.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoBankName.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoGiroNo.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoVATRegNo.Value) + Chr(177) + 
-Cstr(Fields!EMail.Value) + Chr(177) + 
-Cstr(Fields!CompanyInfoPhoneNo.Value) + Chr(177) + 
-Cstr(Fields!CompanyAddr4.Value) + Chr(177) + 
-Cstr(Fields!CompanyAddr3.Value) + Chr(177) + 
-Cstr(Fields!CompanyAddr2.Value) + Chr(177) + 
-Cstr(Fields!CompanyAddr1.Value) + Chr(177) + 
-Cstr(Fields!HomePageCaption.Value) + Chr(177) + 
-Cstr(Fields!HomePage.Value) + Chr(177) + 
-Cstr(Fields!PaymentTermsDescCaption.Value) + Chr(177) + 
-Cstr(Fields!ShipmentMethodDescCaption.Value) + Chr(177) + 
-Cstr(Fields!DocumentDateCaption.Value) + Chr(177) + 
-Cstr(Fields!DocDate_PurchHeader.Value) + Chr(177) + Cstr(Fields!consname.Value) + Chr(177) + Cstr(Fields!consaddress.Value) + Chr(177) + Cstr(Fields!consaddress2.Value) + Chr(177) + Cstr(Fields!conscity.Value) + Chr(177) + Cstr(Fields!conscounty.Value) + Chr(177) + Cstr(Fields!conspostcode.Value) + Chr(177) + Cstr(Fields!conscountry.Value) + Chr(177) + Cstr(Fields!conscontact.Value) + Chr(177) + Cstr(Fields!ShipToAddr1.Value) + Chr(177) + Cstr(Fields!ShipToAddr2.Value) + Chr(177) + Cstr(Fields!ShipToAddr3.Value) + Chr(177) + Cstr(Fields!ShipToAddr4.Value) + Chr(177) + Cstr(Fields!ShipToAddr5.Value) + Chr(177)  + Cstr(Fields!ciname.Value) + Chr(177) + Cstr(Fields!ciaddress.Value) + Chr(177) + Cstr(Fields!ciaddress2.Value) + Chr(177) + Cstr(Fields!cicity.Value) + Chr(177) + Cstr(Fields!cicounty.Value) + Chr(177) + Cstr(Fields!cipostcode.Value) + Chr(177) + Cstr(Fields!cicountry.Value) + Chr(177) + Cstr(Fields!cicontact.Value) + Chr(177) + Cstr(Fields!Transport_Method.Value) + Chr(177) +
-Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.Value) + Chr(177) +Cstr(Fields!PaymentTerms.Value) + Chr(177) + Cstr(Fields!Currency_Code.Value) + Chr(177) + Cstr(Fields!Requisition.Value), 1)</Hidden>
+                                              <Hidden>=Code.SetData(Cstr(Fields!BuyFromAddr1.Value) + Chr(177) + Cstr(Fields!BuyFromAddr2.Value) + Chr(177) + Cstr(Fields!BuyFromAddr3.Value) + Chr(177) + Cstr(Fields!BuyFromAddr4.Value) + Chr(177) + Cstr(Fields!BuyFromAddr5.Value) + Chr(177) + Cstr(Fields!BuyFromAddr6.Value) + Chr(177) + Cstr(Fields!BuyFromAddr7.Value) + Chr(177) + Cstr(Fields!BuyFromAddr8.Value) + Chr(177) + Cstr(Fields!BuyFrmVendNo_PurchHeader.Value) + Chr(177) +
+Cstr(Fields!VATRegNo_PurchHeader.Value) + Chr(177) +
+Cstr(Fields!SalesPurchPersonName.Value) + Chr(177) +
+Cstr(Fields!YourRef_PurchHeader.Value) + Chr(177) +
+Cstr(Fields!PaymentTermsDesc.Value) + Chr(177) + Cstr(Fields!ShipmentMethodDesc.Value) + Chr(177) +Cstr(Fields!PrepmtPaymentTermsDesc.Value) + Chr(177) + Cstr(Fields!No_PurchHeader.Value) + Chr(177) + Cstr(Fields!PricesInclVATtxt.Value) + Chr(177) + Cstr(Fields!ReportTitleCopyText.Value) + Chr(177) + Cstr(Fields!BuyFrmVendNo_PurchHeaderCaption.Value) + Chr(177) + Cstr(Fields!ReferenceText.Value) + Chr(177) + Cstr(Fields!PurchaserText.Value) + Chr(177) + Cstr(Fields!VATNoText.Value) + Chr(177) + Cstr(Fields!PricesInclVAT_PurchHeaderCaption.Value) + Chr(177) + Cstr(Fields!OrderNoCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoBankAccNoCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoBankNameCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoGiroNoCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoVATRegNoCaption.Value) + Chr(177) + Cstr(Fields!EmailIDCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoPhoneNoCaption.Value) + Chr(177) + Cstr(Fields!PageCaption.Value) + Chr(177) + 
+Cstr(Fields!CompanyAddr6.Value) + Chr(177) + Cstr(Fields!CompanyAddr5.Value) + Chr(177) + 
+Cstr(Fields!CompanyInfoBankAccNo.Value) + Chr(177) + Cstr(Fields!CompanyInfoBankName.Value) + Chr(177) + Cstr(Fields!CompanyInfoGiroNo.Value) + Chr(177) + Cstr(Fields!CompanyInfoVATRegNo.Value) + Chr(177) + Cstr(Fields!EMail.Value) + Chr(177) + Cstr(Fields!CompanyInfoPhoneNo.Value) + Chr(177) + Cstr(Fields!CompanyAddr4.Value) + Chr(177) + 
+Cstr(Fields!CompanyAddr3.Value) + Chr(177) + Cstr(Fields!CompanyAddr2.Value) + Chr(177) + 
+Cstr(Fields!CompanyAddr1.Value) + Chr(177) + Cstr(Fields!HomePageCaption.Value) + Chr(177) + 
+Cstr(Fields!HomePage.Value) + Chr(177) + Cstr(Fields!PaymentTermsDescCaption.Value) + Chr(177) + 
+Cstr(Fields!ShipmentMethodDescCaption.Value) + Chr(177) + Cstr(Fields!DocumentDateCaption.Value) + Chr(177) + Cstr(Fields!DocDate_PurchHeader.Value) + Chr(177) + 
+Cstr(Fields!consname.Value) + Chr(177) + Cstr(Fields!consaddress.Value) + Chr(177) + 
+Cstr(Fields!consaddress2.Value) + Chr(177) + Cstr(Fields!conscity.Value) + Chr(177) + 
+Cstr(Fields!conscounty.Value) + Chr(177) + Cstr(Fields!conspostcode.Value) + Chr(177) + Cstr(Fields!conscountry.Value) + Chr(177) + Cstr(Fields!conscontact.Value) + Chr(177) +
+Cstr(Fields!ShipToAddr1.Value) + Chr(177) + Cstr(Fields!ShipToAddr2.Value) + Chr(177) + 
+Cstr(Fields!ShipToAddr3.Value) + Chr(177) + Cstr(Fields!ShipToAddr4.Value) + Chr(177) + 
+Cstr(Fields!ShipToAddr5.Value) + Chr(177) + Cstr(Fields!ciname.Value) + Chr(177) + 
+Cstr(Fields!ciaddress.Value) + Chr(177) + Cstr(Fields!ciaddress2.Value) + Chr(177) + 
+Cstr(Fields!cicity.Value) + Chr(177) + Cstr(Fields!cicounty.Value) + Chr(177) + 
+Cstr(Fields!cipostcode.Value) + Chr(177) + Cstr(Fields!cicountry.Value) + Chr(177) +
+Cstr(Fields!cicontact.Value) + Chr(177) + Cstr(Fields!Transport_Method.Value) + Chr(177) +
+Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date.Value) + Chr(177) + Cstr(Fields!PaymentTerms.Value) + Chr(177) + Cstr(Fields!Currency_Code.Value) + Chr(177) + Cstr(Fields!Requisition.Value), 1)</Hidden>
                                             </Visibility>
                                             <Style>
                                               <Border>
@@ -185,7 +158,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                                   </FilterValues>
                                 </Filter>
                               </Filters>
-                              <Left>0.00249in</Left>
+                              <Left>0.02793in</Left>
                               <Height>0.38445cm</Height>
                               <Width>0.91592cm</Width>
                               <Visibility>
@@ -1181,7 +1154,6 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                           <KeepTogether>true</KeepTogether>
                           <Style />
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1237,7 +1209,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
       <Width>18.55703cm</Width>
       <Page>
         <PageHeader>
-          <Height>11.42717cm</Height>
+          <Height>11.83286cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1247,7 +1219,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetData(31,1) &amp; " " &amp; Code.GetGroupPageNumber(ReportItems!NewPage.Value,Globals!PageNumber)</Value>
+                      <Value>="Page " &amp; " " &amp; Globals!PageNumber</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -1259,8 +1231,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.09679cm</Top>
-              <Left>12.18437cm</Left>
+              <Top>0.95568cm</Top>
+              <Left>12.15049cm</Left>
               <Height>11pt</Height>
               <Width>5.2399cm</Width>
               <Style>
@@ -1482,7 +1454,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
               <rd:DefaultName>Textbox161</rd:DefaultName>
               <Top>10.79217cm</Top>
               <Left>0.25825cm</Left>
-              <Height>0.45578cm</Height>
+              <Height>0.45861cm</Height>
               <Width>2.85195cm</Width>
               <ZIndex>7</ZIndex>
               <Style>
@@ -1914,16 +1886,18 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>P.O. No.</Value>
-                      <Style />
+                      <Value>Ref. No.</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>1.69306cm</Top>
-              <Left>12.4144cm</Left>
+              <Top>1.97557cm</Top>
+              <Left>12.41507cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <ZIndex>16</ZIndex>
@@ -1960,16 +1934,18 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetData(16,1)</Value>
-                      <Style />
+                      <Value>=Code.GetData(12,1)</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>1.69306cm</Top>
-              <Left>14.94968cm</Left>
+              <Top>1.97557cm</Top>
+              <Left>14.95035cm</Left>
               <Height>0.6cm</Height>
               <Width>2.76116cm</Width>
               <ZIndex>17</ZIndex>
@@ -2014,8 +1990,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>2.29306cm</Top>
-              <Left>12.4144cm</Left>
+              <Top>2.57557cm</Top>
+              <Left>12.41507cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <ZIndex>18</ZIndex>
@@ -2060,8 +2036,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>2.29306cm</Top>
-              <Left>14.94968cm</Left>
+              <Top>2.57557cm</Top>
+              <Left>14.95035cm</Left>
               <Height>0.6cm</Height>
               <Width>2.76116cm</Width>
               <ZIndex>19</ZIndex>
@@ -2106,8 +2082,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>2.89306cm</Top>
-              <Left>12.4144cm</Left>
+              <Top>3.17557cm</Top>
+              <Left>12.41507cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <ZIndex>20</ZIndex>
@@ -2152,8 +2128,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>2.89306cm</Top>
-              <Left>14.94968cm</Left>
+              <Top>3.17557cm</Top>
+              <Left>14.95035cm</Left>
               <Height>0.6cm</Height>
               <Width>2.76116cm</Width>
               <ZIndex>21</ZIndex>
@@ -2550,7 +2526,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox160</rd:DefaultName>
-                  <Top>4.71658cm</Top>
+                  <Top>4.72953cm</Top>
                   <Left>0.10094cm</Left>
                   <Height>0.36601cm</Height>
                   <Width>7.63632cm</Width>
@@ -3001,6 +2977,156 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 </RightBorder>
               </Style>
             </Rectangle>
+            <Textbox Name="Textbox7">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>P.O. No.</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>1.34373cm</Top>
+              <Left>12.41507cm</Left>
+              <Height>0.6cm</Height>
+              <Width>2.5cm</Width>
+              <ZIndex>24</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+                <TopBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </TopBorder>
+                <BottomBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </BottomBorder>
+                <LeftBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </LeftBorder>
+                <RightBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </RightBorder>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox19">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Code.GetData(16,1)</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>1.34373cm</Top>
+              <Left>14.95035cm</Left>
+              <Height>0.6cm</Height>
+              <Width>2.76116cm</Width>
+              <ZIndex>25</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+                <TopBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </TopBorder>
+                <BottomBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </BottomBorder>
+                <LeftBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </LeftBorder>
+                <RightBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </RightBorder>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox23">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value />
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox23</rd:DefaultName>
+              <Top>1.13453cm</Top>
+              <Left>7.66092cm</Left>
+              <Height>0.6cm</Height>
+              <Width>2.5cm</Width>
+              <ZIndex>26</ZIndex>
+              <Visibility>
+                <Hidden>=Code.SetData(Cstr(Fields!BuyFromAddr1.Value) + Chr(177) + Cstr(Fields!BuyFromAddr2.Value) + Chr(177) + Cstr(Fields!BuyFromAddr3.Value) + Chr(177) + Cstr(Fields!BuyFromAddr4.Value) + Chr(177) + Cstr(Fields!BuyFromAddr5.Value) + Chr(177) + Cstr(Fields!BuyFromAddr6.Value) + Chr(177) + Cstr(Fields!BuyFromAddr7.Value) + Chr(177) + Cstr(Fields!BuyFromAddr8.Value) + Chr(177) + Cstr(Fields!BuyFrmVendNo_PurchHeader.Value) + Chr(177) +
+Cstr(Fields!VATRegNo_PurchHeader.Value) + Chr(177) +
+Cstr(Fields!SalesPurchPersonName.Value) + Chr(177) +
+Cstr(Fields!YourRef_PurchHeader.Value) + Chr(177) +
+Cstr(Fields!PaymentTermsDesc.Value) + Chr(177) + Cstr(Fields!ShipmentMethodDesc.Value) + Chr(177) +Cstr(Fields!PrepmtPaymentTermsDesc.Value) + Chr(177) + Cstr(Fields!No_PurchHeader.Value) + Chr(177) + Cstr(Fields!PricesInclVATtxt.Value) + Chr(177) + Cstr(Fields!ReportTitleCopyText.Value) + Chr(177) + Cstr(Fields!BuyFrmVendNo_PurchHeaderCaption.Value) + Chr(177) + Cstr(Fields!ReferenceText.Value) + Chr(177) + Cstr(Fields!PurchaserText.Value) + Chr(177) + Cstr(Fields!VATNoText.Value) + Chr(177) + Cstr(Fields!PricesInclVAT_PurchHeaderCaption.Value) + Chr(177) + Cstr(Fields!OrderNoCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoBankAccNoCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoBankNameCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoGiroNoCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoVATRegNoCaption.Value) + Chr(177) + Cstr(Fields!EmailIDCaption.Value) + Chr(177) + Cstr(Fields!CompanyInfoPhoneNoCaption.Value) + Chr(177) + Cstr(Fields!PageCaption.Value) + Chr(177) + 
+Cstr(Fields!CompanyAddr6.Value) + Chr(177) + Cstr(Fields!CompanyAddr5.Value) + Chr(177) + 
+Cstr(Fields!CompanyInfoBankAccNo.Value) + Chr(177) + Cstr(Fields!CompanyInfoBankName.Value) + Chr(177) + Cstr(Fields!CompanyInfoGiroNo.Value) + Chr(177) + Cstr(Fields!CompanyInfoVATRegNo.Value) + Chr(177) + Cstr(Fields!EMail.Value) + Chr(177) + Cstr(Fields!CompanyInfoPhoneNo.Value) + Chr(177) + Cstr(Fields!CompanyAddr4.Value) + Chr(177) + 
+Cstr(Fields!CompanyAddr3.Value) + Chr(177) + Cstr(Fields!CompanyAddr2.Value) + Chr(177) + 
+Cstr(Fields!CompanyAddr1.Value) + Chr(177) + Cstr(Fields!HomePageCaption.Value) + Chr(177) + 
+Cstr(Fields!HomePage.Value) + Chr(177) + Cstr(Fields!PaymentTermsDescCaption.Value) + Chr(177) + 
+Cstr(Fields!ShipmentMethodDescCaption.Value) + Chr(177) + Cstr(Fields!DocumentDateCaption.Value) + Chr(177) + Cstr(Fields!DocDate_PurchHeader.Value) + Chr(177) + 
+Cstr(Fields!consname.Value) + Chr(177) + Cstr(Fields!consaddress.Value) + Chr(177) + 
+Cstr(Fields!consaddress2.Value) + Chr(177) + Cstr(Fields!conscity.Value) + Chr(177) + 
+Cstr(Fields!conscounty.Value) + Chr(177) + Cstr(Fields!conspostcode.Value) + Chr(177) + Cstr(Fields!conscountry.Value) + Chr(177) + Cstr(Fields!conscontact.Value) + Chr(177) +
+Cstr(Fields!ShipToAddr1.Value) + Chr(177) + Cstr(Fields!ShipToAddr2.Value) + Chr(177) + 
+Cstr(Fields!ShipToAddr3.Value) + Chr(177) + Cstr(Fields!ShipToAddr4.Value) + Chr(177) + 
+Cstr(Fields!ShipToAddr5.Value) + Chr(177) + Cstr(Fields!ciname.Value) + Chr(177) + 
+Cstr(Fields!ciaddress.Value) + Chr(177) + Cstr(Fields!ciaddress2.Value) + Chr(177) + 
+Cstr(Fields!cicity.Value) + Chr(177) + Cstr(Fields!cicounty.Value) + Chr(177) + 
+Cstr(Fields!cipostcode.Value) + Chr(177) + Cstr(Fields!cicountry.Value) + Chr(177) +
+Cstr(Fields!cicontact.Value) + Chr(177) + Cstr(Fields!Transport_Method.Value) + Chr(177) +
+Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date.Value) + Chr(177) + Cstr(Fields!PaymentTerms.Value) + Chr(177) + Cstr(Fields!Currency_Code.Value)  + Chr(177) + Cstr(Fields!Requisition.Value)+ Chr(177) +  Cstr(Fields!authorizedby.Value), 1)</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style />
         </PageHeader>
@@ -3334,6 +3460,38 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) +Cstr(Fields!Expected_Receipt_Date.
                 </Border>
               </Style>
             </Textbox>
+            <Textbox Name="Textbox22">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!authorizedby.Value, "DataSet_Result")</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox22</rd:DefaultName>
+              <Top>1.90472cm</Top>
+              <Left>11.93461cm</Left>
+              <Height>0.6cm</Height>
+              <Width>3.6826cm</Width>
+              <ZIndex>10</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -3568,8 +3726,11 @@ End Function</Code>
         <Field Name="Currency_Code">
           <DataField>Currency_Code</DataField>
         </Field>
-        <Field Name="FBM_Requisition">
-          <DataField>FBM_Requisition</DataField>
+        <Field Name="Requisition">
+          <DataField>Requisition</DataField>
+        </Field>
+        <Field Name="authorizedby">
+          <DataField>authorizedby</DataField>
         </Field>
         <Field Name="ReportTitleCopyText">
           <DataField>ReportTitleCopyText</DataField>

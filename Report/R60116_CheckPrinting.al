@@ -34,8 +34,8 @@ report 60116 FBM_Check_CO
                 if (GetFilter("Line No.") <> '') or (GetFilter("Document No.") <> '') then
                     Error(
                       Text002, FieldCaption("Line No."), FieldCaption("Document No."));
-                SetRange("Bank Payment Type", "Bank Payment Type"::"Computer Check");
-                SetRange("Check Printed", true);
+                // SetRange("Bank Payment Type", "Bank Payment Type"::"Computer Check");
+                // SetRange("Check Printed", true);
             end;
         }
         dataitem(GenJnlLine; "Gen. Journal Line")
@@ -755,7 +755,7 @@ report 60116 FBM_Check_CO
                             end
                     end;
 
-                    CheckDateText := Format("Posting Date", 0, 4);
+                    CheckDateText := Format("Posting Date");
                 end else begin
                     if ChecksPrinted > 0 then
                         CurrReport.Break();

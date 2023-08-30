@@ -2,6 +2,13 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
 {
     layout
     {
+        addafter(AppliesToDocNo)
+        {
+            field(FBM_DueDate_FF; Rec.FBM_DueDate_FF)
+            {
+                ApplicationArea = all;
+            }
+        }
         modify("Amount (LCY)")
         {
             Visible = true;
@@ -71,7 +78,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
                     GenJournalLine.Copy(Rec);
                     GenJournalLine.SetRange("Journal Template Name", Rec."Journal Template Name");
                     GenJournalLine.SetRange("Journal Batch Name", Rec."Journal Batch Name");
-                    bankacc.get(rec."Account No.");
+                    bankacc.get(rec."Bal. Account No.");
                     rls.SetTempLayoutSelected(BankAcc."FBM_Check Layout Code");
                     repsel.setrange(Usage, repsel.Usage::"B.Check");
                     if repsel.FindFirst() then

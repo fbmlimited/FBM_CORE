@@ -565,6 +565,11 @@ report 60134 "FBM_SuggVendPaymNew_CO"
         VendLedgEntry.SetRange(Open, true);
         VendLedgEntry.SetRange(Positive, Positive);
         VendLedgEntry.SetRange("Applies-to ID", '');
+        //only approved
+        VendLedgEntry.SetRange(FBM_approved, true);
+        VendLedgEntry.SetRange(FBM_approved1, true);
+        VendLedgEntry.SetRange(FBM_approved2, true);
+        //end approved
         if Future then begin
             VendLedgEntry.SetRange("Due Date", LastDueDateToPayReq + 1, DMY2Date(31, 12, 9999));
             VendLedgEntry.SetRange("Pmt. Discount Date", PostingDate, LastDueDateToPayReq);

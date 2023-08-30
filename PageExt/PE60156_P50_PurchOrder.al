@@ -519,6 +519,14 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         IF pl.FINDFIRST THEN
             DocumentTotals.CalculatePurchaseTotals(TotalPurchLine, VATAmount, pl);
         PrepaymentAmount := TotalPurchLine."Line Amount" * rec."Prepayment %" / 100;
+        CalculateCurrentShippingAndPayToOption2();
+    end;
+
+    trigger
+    OnNewRecord(BelowxRec: Boolean)
+    begin
+
+        CalculateCurrentShippingAndPayToOption2();
     end;
 
 
@@ -551,6 +559,34 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
                     rec.Validate("Location Code", '');
                 end;
         end;
+    end;
+
+    local procedure CalculateCurrentShippingAndPayToOption2()
+    begin
+        case true of
+            Rec."Sell-to Customer No." <> '':
+                ShipToOptions2 := ShipToOptions2::"Customer Address";
+            Rec."Location Code" <> '':
+                ShipToOptions2 := ShipToOptions2::Location;
+            rec.FBM_Site <> '':
+                ShipToOptions2 := ShipToOptions2::Site;
+            else
+                if Rec.ShipToAddressEqualsCompanyShipToAddress() then
+                    ShipToOptions2 := ShipToOptions::"Default (Company Address)"
+                else
+                    ShipToOptions2 := ShipToOptions::"Custom Address";
+        end;
+
+        case true of
+            (Rec."Pay-to Vendor No." = Rec."Buy-from Vendor No.") and Rec.BuyFromAddressEqualsPayToAddress():
+                PayToOptions := PayToOptions::"Default (Vendor)";
+            (Rec."Pay-to Vendor No." = Rec."Buy-from Vendor No.") and (not Rec.BuyFromAddressEqualsPayToAddress()):
+                PayToOptions := PayToOptions::"Custom Address";
+            Rec."Pay-to Vendor No." <> Rec."Buy-from Vendor No.":
+                PayToOptions := PayToOptions::"Another Vendor";
+        end;
+
+
     end;
 }
 

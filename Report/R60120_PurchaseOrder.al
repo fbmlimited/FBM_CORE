@@ -105,10 +105,10 @@ report 60120 "FBM_PurchaseOrder_CO"
             column(PayToContactEmail; PayToContact."E-Mail")
             {
             }
-            column(Transport_Method; "Transport Method")
+            column(Transport_Method; transmethod.Description)
             {
             }
-            column(ShipmentMethod; ShipmentMethod.Description)
+            column(ShipmentMethod; ShipmentMethod.Code)
             {
             }
             column(Expected_Receipt_Date; "Expected Receipt Date")
@@ -120,7 +120,10 @@ report 60120 "FBM_PurchaseOrder_CO"
             column(Currency_Code; "Currency Code")
             {
             }
-            column(FBM_Requisition; FBM_Requisition)
+            column(Requisition; FBM_Requisition)
+            {
+            }
+            column(authorizedby; authorizedby)
             {
             }
 
@@ -1064,6 +1067,15 @@ report 60120 "FBM_PurchaseOrder_CO"
 
             trigger OnAfterGetRecord()
             begin
+                ApprovalEntry.SetRange("Table ID", DATABASE::"Purchase Header");
+                ApprovalEntry.SetRange("Document Type", EnumAssignmentMgt.GetPurchApprovalDocumentType("Document Type"));
+                ApprovalEntry.SetRange("Document No.", "No.");
+                ApprovalEntry.SetFilter(Status, '%1|%2', ApprovalEntry.Status::Created, ApprovalEntry.Status::Approved);
+                if ApprovalEntry.FindLast() then begin
+                    user.SetRange("User Name", ApprovalEntry."Approver ID");
+                    if user.FindFirst() then
+                        authorizedby := user."Full Name";
+                end;
                 CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
 
                 FormatAddressFields("Purchase Header");
@@ -1071,6 +1083,8 @@ report 60120 "FBM_PurchaseOrder_CO"
                 if BuyFromContact.Get("Buy-from Contact No.") then;
                 if PayToContact.Get("Pay-to Contact No.") then;
                 PricesInclVATtxt := Format("Prices Including VAT");
+                if "Transport Method" <> '' then
+                    transmethod.get("Transport Method");
 
                 DimSetEntry1.SetRange("Dimension Set ID", "Dimension Set ID");
 
@@ -1311,6 +1325,11 @@ report 60120 "FBM_PurchaseOrder_CO"
         PayToContactEmailLbl: Label 'Pay-to Contact E-Mail';
         PrepmtLoopLineNo: Integer;
         TotalPrepmtLineAmount: Decimal;
+        transmethod: record "Transport Method";
+        authorizedby: text[100];
+        ApprovalEntry: record "Approval Entry";
+        EnumAssignmentMgt: Codeunit "Enum Assignment Management";
+        user: record User;
 
     procedure InitializeRequest(NewNoOfCopies: Integer; NewShowInternalInfo: Boolean; NewArchiveDocument: Boolean; NewLogInteraction: Boolean)
     begin

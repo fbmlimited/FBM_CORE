@@ -25,6 +25,10 @@ pageextension 60169 FBM_UserSetupExt_CO extends "User Setup"
             {
 
             }
+            field("Approve AP"; rec."FBM_Approve AP")
+            {
+
+            }
         }
     }
     actions

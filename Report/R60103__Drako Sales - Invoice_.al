@@ -1442,7 +1442,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             begin
 
                 CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
-
+                clear(SiteAddr);
                 FormatSiteAddress("Sales Invoice Header");
                 FormatAddressFields("Sales Invoice Header");
                 FormatDocumentFields("Sales Invoice Header");
@@ -2306,8 +2306,11 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
     var
         Cnt: Record "Country/Region";
     begin
+
+
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
-            Site.SetFilter(Site."Site Code", SalesInvoiceHeader.FBM_Site);
+            site.Reset();
+            Site.Setrange(Site."Site Code", SalesInvoiceHeader.FBM_Site);
             if (Site.FindFirst()) then begin
                 site.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;

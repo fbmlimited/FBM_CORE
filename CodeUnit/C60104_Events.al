@@ -5,7 +5,21 @@ codeunit 60104 FBM_Events_CO
     begin
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::ReportManagement, 'OnAfterSubstituteReport', '', false, false)]
+    local procedure OnSubstituteReport(ReportId: Integer; var NewReportId: Integer)
+    begin
+        if ReportId = 393 then
+            NewReportId := 60134;
+    end;
 
+    [EventSubscriber(ObjectType::Table, 81, 'OnLookUpAppliesToDocVendOnAfterSetFilters', '', false, false)]
+    local procedure OnLookUpAppliesToDocVendOnAfterSetFilters(var VendorLedgerEntry: Record "Vendor Ledger Entry"; var GenJournalLine: Record "Gen. Journal Line"; AccNo: Code[20])
+    begin
+        VendorLedgerEntry.SetRange(FBM_approved, true);
+        VendorLedgerEntry.SetRange(FBM_approved1, true);
+        VendorLedgerEntry.SetRange(FBM_approved2, true);
+
+    end;
 
     [IntegrationEvent(false, false)]
     procedure OnReasonCodeChanged(currpage: Page "FBM_PayJnl Bank List Part_CO");

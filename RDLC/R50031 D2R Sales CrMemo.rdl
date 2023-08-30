@@ -5794,8 +5794,8 @@ End Function
         <Field Name="SelltoCustNo_SalesInvHdrCaption">
           <DataField>SelltoCustNo_SalesInvHdrCaption</DataField>
         </Field>
-        <Field Name="Terms_Conditions">
-          <DataField>Terms_Conditions</DataField>
+        <Field Name="TermsConditions">
+          <DataField>TermsConditions</DataField>
         </Field>
         <Field Name="termslineno">
           <DataField>termslineno</DataField>
