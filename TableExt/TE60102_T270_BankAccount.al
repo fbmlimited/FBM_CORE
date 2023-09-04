@@ -24,7 +24,7 @@ tableextension 60102 FBM_BankAccountExt_CO extends "Bank Account"
             FieldClass = FlowField;
 
             CalcFormula = Sum("Detailed Vendor Ledg. Entry".Amount where
-             ("FBM_Default Bank Account_FF" = field("No."), FBM_Open_FF = filter(true), FBM_approved_FF = filter(true)));
+             ("FBM_Default Bank Account_FF" = field("No."), FBM_Open_FF = filter(true), FBM_approved = filter(true)));
         }
     }
 

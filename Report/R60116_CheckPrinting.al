@@ -755,7 +755,7 @@ report 60116 FBM_Check_CO
                             end
                     end;
 
-                    CheckDateText := Format("Posting Date");
+                    CheckDateText := Format("Posting Date", 0, 9);
                 end else begin
                     if ChecksPrinted > 0 then
                         CurrReport.Break();

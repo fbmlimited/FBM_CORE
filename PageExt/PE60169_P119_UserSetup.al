@@ -23,16 +23,17 @@ pageextension 60169 FBM_UserSetupExt_CO extends "User Setup"
             }
             field("Approve Finance"; rec."FBM_Approve Finance")
             {
-
+                ApplicationArea = All;
             }
             field("Approve AP"; rec."FBM_Approve AP")
             {
-
+                ApplicationArea = All;
+            }
+            field(FBM_Paid_Enabled; Rec.FBM_Paid_Enabled)
+            {
+                ApplicationArea = All;
             }
         }
     }
-    actions
-    {
-    }
-    var
+
 }

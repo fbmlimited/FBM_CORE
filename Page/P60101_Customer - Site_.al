@@ -93,6 +93,11 @@ page 60101 "FBM_CustomerSite_CO"
                     ApplicationArea = All;
                     Caption = 'Site Code';
                 }
+                field(Status; Rec.Status)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Status';
+                }
                 field("Site Name"; rec."Site Name_FF")
                 {
                     ApplicationArea = All;

@@ -71,10 +71,30 @@ page 60122 "FBM_Payment Approval_CO"
                     ToolTip = 'Specifies the value of the Currency Code field.';
                     Editable = false;
                 }
+                field("External Document No."; Rec."External Document No.")
+                {
+                    ApplicationArea = All;
+
+                    Editable = false;
+                }
                 field("FBM_Default Bank Account"; Rec."FBM_Default Bank Account_FF")
                 {
                     ApplicationArea = All;
 
+                }
+                field(FBM_Paid; Rec.FBM_Paid)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Paid';
+                    Editable = true;
+                    trigger
+                    OnValidate()
+                    begin
+                        if usersetup.get(UserId) then begin
+                            if (usersetup.FBM_Paid_Enabled = false) then
+                                Error('Your user is not setup for  setting paid. Please contact the system administrator.');
+                        end;
+                    end;
                 }
 
 
@@ -259,6 +279,7 @@ page 60122 "FBM_Payment Approval_CO"
         Status2: enum "Approval Status";
         LastDateTimeModified: DateTime;
         usersetup: Record "User Setup";
+        ponum: code[20];
 
     local procedure GetOriginalDueDate(VLE: Record "Vendor Ledger Entry"): Date
     var
@@ -279,6 +300,8 @@ page 60122 "FBM_Payment Approval_CO"
     end;
 
     trigger OnAfterGetRecord()
+    var
+        purchinv: record "Purch. Inv. Header";
     begin
         // ApproverID1 := '';
         // Status := enum::"Approval Status"::" ";
@@ -290,6 +313,8 @@ page 60122 "FBM_Payment Approval_CO"
         //     Status1 := PostApprovalEntries.Status;
         //     LastDateTimeModified := PostApprovalEntries."Last Date-Time Modified";
         // end;
+        if purchinv.get(rec."Document No.") then
+            ponum := purchinv."Order No.";
         if not rec.FBM_approved then begin
             status := status::" ";
             rec."FBM_approved date" := 0DT;
@@ -303,7 +328,10 @@ page 60122 "FBM_Payment Approval_CO"
         ApproverID2 := '';
         Status2 := enum::"Approval Status"::" ";
         LastDateTimeModified := 0DT;
-        PostApprovalEntries.SetRange("Document No.", Rec."Document No.");
+        if ponum = '' then
+            PostApprovalEntries.SetRange("Document No.", Rec."Document No.")
+        else
+            PostApprovalEntries.SetRange("Document No.", ponum);
 
         if PostApprovalEntries.FindLast() then begin
             rec."FBM_approved user2" := PostApprovalEntries."Approver ID";

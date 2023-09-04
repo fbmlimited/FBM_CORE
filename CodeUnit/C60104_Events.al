@@ -15,9 +15,9 @@ codeunit 60104 FBM_Events_CO
     [EventSubscriber(ObjectType::Table, 81, 'OnLookUpAppliesToDocVendOnAfterSetFilters', '', false, false)]
     local procedure OnLookUpAppliesToDocVendOnAfterSetFilters(var VendorLedgerEntry: Record "Vendor Ledger Entry"; var GenJournalLine: Record "Gen. Journal Line"; AccNo: Code[20])
     begin
-        VendorLedgerEntry.SetRange(FBM_approved, true);
-        VendorLedgerEntry.SetRange(FBM_approved1, true);
-        VendorLedgerEntry.SetRange(FBM_approved2, true);
+        // VendorLedgerEntry.SetRange(FBM_approved, true);
+        // VendorLedgerEntry.SetRange(FBM_approved1, true);
+        // VendorLedgerEntry.SetRange(FBM_approved2, true);
 
     end;
 
