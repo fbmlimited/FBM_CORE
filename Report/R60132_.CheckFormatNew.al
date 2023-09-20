@@ -988,7 +988,7 @@ report 60132 FBM_CheckFormatNew_CO
         CheckDateText: Text[30];
         CheckDateTextOtherFormat: Text[30];
         CheckAmountText: Text[30];
-        DescriptionLine: array[2] of Text[80];
+        DescriptionLine: array[2] of Text[250];
         DocNo: Text[30];
         ExtDocNo: Text[35];
         VoidText: Text[30];
@@ -1035,7 +1035,7 @@ report 60132 FBM_CheckFormatNew_CO
 
         ChooseCheckFormat: Option UCPB,"BANK OF THE PHILIPPINE ISLANDS",BDO,eastwest;
 
-    procedure FormatNoText(var NoText: array[2] of Text[80]; No: Decimal; CurrencyCode: Code[10])
+    procedure FormatNoText(var NoText: array[2] of Text[250]; No: Decimal; CurrencyCode: Code[10])
     var
         PrintExponent: Boolean;
         Ones: Integer;
@@ -1083,7 +1083,7 @@ report 60132 FBM_CheckFormatNew_CO
             AddToNoText(NoText, NoTextIndex, PrintExponent, CurrencyCode);
     end;
 
-    local procedure AddToNoText(var NoText: array[2] of Text[80]; var NoTextIndex: Integer; var PrintExponent: Boolean; AddText: Text[30])
+    local procedure AddToNoText(var NoText: array[2] of Text[250]; var NoTextIndex: Integer; var PrintExponent: Boolean; AddText: Text[30])
     begin
         PrintExponent := true;
 

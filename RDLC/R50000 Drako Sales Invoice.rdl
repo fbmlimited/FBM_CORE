@@ -11947,7 +11947,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Site:</Value>
+                      <Value>Hall:</Value>
                       <Style>
                         <FontSize>9pt</FontSize>
                       </Style>

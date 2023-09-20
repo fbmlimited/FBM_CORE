@@ -98,13 +98,14 @@ page 60122 "FBM_Payment Approval_CO"
                 }
 
 
-                field(Amount; Rec.Amount)
+                field(Amount; Rec.FBM_Amount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the amount field.';
                     Editable = false;
+                    Lookup = false;
                 }
-                field("Remaining Amount"; Rec."Remaining Amount")
+                field("Remaining Amount"; Rec.FBM_RemAmount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Remaining Amount field.';
@@ -281,6 +282,8 @@ page 60122 "FBM_Payment Approval_CO"
         usersetup: Record "User Setup";
         ponum: code[20];
 
+    // Pass multiple lookup field schemanames with comma separated.
+
     local procedure GetOriginalDueDate(VLE: Record "Vendor Ledger Entry"): Date
     var
         PurchInvHeaderRec: Record "Purch. Inv. Header";
@@ -303,6 +306,9 @@ page 60122 "FBM_Payment Approval_CO"
     var
         purchinv: record "Purch. Inv. Header";
     begin
+        rec.SetAutoCalcFields(Amount, "Remaining Amount");
+        rec.FBM_Amount := rec.Amount;
+        rec.FBM_RemAmount := rec."Remaining Amount";
         // ApproverID1 := '';
         // Status := enum::"Approval Status"::" ";
         // LastDateTimeModified := 0DT;

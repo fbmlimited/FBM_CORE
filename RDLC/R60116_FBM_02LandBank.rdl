@@ -441,20 +441,22 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=mid(Code.GetData(4,3),9,1)</Value>
+                          <Value>=mid(Code.GetData(4,3),6,1)</Value>
                           <Style>
                             <FontFamily>IDAutomationMICR</FontFamily>
                             <FontWeight>Normal</FontWeight>
                           </Style>
                         </TextRun>
                       </TextRuns>
-                      <Style />
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
                     </Paragraph>
                   </Paragraphs>
                   <Top>0.19874in</Top>
-                  <Left>5.95052in</Left>
+                  <Left>5.94792in</Left>
                   <Height>0.52883cm</Height>
-                  <Width>0.52256cm</Width>
+                  <Width>0.52918cm</Width>
                   <Style>
                     <Border />
                     <PaddingLeft>2pt</PaddingLeft>
@@ -469,7 +471,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>= Code.GetData(3,2)</Value>
+                          <Value>= "*"+Code.GetData(3,2)+"*"</Value>
                           <Style>
                             <FontFamily>IDAutomationSec1B</FontFamily>
                             <FontWeight>Normal</FontWeight>
@@ -498,7 +500,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=Code.GetData(1,2)</Value>
+                          <Value>=Code.GetData(1,2)+"****"</Value>
                           <Style />
                         </TextRun>
                       </TextRuns>
@@ -536,7 +538,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                       <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.62222in</Top>
+                  <Top>0.56666in</Top>
                   <Left>5.94792in</Left>
                   <Height>0.59939cm</Height>
                   <Width>4.30923cm</Width>
@@ -555,7 +557,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>= mid(Code.GetData(4,3), 10, 1)</Value>
+                          <Value>= mid(Code.GetData(4,3), 7, 1)</Value>
                           <Style>
                             <FontFamily>IDAutomationMICR</FontFamily>
                             <FontWeight>Normal</FontWeight>
@@ -584,7 +586,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>= mid(Code.GetData(4,3), 6, 1)</Value>
+                          <Value>= mid(Code.GetData(4,3), 9, 1)</Value>
                           <Style>
                             <FontFamily>IDAutomationMICR</FontFamily>
                             <FontWeight>Normal</FontWeight>
@@ -613,7 +615,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>= mid(Code.GetData(4,3), 7, 1)</Value>
+                          <Value>= mid(Code.GetData(4,3), 10, 1)</Value>
                           <Style>
                             <FontFamily>IDAutomationMICR</FontFamily>
                             <FontWeight>Normal</FontWeight>
@@ -746,7 +748,6 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <ZIndex>10</ZIndex>
                   <Style>
                     <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
                     <PaddingTop>2pt</PaddingTop>
                     <PaddingBottom>2pt</PaddingBottom>

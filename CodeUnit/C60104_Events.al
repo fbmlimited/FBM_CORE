@@ -33,7 +33,16 @@ codeunit 60104 FBM_Events_CO
         DimMgmt: Codeunit DimensionManagement;
         DimVal: Record "Dimension Value";
         TempDimSetEntry: Record "Dimension Set Entry" temporary;
+        Text000: label 'There are  start/end dates and no Site, please amend. Line %1';
+        salesline: record "Sales Line";
     begin
+        // salesline.SetRange("Document Type", SalesHeader."Document Type");
+        // salesline.SetRange("Document No.", SalesHeader."No.");
+        // if salesline.FindFirst() then
+        //     repeat
+        //         if ((salesline."FBM_Period Start" <> 0D) or (salesline."FBM_Period End" <> 0D)) and (salesline.FBM_Site = '') then
+        //             error(Text000, salesline."Line No.");
+        //     until salesline.next = 0;
         FASetup.Get();
         if FASetup."FBM_Enable FA Site Tracking" then begin
             DimMgmt.GetDimensionSet(TempDimSetEntry, SalesHeader."Dimension Set ID");

@@ -6,6 +6,7 @@ pageextension 60165 FBM_SalesOrdExt_CO extends "Sales Order"
         {
             field(FBM_Site; Rec.FBM_Site)
             {
+                Visible = showsite;
                 ApplicationArea = All;
 
                 trigger OnLookup(var Text: Text): Boolean
@@ -51,14 +52,30 @@ pageextension 60165 FBM_SalesOrdExt_CO extends "Sales Order"
 
             field("FBM_Period Start"; Rec."FBM_Period Start")
             {
+                Visible = showsite;
                 ApplicationArea = all;
             }
             field("FBM_Period End"; Rec."FBM_Period End")
             {
+                Visible = showsite;
                 ApplicationArea = all;
             }
 
         }
     }
+    trigger
+        OnOpenPage()
+    begin
+        compinfo.Get();
+        showsite := compinfo.FBM_CustIsOp;
 
+    end;
+
+
+
+
+    var
+
+        compinfo: record "Company Information";
+        showsite: Boolean;
 }

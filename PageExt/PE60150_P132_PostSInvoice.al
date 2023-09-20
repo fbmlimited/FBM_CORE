@@ -6,6 +6,7 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
         {
             field(Site; rec.FBM_Site)
             {
+                Visible = showsite;
                 ApplicationArea = All;
             }
             field(Segment; rec.FBM_Segment)
@@ -21,11 +22,13 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
 
             field("Period Start"; rec."FBM_Period Start")
             {
+                Visible = showsite;
                 ApplicationArea = all;
                 Editable = false;
             }
             field("Period End"; rec."FBM_Period End")
             {
+                Visible = showsite;
                 ApplicationArea = all;
                 Editable = false;
             }
@@ -137,10 +140,25 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
             }
         }
     }
+    trigger
+    OnOpenPage()
+    begin
+        compinfo.Get();
+        showsite := compinfo.FBM_CustIsOp;
+
+    end;
+
+
     var
         changedate: Codeunit FBM_ChangePerDateSales_CO;
         PeriodStart: Date;
         PeriodEnd: Date;
         InputDialog: Page "FBM_Input Dialog Page_CO";
         search: Text;
+
+
+
+
+        compinfo: record "Company Information";
+        showsite: Boolean;
 }

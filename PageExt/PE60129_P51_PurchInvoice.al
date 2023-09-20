@@ -26,6 +26,10 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
                 ApplicationArea = All;
             }
         }
+        modify("IDPIRPF IRPF Group")
+        {
+            Visible = isvisES;
+        }
     }
     actions
     {
@@ -47,10 +51,22 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
     }
     trigger
    OnOpenPage()
+
+    var
+        uper: Codeunit "User Permissions";
     begin
+
+        if compinfo.Get() then begin
+            isvisES := compinfo."Country/Region Code" = 'ES';
+            isvisPH := compinfo."Country/Region Code" = 'PH';
+        end;
+
         glsetup.get
     end;
 
     var
         glsetup: record "General Ledger Setup";
+        isvisES: Boolean;
+        isvisPH: Boolean;
+        compinfo: record "Company Information";
 }

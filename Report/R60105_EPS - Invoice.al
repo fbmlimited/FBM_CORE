@@ -6,6 +6,8 @@ report 60105 "EPS Sales - Invoice_CO"
 
     Permissions = TableData "Sales Shipment Buffer" = rimd;
     PreviewMode = PrintLayout;
+    EnableHyperlinks = true;
+
 
     dataset
     {
@@ -71,6 +73,8 @@ report 60105 "EPS Sales - Invoice_CO"
             DisplayAdditionalFeeNote)
             {
             }
+
+
 
 
             dataitem(CopyLoop; "Integer")
@@ -490,9 +494,18 @@ report 60105 "EPS Sales - Invoice_CO"
                     CompanyInfo.FBM_TINNumber)
                     {
                     }
-                    column(Country; "Sales Invoice Header"."Bill-to Country/Region Code")
+                    column(Segment; "Sales Invoice Header".FBM_Segment)
                     {
                     }
+                    column(Contract_Code; "Sales Invoice Header"."FBM_Contract Code")
+                    {
+
+                    }
+                    column(Country; "Sales Invoice Header"."Sell-to Country/Region Code")
+                    {
+
+                    }
+
                     //BFT-001 -- end                
                     dataitem(DimensionLoop1; "Integer")
                     {
@@ -549,6 +562,7 @@ report 60105 "EPS Sales - Invoice_CO"
                         "Terms Conditions")
                         {
                         }
+
                         trigger
                         OnPreDataItem()
                         begin
@@ -906,6 +920,11 @@ report 60105 "EPS Sales - Invoice_CO"
                         Format("fbm_Period End", 0, '<Day,2>-<Month Text,3>-<Year4>'))
                         {
                         }
+                        column(Showperiod; Showperiod)
+                        {
+
+                        }
+
                         //BFT-001 -- end
                         dataitem("Sales Shipment Buffer";
                         "Integer")
@@ -1448,6 +1467,7 @@ report 60105 "EPS Sales - Invoice_CO"
                                   ToolTip = 'Specifies how many copies of the document to print.';
                               }
                               */
+
                     field(ShowInternalInfo; ShowInternalInfo)
                     {
                         ApplicationArea = Basic, Suite;
@@ -1486,8 +1506,10 @@ report 60105 "EPS Sales - Invoice_CO"
 
         trigger OnOpenPage()
         begin
+            CompanyInfo.get();
             InitLogInteraction;
             LogInteractionEnable := LogInteraction;
+
         end;
     }
     labels
@@ -1520,6 +1542,7 @@ report 60105 "EPS Sales - Invoice_CO"
     end;
 
     var
+        Showperiod: Boolean;
         Text004: Label 'FACTURA %1', Comment = '%1 = Document No.';
         PageCaptionCap: Label 'Pag. %1 de %2';
         GLSetup: Record "General Ledger Setup";

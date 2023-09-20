@@ -9,5 +9,6 @@ pageextension 60130 FBM_PostPurchInvsExt_CO extends "Posted Purchase Invoices"
                 ApplicationArea = all;
             }
         }
+
     }
 }

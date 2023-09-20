@@ -352,6 +352,10 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         {
             Visible = false;
         }
+        modify("IDPIRPF IRPF Group")
+        {
+            Visible = isvisES;
+        }
     }
     actions
     {
@@ -470,7 +474,19 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
     }
     trigger
     OnOpenPage()
+    var
+        uper: Codeunit "User Permissions";
     begin
+
+        if compinfo.Get() then begin
+            isvisES := compinfo."Country/Region Code" = 'ES';
+            isvisPH := compinfo."Country/Region Code" = 'PH';
+        end;
+
+
+
+
+
         compinfo.get;
         if rec."FBM_Consignee Name" = '' then begin
             rec."FBM_Consignee Address" := compinfo.Address;
@@ -502,10 +518,11 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
             rec."Ship-to County" := compinfo.County;
             //rec.Modify();
         end;
-
-
-
     end;
+
+
+
+
 
     trigger OnAfterGetRecord()
     var
@@ -531,6 +548,9 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
 
 
     var
+        isvisES: Boolean;
+        isvisPH: Boolean;
+
         PrepaymentAmount: Decimal;
         DocumentTotals: Codeunit "Document Totals";
         TotalPurchLine: record "Purchase Line";

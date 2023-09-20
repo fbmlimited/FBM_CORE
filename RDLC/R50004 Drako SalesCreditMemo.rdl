@@ -9877,7 +9877,6 @@
                                     </Filter>
                                   </Filters>
                                   <Top>7.07688cm</Top>
-                                  <Left>0cm</Left>
                                   <Height>8.88266cm</Height>
                                   <Width>19.97666cm</Width>
                                   <ZIndex>1</ZIndex>
@@ -10399,7 +10398,6 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                     </Filter>
                                   </Filters>
                                   <Top>16.0289cm</Top>
-                                  <Left>0cm</Left>
                                   <Height>2.06093cm</Height>
                                   <Width>19.97669cm</Width>
                                   <ZIndex>3</ZIndex>
@@ -10679,7 +10677,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                                   <Top>18.16039cm</Top>
                                   <Left>0.00847cm</Left>
                                   <Height>2.12809cm</Height>
-                                  <Width>19.93647cm</Width>
+                                  <Width>19.93646cm</Width>
                                   <ZIndex>4</ZIndex>
                                   <Style>
                                     <Border>
@@ -10737,8 +10735,6 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>DataSet_Result</DataSetName>
-                <Top>0cm</Top>
-                <Left>0cm</Left>
                 <Height>20.64632cm</Height>
                 <Width>19.98516cm</Width>
                 <Style>
@@ -10768,7 +10764,6 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
             </Style>
           </Rectangle>
           <Line Name="Line5">
-            <Top>0cm</Top>
             <Left>0.03175cm</Left>
             <Height>0cm</Height>
             <Width>19.9365cm</Width>
@@ -11108,7 +11103,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Site:</Value>
+                      <Value>Hall:</Value>
                       <Style>
                         <FontSize>9pt</FontSize>
                       </Style>
@@ -11487,7 +11482,6 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
               </Style>
             </Textbox>
             <Line Name="Line3">
-              <Top>0cm</Top>
               <Left>19.99cm</Left>
               <Height>8.28605cm</Height>
               <Width>0cm</Width>
@@ -11500,7 +11494,6 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
               </Style>
             </Line>
             <Line Name="Line4">
-              <Top>0cm</Top>
               <Left>0.03cm</Left>
               <Height>8.28605cm</Height>
               <Width>0cm</Width>
@@ -11513,7 +11506,6 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
               </Style>
             </Line>
             <Line Name="Line6">
-              <Top>0cm</Top>
               <Left>0.03175cm</Left>
               <Height>0cm</Height>
               <Width>19.95825cm</Width>

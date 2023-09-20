@@ -43,6 +43,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             }
             field(Site; rec.FBM_Site)
             {
+                Visible = showsite;
                 ApplicationArea = All;
                 Importance = Additional;
                 trigger OnLookup(var Text: Text): Boolean
@@ -98,10 +99,12 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
 
             field("Period Start"; rec."FBM_Period Start")
             {
+                Visible = showsite;
                 ApplicationArea = all;
             }
             field("Period End"; rec."FBM_Period End")
             {
+                Visible = showsite;
                 ApplicationArea = all;
             }
 
@@ -176,17 +179,23 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
     }
 
 
-    actions
-    {
-    }
     trigger
-   OnOpenPage()
+    OnOpenPage()
     begin
-        glsetup.get
+        compinfo.Get();
+        showsite := compinfo.FBM_CustIsOp;
+
     end;
+
+
+
 
     var
         glsetup: record "General Ledger Setup";
 
         usersetup: record "User Setup";
+        compinfo: record "Company Information";
+        showsite: Boolean;
+
+
 }

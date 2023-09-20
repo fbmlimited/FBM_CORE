@@ -8395,15 +8395,13 @@ CStr(Last(Fields!VoidText.Value)), 3)</Hidden>
                         </Style>
                       </TextRun>
                     </TextRuns>
-                    <Style>
-                      <TextAlign>Right</TextAlign>
-                    </Style>
+                    <Style />
                   </Paragraph>
                 </Paragraphs>
                 <Top>2.80733cm</Top>
                 <Left>6.29597in</Left>
                 <Height>0.423cm</Height>
-                <Width>2.49812cm</Width>
+                <Width>2.82798cm</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
                   <Border />
@@ -8492,7 +8490,6 @@ CStr(Last(Fields!VoidText.Value)), 3)</Hidden>
         <InteractiveHeight>11in</InteractiveHeight>
         <InteractiveWidth>8.5in</InteractiveWidth>
         <LeftMargin>0.5cm</LeftMargin>
-        <RightMargin>0cm</RightMargin>
         <TopMargin>0.5cm</TopMargin>
         <BottomMargin>0.5cm</BottomMargin>
         <Style />

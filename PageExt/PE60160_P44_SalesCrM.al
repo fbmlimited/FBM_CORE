@@ -6,6 +6,7 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
         {
             field(FBM_Site; Rec.FBM_Site)
             {
+                Visible = showsite;
                 ApplicationArea = All;
 
                 trigger OnLookup(var Text: Text): Boolean
@@ -60,5 +61,19 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
 
         }
     }
+    trigger
+       OnOpenPage()
+    begin
+        compinfo.Get();
+        showsite := compinfo.FBM_CustIsOp;
 
+    end;
+
+
+
+
+    var
+
+        compinfo: record "Company Information";
+        showsite: Boolean;
 }
