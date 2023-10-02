@@ -11,6 +11,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
             field(Status; rec.FBM_Status)
             {
                 ApplicationArea = all;
+                Enabled = isegm;
             }
         }
         addafter("FA Subclass Code")
@@ -81,6 +82,18 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
                 }
             }
         }
+        addafter(General)
+        {
+            group("Linked FA")
+            {
+
+                part(LinkedFA; FBM_LinkedFA_CO)
+                {
+                    ApplicationArea = Basic, Suite;
+                    SubPageLink = Value = FIELD("Serial No.");
+                }
+            }
+        }
     }
     actions
     {
@@ -117,11 +130,13 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
 
                 trigger OnAction()
                 begin
+                    clear(FADimP);
                     DefaultDims.SetFilter(DefaultDims."Table ID", '5600');
                     DefaultDims.SetFilter("No.", Rec."No.");
                     FADimP.Editable := false;
                     FADimP.SetTableView(DefaultDims);
                     FADimP.RunModal();
+
                 end;
             }
         }
@@ -145,6 +160,15 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
 
         SiteCode: Code[20];
         OperatoreCode: Code[20];
+        isegm: Boolean;
+
+    trigger
+    OnAfterGetRecord()
+    begin
+        rec.CalcFields(FBM_Is_EGM_FF);
+        isegm := rec.FBM_Is_EGM_FF;
+
+    end;
 
     trigger OnOpenPage()
     begin

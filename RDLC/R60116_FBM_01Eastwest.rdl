@@ -404,10 +404,6 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <KeepTogether>true</KeepTogether>
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-            </PageBreak>
             <Filters>
               <Filter>
                 <FilterExpression>=Fields!CheckNoText.Value</FilterExpression>

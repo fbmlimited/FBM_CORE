@@ -44,4 +44,12 @@ page 60124 "FBM_PaymJnl Bank List Part2_CO"
     }
 
 
+
+    procedure upd()
+    begin
+        rec.CalcFields("FBM_Approval Batch Amount2_FF");
+
+        CurrPage.Update();
+    end;
+
 }

@@ -12,6 +12,12 @@ page 60117 FBM_PaymentApprovalM_CO
         {
             repeater(General)
             {
+                field(Company; Rec.Company)
+                {
+                    ApplicationArea = All;
+
+                    Editable = false;
+                }
                 field("Document Type"; Rec."Document Type")
                 {
                     ApplicationArea = All;
@@ -22,12 +28,6 @@ page 60117 FBM_PaymentApprovalM_CO
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the vendor entry''s document number.';
-                    Editable = false;
-                }
-                field(Company; rec.Company)
-                {
-                    ApplicationArea = All;
-
                     Editable = false;
                 }
                 field("Posting Date"; Rec."Posting Date")
@@ -41,7 +41,16 @@ page 60117 FBM_PaymentApprovalM_CO
                     ApplicationArea = All;
                     ToolTip = 'Specifies the due date on the entry.';
                     Editable = true;
+                    trigger
+                    OnValidate()
+                    begin
+                        if usersetup.get(UserId) then begin
+                            if (usersetup."FBM_Approve AP" = false) and (usersetup."FBM_Approve Finance" = false) then
+                                Error('Your user is not setup for  approval. Please contact the system administrator.');
+                        end;
+                    end;
                 }
+
                 field("Original Due Date"; GetOriginalDueDate(Rec))
                 {
                     ApplicationArea = All;
@@ -68,39 +77,110 @@ page 60117 FBM_PaymentApprovalM_CO
                     ToolTip = 'Specifies the value of the Currency Code field.';
                     Editable = false;
                 }
-                field("Default Bank Account"; rec."Default Bank Account")
+                field("External Document No."; Rec."External Document No.")
                 {
+                    ApplicationArea = All;
+
+                    Editable = false;
+                }
+                field("FBM_Default Bank Account"; Rec."FBM_Default Bank Account")
+                {
+                    ApplicationArea = All;
 
                 }
-                field("Approver Comment"; rec."Approver Comment")
+                field(FBM_Paid; Rec.FBM_Paid)
                 {
-
+                    ApplicationArea = All;
+                    ToolTip = 'Paid';
+                    Editable = true;
+                    trigger
+                    OnValidate()
+                    begin
+                        if usersetup.get(UserId) then begin
+                            if (usersetup.FBM_Paid_Enabled = false) then
+                                Error('Your user is not setup for  setting paid. Please contact the system administrator.');
+                        end;
+                    end;
                 }
-                field(Amount; Rec.Amount)
+
+
+                field(Amount; Rec.FBM_Amount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the amount field.';
                     Editable = false;
+                    Lookup = false;
                 }
-                field("Remaining Amount"; Rec."Remaining Amount")
+                field("Remaining Amount"; Rec.FBM_RemAmount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Remaining Amount field.';
                     Editable = false;
                 }
-                field(approved; Rec.approved)
+                field(approved2; Rec.FBM_approved2)
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the approved field.';
+                    ToolTip = 'Specifies the value of the approved Inv. field.';
+                    Editable = false;
+
+
+
+
+                }
+                field("approved user2"; Rec."FBM_approved user2")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the approved user Inv field.';
+                    Editable = false;
+                }
+
+
+
+                field(Status2; Status2)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Status Inv.';
+                    Editable = false;
+                }
+                field("FBM_approved date2"; Rec."FBM_approved date2")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                    Caption = 'Approved Date Inv.';
+                }
+                field(approved1; Rec.FBM_approved1)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the approved AP field.';
                     Editable = true;
                     trigger OnValidate()
                     var
                         usersetup: Record "User Setup";
                     begin
+
                         if usersetup.get(UserId) then begin
-                            if usersetup."FBM_Approve Finance" = false then
-                                Error('Your user is not setup for finance approval. Please contact the system administrator.');
-                            CurrPage.Banks.Page.Update(false);
+                            if usersetup."FBM_Approve AP" = false then
+                                Error('Your user is not setup for AP approval. Please contact the system administrator.');
+                            if rec.FBM_approved1 then begin
+                                rec."FBM_approved user1" := UserId;
+                                rec."FBM_approved date1" := CurrentDateTime;
+                                Status1 := status::Approved;
+                            end
+                            else begin
+                                status1 := status1::Rejected;
+                                rec."FBM_approved user1" := '';
+                                rec."FBM_approved date1" := 0DT;
+                                rec.FBM_approved := false;
+                                rec."FBM_approved user" := '';
+                                rec."FBM_approved date" := 0DT;
+                                rec."FBM_Approver Comment" := '';
+                                Status := status::" ";
+                            end;
+                            CurrPage.SaveRecord();
+                            CurrPage.Banks.Page.Upd();
+
+
+
                         end;
 
                     end;
@@ -108,35 +188,96 @@ page 60117 FBM_PaymentApprovalM_CO
 
 
                 }
-                field("approved date"; Rec."approved date")
+                field("approved user1"; Rec."FBM_approved user1")
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the approved date field.';
+                    ToolTip = 'Specifies the value of the approved user AP field.';
                     Editable = false;
                 }
-                field("approved user"; Rec."approved user")
+                field("FBM_Approver Comment1"; Rec."FBM_Approver Comment1")
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the approved user field.';
+                    trigger
+                    OnValidate()
+                    begin
+                        if usersetup.get(UserId) then begin
+                            if usersetup."FBM_Approve AP" = false then
+                                Error('Your user is not setup for AP approval. Please contact the system administrator.');
+                        end;
+                    end;
+                }
+                field(Status1; Status1)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Status AP';
                     Editable = false;
                 }
-                field(ApproverID; ApproverID)
+                field("FBM_approved date1"; Rec."FBM_approved date1")
                 {
                     ApplicationArea = All;
-                    Caption = 'Approver ID';
+                    Caption = 'Approved Date AP';
                     Editable = false;
+                }
+                field(approved; Rec.FBM_approved)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the approved Fin field.';
+                    Editable = true;
+                    trigger OnValidate()
+
+                    begin
+                        if usersetup.get(UserId) then begin
+                            if usersetup."FBM_Approve Finance" = false then
+                                Error('Your user is not setup for finance approval. Please contact the system administrator.');
+                            if rec.FBM_approved then begin
+                                rec."FBM_approved user" := UserId;
+                                rec."FBM_approved date" := CurrentDateTime;
+
+                                Status := status::Approved;
+                            end
+                            else begin
+                                status := status::Rejected;
+                                rec."FBM_approved user" := '';
+                                rec."FBM_approved date" := 0DT;
+
+                            end;
+
+                        end;
+
+                    end;
+
+
+
+                }
+                field("approved user"; Rec."FBM_approved user")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the approved user Fin field.';
+                    Editable = false;
+                }
+                field("FBM_Approver Comment"; Rec."FBM_Approver Comment")
+                {
+                    ApplicationArea = All;
+                    trigger
+                    OnValidate()
+                    begin
+                        if usersetup.get(UserId) then begin
+                            if usersetup."FBM_Approve Finance" = false then
+                                Error('Your user is not setup for finance approval. Please contact the system administrator.');
+                        end;
+                    end;
                 }
                 field(Status; Status)
                 {
                     ApplicationArea = All;
-                    Caption = 'Status';
+                    Caption = 'Status Fin';
                     Editable = false;
                 }
-                field(LastDateTimeModified; LastDateTimeModified)
+                field("FBM_approved date"; Rec."FBM_approved date")
                 {
                     ApplicationArea = All;
+                    Caption = 'Approved Date Fin';
                     Editable = false;
-                    Caption = 'Last Date-Time Modified';
                 }
             }
 
@@ -175,7 +316,7 @@ page 60117 FBM_PaymentApprovalM_CO
 
                 repeat
                     VLEM.Init();
-                    vlem.Company := compinfo.Name;
+                    vlem.Company := comp.Name;
                     vlem."Entry No." := vle."Entry No.";
                     vlem."Vendor No." := vle."Vendor No.";
                     vlem."Posting Date" := vle."Posting Date";
@@ -259,12 +400,28 @@ page 60117 FBM_PaymentApprovalM_CO
                     vlem."Message to Recipient" := vle."Message to Recipient";
                     vlem."Exported to Payment File" := vle."Exported to Payment File";
                     vlem."Dimension Set ID" := vle."Dimension Set ID";
-                    vlem.approved := vle.FBM_approved;
-                    vle.CalcFields("FBM_Default Bank Account_FF");
-                    vlem."Default Bank Account" := vle."FBM_Default Bank Account_FF";
-                    vlem."approved date" := vle."FBM_approved date";
-                    vlem."approved user" := vle."FBM_approved user";
-                    vlem."Approver Comment" := vle."FBM_Approver Comment";
+                    vlem.FBM_approved := vle.FBM_approved;
+                    vendor.ChangeCompany(comp.Name);
+                    if vendor.get(vle."Vendor No.") then
+                        vlem."FBM_Default Bank Account" := vendor."FBM_Default Bank Account";
+
+                    vlem."FBM_approved date" := vle."FBM_approved date";
+                    vlem."FBM_approved user" := vle."FBM_approved user";
+                    vlem."FBM_Approver Comment" := vle."FBM_Approver Comment";
+                    vle.CalcFields(Amount, "Remaining Amount");
+                    vlem.FBM_Amount := vle.Amount;
+                    vlem.FBM_Paid := vle.FBM_Paid;
+                    vlem.FBM_RemAmount := vle."Remaining Amount";
+                    vlem."Remaining Amount" := vle."Remaining Amount";
+                    vlem.Amount := vle.Amount;
+                    vlem.FBM_approved1 := vle.FBM_approved1;
+                    vlem."FBM_approved date1" := vle."FBM_approved date1";
+                    vlem."FBM_approved user1" := vle."FBM_approved user1";
+                    vlem."FBM_Approver Comment1" := vle."FBM_Approver Comment1";
+                    vlem.FBM_approved2 := vle.FBM_approved2;
+                    vlem."FBM_approved date2" := vle."FBM_approved date2";
+                    vlem."FBM_approved user2" := vle."FBM_approved user2";
+                    vlem."FBM_Approver Comment2" := vle."FBM_Approver Comment2";
                     vlem.Insert();
 
 
@@ -294,11 +451,7 @@ page 60117 FBM_PaymentApprovalM_CO
                         vle.Description := vlem.Description;
                         vle."Vendor Name" := vlem."Vendor Name";
                         vle."Currency Code" := vlem."Currency Code";
-                        // vle.Amount := vlem.Amount;
-                        // vle."Remaining Amount" := vlem."Remaining Amount";
-                        // vle."Original Amt. (LCY)" := vlem."Original Amt. (LCY)";
-                        // vle."Remaining Amt. (LCY)" := vlem."Remaining Amt. (LCY)";
-                        // vle."Amount (LCY)" := vlem."Amount (LCY)";
+
                         vle."Purchase (LCY)" := vlem."Purchase (LCY)";
                         vle."Inv. Discount (LCY)" := vlem."Inv. Discount (LCY)";
                         vle."Buy-from Vendor No." := vlem."Buy-from Vendor No.";
@@ -329,10 +482,7 @@ page 60117 FBM_PaymentApprovalM_CO
                         vle."Bal. Account No." := vlem."Bal. Account No.";
                         VLE."Transaction No." := vlem."Transaction No.";
                         vle."Closed by Amount (LCY)" := vlem."Closed by Amount (LCY)";
-                        // vle."Debit Amount" := vlem."Debit Amount";
-                        // vle."Credit Amount" := vlem."Credit Amount";
-                        // vle."Debit Amount (LCY)" := vlem."Debit Amount (LCY)";
-                        // vle."Credit Amount (LCY)" := vlem."Credit Amount (LCY)";
+
                         vle."Document Date" := vlem."Document Date";
                         vle."External Document No." := vlem."External Document No.";
                         vle."No. Series" := vlem."No. Series";
@@ -340,7 +490,7 @@ page 60117 FBM_PaymentApprovalM_CO
                         vle."Closed by Currency Code" := vlem."Closed by Currency Code";
                         vle."Adjusted Currency Factor" := vlem."Adjusted Currency Factor";
                         vle."Original Currency Factor" := vlem."Original Currency Factor";
-                        // vle."Original Amount" := vlem."Original Amount";
+
                         vle."Date Filter" := vlem."Date Filter";
                         vle."Remaining Pmt. Disc. Possible" := vlem."Remaining Pmt. Disc. Possible";
                         vle."Pmt. Disc. Tolerance Date" := vlem."Pmt. Disc. Tolerance Date";
@@ -359,17 +509,25 @@ page 60117 FBM_PaymentApprovalM_CO
                         vle."Message to Recipient" := vlem."Message to Recipient";
                         vle."Exported to Payment File" := vlem."Exported to Payment File";
                         vle."Dimension Set ID" := vlem."Dimension Set ID";
-                        vle.FBM_approved := vlem.approved;
-                        //vle."Default Bank Account" := vlem."Default Bank Account";
-                        vle."FBM_approved date" := vlem."approved date";
-                        vle."FBM_approved user" := vlem."approved user";
-                        vle."FBM_Approver Comment" := vlem."Approver Comment";
+                        vle.FBM_approved := vlem.FBM_approved;
+                        vle."FBM_approved date" := vlem."FBM_approved date";
+                        vle."FBM_approved user" := vlem."FBM_approved user";
+                        vle."FBM_Approver Comment" := vlem."FBM_Approver Comment";
+                        vle.FBM_approved1 := vlem.FBM_approved1;
+                        vle."FBM_approved date1" := vlem."FBM_approved date1";
+                        vle."FBM_approved user1" := vlem."FBM_approved user1";
+                        vle."FBM_Approver Comment1" := vlem."FBM_Approver Comment1";
+                        vle.FBM_approved2 := vlem.FBM_approved2;
+                        vle."FBM_approved date2" := vlem."FBM_approved date2";
+                        vle."FBM_approved user2" := vlem."FBM_approved user2";
+                        vle."FBM_Approver Comment2" := vlem."FBM_Approver Comment2";
                         vle.Modify();
                     end;
                 until vlem.next = 0;
         until comp.next = 0;
 
     end;
+
 
     var
         comp: record Company;
@@ -378,8 +536,20 @@ page 60117 FBM_PaymentApprovalM_CO
         VLE: record "Vendor Ledger Entry";
         PostApprovalEntries: Record "Posted Approval Entry";
         ApproverID: Code[50];
+
+
+
+        ApproverID1: Code[50];
+        ApproverID2: Code[50];
         Status: enum "Approval Status";
+        Status1: enum "Approval Status";
+        Status2: enum "Approval Status";
         LastDateTimeModified: DateTime;
+        usersetup: Record "User Setup";
+        ponum: code[20];
+        vendor: record Vendor;
+        purchinv: record "Purch. Inv. Header";
+
 
     local procedure GetOriginalDueDate(VLE: Record FBM_VendorLEM): Date
     var
@@ -401,14 +571,44 @@ page 60117 FBM_PaymentApprovalM_CO
 
     trigger OnAfterGetRecord()
     begin
-        ApproverID := '';
-        Status := enum::"Approval Status"::" ";
+        rec.FBM_Amount := rec.Amount;
+        rec.FBM_RemAmount := rec."Remaining Amount";
+        purchinv.ChangeCompany(rec.Company);
+        if purchinv.get(rec."Document No.") then
+            ponum := purchinv."Order No.";
+        if not rec.FBM_approved then begin
+            status := status::" ";
+            rec."FBM_approved date" := 0DT;
+            rec."FBM_approved user" := '';
+        end
+        else
+            Status := Status::Approved;
+        if not rec.FBM_approved1 then begin
+            status1 := status::" ";
+            rec."FBM_approved date1" := 0DT;
+            rec."FBM_approved user1" := '';
+        end
+        else
+            Status1 := Status1::Approved;
+        ApproverID2 := '';
+        Status2 := enum::"Approval Status"::" ";
         LastDateTimeModified := 0DT;
-        PostApprovalEntries.SetRange("Document No.", Rec."Document No.");
+        PostApprovalEntries.ChangeCompany(rec.Company);
+        if ponum = '' then
+            PostApprovalEntries.SetRange("Document No.", Rec."Document No.")
+        else
+            PostApprovalEntries.SetRange("Document No.", ponum);
+
         if PostApprovalEntries.FindLast() then begin
-            ApproverID := PostApprovalEntries."Approver ID";
-            Status := PostApprovalEntries.Status;
-            LastDateTimeModified := PostApprovalEntries."Last Date-Time Modified";
+            rec."FBM_approved user2" := PostApprovalEntries."Approver ID";
+            Status2 := PostApprovalEntries.Status;
+            rec."FBM_approved date2" := PostApprovalEntries."Last Date-Time Modified";
+        end
+        else begin
+            rec."FBM_approved user2" := '';
+
+            rec."FBM_approved date2" := 0DT;
         end;
     end;
 }
+

@@ -97,6 +97,7 @@ page 60101 "FBM_CustomerSite_CO"
                 {
                     ApplicationArea = All;
                     Caption = 'Status';
+                    Editable = issuper;
                 }
                 field("Site Name"; rec."Site Name_FF")
                 {
@@ -151,6 +152,12 @@ page 60101 "FBM_CustomerSite_CO"
     {
     }
     trigger
+    OnOpenPage()
+    begin
+        issuper := uper.IsSuper(UserSecurityId())
+    end;
+
+    trigger
     OnAfterGetRecord()
     begin
         compinfo.get;
@@ -164,4 +171,6 @@ page 60101 "FBM_CustomerSite_CO"
         compinfo: record "Company Information";
         selsite: code[20];
         site: record FBM_Site;
+        uper: codeunit "User Permissions";
+        issuper: boolean;
 }

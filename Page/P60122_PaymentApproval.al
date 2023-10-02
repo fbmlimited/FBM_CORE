@@ -111,7 +111,16 @@ page 60122 "FBM_Payment Approval_CO"
                     ToolTip = 'Specifies the value of the Remaining Amount field.';
                     Editable = false;
                 }
+                field(approved2; Rec.FBM_approved2)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the approved Inv. field.';
+                    Editable = false;
 
+
+
+
+                }
                 field("approved user2"; Rec."FBM_approved user2")
                 {
                     ApplicationArea = All;
@@ -142,6 +151,7 @@ page 60122 "FBM_Payment Approval_CO"
                     var
                         usersetup: Record "User Setup";
                     begin
+
                         if usersetup.get(UserId) then begin
                             if usersetup."FBM_Approve AP" = false then
                                 Error('Your user is not setup for AP approval. Please contact the system administrator.');
@@ -154,8 +164,17 @@ page 60122 "FBM_Payment Approval_CO"
                                 status1 := status1::Rejected;
                                 rec."FBM_approved user1" := '';
                                 rec."FBM_approved date1" := 0DT;
+                                rec.FBM_approved := false;
+                                rec."FBM_approved user" := '';
+                                rec."FBM_approved date" := 0DT;
+                                rec."FBM_Approver Comment" := '';
+                                Status := status::" ";
                             end;
-                            CurrPage.Banks.Page.Update(false);
+                            CurrPage.SaveRecord();
+                            CurrPage.Banks.Page.Upd();
+
+
+
                         end;
 
                     end;
@@ -214,8 +233,9 @@ page 60122 "FBM_Payment Approval_CO"
                                 status := status::Rejected;
                                 rec."FBM_approved user" := '';
                                 rec."FBM_approved date" := 0DT;
+
                             end;
-                            CurrPage.Banks.Page.Update(false);
+
                         end;
 
                     end;
@@ -264,6 +284,8 @@ page 60122 "FBM_Payment Approval_CO"
             part("Banks"; "FBM_PaymJnl Bank List Part2_CO")
             {
                 ApplicationArea = Basic, Suite;
+                UpdatePropagation = Both;
+
 
             }
         }
@@ -306,7 +328,7 @@ page 60122 "FBM_Payment Approval_CO"
     var
         purchinv: record "Purch. Inv. Header";
     begin
-        rec.SetAutoCalcFields(Amount, "Remaining Amount");
+        rec.CalcFields(Amount, "Remaining Amount");
         rec.FBM_Amount := rec.Amount;
         rec.FBM_RemAmount := rec."Remaining Amount";
         // ApproverID1 := '';
@@ -325,21 +347,28 @@ page 60122 "FBM_Payment Approval_CO"
             status := status::" ";
             rec."FBM_approved date" := 0DT;
             rec."FBM_approved user" := '';
-        end;
+        end
+        else
+            Status := Status::Approved;
+
         if not rec.FBM_approved1 then begin
             status1 := status::" ";
             rec."FBM_approved date1" := 0DT;
             rec."FBM_approved user1" := '';
-        end;
-        ApproverID2 := '';
-        Status2 := enum::"Approval Status"::" ";
+        end
+        else
+            Status1 := Status1::Approved;
+
+
         LastDateTimeModified := 0DT;
+        PostApprovalEntries.Reset();
         if ponum = '' then
             PostApprovalEntries.SetRange("Document No.", Rec."Document No.")
         else
             PostApprovalEntries.SetRange("Document No.", ponum);
 
         if PostApprovalEntries.FindLast() then begin
+            rec.FBM_approved2 := true;
             rec."FBM_approved user2" := PostApprovalEntries."Approver ID";
             Status2 := PostApprovalEntries.Status;
             rec."FBM_approved date2" := PostApprovalEntries."Last Date-Time Modified";
@@ -349,5 +378,6 @@ page 60122 "FBM_Payment Approval_CO"
 
             rec."FBM_approved date2" := 0DT;
         end;
+        rec.Modify();
     end;
 }

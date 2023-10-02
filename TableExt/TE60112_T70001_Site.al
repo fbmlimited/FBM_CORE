@@ -44,10 +44,10 @@ tableextension 60112 FBM_SiteExt_CO extends FBM_Site
         end;
     end;
 
-    trigger OnRename()
-    begin
-        FADimMgt.RenameSiteDim2(xRec, Rec);
-    end;
+    // trigger OnRename()
+    // begin
+    //     FADimMgt.RenameSiteDim2(xRec, Rec);
+    // end;
 
 
 }

@@ -2964,7 +2964,11 @@
                                   <TablixRowHierarchy>
                                     <TablixMembers>
                                       <TablixMember />
-                                      <TablixMember />
+                                      <TablixMember>
+                                        <Visibility>
+                                          <Hidden>true</Hidden>
+                                        </Visibility>
+                                      </TablixMember>
                                       <TablixMember>
                                         <Visibility>
                                           <Hidden>=IIF(Last(Fields!TotalInvDiscAmount.Value)=0,TRUE,FALSE)</Hidden>

@@ -34,8 +34,8 @@ report 60116 FBM_Check_CO
                 if (GetFilter("Line No.") <> '') or (GetFilter("Document No.") <> '') then
                     Error(
                       Text002, FieldCaption("Line No."), FieldCaption("Document No."));
-                // SetRange("Bank Payment Type", "Bank Payment Type"::"Computer Check");
-                // SetRange("Check Printed", true);
+                SetRange("Bank Payment Type", "Bank Payment Type"::"Computer Check");
+                SetRange("Check Printed", true);
             end;
         }
         dataitem(GenJnlLine; "Gen. Journal Line")
@@ -52,6 +52,7 @@ report 60116 FBM_Check_CO
             }
             dataitem(CheckPages; "Integer")
             {
+
                 DataItemTableView = SORTING(Number);
                 column(CheckToAddr1; CheckToAddr[1])
                 {
@@ -309,6 +310,7 @@ report 60116 FBM_Check_CO
 
                     trigger OnPreDataItem()
                     begin
+
                         if not TestPrint then
                             if FirstPage then begin
                                 FoundLast := true;
