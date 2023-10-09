@@ -230,4 +230,30 @@ codeunit 60104 FBM_Events_CO
 
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, 90, 'OnPostUpdateOrderLineOnAfterReceive', '', true, true)]
+    procedure OnAfterProcessPurchLines(var PurchHeader: Record "Purchase Header"; var TempPurchLine: Record "Purchase Line" temporary);
+    var
+        purchline: record "Purch. Inv. Line";
+        itemtrack: record "Tracking Specification";
+        fa: record "Fixed Asset";
+    begin
+        if PurchHeader.Receive then begin
+            itemtrack.SetRange("Source ID", PurchHeader."No.");
+            itemtrack.SetRange("Source Type", 39);
+            itemtrack.SetRange("Source Subtype", 1);
+            if itemtrack.FindFirst() then
+                repeat
+                    if itemtrack."Serial No." <> '' then begin
+                        fa.SetRange("Serial No.", itemtrack."Serial No.");
+                        if fa.FindFirst() then begin
+                            fa.FBM_Status := fa.FBM_Status::"C. stock";
+                            fa.Modify();
+                        end
+                    end;
+                until itemtrack.Next() = 0
+
+
+        end;
+
+    end;
 }

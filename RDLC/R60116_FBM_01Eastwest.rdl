@@ -199,11 +199,17 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Tablix Name="list1">
+          <Tablix Name="table2">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>17.79999cm</Width>
+                  <Width>0.5205cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.5205cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.5205cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -212,46 +218,25 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Rectangle Name="list1_Contents">
-                          <ReportItems>
-                            <Tablix Name="table2">
-                              <TablixBody>
-                                <TablixColumns>
-                                  <TablixColumn>
-                                    <Width>0.5205cm</Width>
-                                  </TablixColumn>
-                                  <TablixColumn>
-                                    <Width>0.5205cm</Width>
-                                  </TablixColumn>
-                                  <TablixColumn>
-                                    <Width>0.5205cm</Width>
-                                  </TablixColumn>
-                                </TablixColumns>
-                                <TablixRows>
-                                  <TablixRow>
-                                    <Height>0.52989cm</Height>
-                                    <TablixCells>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="CompAddr">
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontSize>7pt</FontSize>
-                                                      <Color>Red</Color>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <ZIndex>2</ZIndex>
-                                            <Visibility>
-                                              <Hidden>=Code.SetData(Last(Fields!CompanyAddr1.Value) + Chr(177) +
+                        <Textbox Name="CompAddr">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>7pt</FontSize>
+                                    <Color>Red</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <ZIndex>2</ZIndex>
+                          <Visibility>
+                            <Hidden>=Code.SetData(Last(Fields!CompanyAddr1.Value) + Chr(177) +
 Last(Fields!CompanyAddr2.Value) + Chr(177) +
 Last(Fields!CompanyAddr3.Value) + Chr(177) +
 Last(Fields!CompanyAddr4.Value) + Chr(177) +
@@ -259,119 +244,90 @@ Last(Fields!CompanyAddr5.Value) + Chr(177) +
 Last(Fields!CompanyAddr6.Value) + Chr(177) +
 Last(Fields!CompanyAddr7.Value) + Chr(177) +
 Last(Fields!CompanyAddr8.Value), 1)</Hidden>
-                                            </Visibility>
-                                            <Style>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="CheckToAddr6">
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontSize>7pt</FontSize>
-                                                      <Color>Red</Color>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <ZIndex>1</ZIndex>
-                                            <Visibility>
-                                              <Hidden>=Code.SetData(Last(Fields!DescriptionLine1.Value) + Chr(177) +
+                          </Visibility>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="CheckToAddr6">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>7pt</FontSize>
+                                    <Color>Red</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <ZIndex>1</ZIndex>
+                          <Visibility>
+                            <Hidden>=Code.SetData(Last(Fields!DescriptionLine1.Value) + Chr(177) +
 Last(Fields!DescriptionLine2.Value) + Chr(177) +
 Last(Fields!CheckToAddr1.Value) + Chr(177) +
 Last(Fields!CheckToAddr2.Value) + Chr(177) +
 Last(Fields!CheckToAddr3.Value) + Chr(177) +
 Last(Fields!CheckToAddr4.Value) + Chr(177) +
 Last(Fields!CheckToAddr5.Value), 2)</Hidden>
-                                            </Visibility>
-                                            <Style>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="TotalInfo">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontSize>7pt</FontSize>
-                                                      <Color>Red</Color>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <Visibility>
-                                              <Hidden>=Code.SetData(CStr(last(Fields!TotalText.Value)) + Chr(177) +
+                          </Visibility>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="TotalInfo">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>7pt</FontSize>
+                                    <Color>Red</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Visibility>
+                            <Hidden>=Code.SetData(CStr(last(Fields!TotalText.Value)) + Chr(177) +
 CStr(Last(Fields!TotalLineAmount.Value)) + Chr(177) +
 CStr(Last(Fields!CheckNoText.Value)) + Chr(177) +
 CStr(Last(Fields!CheckDateText.Value)) + Chr(177) +
 CStr(Last(Fields!CheckAmountText.Value)) + Chr(177) +
 CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
-                                            </Visibility>
-                                            <Style>
-                                              <Border>
-                                                <Style>None</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                    </TablixCells>
-                                  </TablixRow>
-                                </TablixRows>
-                              </TablixBody>
-                              <TablixColumnHierarchy>
-                                <TablixMembers>
-                                  <TablixMember />
-                                  <TablixMember />
-                                  <TablixMember />
-                                </TablixMembers>
-                              </TablixColumnHierarchy>
-                              <TablixRowHierarchy>
-                                <TablixMembers>
-                                  <TablixMember>
-                                    <KeepWithGroup>After</KeepWithGroup>
-                                    <KeepTogether>true</KeepTogether>
-                                  </TablixMember>
-                                </TablixMembers>
-                              </TablixRowHierarchy>
-                              <Height>0.52989cm</Height>
-                              <Width>1.5615cm</Width>
-                              <Style />
-                            </Tablix>
-                          </ReportItems>
-                          <KeepTogether>true</KeepTogether>
-                          <Style />
-                        </Rectangle>
+                          </Visibility>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -381,388 +337,360 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
             <TablixColumnHierarchy>
               <TablixMembers>
                 <TablixMember />
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="list1_Details_Group">
-                    <GroupExpressions>
-                      <GroupExpression>=Fields!CheckNoText.Value</GroupExpression>
-                    </GroupExpressions>
-                    <PageBreak>
-                      <BreakLocation>Between</BreakLocation>
-                    </PageBreak>
-                  </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!CheckNoText.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
-                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepWithGroup>After</KeepWithGroup>
                   <KeepTogether>true</KeepTogether>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Filters>
-              <Filter>
-                <FilterExpression>=Fields!CheckNoText.Value</FilterExpression>
-                <Operator>GreaterThan</Operator>
-                <FilterValues>
-                  <FilterValue>=""</FilterValue>
-                </FilterValues>
-              </Filter>
-            </Filters>
-            <Left>0.01668cm</Left>
+            <Left>9.256cm</Left>
             <Height>0.52989cm</Height>
-            <Width>17.79999cm</Width>
+            <Width>1.5615cm</Width>
             <Style />
           </Tablix>
         </ReportItems>
         <Height>0.52989cm</Height>
         <Style />
       </Body>
-      <Width>20.05681cm</Width>
+      <Width>20.07349cm</Width>
       <Page>
-        <PageFooter>
-          <Height>2.78209in</Height>
+        <PageHeader>
+          <Height>6.24417cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Rectangle Name="rectangle1">
-              <ReportItems>
-                <Textbox Name="CheckNoTextControl21">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=mid(Code.GetData(4,3),6,1)</Value>
-                          <Style>
-                            <FontFamily>IDAutomationMICR</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
+            <Textbox Name="CheckNoTextControl21">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=mid(Code.GetData(4,3),6,1)</Value>
                       <Style>
-                        <TextAlign>Left</TextAlign>
+                        <FontFamily>IDAutomationMICR</FontFamily>
+                        <FontWeight>Normal</FontWeight>
                       </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.19874in</Top>
-                  <Left>5.94792in</Left>
-                  <Height>0.52883cm</Height>
-                  <Width>0.52918cm</Width>
+                    </TextRun>
+                  </TextRuns>
                   <Style>
-                    <Border />
-                    <PaddingLeft>3pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <TextAlign>Left</TextAlign>
                   </Style>
-                </Textbox>
-                <Textbox Name="DescriptionLine1">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>= "*"+Code.GetData(3,2)+"*"</Value>
-                          <Style>
-                            <FontFamily>IDAutomationSec1B</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.62222in</Top>
-                  <Left>1.47036in</Left>
-                  <Height>0.56411cm</Height>
-                  <Width>10.68347cm</Width>
-                  <ZIndex>1</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="DescriptionLine2">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=Code.GetData(1,2)+"****"</Value>
-                          <Style />
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.8582in</Top>
-                  <Left>1.47036in</Left>
-                  <Height>0.58175cm</Height>
-                  <Width>13.1cm</Width>
-                  <ZIndex>2</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="CheckAmountText">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>="**" + Code.GetData(5,3) + "**"</Value>
-                          <Style>
-                            <FontFamily>IDAutomationSec1B</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                            <Format>N</Format>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.56666in</Top>
-                  <Left>5.94792in</Left>
-                  <Height>0.59939cm</Height>
-                  <Width>4.30923cm</Width>
-                  <ZIndex>3</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="CheckNoTextControl22">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>= mid(Code.GetData(4,3), 7, 1)</Value>
-                          <Style>
-                            <FontFamily>IDAutomationMICR</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.19874in</Top>
-                  <Left>6.18403in</Left>
-                  <Height>0.52883cm</Height>
-                  <Width>0.52256cm</Width>
-                  <ZIndex>4</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="CheckNoTextControl23">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>= mid(Code.GetData(4,3), 9, 1)</Value>
-                          <Style>
-                            <FontFamily>IDAutomationMICR</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.19874in</Top>
-                  <Left>6.49155in</Left>
-                  <Height>0.52883cm</Height>
-                  <Width>0.52256cm</Width>
-                  <ZIndex>5</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="CheckNoTextControl24">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>= mid(Code.GetData(4,3), 10, 1)</Value>
-                          <Style>
-                            <FontFamily>IDAutomationMICR</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.19874in</Top>
-                  <Left>6.69728in</Left>
-                  <Height>0.52883cm</Height>
-                  <Width>0.52256cm</Width>
-                  <ZIndex>6</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="CheckNoTextControl25">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>= mid(Code.GetData(4,3), 1, 1)</Value>
-                          <Style>
-                            <FontFamily>IDAutomationMICR</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.19874in</Top>
-                  <Left>7.00481in</Left>
-                  <Height>0.52883cm</Height>
-                  <Width>0.52256cm</Width>
-                  <ZIndex>7</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="CheckNoTextControl26">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>= mid(Code.GetData(4,3), 2, 1)</Value>
-                          <Style>
-                            <FontFamily>IDAutomationMICR</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.19874in</Top>
-                  <Left>7.21054in</Left>
-                  <Height>0.52883cm</Height>
-                  <Width>0.52256cm</Width>
-                  <ZIndex>8</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="CheckNoTextControl27">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=mid(Code.GetData(4,3), 3, 1)</Value>
-                          <Style>
-                            <FontFamily>IDAutomationMICR</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.19874in</Top>
-                  <Left>7.43873in</Left>
-                  <Height>0.52883cm</Height>
-                  <Width>0.52256cm</Width>
-                  <ZIndex>9</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>1pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="CheckNoTextControl28">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=mid(Code.GetData(4,3), 4, 1)</Value>
-                          <Style>
-                            <FontFamily>IDAutomationMICR</FontFamily>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.19874in</Top>
-                  <Left>7.64446in</Left>
-                  <Height>0.52883cm</Height>
-                  <Width>0.52256cm</Width>
-                  <ZIndex>10</ZIndex>
-                  <Style>
-                    <Border />
-                    <PaddingLeft>1pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-              </ReportItems>
-              <DataElementOutput>ContentsOnly</DataElementOutput>
-              <Height>2.78209in</Height>
-              <Width>20.05681cm</Width>
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.21986in</Top>
+              <Left>5.95448in</Left>
+              <Height>0.52883cm</Height>
+              <Width>0.52918cm</Width>
               <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
+                <Border />
+                <PaddingLeft>3pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
               </Style>
-            </Rectangle>
+            </Textbox>
+            <Textbox Name="DescriptionLine1">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>= "*"+Code.GetData(3,2)+"*"</Value>
+                      <Style>
+                        <FontFamily>IDAutomationSec1B</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.64334in</Top>
+              <Left>1.47692in</Left>
+              <Height>0.56411cm</Height>
+              <Width>10.68347cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="DescriptionLine2">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Code.GetData(1,2)+"****"</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.87932in</Top>
+              <Left>1.47692in</Left>
+              <Height>0.58175cm</Height>
+              <Width>13.1cm</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="CheckAmountText">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="**" + Code.GetData(5,3) + "**"</Value>
+                      <Style>
+                        <FontFamily>IDAutomationSec1B</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                        <Format>N</Format>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.58778in</Top>
+              <Left>5.95448in</Left>
+              <Height>0.59939cm</Height>
+              <Width>4.30923cm</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="CheckNoTextControl22">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>= mid(Code.GetData(4,3), 7, 1)</Value>
+                      <Style>
+                        <FontFamily>IDAutomationMICR</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.21986in</Top>
+              <Left>6.19059in</Left>
+              <Height>0.52883cm</Height>
+              <Width>0.52256cm</Width>
+              <ZIndex>4</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="CheckNoTextControl23">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>= mid(Code.GetData(4,3), 9, 1)</Value>
+                      <Style>
+                        <FontFamily>IDAutomationMICR</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.21986in</Top>
+              <Left>6.49811in</Left>
+              <Height>0.52883cm</Height>
+              <Width>0.52256cm</Width>
+              <ZIndex>5</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="CheckNoTextControl24">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>= mid(Code.GetData(4,3), 10, 1)</Value>
+                      <Style>
+                        <FontFamily>IDAutomationMICR</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.21986in</Top>
+              <Left>6.70384in</Left>
+              <Height>0.52883cm</Height>
+              <Width>0.52256cm</Width>
+              <ZIndex>6</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="CheckNoTextControl25">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>= mid(Code.GetData(4,3), 1, 1)</Value>
+                      <Style>
+                        <FontFamily>IDAutomationMICR</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.21986in</Top>
+              <Left>7.01137in</Left>
+              <Height>0.52883cm</Height>
+              <Width>0.52256cm</Width>
+              <ZIndex>7</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="CheckNoTextControl26">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>= mid(Code.GetData(4,3), 2, 1)</Value>
+                      <Style>
+                        <FontFamily>IDAutomationMICR</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.21986in</Top>
+              <Left>7.2171in</Left>
+              <Height>0.52883cm</Height>
+              <Width>0.52256cm</Width>
+              <ZIndex>8</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="CheckNoTextControl27">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=mid(Code.GetData(4,3), 3, 1)</Value>
+                      <Style>
+                        <FontFamily>IDAutomationMICR</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.21986in</Top>
+              <Left>7.44529in</Left>
+              <Height>0.52883cm</Height>
+              <Width>0.52256cm</Width>
+              <ZIndex>9</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>1pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="CheckNoTextControl28">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=mid(Code.GetData(4,3), 4, 1)</Value>
+                      <Style>
+                        <FontFamily>IDAutomationMICR</FontFamily>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.21986in</Top>
+              <Left>7.65102in</Left>
+              <Height>0.52883cm</Height>
+              <Width>0.52256cm</Width>
+              <ZIndex>10</ZIndex>
+              <Style>
+                <Border />
+                <PaddingLeft>1pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
-          <Style />
-        </PageFooter>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
         <PageHeight>7.12cm</PageHeight>
         <PageWidth>20.32cm</PageWidth>
         <InteractiveHeight>11in</InteractiveHeight>

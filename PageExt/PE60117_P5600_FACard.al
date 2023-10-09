@@ -12,6 +12,13 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
             {
                 ApplicationArea = all;
                 Enabled = isegm;
+                Editable = false;
+            }
+            field(FBM_Subsidiary; Rec.FBM_Subsidiary)
+            {
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
             }
         }
         addafter("FA Subclass Code")
@@ -61,7 +68,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
                         ApplicationArea = all;
                         Editable = false;
                     }
-                    field(SiteCode; SiteCode)
+                    field(FBM_Site; Rec.FBM_Site)
                     {
                         Caption = 'Site Code';
                         ApplicationArea = all;

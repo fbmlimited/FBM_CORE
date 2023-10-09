@@ -10,7 +10,9 @@ pageextension 60100 FBM_ItemCardExt_CO extends "Item Card"
             }
 
         }
+
     }
 
-    
+
+
 }
