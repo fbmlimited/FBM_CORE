@@ -51,6 +51,10 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
             {
                 ApplicationArea = all;
             }
+            field("Posting No."; Rec."Posting No.")
+            {
+                ApplicationArea = all;
+            }
         }
         addafter(ShippingOptionWithLocation)
         {

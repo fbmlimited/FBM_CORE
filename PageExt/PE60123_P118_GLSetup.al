@@ -10,11 +10,16 @@ pageextension 60123 FBM_GLSetupExt_CO extends "General Ledger Setup"
         {
             Editable = false;
         }
-        addlast(General)
+        modify("Local Functionalities PHL")
+        {
+            Visible = visph;
+        }
+        addlast("Local Functionalities PHL")
         {
             field(FBM_ExchRateFluctuation; Rec.FBM_ExchRateFluctuation)
             {
                 ApplicationArea = all;
+
 
 
             }
@@ -23,6 +28,17 @@ pageextension 60123 FBM_GLSetupExt_CO extends "General Ledger Setup"
 
         }
     }
+    trigger
+    OnOpenPage()
+    begin
+        cinfo.get();
+        visph := (cinfo."Country/Region Code" = 'PH')
+
+    end;
+
+    var
+        cinfo: record "Company Information";
+        visph: Boolean;
 
 
 }

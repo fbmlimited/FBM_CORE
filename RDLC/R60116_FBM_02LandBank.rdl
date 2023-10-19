@@ -355,13 +355,13 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
             <Style />
           </Tablix>
         </ReportItems>
-        <Height>3.75781cm</Height>
+        <Height>0.52989cm</Height>
         <Style />
       </Body>
       <Width>20.05681cm</Width>
       <Page>
         <PageHeader>
-          <Height>3.06989cm</Height>
+          <Height>6.4742cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
