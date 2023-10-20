@@ -18,13 +18,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
         {
             Visible = true;
         }
-        addafter("Bal. Account No.")
-        {
-            field("Check No. PHL"; rec."Check No. PHL")
-            {
-                ApplicationArea = all;
-            }
-        }
+        
         modify("Reason Code")
         {
             trigger OnBeforeValidate();

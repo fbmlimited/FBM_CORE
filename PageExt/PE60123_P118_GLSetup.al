@@ -10,23 +10,7 @@ pageextension 60123 FBM_GLSetupExt_CO extends "General Ledger Setup"
         {
             Editable = false;
         }
-        modify("Local Functionalities PHL")
-        {
-            Visible = visph;
-        }
-        addlast("Local Functionalities PHL")
-        {
-            field(FBM_ExchRateFluctuation; Rec.FBM_ExchRateFluctuation)
-            {
-                ApplicationArea = all;
 
-
-
-            }
-
-
-
-        }
     }
     trigger
     OnOpenPage()

@@ -26,10 +26,7 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
                 ApplicationArea = All;
             }
         }
-        modify("IDPIRPF IRPF Group")
-        {
-            Visible = isvisES;
-        }
+       
     }
     actions
     {

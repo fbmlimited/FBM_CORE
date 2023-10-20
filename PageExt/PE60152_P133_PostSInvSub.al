@@ -19,42 +19,7 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
 
         }
 
-        modify("IDPIRPF IRPF Amount")
-        {
-
-            visible = isvisES;
-        }
-        modify("IDPIRPF IRPF Group")
-        {
-
-            visible = isvisES;
-        }
-        modify("IDPIRPF Total IRPF Amount")
-        {
-
-            visible = isvisES;
-        }
-        modify("IDPIRPF TotalAmountWithVATWithoutIRPF")
-        {
-
-            visible = isvisES;
-        }
-        modify("VAT Bus. Posting Group PHL")
-        {
-
-            visible = isvisPH;
-        }
-        modify("WHT Product Posting Group PHL")
-        {
-
-            visible = isvisPH;
-        }
-        modify("WHT Business Posting Group PHL")
-        {
-
-            visible = isvisPH;
-        }
-
+        
     }
     actions
     {
@@ -91,8 +56,7 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
     begin
 
         if compinfo.Get() then begin
-            isvisES := compinfo."Country/Region Code" = 'ES';
-            isvisPH := compinfo."Country/Region Code" = 'PH';
+            
             showsite := compinfo.FBM_CustIsOp;
         end;
 
@@ -103,8 +67,7 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
 
 
     var
-        isvisES: Boolean;
-        isvisPH: Boolean;
+        
         compinfo: record "Company Information";
         changedate: Codeunit FBM_ChangePerDateSales_CO;
 
