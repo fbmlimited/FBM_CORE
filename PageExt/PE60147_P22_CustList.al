@@ -70,7 +70,7 @@ pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
             }
         }
     }
-#if not JYM
+#if not SAAS
     trigger
     OnOpenPage()
     var

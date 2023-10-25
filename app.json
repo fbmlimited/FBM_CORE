@@ -39,6 +39,6 @@
     "NoImplicitWith"
   ],
   "target": "Cloud",
-  "preprocessorSymbols":["JYM"]
+  "preprocessorSymbols":["JYM","SAAS"]
 
 }

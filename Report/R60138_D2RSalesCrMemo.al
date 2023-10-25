@@ -1434,7 +1434,7 @@ report 60138 "D2R Sales - CrMemo_CO"
                 repcheck: report Check;
             begin
                 if usersetup.get("Sales Cr.Memo Header"."User ID") then begin
-#if not JYM
+#if not SAAS
                     FOR Index := 1 to usersetup."Signature PHL".COUNT DO BEGIN
                         mediaid := usersetup."Signature PHL".Item(1);
                         "Sales Cr.Memo Header".fbm_signature_pic.Insert(mediaid);

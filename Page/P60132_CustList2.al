@@ -1442,6 +1442,7 @@ page 60132 "FBM_Customer List_CO"
                         RunObject = Report "Customer - Sales List";
                         ToolTip = 'View customer sales for a period, for example, to report sales activity to customs and tax authorities. You can choose to include only customers with total sales that exceed a minimum amount. You can also specify whether you want the report to show address details for each customer.';
                     }
+#if not SAAS
                     action(ReportSalesStatistics)
                     {
                         ApplicationArea = Basic, Suite;
@@ -1450,6 +1451,7 @@ page 60132 "FBM_Customer List_CO"
                         RunObject = Report "Sales Statistics";
                         ToolTip = 'View customers'' total costs, sales, and profits over time, for example, to analyze earnings trends. The report shows amounts for original and adjusted costs, sales, profits, invoice discounts, payment discounts, and profit percentage in three adjustable periods.';
                     }
+#endif
                 }
                 group(FinanceReports)
                 {
@@ -1501,7 +1503,9 @@ page 60132 "FBM_Customer List_CO"
                         RunObject = Report "Customer - Detail Trial Bal.";
                         ToolTip = 'View the balance for customers with balances on a specified date. The report can be used at the close of an accounting period, for example, or for an audit.';
                     }
-                    action(ReportCustomerSummaryAging)
+
+#if not SAAS
+action(ReportCustomerSummaryAging)
                     {
                         ApplicationArea = Suite;
                         Caption = 'Customer - Summary Aging';
@@ -1509,6 +1513,7 @@ page 60132 "FBM_Customer List_CO"
                         RunObject = Report "Customer - Summary Aging";
                         ToolTip = 'View, print, or save a summary of each customer''s total payments due, divided into three time periods. The report can be used to decide when to issue reminders, to evaluate a customer''s creditworthiness, or to prepare liquidity analyses.';
                     }
+                    
                     action(ReportCustomerDetailedAging)
                     {
                         ApplicationArea = Suite;
@@ -1517,6 +1522,7 @@ page 60132 "FBM_Customer List_CO"
                         RunObject = Report "Customer Detailed Aging";
                         ToolTip = 'View, print, or save a detailed list of each customer''s total payments due, divided into three time periods. The report can be used to decide when to issue reminders, to evaluate a customer''s creditworthiness, or to prepare liquidity analyses.';
                     }
+#endif
                     action(ReportAgedAccountsReceivable)
                     {
                         ApplicationArea = Basic, Suite;
@@ -1546,6 +1552,7 @@ page 60132 "FBM_Customer List_CO"
             group(General)
             {
                 Caption = 'General';
+#if not SAAS
                 action("Customer List")
                 {
                     ApplicationArea = Suite;
@@ -1554,6 +1561,7 @@ page 60132 "FBM_Customer List_CO"
                     RunObject = Report "Customer - List";
                     ToolTip = 'View various kinds of basic information for customers, such as customer posting group, discount group, finance charge and payment information, salesperson, the customer''s default currency and credit limit (in LCY), and the customer''s current balance (in LCY).';
                 }
+#endif
                 action("Customer Register")
                 {
                     ApplicationArea = Basic, Suite;
@@ -1599,6 +1607,7 @@ page 60132 "FBM_Customer List_CO"
                     RunObject = Report "Customer - Sales List";
                     ToolTip = 'View customer sales for a period, for example, to report sales activity to customs and tax authorities. You can choose to include only customers with total sales that exceed a minimum amount. You can also specify whether you want the report to show address details for each customer.';
                 }
+#if not SAAS
                 action("Sales Statistics")
                 {
                     ApplicationArea = Suite;
@@ -1615,6 +1624,7 @@ page 60132 "FBM_Customer List_CO"
                     RunObject = Report "Customer/Item Sales";
                     ToolTip = 'View a list of item sales for each customer during a selected time period. The report contains information on quantity, sales amount, profit, and possible discounts. It can be used, for example, to analyze a company''s customer groups.';
                 }
+#endif
             }
         }
         area(Promoted)
