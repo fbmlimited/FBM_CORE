@@ -2,6 +2,107 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
 {
     layout
     {
+        modify("Budgeted Asset")
+        {
+
+            Enabled = not isegm;
+
+        }
+        modify("Main Asset/Component")
+        {
+
+            Enabled = not isegm;
+
+        }
+        modify("Component of Main Asset")
+        {
+
+            Enabled = not isegm;
+
+        }
+        modify("Responsible Employee")
+        {
+
+            Enabled = not isegm;
+
+        }
+        modify(Inactive)
+        {
+
+            Enabled = not isegm;
+
+        }
+        modify(Maintenance)
+        {
+
+            Visible = false;
+        }
+        addlast(General)
+        {
+            field(FBM_Brand; Rec.FBM_Brand)
+            {
+                Caption = 'Brand';
+                Enabled = isegm;
+                Editable = false;
+            }
+            field(FBM_Lessee; Rec.FBM_Lessee)
+            {
+                Caption = 'Lessee';
+                Enabled = isegm;
+                Editable = false;
+            }
+            field(FBM_Site; Rec.FBM_Site)
+            {
+                Caption = 'Site Code';
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
+            }
+            field(siteloccode; siteloccode)
+            {
+                Caption = 'Site Loc. Code';
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
+                ;
+            }
+            field(LastMovementSite; sitename)
+            {
+                Caption = 'Site Name';
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
+                ;
+            }
+            field(custloccode; custloccode)
+            {
+                Caption = 'Cust. Loc. Code';
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
+            }
+            field(custname; custname)
+            {
+                Caption = 'Customer Name';
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
+            }
+            field(oploccode; oploccode)
+            {
+                Caption = 'Op. Loc. Code';
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
+            }
+            field(opname; opname)
+            {
+                Caption = 'Operator Name';
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
+            }
+        }
         addafter(BookValue)
         {
             field(AcquisitionDate; AcquisitionDate)
@@ -35,59 +136,12 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
             field(FBM_DatePrepared; Rec.FBM_DatePrepared)
             {
                 ApplicationArea = all;
+                Visible = false;
             }
         }
         addafter(Maintenance)
         {
-            group(CustomerSiteTracking)
-            {
-                Caption = 'Customer - Site Tracking';
 
-                group(LastMovement)
-                {
-                    Caption = 'Last Movement History';
-                    field(FBM_Brand; Rec.FBM_Brand)
-                    { Caption = 'Brand'; }
-                    field(FBM_Lessee; Rec.FBM_Lessee)
-                    { Caption = 'Lessee'; }
-                    field(LastMovementDate; LastMovementDate)
-                    {
-                        Caption = 'Date';
-                        ApplicationArea = all;
-                        Editable = false;
-                    }
-                    field(OperatoreCode; OperatoreCode)
-                    {
-                        Caption = 'Operator Code';
-                        ApplicationArea = all;
-                        Editable = false;
-                    }
-                    field(LastMovementOpName; LastMovementOpName)
-                    {
-                        Caption = 'Operator Name';
-                        ApplicationArea = all;
-                        Editable = false;
-                    }
-                    field(FBM_Site; Rec.FBM_Site)
-                    {
-                        Caption = 'Site Code';
-                        ApplicationArea = all;
-                        Editable = false;
-                    }
-                    field(LastMovementSite; LastMovementSite)
-                    {
-                        Caption = 'Site Name';
-                        ApplicationArea = all;
-                        Editable = false;
-                    }
-                    field(LastMovementRemarks; LastMovementRemarks)
-                    {
-                        Caption = 'Remarks';
-                        ApplicationArea = all;
-                        Editable = false;
-                    }
-                }
-            }
         }
         addafter(General)
         {
@@ -104,26 +158,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
     }
     actions
     {
-        addlast(navigation)
-        {
-            group("FA History Movement")
-            {
-                action("Movement History")
-                {
-                    image = FARegisters;
-                    ApplicationArea = All;
 
-                    trigger OnAction()
-                    begin
-                        // Clear(FAMH);
-                        // Clear(FAMHP);
-                        // FAMH.SetFilter(FAMH."FA No.", Rec."No.");
-                        // FAMHP.SetTableView(FAMH);
-                        // FAMHP.RunModal();
-                    end;
-                }
-            }
-        }
         addafter(Dimensions)
         {
             action("FA Dimensions")
@@ -153,12 +188,11 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
         }
     }
     var
-        // FAMHP: Page "FA Movement History";
-        // FAMH: Record "FA Movement History";
+
         FADimP: Page "Default Dimensions";
         DefaultDims: Record "Default Dimension";
         FAMHEntryNo: Integer;
-        // FAMHInfo: Record "FA Movement History";
+
         LastMovementDate: Date;
         LastMovementSite: Code[250];
         LastMovementOpName: Text[150];
@@ -168,56 +202,68 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
         SiteCode: Code[20];
         OperatoreCode: Code[20];
         isegm: Boolean;
+        custloccode: code[20];
+        custname: text[100];
+        oploccode: code[20];
+        opname: text[100];
+        siteloccode: code[20];
+        sitename: text[100];
+        cust: record FBM_Customer;
+        op: record FBM_Customer;
 
     trigger
     OnAfterGetRecord()
+    var
+        cos: record FBM_CustOpSite;
+        country: record "Country/Region";
+        site: record FBM_Site;
+        subs: record FBM_Subsidiary;
+        cinfo: record "Company Information";
     begin
         rec.CalcFields(FBM_Is_EGM_FF);
         isegm := rec.FBM_Is_EGM_FF;
+        cos.SetRange("Site Code", rec.FBM_Site);
+        cos.SetFilter(Subsidiary, '%1', rec.FBM_Lessee + '*');
+        if cos.FindFirst() then
+            // if site.get(rec.FBM_Site) then
+            //     if country.get(site."Country/Region Code") then
+
+            if cust.get(cos."Customer No.") then
+                if country.get(cust."Country/Region Code") then
+                    subs.SetRange(Country, country.FBM_Country3);
+        // subs.SetRange(Lessee, rec.FBM_Lessee);
+        // subs.SetRange(EGM_Property, cinfo."Custom System Indicator Text");
+        // if subs.FindFirst() then
+        //     cos.SetRange(Subsidiary, subs.Subsidiary);
+        // if cos.FindFirst() then begin
+        custloccode := cos."Cust Loc Code";
+        oploccode := cos."Op Loc Code";
+        cust.setrange("No.", cos."Customer No.");
+        cust.SetRange(ActiveRec, true);
+        if cust.FindFirst() then
+            custname := cust.Name;
+        op.SetRange("No.", cos."Operator No.");
+        op.SetRange(ActiveRec, true);
+        if op.FindFirst() then
+            opname := op.Name;
+        siteloccode := cos."Site Loc Code";
+        site.setrange("Site Code", cos."Site Code");
+        site.SetRange(ActiveRec, true);
+        if site.FindFirst() then
+            sitename := site."Site Name";
+        // end;
+
 
     end;
 
     trigger OnOpenPage()
     begin
-        Clear(FAMHEntryNo);
-        Clear(LastMovementSite);
-        Clear(LastMovementDate);
-        Clear(LastMovementOpName);
-        clear(LastMovementRemarks);
-        // FAMHInfo.Reset();
-        FAMHEntryNo := GetLatestMovement(Rec."No.");
-        if FAMHEntryNo = 0 then begin
-            LastMovementDate := 0D;
-            LastMovementOpName := '';
-            LastMovementSite := '';
-            LastMovementRemarks := '';
-            SiteCode := '';
-            OperatoreCode := '';
-        end
-        else begin
-            // if FAMHInfo.Get(FAMHEntryNo) then begin
-            //     LastMovementDate := FAMHInfo.Date;
-            //     LastMovementOpName := FAMHInfo."Corporate Name";
-            //     LastMovementSite := FAMHInfo.Site;
-            //     LastMovementRemarks := FAMHInfo.Remarks;
-            //     SiteCode := FAMHInfo."Site Code";
-            //     OperatoreCode := FAMHInfo."Operator Code";
-            // end;
-        end;
+
+
         GetAcquisitionDate(Rec);
     end;
 
-    procedure GetLatestMovement(FANo: Code[20]) EntryNo: Integer
-    var
-    // MoveHistory: Record "FA Movement History";
-    begin
-        // MoveHistory.SetCurrentKey(Date);
-        // MoveHistory.SetFilter(MoveHistory."FA No.", FANo);
-        // if MoveHistory.FindLast() then
-        //     EntryNo := MoveHistory."Entry No."
-        // else
-        //     EntryNo := 0;
-    end;
+
 
     procedure GetAcquisitionDate(FA: Record "Fixed Asset")
     var

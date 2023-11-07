@@ -6,6 +6,7 @@ page 60117 FBM_PaymentApprovalM_CO
     SourceTable = FBM_VendorLEM;
     SourceTableView = where("Document Type" = filter(Invoice), Open = filter(true));
     UsageCategory = Lists;
+    SourceTableTemporary = true;
     layout
     {
         area(content)
@@ -156,17 +157,29 @@ page 60117 FBM_PaymentApprovalM_CO
                     trigger OnValidate()
                     var
                         usersetup: Record "User Setup";
+                        vendle: record "Vendor Ledger Entry";
+                        bam: record FBM_BankAccountTMP;
                     begin
 
+                        bam.SetRange(FBM_Company, rec.Company);
+                        bam.SetRange("no.", rec."FBM_Default Bank Account");
                         if usersetup.get(UserId) then begin
                             if usersetup."FBM_Approve AP" = false then
                                 Error('Your user is not setup for AP approval. Please contact the system administrator.');
                             if rec.FBM_approved1 then begin
+                                if bam.FindFirst() then begin
+                                    bam."FBM_Approval Batch Amount2" += rec.FBM_RemAmount;
+                                    bam.Modify();
+                                end;
                                 rec."FBM_approved user1" := UserId;
                                 rec."FBM_approved date1" := CurrentDateTime;
                                 Status1 := status::Approved;
                             end
                             else begin
+                                if bam.FindFirst() then begin
+                                    bam."FBM_Approval Batch Amount2" -= rec.FBM_RemAmount;
+                                    bam.Modify();
+                                end;
                                 status1 := status1::Rejected;
                                 rec."FBM_approved user1" := '';
                                 rec."FBM_approved date1" := 0DT;
@@ -181,7 +194,10 @@ page 60117 FBM_PaymentApprovalM_CO
 
 
 
-                        end;
+
+                        end
+                        else
+                            Error('Your user is not listed in user setup for AP approval. Please contact the system administrator.');
 
                     end;
 
@@ -286,149 +302,185 @@ page 60117 FBM_PaymentApprovalM_CO
 
         area(factboxes)
         {
-            part("Banks"; "FBM_PaymJnl Bank List Part2_CO")
+            part("Banks"; "FBM_PaymJnlBankListPart2M_CO")
             {
                 ApplicationArea = Basic, Suite;
+                SubPageLink = FBM_Company = field(Company);
 
             }
         }
     }
-    trigger
-    OnInit()
-    begin
-        vlem.DeleteAll();
-    end;
+
+
 
     trigger OnOpenPage()
 
 
     begin
-
-        VLEM.DeleteAll();
+        bankaccM.DeleteAll();
+        rec.DeleteAll();
         comp.FindFirst();
         repeat
             compinfo.ChangeCompany(comp.name);
             compinfo.get;
             if compinfo.FBM_EnAppr then begin
                 VLE.ChangeCompany(comp.Name);
-
-                vle.FindFirst();
+                bankacc.ChangeCompany(comp.Name);
+                bankacc.FindFirst();
 
                 repeat
-                    VLEM.Init();
-                    vlem.Company := comp.Name;
-                    vlem."Entry No." := vle."Entry No.";
-                    vlem."Vendor No." := vle."Vendor No.";
-                    vlem."Posting Date" := vle."Posting Date";
-                    vlem."Document Type" := vle."Document Type";
-                    vlem."Document No." := vle."Document No.";
-                    vlem.Description := vle.Description;
-                    vlem."Vendor Name" := vle."Vendor Name";
-                    vlem."Currency Code" := vle."Currency Code";
-                    vle.CalcFields(Amount);
-                    vlem.Amount := vle.Amount;
-                    vle.CalcFields("Remaining Amount");
-                    vlem."Remaining Amount" := vle."Remaining Amount";
-                    vle.CalcFields("Original Amt. (LCY)");
-                    vlem."Original Amt. (LCY)" := vle."Original Amt. (LCY)";
-                    vle.CalcFields("Remaining Amt. (LCY)");
-                    vlem."Remaining Amt. (LCY)" := vle."Remaining Amt. (LCY)";
-                    vle.CalcFields("Amount (LCY)");
-                    vlem."Amount (LCY)" := vle."Amount (LCY)";
-                    vlem."Purchase (LCY)" := vle."Purchase (LCY)";
-                    vlem."Inv. Discount (LCY)" := vle."Inv. Discount (LCY)";
-                    vlem."Buy-from Vendor No." := vle."Buy-from Vendor No.";
-                    vlem."Vendor Posting Group" := vle."Vendor Posting Group";
-                    vlem."Global Dimension 1 Code" := vle."Global Dimension 1 Code";
-                    vlem."Global Dimension 2 Code" := vle."Global Dimension 2 Code";
-                    vlem."Purchaser Code" := vle."Purchaser Code";
-                    vlem."User ID" := vle."User ID";
-                    vlem."Source Code" := vle."Source Code";
-                    vlem."On Hold" := vle."On Hold";
-                    vlem."Applies-to Doc. Type" := vle."Applies-to Doc. Type";
-                    vlem."Applies-to Doc. No." := vle."Applies-to Doc. No.";
-                    vlem.Open := vle.Open;
-                    vlem."Due Date" := vle."Due Date";
-                    vlem."Pmt. Discount Date" := vle."Pmt. Discount Date";
-                    vlem."Orig. Pmt. Disc. Possible(LCY)" := vle."Orig. Pmt. Disc. Possible(LCY)";
-                    vlem."Pmt. Disc. Rcd.(LCY)" := vle."Pmt. Disc. Rcd.(LCY)";
-                    vlem."Original Pmt. Disc. Possible" := vle."Original Pmt. Disc. Possible";
-                    vlem.Positive := vle.Positive;
-                    vlem."Closed by Entry No." := vle."Closed by Entry No.";
-                    vlem."Closed at Date" := vle."Closed at Date";
-                    vlem."Closed by Amount" := vle."Closed by Amount";
-                    vlem."Applies-to ID" := vle."Applies-to ID";
-                    vlem."Journal Templ. Name" := vle."Journal Templ. Name";
-                    vlem."Journal Batch Name" := vle."Journal Batch Name";
-                    vlem."Reason Code" := vle."Reason Code";
-                    vlem."Bal. Account Type" := vle."Bal. Account Type";
-                    vlem."Bal. Account No." := vle."Bal. Account No.";
-                    VLEM."Transaction No." := vle."Transaction No.";
-                    vlem."Closed by Amount (LCY)" := vle."Closed by Amount (LCY)";
-                    vle.CalcFields("Debit Amount");
-                    vlem."Debit Amount" := vle."Debit Amount";
-                    vle.CalcFields("Credit Amount");
-                    vlem."Credit Amount" := vle."Credit Amount";
-                    vle.CalcFields("Debit Amount (LCY)");
-                    vlem."Debit Amount (LCY)" := vle."Debit Amount (LCY)";
-                    vle.CalcFields("Credit Amount (LCY)");
-                    vle."Credit Amount (LCY)" := vle."Credit Amount (LCY)";
-                    vlem."Document Date" := vle."Document Date";
-                    vlem."External Document No." := vle."External Document No.";
-                    vlem."No. Series" := vle."No. Series";
-                    vlem."Closed by Currency Amount" := vle."Closed by Currency Amount";
-                    vlem."Closed by Currency Code" := vle."Closed by Currency Code";
-                    vlem."Adjusted Currency Factor" := vle."Adjusted Currency Factor";
-                    vlem."Original Currency Factor" := vle."Original Currency Factor";
-                    vle.CalcFields("Original Amount");
-                    vlem."Original Amount" := vle."Original Amount";
-                    vlem."Date Filter" := vle."Date Filter";
-                    vlem."Remaining Pmt. Disc. Possible" := vle."Remaining Pmt. Disc. Possible";
-                    vlem."Pmt. Disc. Tolerance Date" := vle."Pmt. Disc. Tolerance Date";
-                    vlem."Max. Payment Tolerance" := vle."Max. Payment Tolerance";
-                    vlem."Accepted Payment Tolerance" := vle."Accepted Payment Tolerance";
-                    vlem."Accepted Pmt. Disc. Tolerance" := vle."Accepted Pmt. Disc. Tolerance";
-                    vlem."Pmt. Tolerance (LCY)" := vle."Pmt. Tolerance (LCY)";
-                    vlem."Amount to Apply" := vle."Amount to Apply";
-                    vlem."IC Partner Code" := vle."IC Partner Code";
-                    vlem.Prepayment := vle.Prepayment;
-                    vlem."Applies-to Ext. Doc. No." := vle."Applies-to Ext. Doc. No.";
-                    vlem."Creditor No." := vle."Creditor No.";
-                    vlem."Payment Reference" := vle."Payment Reference";
-                    vlem."Payment Method Code" := vle."Payment Method Code";
-                    vlem."Recipient Bank Account" := vle."Recipient Bank Account";
-                    vlem."Message to Recipient" := vle."Message to Recipient";
-                    vlem."Exported to Payment File" := vle."Exported to Payment File";
-                    vlem."Dimension Set ID" := vle."Dimension Set ID";
-                    vlem.FBM_approved := vle.FBM_approved;
-                    vendor.ChangeCompany(comp.Name);
-                    if vendor.get(vle."Vendor No.") then
-                        vlem."FBM_Default Bank Account" := vendor."FBM_Default Bank Account";
-
-                    vlem."FBM_approved date" := vle."FBM_approved date";
-                    vlem."FBM_approved user" := vle."FBM_approved user";
-                    vlem."FBM_Approver Comment" := vle."FBM_Approver Comment";
-                    vle.CalcFields(Amount, "Remaining Amount");
-                    vlem.FBM_Amount := vle.Amount;
-                    vlem.FBM_Paid := vle.FBM_Paid;
-                    vlem.FBM_RemAmount := vle."Remaining Amount";
-                    vlem."Remaining Amount" := vle."Remaining Amount";
-                    vlem.Amount := vle.Amount;
-                    vlem.FBM_approved1 := vle.FBM_approved1;
-                    vlem."FBM_approved date1" := vle."FBM_approved date1";
-                    vlem."FBM_approved user1" := vle."FBM_approved user1";
-                    vlem."FBM_Approver Comment1" := vle."FBM_Approver Comment1";
-                    vlem.FBM_approved2 := vle.FBM_approved2;
-                    vlem."FBM_approved date2" := vle."FBM_approved date2";
-                    vlem."FBM_approved user2" := vle."FBM_approved user2";
-                    vlem."FBM_Approver Comment2" := vle."FBM_Approver Comment2";
-                    vlem.Insert();
+                    bankaccM.Init();
+                    bankaccM."No." := bankacc."No.";
+                    bankaccM.Name := bankacc.Name;
+                    bankaccM."Name 2" := bankacc."Name 2";
+                    bankaccM.FBM_Company := comp.Name;
+                    bankaccM.Amount := bankacc.Amount;
+                    bankacc.CalcFields(Balance, "Balance (LCY)", "Balance at Date", "Balance at Date (LCY)", "FBM_Approval Batch Amount_FF", "FBM_Approval Batch Amount2_FF", "Net Change", "Net Change (LCY)", "Debit Amount", "Debit Amount (LCY)", "Credit Amount", "Credit Amount (LCY)");
+                    bankaccM.Balance := bankacc.Balance;
+                    bankaccM."Balance (LCY)" := bankacc."Balance (LCY)";
+                    bankaccM."Balance at Date" := bankacc."Balance at Date";
+                    bankaccM."Balance at Date (LCY)" := bankacc."Balance at Date (LCY)";
+                    bankaccM."FBM_Approval Batch Amount" := bankacc."FBM_Approval Batch Amount_FF";
+                    bankaccM."FBM_Approval Batch Amount2" := bankacc."FBM_Approval Batch Amount2_FF";
+                    bankaccM."Net Change" := bankacc."Net Change";
+                    bankaccM."Net Change (LCY)" := bankacc."Net Change (LCY)";
+                    bankaccM."Debit Amount" := bankacc."Debit Amount";
+                    bankaccM."Debit Amount (LCY)" := bankacc."Debit Amount (LCY)";
+                    bankaccM."Credit Amount" := bankacc."Credit Amount";
+                    bankaccM."Credit Amount (LCY)" := bankacc."Credit Amount (LCY)";
+                    bankaccM."Currency Code" := bankacc."Currency Code";
+                    bankaccM.IBAN := bankacc.IBAN;
+                    bankaccM."Name 2" := bankacc."Name 2";
+                    bankaccM."Search Name" := bankacc."Search Name";
+                    bankaccM."SWIFT Code" := bankacc."SWIFT Code";
 
 
+                    bankaccM.Insert();
+                until bankacc.Next() = 0;
+                vle.SetRange(Open, true);
+                vle.setrange("Document Type", vle."Document Type"::Invoice);
+                if vle.FindFirst() then
+                    repeat
+                        vle.CalcFields(Amount, "Remaining Amount");
+                        vle.FBM_Amount := rec.Amount;
+                        vle.FBM_RemAmount := vle."Remaining Amount";
+                        vle.Modify();
 
-                until vle.Next() = 0;
+                        rec.Init();
+                        rec.Company := comp.Name;
+                        rec."Entry No." := vle."Entry No.";
+                        rec."Vendor No." := vle."Vendor No.";
+                        rec."Posting Date" := vle."Posting Date";
+                        rec."Document Type" := vle."Document Type";
+                        rec."Document No." := vle."Document No.";
+                        rec.Description := vle.Description;
+                        rec."Vendor Name" := vle."Vendor Name";
+                        rec."Currency Code" := vle."Currency Code";
+                        vle.CalcFields(Amount);
+                        rec.Amount := vle.Amount;
+                        vle.CalcFields("Remaining Amount");
+                        rec."Remaining Amount" := vle."Remaining Amount";
+                        vle.CalcFields("Original Amt. (LCY)");
+                        rec."Original Amt. (LCY)" := vle."Original Amt. (LCY)";
+                        vle.CalcFields("Remaining Amt. (LCY)");
+                        rec."Remaining Amt. (LCY)" := vle."Remaining Amt. (LCY)";
+                        vle.CalcFields("Amount (LCY)");
+                        rec."Amount (LCY)" := vle."Amount (LCY)";
+                        rec."Purchase (LCY)" := vle."Purchase (LCY)";
+                        rec."Inv. Discount (LCY)" := vle."Inv. Discount (LCY)";
+                        rec."Buy-from Vendor No." := vle."Buy-from Vendor No.";
+                        rec."Vendor Posting Group" := vle."Vendor Posting Group";
+                        rec."Global Dimension 1 Code" := vle."Global Dimension 1 Code";
+                        rec."Global Dimension 2 Code" := vle."Global Dimension 2 Code";
+                        rec."Purchaser Code" := vle."Purchaser Code";
+                        rec."User ID" := vle."User ID";
+                        rec."Source Code" := vle."Source Code";
+                        rec."On Hold" := vle."On Hold";
+                        rec."Applies-to Doc. Type" := vle."Applies-to Doc. Type";
+                        rec."Applies-to Doc. No." := vle."Applies-to Doc. No.";
+                        rec.Open := vle.Open;
+                        rec."Due Date" := vle."Due Date";
+                        rec."Pmt. Discount Date" := vle."Pmt. Discount Date";
+                        rec."Orig. Pmt. Disc. Possible(LCY)" := vle."Orig. Pmt. Disc. Possible(LCY)";
+                        rec."Pmt. Disc. Rcd.(LCY)" := vle."Pmt. Disc. Rcd.(LCY)";
+                        rec."Original Pmt. Disc. Possible" := vle."Original Pmt. Disc. Possible";
+                        rec.Positive := vle.Positive;
+                        rec."Closed by Entry No." := vle."Closed by Entry No.";
+                        rec."Closed at Date" := vle."Closed at Date";
+                        rec."Closed by Amount" := vle."Closed by Amount";
+                        rec."Applies-to ID" := vle."Applies-to ID";
+                        rec."Journal Templ. Name" := vle."Journal Templ. Name";
+                        rec."Journal Batch Name" := vle."Journal Batch Name";
+                        rec."Reason Code" := vle."Reason Code";
+                        rec."Bal. Account Type" := vle."Bal. Account Type";
+                        rec."Bal. Account No." := vle."Bal. Account No.";
+                        rec."Transaction No." := vle."Transaction No.";
+                        rec."Closed by Amount (LCY)" := vle."Closed by Amount (LCY)";
+                        vle.CalcFields("Debit Amount");
+                        rec."Debit Amount" := vle."Debit Amount";
+                        vle.CalcFields("Credit Amount");
+                        rec."Credit Amount" := vle."Credit Amount";
+                        vle.CalcFields("Debit Amount (LCY)");
+                        rec."Debit Amount (LCY)" := vle."Debit Amount (LCY)";
+                        vle.CalcFields("Credit Amount (LCY)");
+                        vle."Credit Amount (LCY)" := vle."Credit Amount (LCY)";
+                        rec."Document Date" := vle."Document Date";
+                        rec."External Document No." := vle."External Document No.";
+                        rec."No. Series" := vle."No. Series";
+                        rec."Closed by Currency Amount" := vle."Closed by Currency Amount";
+                        rec."Closed by Currency Code" := vle."Closed by Currency Code";
+                        rec."Adjusted Currency Factor" := vle."Adjusted Currency Factor";
+                        rec."Original Currency Factor" := vle."Original Currency Factor";
+                        vle.CalcFields("Original Amount");
+                        rec."Original Amount" := vle."Original Amount";
+                        rec."Date Filter" := vle."Date Filter";
+                        rec."Remaining Pmt. Disc. Possible" := vle."Remaining Pmt. Disc. Possible";
+                        rec."Pmt. Disc. Tolerance Date" := vle."Pmt. Disc. Tolerance Date";
+                        rec."Max. Payment Tolerance" := vle."Max. Payment Tolerance";
+                        rec."Accepted Payment Tolerance" := vle."Accepted Payment Tolerance";
+                        rec."Accepted Pmt. Disc. Tolerance" := vle."Accepted Pmt. Disc. Tolerance";
+                        rec."Pmt. Tolerance (LCY)" := vle."Pmt. Tolerance (LCY)";
+                        rec."Amount to Apply" := vle."Amount to Apply";
+                        rec."IC Partner Code" := vle."IC Partner Code";
+                        rec.Prepayment := vle.Prepayment;
+                        rec."Applies-to Ext. Doc. No." := vle."Applies-to Ext. Doc. No.";
+                        rec."Creditor No." := vle."Creditor No.";
+                        rec."Payment Reference" := vle."Payment Reference";
+                        rec."Payment Method Code" := vle."Payment Method Code";
+                        rec."Recipient Bank Account" := vle."Recipient Bank Account";
+                        rec."Message to Recipient" := vle."Message to Recipient";
+                        rec."Exported to Payment File" := vle."Exported to Payment File";
+                        rec."Dimension Set ID" := vle."Dimension Set ID";
+                        rec.FBM_approved := vle.FBM_approved;
+                        vendor.ChangeCompany(comp.Name);
+                        if vendor.get(vle."Vendor No.") then
+                            rec."FBM_Default Bank Account" := vendor."FBM_Default Bank Account";
+
+                        rec."FBM_approved date" := vle."FBM_approved date";
+                        rec."FBM_approved user" := vle."FBM_approved user";
+                        rec."FBM_Approver Comment" := vle."FBM_Approver Comment";
+                        vle.CalcFields(Amount, "Remaining Amount");
+                        rec.FBM_Amount := vle.Amount;
+                        rec.FBM_Paid := vle.FBM_Paid;
+                        rec.FBM_RemAmount := vle."Remaining Amount";
+                        rec."Remaining Amount" := vle."Remaining Amount";
+                        rec.Amount := vle.Amount;
+                        rec.FBM_approved1 := vle.FBM_approved1;
+                        rec."FBM_approved date1" := vle."FBM_approved date1";
+                        rec."FBM_approved user1" := vle."FBM_approved user1";
+                        rec."FBM_Approver Comment1" := vle."FBM_Approver Comment1";
+                        rec.FBM_approved2 := vle.FBM_approved2;
+                        rec."FBM_approved date2" := vle."FBM_approved date2";
+                        rec."FBM_approved user2" := vle."FBM_approved user2";
+                        rec."FBM_Approver Comment2" := vle."FBM_Approver Comment2";
+                        rec.Insert();
+
+
+
+                    until vle.Next() = 0;
             end;
         until comp.Next() = 0;
+
         CurrPage.Update();
     end;
 
@@ -437,93 +489,93 @@ page 60117 FBM_PaymentApprovalM_CO
     begin
         comp.FindFirst();
         repeat
-            vlem.SetRange(Company, comp.Name);
-            if vlem.FindFirst() then
+            rec.SetRange(Company, comp.Name);
+            if rec.FindFirst() then
                 repeat
-                    vle.ChangeCompany(vlem.Company);
-                    vle.SetRange("Entry No.", vlem."Entry No.");
+                    vle.ChangeCompany(rec.Company);
+                    vle.SetRange("Entry No.", rec."Entry No.");
                     if vle.FindFirst() then begin
-                        vle."Entry No." := vlem."Entry No.";
-                        vle."Vendor No." := vlem."Vendor No.";
-                        vle."Posting Date" := vlem."Posting Date";
-                        vle."Document Type" := vlem."Document Type";
-                        vle."Document No." := vlem."Document No.";
-                        vle.Description := vlem.Description;
-                        vle."Vendor Name" := vlem."Vendor Name";
-                        vle."Currency Code" := vlem."Currency Code";
+                        vle."Entry No." := rec."Entry No.";
+                        vle."Vendor No." := rec."Vendor No.";
+                        vle."Posting Date" := rec."Posting Date";
+                        vle."Document Type" := rec."Document Type";
+                        vle."Document No." := rec."Document No.";
+                        vle.Description := rec.Description;
+                        vle."Vendor Name" := rec."Vendor Name";
+                        vle."Currency Code" := rec."Currency Code";
 
-                        vle."Purchase (LCY)" := vlem."Purchase (LCY)";
-                        vle."Inv. Discount (LCY)" := vlem."Inv. Discount (LCY)";
-                        vle."Buy-from Vendor No." := vlem."Buy-from Vendor No.";
-                        vle."Vendor Posting Group" := vlem."Vendor Posting Group";
-                        vle."Global Dimension 1 Code" := vlem."Global Dimension 1 Code";
-                        vle."Global Dimension 2 Code" := vlem."Global Dimension 2 Code";
-                        vle."Purchaser Code" := vlem."Purchaser Code";
-                        vle."User ID" := vlem."User ID";
-                        vle."Source Code" := vlem."Source Code";
-                        vle."On Hold" := vlem."On Hold";
-                        vle."Applies-to Doc. Type" := vlem."Applies-to Doc. Type";
-                        vle."Applies-to Doc. No." := vlem."Applies-to Doc. No.";
-                        vle.Open := vlem.Open;
-                        vle."Due Date" := vlem."Due Date";
-                        vle."Pmt. Discount Date" := vlem."Pmt. Discount Date";
-                        vle."Orig. Pmt. Disc. Possible(LCY)" := vlem."Orig. Pmt. Disc. Possible(LCY)";
-                        vle."Pmt. Disc. Rcd.(LCY)" := vlem."Pmt. Disc. Rcd.(LCY)";
-                        vle."Original Pmt. Disc. Possible" := vlem."Original Pmt. Disc. Possible";
-                        vle.Positive := vlem.Positive;
-                        vle."Closed by Entry No." := vlem."Closed by Entry No.";
-                        vle."Closed at Date" := vlem."Closed at Date";
-                        vle."Closed by Amount" := vlem."Closed by Amount";
-                        vle."Applies-to ID" := vlem."Applies-to ID";
-                        vle."Journal Templ. Name" := vlem."Journal Templ. Name";
-                        vle."Journal Batch Name" := vlem."Journal Batch Name";
-                        vle."Reason Code" := vlem."Reason Code";
-                        vle."Bal. Account Type" := vlem."Bal. Account Type";
-                        vle."Bal. Account No." := vlem."Bal. Account No.";
-                        VLE."Transaction No." := vlem."Transaction No.";
-                        vle."Closed by Amount (LCY)" := vlem."Closed by Amount (LCY)";
+                        vle."Purchase (LCY)" := rec."Purchase (LCY)";
+                        vle."Inv. Discount (LCY)" := rec."Inv. Discount (LCY)";
+                        vle."Buy-from Vendor No." := rec."Buy-from Vendor No.";
+                        vle."Vendor Posting Group" := rec."Vendor Posting Group";
+                        vle."Global Dimension 1 Code" := rec."Global Dimension 1 Code";
+                        vle."Global Dimension 2 Code" := rec."Global Dimension 2 Code";
+                        vle."Purchaser Code" := rec."Purchaser Code";
+                        vle."User ID" := rec."User ID";
+                        vle."Source Code" := rec."Source Code";
+                        vle."On Hold" := rec."On Hold";
+                        vle."Applies-to Doc. Type" := rec."Applies-to Doc. Type";
+                        vle."Applies-to Doc. No." := rec."Applies-to Doc. No.";
+                        vle.Open := rec.Open;
+                        vle."Due Date" := rec."Due Date";
+                        vle."Pmt. Discount Date" := rec."Pmt. Discount Date";
+                        vle."Orig. Pmt. Disc. Possible(LCY)" := rec."Orig. Pmt. Disc. Possible(LCY)";
+                        vle."Pmt. Disc. Rcd.(LCY)" := rec."Pmt. Disc. Rcd.(LCY)";
+                        vle."Original Pmt. Disc. Possible" := rec."Original Pmt. Disc. Possible";
+                        vle.Positive := rec.Positive;
+                        vle."Closed by Entry No." := rec."Closed by Entry No.";
+                        vle."Closed at Date" := rec."Closed at Date";
+                        vle."Closed by Amount" := rec."Closed by Amount";
+                        vle."Applies-to ID" := rec."Applies-to ID";
+                        vle."Journal Templ. Name" := rec."Journal Templ. Name";
+                        vle."Journal Batch Name" := rec."Journal Batch Name";
+                        vle."Reason Code" := rec."Reason Code";
+                        vle."Bal. Account Type" := rec."Bal. Account Type";
+                        vle."Bal. Account No." := rec."Bal. Account No.";
+                        VLE."Transaction No." := rec."Transaction No.";
+                        vle."Closed by Amount (LCY)" := rec."Closed by Amount (LCY)";
 
-                        vle."Document Date" := vlem."Document Date";
-                        vle."External Document No." := vlem."External Document No.";
-                        vle."No. Series" := vlem."No. Series";
-                        vle."Closed by Currency Amount" := vlem."Closed by Currency Amount";
-                        vle."Closed by Currency Code" := vlem."Closed by Currency Code";
-                        vle."Adjusted Currency Factor" := vlem."Adjusted Currency Factor";
-                        vle."Original Currency Factor" := vlem."Original Currency Factor";
+                        vle."Document Date" := rec."Document Date";
+                        vle."External Document No." := rec."External Document No.";
+                        vle."No. Series" := rec."No. Series";
+                        vle."Closed by Currency Amount" := rec."Closed by Currency Amount";
+                        vle."Closed by Currency Code" := rec."Closed by Currency Code";
+                        vle."Adjusted Currency Factor" := rec."Adjusted Currency Factor";
+                        vle."Original Currency Factor" := rec."Original Currency Factor";
 
-                        vle."Date Filter" := vlem."Date Filter";
-                        vle."Remaining Pmt. Disc. Possible" := vlem."Remaining Pmt. Disc. Possible";
-                        vle."Pmt. Disc. Tolerance Date" := vlem."Pmt. Disc. Tolerance Date";
-                        vle."Max. Payment Tolerance" := vlem."Max. Payment Tolerance";
-                        vle."Accepted Payment Tolerance" := vlem."Accepted Payment Tolerance";
-                        vle."Accepted Pmt. Disc. Tolerance" := vlem."Accepted Pmt. Disc. Tolerance";
-                        vle."Pmt. Tolerance (LCY)" := vlem."Pmt. Tolerance (LCY)";
-                        vle."Amount to Apply" := vlem."Amount to Apply";
-                        vle."IC Partner Code" := vlem."IC Partner Code";
-                        vle.Prepayment := vlem.Prepayment;
-                        vle."Applies-to Ext. Doc. No." := vlem."Applies-to Ext. Doc. No.";
-                        vle."Creditor No." := vlem."Creditor No.";
-                        vle."Payment Reference" := vlem."Payment Reference";
-                        vle."Payment Method Code" := vlem."Payment Method Code";
-                        vle."Recipient Bank Account" := vlem."Recipient Bank Account";
-                        vle."Message to Recipient" := vlem."Message to Recipient";
-                        vle."Exported to Payment File" := vlem."Exported to Payment File";
-                        vle."Dimension Set ID" := vlem."Dimension Set ID";
-                        vle.FBM_approved := vlem.FBM_approved;
-                        vle."FBM_approved date" := vlem."FBM_approved date";
-                        vle."FBM_approved user" := vlem."FBM_approved user";
-                        vle."FBM_Approver Comment" := vlem."FBM_Approver Comment";
-                        vle.FBM_approved1 := vlem.FBM_approved1;
-                        vle."FBM_approved date1" := vlem."FBM_approved date1";
-                        vle."FBM_approved user1" := vlem."FBM_approved user1";
-                        vle."FBM_Approver Comment1" := vlem."FBM_Approver Comment1";
-                        vle.FBM_approved2 := vlem.FBM_approved2;
-                        vle."FBM_approved date2" := vlem."FBM_approved date2";
-                        vle."FBM_approved user2" := vlem."FBM_approved user2";
-                        vle."FBM_Approver Comment2" := vlem."FBM_Approver Comment2";
+                        vle."Date Filter" := rec."Date Filter";
+                        vle."Remaining Pmt. Disc. Possible" := rec."Remaining Pmt. Disc. Possible";
+                        vle."Pmt. Disc. Tolerance Date" := rec."Pmt. Disc. Tolerance Date";
+                        vle."Max. Payment Tolerance" := rec."Max. Payment Tolerance";
+                        vle."Accepted Payment Tolerance" := rec."Accepted Payment Tolerance";
+                        vle."Accepted Pmt. Disc. Tolerance" := rec."Accepted Pmt. Disc. Tolerance";
+                        vle."Pmt. Tolerance (LCY)" := rec."Pmt. Tolerance (LCY)";
+                        vle."Amount to Apply" := rec."Amount to Apply";
+                        vle."IC Partner Code" := rec."IC Partner Code";
+                        vle.Prepayment := rec.Prepayment;
+                        vle."Applies-to Ext. Doc. No." := rec."Applies-to Ext. Doc. No.";
+                        vle."Creditor No." := rec."Creditor No.";
+                        vle."Payment Reference" := rec."Payment Reference";
+                        vle."Payment Method Code" := rec."Payment Method Code";
+                        vle."Recipient Bank Account" := rec."Recipient Bank Account";
+                        vle."Message to Recipient" := rec."Message to Recipient";
+                        vle."Exported to Payment File" := rec."Exported to Payment File";
+                        vle."Dimension Set ID" := rec."Dimension Set ID";
+                        vle.FBM_approved := rec.FBM_approved;
+                        vle."FBM_approved date" := rec."FBM_approved date";
+                        vle."FBM_approved user" := rec."FBM_approved user";
+                        vle."FBM_Approver Comment" := rec."FBM_Approver Comment";
+                        vle.FBM_approved1 := rec.FBM_approved1;
+                        vle."FBM_approved date1" := rec."FBM_approved date1";
+                        vle."FBM_approved user1" := rec."FBM_approved user1";
+                        vle."FBM_Approver Comment1" := rec."FBM_Approver Comment1";
+                        vle.FBM_approved2 := rec.FBM_approved2;
+                        vle."FBM_approved date2" := rec."FBM_approved date2";
+                        vle."FBM_approved user2" := rec."FBM_approved user2";
+                        vle."FBM_Approver Comment2" := rec."FBM_Approver Comment2";
                         vle.Modify();
                     end;
-                until vlem.next = 0;
+                until rec.next = 0;
         until comp.next = 0;
 
     end;
@@ -532,7 +584,7 @@ page 60117 FBM_PaymentApprovalM_CO
     var
         comp: record Company;
         compinfo: record "Company Information";
-        VLEM: record FBM_VendorLEM;
+
         VLE: record "Vendor Ledger Entry";
         PostApprovalEntries: Record "Posted Approval Entry";
         ApproverID: Code[50];
@@ -549,6 +601,8 @@ page 60117 FBM_PaymentApprovalM_CO
         ponum: code[20];
         vendor: record Vendor;
         purchinv: record "Purch. Inv. Header";
+        bankacc: record "Bank Account";
+        bankaccM: record FBM_BankAccountTMP;
 
 
     local procedure GetOriginalDueDate(VLE: Record FBM_VendorLEM): Date

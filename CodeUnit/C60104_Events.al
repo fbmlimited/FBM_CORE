@@ -109,6 +109,7 @@ codeunit 60104 FBM_Events_CO
         GenJournalLine."FBM_Period Start" := SalesHeader."FBM_Period Start";
         GenJournalLine."FBM_Period End" := SalesHeader."FBM_Period End";
         GenJournalLine.FBM_Segment := SalesHeader.FBM_Segment;
+        GenJournalLine.FBM_Site := SalesHeader.FBM_Site;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnAfterInitGLEntry', '', true, true)]
@@ -119,6 +120,7 @@ codeunit 60104 FBM_Events_CO
         GLEntry."FBM_Period End" := GenJournalLine."FBM_Period End";
 
         GLEntry.FBM_Segment := GenJournalLine.FBM_Segment;
+        GLEntry.FBM_Site := GenJournalLine.FBM_Site;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnAfterHandleAddCurrResidualGLEntry', '', true, true)]
@@ -128,6 +130,7 @@ codeunit 60104 FBM_Events_CO
         GLEntry2."FBM_Period Start" := GenJournalLine."FBM_Period Start";
         GLEntry2."FBM_Period End" := GenJournalLine."FBM_Period End";
         GLEntry2.FBM_Segment := GenJournalLine.FBM_Segment;
+        GLEntry2.FBM_Site := GenJournalLine.FBM_Site;
 
     end;
 
@@ -143,6 +146,7 @@ codeunit 60104 FBM_Events_CO
         TempGLEntryBuf."FBM_Period Start" := GenJournalLine."FBM_Period Start";
         TempGLEntryBuf."FBM_Period End" := GenJournalLine."FBM_Period End";
         TempGLEntryBuf.FBM_Segment := GenJournalLine.FBM_Segment;
+        TempGLEntryBuf.FBM_Site := GenJournalLine.FBM_Site;
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Cust. Ledger Entry", 'OnAfterCopyCustLedgerEntryFromGenJnlLine', '', true, true)]

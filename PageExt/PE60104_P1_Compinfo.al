@@ -60,7 +60,18 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
             {
                 ApplicationArea = all;
             }
-
+            field(FBM_Conso1; Rec.FBM_Conso1)
+            {
+                ApplicationArea = all;
+            }
+            field(FBM_Conso2; Rec.FBM_Conso2)
+            {
+                ApplicationArea = all;
+            }
+            field(FBM_Conso3; Rec.FBM_Conso3)
+            {
+                ApplicationArea = all;
+            }
         }
 
 

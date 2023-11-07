@@ -28,6 +28,10 @@ page 60100 FBM_SubsidiaryList_CO
                 {
                     ApplicationArea = All;
                 }
+                field(Subsidiary; Rec.Subsidiary)
+                {
+                    ApplicationArea = All;
+                }
 
             }
         }
