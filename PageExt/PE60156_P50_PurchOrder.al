@@ -55,6 +55,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
             {
                 ApplicationArea = all;
             }
+
         }
         addafter(ShippingOptionWithLocation)
         {
@@ -356,7 +357,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         {
             Visible = false;
         }
-        
+
     }
     actions
     {
@@ -479,7 +480,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         uper: Codeunit "User Permissions";
     begin
 
-        
+
 
 
 
@@ -546,7 +547,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
 
 
     var
-       
+
 
         PrepaymentAmount: Decimal;
         DocumentTotals: Codeunit "Document Totals";

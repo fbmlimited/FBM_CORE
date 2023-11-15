@@ -9,6 +9,15 @@ pageextension 60102 FBM_ItemLEExt_CO extends "Item Ledger Entries"
 
             }
         }
+        addlast(Control1)
+        {
+            field(FBM_Site; Rec.FBM_Site)
+            {
+                ApplicationArea = all;
+
+            }
+
+        }
     }
 
 }

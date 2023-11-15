@@ -455,7 +455,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=iif(Fields!HasSite.Value,Fields!PeriodStartCaption.Value,"")</Value>
+                                                        <Value>=iif(Fields!Period_Start.Value&lt;&gt;"",Fields!PeriodStartCaption.Value,"")</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -493,7 +493,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=iif(Fields!HasSite.Value,Fields!PeriodEndCaption.Value,"")</Value>
+                                                        <Value>=iif(Fields!Period_Start.Value&lt;&gt;"",Fields!PeriodEndCaption.Value,"")</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
@@ -1557,7 +1557,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=iif(Fields!HasSite.Value,Fields!Period_Start.Value,"")</Value>
+                                                        <Value>=iif(Fields!Period_Start.Value&lt;&gt;"",Fields!Period_Start.Value,"")</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                           <Format>d</Format>
@@ -1598,7 +1598,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=iif(Fields!HasSite.Value,Fields!Period_End.Value,"")</Value>
+                                                        <Value>=iif(Fields!Period_Start.Value&lt;&gt;"",Fields!Period_End.Value,"")</Value>
                                                         <Style>
                                                           <FontSize>9pt</FontSize>
                                                           <Format>d</Format>
@@ -1629,6 +1629,7 @@
                                                   <PaddingRight>1pt</PaddingRight>
                                                 </Style>
                                               </Textbox>
+                                              <rd:Selected>true</rd:Selected>
                                             </CellContents>
                                           </TablixCell>
                                           <TablixCell>

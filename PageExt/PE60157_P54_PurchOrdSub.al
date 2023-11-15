@@ -10,8 +10,15 @@ pageextension 60157 FBM_PurchOrdSubExt_CO extends "Purchase Order Subform"
         {
             Visible = true;
         }
-        
+        addafter("Location Code")
+        {
+            field(FBM_Site; Rec.FBM_Site)
+            {
+                ApplicationArea = all;
+            }
+        }
+
 
     }
-    
+
 }

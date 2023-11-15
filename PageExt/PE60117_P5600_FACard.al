@@ -102,6 +102,18 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
                 Enabled = isegm;
                 Editable = false;
             }
+            field(Status; rec.FBM_Status)
+            {
+                ApplicationArea = all;
+                Enabled = isegm;
+                Editable = false;
+            }
+            field(FBM_DatePrepared; Rec.FBM_DatePrepared)
+            {
+                ApplicationArea = all;
+                Enabled = isegm;
+
+            }
         }
         addafter(BookValue)
         {
@@ -109,12 +121,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
             {
                 ApplicationArea = all;
             }
-            field(Status; rec.FBM_Status)
-            {
-                ApplicationArea = all;
-                Enabled = isegm;
-                Editable = false;
-            }
+
             field(FBM_Subsidiary; Rec.FBM_Subsidiary)
             {
                 ApplicationArea = all;
@@ -131,18 +138,8 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
 
         }
 
-        addafter("Responsible Employee")
-        {
-            field(FBM_DatePrepared; Rec.FBM_DatePrepared)
-            {
-                ApplicationArea = all;
-                Visible = false;
-            }
-        }
-        addafter(Maintenance)
-        {
 
-        }
+
         addafter(General)
         {
             group("Linked FA")

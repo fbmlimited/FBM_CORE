@@ -23,6 +23,10 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
         }
         addafter("Search Description")
         {
+            field(FBM_Status; Rec.FBM_Status)
+            {
+                ApplicationArea = All;
+            }
             field("Global Dimension 1 Code80514"; Rec."Global Dimension 1 Code")
             {
                 ApplicationArea = All;

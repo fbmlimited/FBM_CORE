@@ -1,5 +1,6 @@
 codeunit 60104 FBM_Events_CO
 {
+    Permissions = tabledata 32 = rimd;
     EventSubscriberInstance = StaticAutomatic;
     trigger OnRun()
     begin
@@ -260,4 +261,77 @@ codeunit 60104 FBM_Events_CO
         end;
 
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, 5856, 'OnAfterCreateItemJnlLine', '', true, true)]
+    procedure OnAfterCreateItemJnlLine(var ItemJnlLine: Record "Item Journal Line"; TransLine: Record "Transfer Line"; DirectTransHeader: Record "Direct Trans. Header"; DirectTransLine: Record "Direct Trans. Line")
+    begin
+        if ItemJnlLine.Quantity < 0 then
+            ItemJnlLine.FBM_Site := DirectTransHeader.FBM_SiteFrom
+        else
+            ItemJnlLine.FBM_Site := DirectTransHeader.FBM_SiteTo;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 5856, 'OnAfterInsertDirectTransHeader', '', true, true)]
+    procedure OnAfterInsertDirectTransHeader(var DirectTransHeader: Record "Direct Trans. Header"; TransferHeader: Record "Transfer Header")
+    begin
+        DirectTransHeader.FBM_SiteFrom := TransferHeader.FBM_SiteFrom;
+        DirectTransHeader.FBM_SiteTo := TransferHeader.FBM_SiteTo;
+
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 22, 'OnAfterPostItemJnlLine', '', true, true)]
+    procedure OnAfterPostItemJnlLine(var ItemJournalLine: Record "Item Journal Line"; ItemLedgerEntry: Record "Item Ledger Entry"; var ValueEntryNo: Integer; var InventoryPostingToGL: Codeunit "Inventory Posting To G/L"; CalledFromAdjustment: Boolean; CalledFromInvtPutawayPick: Boolean; var ItemRegister: Record "Item Register"; var ItemLedgEntryNo: Integer; var ItemApplnEntryNo: Integer)
+    var
+        itemLE: record "Item Ledger Entry";
+    begin
+        if itemLE.get(ItemJournalLine."Item Shpt. Entry No.") then begin
+            itemLE.FBM_Site := ItemJournalLine.FBM_Site;
+            itemLE.Modify();
+
+        end;
+        if itemLE.get(ItemLedgEntryNo) then begin
+            itemLE.FBM_Site := ItemJournalLine.FBM_Site;
+            itemLE.Modify();
+
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 5705, 'OnBeforePostItemJournalLine', '', true, true)]
+
+    procedure OnBeforePostItemJournalLineR(var ItemJournalLine: Record "Item Journal Line"; TransferLine: Record "Transfer Line"; TransferReceiptHeader: Record "Transfer receipt Header"; TransferReceiptLine: Record "Transfer Receipt Line"; CommitIsSuppressed: Boolean)
+    var
+        traheader: record "Transfer Header";
+    begin
+        if traheader.get(TransferLine."Document No.") then begin
+            ItemJournalLine.FBM_Site := traheader.FBM_SiteTo;
+
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 5704, 'OnBeforePostItemJournalLine', '', true, true)]
+
+    procedure OnBeforePostItemJournalLineS(var ItemJournalLine: Record "Item Journal Line"; TransferLine: Record "Transfer Line"; TransferShipmentHeader: Record "Transfer Shipment Header"; TransferShipmentLine: Record "Transfer Shipment Line"; CommitIsSuppressed: Boolean)
+    var
+        traheader: record "Transfer Header";
+    begin
+        if traheader.get(TransferLine."Document No.") then begin
+            ItemJournalLine.FBM_Site := traheader.FBM_SiteFrom;
+
+        end;
+    end;
+
+
+
+    [EventSubscriber(ObjectType::Table, 83, 'OnAfterCopyItemJnlLineFromSalesLine', '', true, true)]
+    procedure OnAfterCopyItemJnlLineFromSalesLine(var ItemJnlLine: Record "Item Journal Line"; SalesLine: Record "Sales Line")
+    begin
+        ItemJnlLine.FBM_Site := SalesLine.FBM_Site;
+    end;
+
+
+
+
+
+
+
 }
