@@ -1,7 +1,12 @@
 codeunit 60104 FBM_Events_CO
 {
-    Permissions = tabledata 32 = rimd;
+    Permissions = tabledata 32 = rimd, tabledata "Sales Cr.Memo Header" = rimd;
+    ;
     EventSubscriberInstance = StaticAutomatic;
+
+    var
+        FormatAddress: Codeunit "Format Address";
+
     trigger OnRun()
     begin
     end;
@@ -322,15 +327,76 @@ codeunit 60104 FBM_Events_CO
 
 
 
-    [EventSubscriber(ObjectType::Table, 83, 'OnAfterCopyItemJnlLineFromSalesLine', '', true, true)]
-    procedure OnAfterCopyItemJnlLineFromSalesLine(var ItemJnlLine: Record "Item Journal Line"; SalesLine: Record "Sales Line")
+    [EventSubscriber(ObjectType::Table, 83, 'OnAfterCopyItemJnlLineFromPurchLine', '', true, true)]
+    procedure OnAfterCopyItemJnlLineFromPurchLine(var ItemJnlLine: Record "Item Journal Line"; PurchLine: Record "Purchase Line")
     begin
-        ItemJnlLine.FBM_Site := SalesLine.FBM_Site;
+        ItemJnlLine.FBM_Site := PurchLine.FBM_Site;
+
     end;
 
+    [EventSubscriber(ObjectType::Table, 5740, 'OnUpdateTransLines', '', true, true)]
+    procedure OnUpdateTransLines(var TransferLine: Record "Transfer Line"; TransferHeader: Record "Transfer Header"; FieldID: Integer)
+    begin
+        TransferLine.FBM_SiteFrom := TransferHeader.FBM_SiteFrom;
+        TransferLine.FBM_SiteTo := TransferHeader.FBM_SiteTo;
 
+    end;
 
+    [EventSubscriber(ObjectType::Codeunit, 5400, 'OnAfterCalcAvailableQty', '', true, true)]
+    procedure OnAfterCalcAvailableQty(var Item: Record Item; CalcAvailable: Boolean; PlannedOrderReceiptDate: Date; var AvailableQty: Decimal)
+    begin
+        item.CalcFields(Inventory, FBM_Inventory_FF);
+        AvailableQty := AvailableQty - item.Inventory;
+        AvailableQty := AvailableQty + item.FBM_Inventory_FF;
 
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 5790, 'OnAfterCalcAvailableInventory', '', true, true)]
+    procedure OnAfterCalcAvailableInventory(var Item: Record Item; var AvailableInventory: Decimal)
+    begin
+        item.CalcFields(Inventory, FBM_Inventory_FF);
+        AvailableInventory := AvailableInventory - item.Inventory;
+        AvailableInventory := AvailableInventory + item.FBM_Inventory_FF;
+    end;
+    //format address
+
+    procedure GetCompanyAddrCountry(RespCenterCode: Code[10];
+    var ResponsibilityCenter: Record "Responsibility Center";
+    var CompanyInfo: Record "Company Information";
+    var CompanyAddr: array[8] of Text[100])
+    begin
+        if ResponsibilityCenter.Get(RespCenterCode) then begin
+            RespCenterCountry(CompanyAddr, ResponsibilityCenter);
+            CompanyInfo."Phone No." := ResponsibilityCenter."Phone No.";
+            CompanyInfo."Fax No." := ResponsibilityCenter."Fax No.";
+        end
+        else
+            CompanyCountry(CompanyAddr, CompanyInfo);
+    end;
+
+    procedure CompanyCountry(var AddrArray: array[8] of Text[100];
+    var CompanyInfo: Record "Company Information")
+    begin
+        FormatAddress.FormatAddr(AddrArray, CompanyInfo.Name, CompanyInfo."Name 2", '', CompanyInfo.Address, CompanyInfo."Address 2", CompanyInfo.City, CompanyInfo."Post Code", CompanyInfo.County, CompanyInfo."Country/Region Code");
+    end;
+
+    procedure RespCenterCountry(var AddrArray: array[8] of Text[100];
+    var RespCenter: Record "Responsibility Center")
+    begin
+        FormatAddress.FormatAddr(AddrArray, RespCenter.Name, RespCenter."Name 2", RespCenter.Contact, RespCenter.Address, RespCenter."Address 2", RespCenter.City, RespCenter."Post Code", RespCenter.County, RespCenter."Country/Region Code");
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Format Address", 'OnBeforeSalesInvSellTo', '', true, true)]
+    procedure OnBeforeSalesInvSellTo(var AddrArray: array[8] of Text[100]; var SalesInvoiceHeader: Record "Sales Invoice Header"; var Handled: Boolean)
+    var
+        format: codeunit "Format Address";
+    begin
+
+        format.FormatAddr(
+          AddrArray, SalesInvoiceHeader."Sell-to Customer Name", SalesInvoiceHeader."Sell-to Customer Name 2", '', SalesInvoiceHeader."Sell-to Address", SalesInvoiceHeader."Sell-to Address 2",
+          SalesInvoiceHeader."Sell-to City", SalesInvoiceHeader."Sell-to Post Code", SalesInvoiceHeader."Sell-to County", SalesInvoiceHeader."Sell-to Country/Region Code");
+        Handled := true;
+    end;
 
 
 

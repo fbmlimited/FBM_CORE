@@ -21,4 +21,26 @@ pageextension 60184 FBM_ItemCardExt_CO extends "Item Card"
             }
         }
     }
+    actions
+    {
+
+        addlast(ItemAvailabilityBy)
+        {
+            action(ItemsBySite)
+            {
+
+                AccessByPermission = TableData FBM_Customer = R;
+                ApplicationArea = Location;
+                Caption = 'Items b&y Site';
+                Image = ItemAvailbyLoc;
+                ToolTip = 'Show a list of items grouped by location.';
+
+                trigger OnAction()
+                begin
+                    PAGE.Run(PAGE::FBM_ItemsBySite_CO, Rec);
+                end;
+            }
+        }
+    }
+
 }

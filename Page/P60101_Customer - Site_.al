@@ -74,6 +74,7 @@ page 60101 "FBM_CustomerSite_CO"
                                         maxnum := 0
                                 else
                                     maxnum := 0;
+                                //rec.Rename(rec."Customer No.", rec."Customer No." + '-' + PADSTR('', 4 - strlen(FORMAT(MAXNUM + 1)), '0') + FORMAT(MAXNUM + 1));
                                 rec."Site Code" := rec."Customer No." + '-' + PADSTR('', 4 - strlen(FORMAT(MAXNUM + 1)), '0') + FORMAT(MAXNUM + 1);
 
                             end;

@@ -1721,7 +1721,7 @@ report 60138 "D2R Sales - CrMemo_CO"
         AmountInclVATC2: Decimal;
         TotalPaymentDiscOnVATC2: Decimal;
         TotalAmountInclVATC2: Decimal;
-        FormatAddrCountry: Codeunit "FBM_Format Addr_CO";
+        FormatAddrCountry: Codeunit FBM_Events_CO;
         HasVAT: Boolean;
         TotalInclVATLbl: Label 'W/TAX';
         TotalExclVATLbl: Label 'NET AMOUNT';

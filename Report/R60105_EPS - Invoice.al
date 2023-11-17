@@ -1689,7 +1689,7 @@ report 60105 "EPS Sales - Invoice_CO"
         AmountInclVATC2: Decimal;
         TotalPaymentDiscOnVATC2: Decimal;
         TotalAmountInclVATC2: Decimal;
-        FormatAddrCountry: Codeunit "FBM_Format Addr_CO";
+        FormatAddrCountry: Codeunit FBM_Events_CO;
         HasVAT: Boolean;
         TotalInclVATLbl: Label 'TOTAL';
         TotalExclVATLbl: Label 'TOTAL';

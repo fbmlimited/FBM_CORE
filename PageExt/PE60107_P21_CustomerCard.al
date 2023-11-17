@@ -83,6 +83,12 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         {
             Editable = false;
 
+
+        }
+        modify(City)
+        {
+            Editable = false;
+
         }
         modify("VAT Registration No.")
         {

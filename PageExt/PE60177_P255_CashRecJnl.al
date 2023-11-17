@@ -31,7 +31,30 @@ pageextension 60177 FBM_CashRecJnlExt_CO extends "Cash Receipt Journal"
                 Custsite: Record FBM_CustomerSite_C;
                 CustSiteFull: Record FBM_CustomerSite_C;
                 Companyinfo: record "Company Information";
+                dimsite: Integer;
+                dimcontract: Integer;
+                glsetup: record "General Ledger Setup";
+                fasetup: record "FA Setup";
             begin
+                glsetup.get;
+                fasetup.Get();
+                if glsetup."Global Dimension 1 Code" = fasetup."FBM_Site Dimension" then dimsite := 1;
+                if glsetup."Global Dimension 2 Code" = fasetup."FBM_Site Dimension" then dimsite := 2;
+                if glsetup."Shortcut Dimension 3 Code" = fasetup."FBM_Site Dimension" then dimsite := 3;
+                if glsetup."Shortcut Dimension 4 Code" = fasetup."FBM_Site Dimension" then dimsite := 4;
+                if glsetup."Shortcut Dimension 5 Code" = fasetup."FBM_Site Dimension" then dimsite := 5;
+                if glsetup."Shortcut Dimension 6 Code" = fasetup."FBM_Site Dimension" then dimsite := 6;
+                if glsetup."Shortcut Dimension 7 Code" = fasetup."FBM_Site Dimension" then dimsite := 7;
+                if glsetup."Shortcut Dimension 8 Code" = fasetup."FBM_Site Dimension" then dimsite := 8;
+                if glsetup."Global Dimension 1 Code" = fasetup."FBM_Contract Dimension" then dimcontract := 1;
+                if glsetup."Global Dimension 2 Code" = fasetup."FBM_Contract Dimension" then dimcontract := 2;
+                if glsetup."Shortcut Dimension 3 Code" = fasetup."FBM_Contract Dimension" then dimcontract := 3;
+                if glsetup."Shortcut Dimension 4 Code" = fasetup."FBM_Contract Dimension" then dimcontract := 4;
+                if glsetup."Shortcut Dimension 5 Code" = fasetup."FBM_Contract Dimension" then dimcontract := 5;
+                if glsetup."Shortcut Dimension 6 Code" = fasetup."FBM_Contract Dimension" then dimcontract := 6;
+                if glsetup."Shortcut Dimension 7 Code" = fasetup."FBM_Contract Dimension" then dimcontract := 7;
+                if glsetup."Shortcut Dimension 8 Code" = fasetup."FBM_Contract Dimension" then dimcontract := 8;
+
                 DimensionValue.reset;
                 CustOpSite.Reset();
                 FASetup.Get();
@@ -53,22 +76,22 @@ pageextension 60177 FBM_CashRecJnlExt_CO extends "Cash Receipt Journal"
                     if rec."Account Type" = rec."Account Type"::Customer then
                         CustOpSite.SetFilter("Customer No.", rec."Account No.")
                     else
-                        if rec."Bal. Account Type" = rec."Bal. Account Type"::Customer then CustOpSite.SetFilter("Customer No.", rec."Bal. Account No.");
+                        if rec."Bal. Account Type" = rec."Bal. Account Type"::Customer then CustOpSite.SetFilter("Cust Loc Code", rec."Bal. Account No.");
                     if CustOpSite.FindFirst() then begin
-                        if page.RunModal(60103, CustOpSite) = Action::LookupOK then SD3 := CustOpSite."Site Code";
+                        if page.RunModal(60103, CustOpSite) = Action::LookupOK then SD3 := CustOpSite."Site Loc Code";
                     end
                     else begin //since customer <> operator
-                        if page.RunModal(60103, CustOpSiteFull) = Action::LookupOK then SD3 := CustOpSiteFull."Site Code";
+                        if page.RunModal(60103, CustOpSiteFull) = Action::LookupOK then SD3 := CustOpSiteFull."Site Loc Code";
                     end;
                 end;
-                Rec.ValidateShortcutDimCode(3, SD3);
+                Rec.ValidateShortcutDimCode(dimsite, SD3);
                 CurrPage.Update(true);
                 //DevOps #619 -- begin
                 Contract_CS.reset;
                 Contract_CS.SetFilter("Site Code", SD3);
                 if Contract_CS.FindFirst() then begin
                     if Contract_CS."Contract Code" <> '' then begin
-                        Rec.ValidateShortcutDimCode(6, Contract_CS."Contract Code");
+                        Rec.ValidateShortcutDimCode(dimcontract, Contract_CS."Contract Code");
                         CurrPage.Update(true);
                     end;
                 end;
