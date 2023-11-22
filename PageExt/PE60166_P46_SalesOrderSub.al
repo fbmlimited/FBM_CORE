@@ -49,22 +49,38 @@ pageextension 60166 FBM_SalesOrdSubExt_CO extends "Sales Order Subform"
         {
             //Visible = false;
             trigger OnLookup(var Text: Text): Boolean
+            var
+                dimoperator: Integer;
+                dimcontract: Integer;
+                glsetup: record "General Ledger Setup";
+                fasetup: record "FA Setup";
             begin
+                glsetup.get;
+                fasetup.Get();
+                if glsetup."Global Dimension 1 Code" = fasetup."FBM_Operator Dimension" then dimoperator := 1;
+                if glsetup."Global Dimension 2 Code" = fasetup."FBM_Operator Dimension" then dimoperator := 2;
+                if glsetup."Shortcut Dimension 3 Code" = fasetup."FBM_Operator Dimension" then dimoperator := 3;
+                if glsetup."Shortcut Dimension 4 Code" = fasetup."FBM_Operator Dimension" then dimoperator := 4;
+                if glsetup."Shortcut Dimension 5 Code" = fasetup."FBM_Operator Dimension" then dimoperator := 5;
+                if glsetup."Shortcut Dimension 6 Code" = fasetup."FBM_Operator Dimension" then dimoperator := 6;
+                if glsetup."Shortcut Dimension 7 Code" = fasetup."FBM_Operator Dimension" then dimoperator := 7;
+                if glsetup."Shortcut Dimension 8 Code" = fasetup."FBM_Operator Dimension" then dimoperator := 8;
+
                 DimensionValue.reset;
                 FASetup.Get();
                 DimensionValue.SetFilter(DimensionValue."Dimension Code", FASetup."FBM_Operator Dimension");
                 //DimensionValue.SetFilter(DimensionValue., Rec."Sell-to Customer No.");
                 if page.RunModal(537, DimensionValue) = Action::LookupOK then SD3 := DimensionValue.Code;
-                Rec.ValidateShortcutDimCode(3, SD3);
+                Rec.ValidateShortcutDimCode(dimoperator, SD3);
                 CurrPage.Update(true);
             end;
         }
-        
+
     }
-    
+
 
     var
-        
+
         showsite: Boolean;
 
         DimensionValue: Record "Dimension Value";

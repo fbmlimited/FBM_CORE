@@ -5,7 +5,7 @@ report 60125 FBM_SalesReport_CO
 
     RDLCLayout = './RDLC/OnetechSalesReport.rdl';
     ApplicationArea = All;
-    Caption = 'Sales Report';
+    Caption = 'Sales Report OLD';
 
     dataset
     {

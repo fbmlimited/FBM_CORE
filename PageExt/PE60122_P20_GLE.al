@@ -6,6 +6,10 @@ pageextension 60122 FBM_GLEntriesExt_CO extends "General Ledger Entries"
         {
             Visible = true;
         }
+        modify("Business Unit Code")
+        {
+            Visible = true;
+        }
         addafter("Posting Date")
         {
             //DEVOPS #742 -- begin
@@ -13,6 +17,7 @@ pageextension 60122 FBM_GLEntriesExt_CO extends "General Ledger Entries"
             {
                 ApplicationArea = All;
             }
+
             //DEVOPS #742 -- end
         }
         //DEVOPS #622 -- begin

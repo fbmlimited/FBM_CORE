@@ -17,40 +17,40 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
     var
         JobPlanningLine: Record "Job Planning Line";
     begin
-        with Item do begin
-            Init();
-            CalcFields(
-              "Qty. on Purch. Order",
-              "Qty. on Sales Order",
-              "Qty. on Service Order",
-              Inventory,
-              "Net Change",
-              "Scheduled Receipt (Qty.)",
-              "Qty. on Component Lines",
-              "Planned Order Receipt (Qty.)",
-              "FP Order Receipt (Qty.)",
-              "Rel. Order Receipt (Qty.)",
-              "Planned Order Release (Qty.)",
-              "Purch. Req. Receipt (Qty.)",
-              "Planning Issues (Qty.)",
-              "Purch. Req. Release (Qty.)");
 
-            if JobPlanningLine.ReadPermission then
-                CalcFields("Qty. on Job Order");
-            CalcFields(
-              "Qty. on Assembly Order",
-              "Qty. on Asm. Component",
-              "Qty. on Purch. Return",
-              "Qty. on Sales Return");
-            if CalculateTransferQuantities then
-                CalcFields(
-                  "Trans. Ord. Shipment (Qty.)",
-                  "Qty. in Transit",
-                  "Trans. Ord. Receipt (Qty.)");
+        Item.Init();
+        Item.CalcFields(
+          "Qty. on Purch. Order",
+          "Qty. on Sales Order",
+          "Qty. on Service Order",
+          Inventory,
+          "Net Change",
+          "Scheduled Receipt (Qty.)",
+          "Qty. on Component Lines",
+          "Planned Order Receipt (Qty.)",
+          "FP Order Receipt (Qty.)",
+          "Rel. Order Receipt (Qty.)",
+          "Planned Order Release (Qty.)",
+          "Purch. Req. Receipt (Qty.)",
+          "Planning Issues (Qty.)",
+          "Purch. Req. Release (Qty.)");
 
-            OnAfterCalcItemPlanningFields(Item);
-        end;
+        if JobPlanningLine.ReadPermission then
+            Item.CalcFields("Qty. on Job Order");
+        Item.CalcFields(
+          "Qty. on Assembly Order",
+          "Qty. on Asm. Component",
+          "Qty. on Purch. Return",
+          "Qty. on Sales Return");
+        if CalculateTransferQuantities then
+            Item.CalcFields(
+              "Trans. Ord. Shipment (Qty.)",
+              "Qty. in Transit",
+              "Trans. Ord. Receipt (Qty.)");
+
+        OnAfterCalcItemPlanningFields(Item);
     end;
+
 
     procedure CalculateNeed(var Item: Record Item; var GrossRequirement: Decimal; var PlannedOrderReceipt: Decimal; var ScheduledReceipt: Decimal; var PlannedOrderReleases: Decimal)
     var
@@ -60,29 +60,30 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
     begin
         CalcItemPlanningFields(Item, true);
 
-        with Item do begin
-            if GetFilter("Location Filter") = '' then begin
-                TransOrdShipmentQty := 0;
-                QtyinTransit := 0;
-                TransOrdReceiptQty := 0;
-            end else begin
-                TransOrdShipmentQty := "Trans. Ord. Shipment (Qty.)";
-                QtyinTransit := "Qty. in Transit";
-                TransOrdReceiptQty := "Trans. Ord. Receipt (Qty.)";
-            end;
-            GrossRequirement :=
-                "Qty. on Sales Order" + "Qty. on Service Order" + "Qty. on Job Order" + "Qty. on Component Lines" +
-                TransOrdShipmentQty + "Planning Issues (Qty.)" + "Qty. on Asm. Component" + "Qty. on Purch. Return";
-            PlannedOrderReceipt :=
-                "Planned Order Receipt (Qty.)" + "Purch. Req. Receipt (Qty.)";
-            ScheduledReceipt :=
-                "FP Order Receipt (Qty.)" + "Rel. Order Receipt (Qty.)" + "Qty. on Purch. Order" +
-                QtyinTransit + TransOrdReceiptQty + "Qty. on Assembly Order" + "Qty. on Sales Return";
-            OnCalculateNeedOnAfterCalcScheduledReceipt(Item, ScheduledReceipt, QtyinTransit, TransOrdReceiptQty);
-            PlannedOrderReleases :=
-                "Planned Order Release (Qty.)" + "Purch. Req. Release (Qty.)";
+
+        if Item.GetFilter("Location Filter") = '' then begin
+            TransOrdShipmentQty := 0;
+            QtyinTransit := 0;
+            TransOrdReceiptQty := 0;
+        end else begin
+            TransOrdShipmentQty := Item."Trans. Ord. Shipment (Qty.)";
+            QtyinTransit := Item."Qty. in Transit";
+            TransOrdReceiptQty := Item."Trans. Ord. Receipt (Qty.)";
         end;
+        GrossRequirement :=
+            Item."Qty. on Sales Order" + Item."Qty. on Service Order" + Item."Qty. on Job Order" + Item."Qty. on Component Lines" +
+            TransOrdShipmentQty + Item."Planning Issues (Qty.)" + Item."Qty. on Asm. Component" + Item."Qty. on Purch. Return";
+        PlannedOrderReceipt :=
+            Item."Planned Order Receipt (Qty.)" + Item."Purch. Req. Receipt (Qty.)";
+        ScheduledReceipt :=
+            Item."FP Order Receipt (Qty.)" + Item."Rel. Order Receipt (Qty.)" + Item."Qty. on Purch. Order" +
+            QtyinTransit + TransOrdReceiptQty + Item."Qty. on Assembly Order" + Item."Qty. on Sales Return";
+        OnCalculateNeedOnAfterCalcScheduledReceipt(Item, ScheduledReceipt, QtyinTransit, TransOrdReceiptQty);
+        PlannedOrderReleases :=
+            Item."Planned Order Release (Qty.)" + Item."Purch. Req. Release (Qty.)";
+
         OnAfterCalculateNeed(Item, GrossRequirement, PlannedOrderReceipt, ScheduledReceipt, PlannedOrderReleases);
+
     end;
 
     local procedure CalcProjAvailableBalance(var Item: Record Item): Decimal
@@ -236,26 +237,26 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with Item do begin
-            TestField("No.");
 
-            OnBeforeShowItemAvailFromItem(Item);
-            case AvailabilityType of
-                AvailabilityType::Date:
-                    ShowItemAvailByDate(Item, '', NewDate, NewDate);
-                AvailabilityType::Variant:
-                    ShowItemAvailVariant(Item, '', NewVariantCode, NewVariantCode);
-                AvailabilityType::Site:
-                    ShowItemAvailByLoc(Item, '', NewSiteCode, NewSiteCode);
-                AvailabilityType::"Event":
-                    ShowItemAvailByEvent(Item, '', NewDate, NewDate, false);
-                AvailabilityType::BOM:
-                    ShowItemAvailByBOMLevel(Item, '', NewDate, NewDate);
-                AvailabilityType::UOM:
-                    ShowItemAvailByUOM(Item, '', NewUnitOfMeasureCode, NewUnitOfMeasureCode);
-            end;
+        Item.TestField("No.");
+
+        OnBeforeShowItemAvailFromItem(Item);
+        case AvailabilityType of
+            AvailabilityType::Date:
+                ShowItemAvailByDate(Item, '', NewDate, NewDate);
+            AvailabilityType::Variant:
+                ShowItemAvailVariant(Item, '', NewVariantCode, NewVariantCode);
+            AvailabilityType::Site:
+                ShowItemAvailByLoc(Item, '', NewSiteCode, NewSiteCode);
+            AvailabilityType::"Event":
+                ShowItemAvailByEvent(Item, '', NewDate, NewDate, false);
+            AvailabilityType::BOM:
+                ShowItemAvailByBOMLevel(Item, '', NewDate, NewDate);
+            AvailabilityType::UOM:
+                ShowItemAvailByUOM(Item, '', NewUnitOfMeasureCode, NewUnitOfMeasureCode);
         end;
     end;
+
 
     procedure ShowItemAvailFromSalesLine(var SalesLine: Record "Sales Line"; AvailabilityType: Option Date,Variant,Site,Bin,"Event",BOM,UOM)
     var
@@ -268,47 +269,47 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewUnitOfMeasureCode: Code[10];
         IsHandled: Boolean;
     begin
-        with SalesLine do begin
-            TestField(Type, Type::Item);
-            TestField("No.");
-            Item.Reset();
-            Item.Get("No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Shipment Date");
 
-            IsHandled := false;
-            OnBeforeShowItemAvailFromSalesLine(Item, SalesLine, IsHandled, AvailabilityType);
-            if IsHandled then
-                exit;
+        SalesLine.TestField(Type, SalesLine.Type::Item);
+        SalesLine.TestField("No.");
+        Item.Reset();
+        Item.Get(SalesLine."No.");
+        FilterItem(Item, SalesLine."Location Code", SalesLine."Variant Code", SalesLine."Shipment Date");
 
-            case AvailabilityType of
-                AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Shipment Date"), "Shipment Date", NewDate) then
-                        Validate("Shipment Date", NewDate);
-                AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then begin
-                        Validate("Variant Code", NewVariantCode);
-                        ItemCheckAvail.SalesLineCheck(SalesLine);
-                    end;
-                AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption(FBM_Site), FBM_Site, NewSiteCode) then begin
-                        Validate(FBM_Site, NewSiteCode);
-                        ItemCheckAvail.SalesLineCheck(SalesLine);
-                    end;
-                AvailabilityType::"Event":
-                    if ShowItemAvailByEvent(Item, FieldCaption("Shipment Date"), "Shipment Date", NewDate, false) then
-                        Validate("Shipment Date", NewDate);
-                AvailabilityType::BOM:
-                    if AsmToOrderExists(AsmHeader) then
-                        ShowItemAvailFromAsmHeader(AsmHeader, AvailabilityType)
-                    else
-                        if ShowItemAvailByBOMLevel(Item, FieldCaption("Shipment Date"), "Shipment Date", NewDate) then
-                            Validate("Shipment Date", NewDate);
-                AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
-            end;
+        IsHandled := false;
+        OnBeforeShowItemAvailFromSalesLine(Item, SalesLine, IsHandled, AvailabilityType);
+        if IsHandled then
+            exit;
+
+        case AvailabilityType of
+            AvailabilityType::Date:
+                if ShowItemAvailByDate(Item, SalesLine.FieldCaption("Shipment Date"), SalesLine."Shipment Date", NewDate) then
+                    SalesLine.Validate("Shipment Date", NewDate);
+            AvailabilityType::Variant:
+                if ShowItemAvailVariant(Item, SalesLine.FieldCaption("Variant Code"), SalesLine."Variant Code", NewVariantCode) then begin
+                    SalesLine.Validate("Variant Code", NewVariantCode);
+                    ItemCheckAvail.SalesLineCheck(SalesLine);
+                end;
+            AvailabilityType::Site:
+                if ShowItemAvailByLoc(Item, SalesLine.FieldCaption(FBM_Site), SalesLine.FBM_Site, NewSiteCode) then begin
+                    SalesLine.Validate(FBM_Site, NewSiteCode);
+                    ItemCheckAvail.SalesLineCheck(SalesLine);
+                end;
+            AvailabilityType::"Event":
+                if ShowItemAvailByEvent(Item, SalesLine.FieldCaption("Shipment Date"), SalesLine."Shipment Date", NewDate, false) then
+                    SalesLine.Validate("Shipment Date", NewDate);
+            AvailabilityType::BOM:
+                if SalesLine.AsmToOrderExists(AsmHeader) then
+                    ShowItemAvailFromAsmHeader(AsmHeader, AvailabilityType)
+                else
+                    if ShowItemAvailByBOMLevel(Item, SalesLine.FieldCaption("Shipment Date"), SalesLine."Shipment Date", NewDate) then
+                        SalesLine.Validate("Shipment Date", NewDate);
+            AvailabilityType::UOM:
+                if ShowItemAvailByUOM(Item, SalesLine.FieldCaption("Unit of Measure Code"), SalesLine."Unit of Measure Code", NewUnitOfMeasureCode) then
+                    SalesLine.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
         end;
     end;
+
 
     procedure ShowItemAvailFromPurchLine(var PurchLine: Record "Purchase Line"; AvailabilityType: Option Date,Variant,Site,Bin,"Event",BOM,UOM)
     var
