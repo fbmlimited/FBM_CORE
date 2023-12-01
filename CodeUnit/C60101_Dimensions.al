@@ -487,7 +487,7 @@ codeunit 60101 FBM_Dimensions_CO
         END;
     end;
     //DEV008 START
-    //[EventSubscriber(ObjectType::codeunit, 12, 'OnBeforeInsertVATForGLEntry', '', true, true)]
+    [EventSubscriber(ObjectType::codeunit, 12, 'OnBeforeInsertVATForGLEntry', '', true, true)]
     local procedure OnBeforeInsertVATForGLEntry(var GenJnlLine: Record "Gen. Journal Line"; VATPostingSetup: Record "VAT Posting Setup"; GLEntryVATAmount: Decimal; SrcCurrGLEntryVATAmt: Decimal; UnrealizedVAT: Boolean; var IsHandled: Boolean; var VATEntry: Record "VAT Entry"; TaxJurisdiction: Record "Tax Jurisdiction"; SrcCurrCode: Code[10])
     var
         TmpDimensionSetEntry: record "Dimension Set Entry" temporary;
@@ -541,7 +541,7 @@ codeunit 60101 FBM_Dimensions_CO
         CLEAR(TmpDimensionSetEntry);
     END;
 
-    //[EventSubscriber(ObjectType::codeunit, 80, 'OnAfterPostSalesDoc', '', true, true)]
+    [EventSubscriber(ObjectType::codeunit, 80, 'OnAfterPostSalesDoc', '', true, true)]
     procedure OnAfterPostSalesDoc(var SalesHeader: Record "Sales Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; SalesShptHdrNo: Code[20]; RetRcpHdrNo: Code[20]; SalesInvHdrNo: Code[20]; SalesCrMemoHdrNo: Code[20]; CommitIsSuppressed: Boolean; InvtPickPutaway: Boolean; var CustLedgerEntry: Record "Cust. Ledger Entry"; WhseShip: Boolean; WhseReceiv: Boolean)
     var
         glentry: record "G/L Entry";
@@ -641,7 +641,7 @@ codeunit 60101 FBM_Dimensions_CO
         end;
     end;
 
-    //[EventSubscriber(ObjectType::codeunit, 90, 'OnAfterPostPurchaseDoc', '', true, true)]
+    [EventSubscriber(ObjectType::codeunit, 90, 'OnAfterPostPurchaseDoc', '', true, true)]
     procedure OnAfterPostPurchaseDoc(var PurchaseHeader: Record "Purchase Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; PurchRcpHdrNo: Code[20]; RetShptHdrNo: Code[20]; PurchInvHdrNo: Code[20]; PurchCrMemoHdrNo: Code[20]; CommitIsSupressed: Boolean)
     var
         glentry: record "G/L Entry";
@@ -740,7 +740,7 @@ codeunit 60101 FBM_Dimensions_CO
         end;
     end;
 
-    //[EventSubscriber(ObjectType::codeunit, 241, 'OnCodeOnAfterItemJnlPostBatchRun', '', true, true)]
+    [EventSubscriber(ObjectType::codeunit, 241, 'OnCodeOnAfterItemJnlPostBatchRun', '', true, true)]
     procedure OnCodeOnAfterItemJnlPostBatchRun(var ItemJournalLine: Record "Item Journal Line"; var HideDialog: Boolean; SuppressCommit: Boolean)
     var
         genps: record "General Posting Setup";
@@ -803,25 +803,41 @@ codeunit 60101 FBM_Dimensions_CO
         end;
     end;
 
+    [EventSubscriber(ObjectType::codeunit, 13, 'OnBeforeCheckLine', '', true, true)]
 
     //[EventSubscriber(ObjectType::codeunit, 5633, 'OnPostLinesOnAfterFAJnlPostLine', '', true, true)]
-    procedure OnPostLinesOnAfterFAJnlPostLine(var FAJnlLine: Record "FA Journal Line")
+    procedure OnCodeOnAfterCheckTemplate(var GenJournalLine: Record "Gen. Journal Line"; var PostingAfterWorkingDateConfirmed: Boolean; var IsHandled: Boolean)
     var
         faps: record "FA Posting Group";
         glentry: record "G/L Entry";
         TmpDimensionSetEntry: record "Dimension Set Entry" temporary;
+        fa: record "Fixed Asset";
+        ARDIM: array[8] of Code[20];
+        dimgroup: INTEGER;
     begin
-        if faps.get(FAJnlLine."FA Posting Group") then begin
-            glentry.SetRange("G/L Account No.", faps."Depreciation Expense Acc.");
-            glentry.SetRange("Document No.", FAJnlLine."Document No.");
-            glentry.SetRange("Posting Date", FAJnlLine."Posting Date");
-            if glentry.FindFirst() then
-                repeat
-                    AccountNo := glentry."G/L Account No.";
+        GLSetup.Get();
+        if glsetup."Global Dimension 1 Code" = 'BUDGET_GROUP' then dimgroup := 1;
+        if glsetup."Global Dimension 2 Code" = 'BUDGET_GROUP' then dimgroup := 2;
+        if glsetup."Shortcut Dimension 3 Code" = 'BUDGET_GROUP' then dimgroup := 3;
+        if glsetup."Shortcut Dimension 4 Code" = 'BUDGET_GROUP' then dimgroup := 4;
+        if glsetup."Shortcut Dimension 5 Code" = 'BUDGET_GROUP' then dimgroup := 5;
+        if glsetup."Shortcut Dimension 6 Code" = 'BUDGET_GROUP' then dimgroup := 6;
+        if glsetup."Shortcut Dimension 7 Code" = 'BUDGET_GROUP' then dimgroup := 7;
+        if glsetup."Shortcut Dimension 8 Code" = 'BUDGET_GROUP' then dimgroup := 8;
+        if GenJournalLine."Account Type" = GenJournalLine."Account Type"::"Fixed Asset" then begin
+            if fa.get(GenJournalLine."Account No.") then
+                if faps.get(fa."FA Posting Group") then begin
+
+                    AccountNo := faps."Accum. Depreciation Account";
                     IF dimdefault.get(15, AccountNo, 'BUDGET_ACCOUNT') then
                         DIM1 := dimdefault."Dimension Value Code";
-
-                    GLEntry.Validate("Global Dimension 1 Code", DIM1);
+                    IF dimdefault.get(15, AccountNo, 'BUDGET_GROUP') then
+                        DIM3 := dimdefault."Dimension Value Code";
+                    DimMgmt.GetShortcutDimensions(GenJournalLine."Dimension Set ID", ARDIM);
+                    DIM2 := ARDIM[2];
+                    GenJournalLine.Validate("Shortcut Dimension 1 Code", DIM1);
+                    GenJournalLine.Validate("Shortcut Dimension 2 Code", DIM2);
+                    GenJournalLine.ValidateShortcutDimCode(dimgroup, DIM3);
                     IF DimValue.GET('BUDGET_ACCOUNT', DIM1) then begin
                         TmpDimensionSetEntry.INIT;
                         TmpDimensionSetEntry."Dimension Set ID" := -1;
@@ -831,12 +847,31 @@ codeunit 60101 FBM_Dimensions_CO
                         if not TmpDimensionSetEntry.INSERT then
                             TmpDimensionSetEntry.Modify;
                     END;
-                    GLEntry.validate("Dimension Set ID", DimMgMt.GetDimensionSetID(TmpDimensionSetEntry));
-                    glentry.Modify();
+                    IF DimValue.GET('BUDGET_GROUP', DIM3) then begin
+                        TmpDimensionSetEntry.INIT;
+                        TmpDimensionSetEntry."Dimension Set ID" := -1;
+                        TmpDimensionSetEntry.validate("Dimension Code", 'BUDGET_GROUP');
+                        TmpDimensionSetEntry.validate("Dimension Value Code", DIM3);
+                        TmpDimensionSetEntry."Dimension Value ID" := Dimvalue."Dimension Value ID";
+                        if not TmpDimensionSetEntry.INSERT then
+                            TmpDimensionSetEntry.Modify;
+                    END;
+                    IF DimValue.GET('BUDGET_PROJECT', DIM2) then begin
+                        TmpDimensionSetEntry.INIT;
+                        TmpDimensionSetEntry."Dimension Set ID" := -1;
+                        TmpDimensionSetEntry.validate("Dimension Code", 'BUDGET_PROJECT');
+                        TmpDimensionSetEntry.validate("Dimension Value Code", DIM2);
+                        TmpDimensionSetEntry."Dimension Value ID" := Dimvalue."Dimension Value ID";
+                        if not TmpDimensionSetEntry.INSERT then
+                            TmpDimensionSetEntry.Modify;
+                    END;
+                    GenJournalLine.validate("Dimension Set ID", DimMgMt.GetDimensionSetID(TmpDimensionSetEntry));
+                    GenJournalLine.Modify();
                     TmpDimensionSetEntry.DeleteAll();
                     CLEAR(TmpDimensionSetEntry);
 
-                until glentry.Next() = 0;
+
+                end;
         end;
     end;
     //DEV008 END

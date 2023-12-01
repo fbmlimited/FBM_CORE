@@ -141,7 +141,10 @@ page 60101 "FBM_CustomerSite_CO"
                     ApplicationArea = all;
                     visible = EnableSpin;
                 }
-
+                field("Vat Number"; Rec."Vat Number")
+                {
+                    ApplicationArea = all;
+                }
 
             }
         }

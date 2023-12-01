@@ -288,16 +288,26 @@ codeunit 60104 FBM_Events_CO
     procedure OnAfterPostItemJnlLine(var ItemJournalLine: Record "Item Journal Line"; ItemLedgerEntry: Record "Item Ledger Entry"; var ValueEntryNo: Integer; var InventoryPostingToGL: Codeunit "Inventory Posting To G/L"; CalledFromAdjustment: Boolean; CalledFromInvtPutawayPick: Boolean; var ItemRegister: Record "Item Register"; var ItemLedgEntryNo: Integer; var ItemApplnEntryNo: Integer)
     var
         itemLE: record "Item Ledger Entry";
+        resentry: record "Reservation Entry";
     begin
         if itemLE.get(ItemJournalLine."Item Shpt. Entry No.") then begin
             itemLE.FBM_Site := ItemJournalLine.FBM_Site;
             itemLE.Modify();
+            resentry.SetRange("Item Ledger Entry No.", itemLE."Entry No.");
+            if resentry.FindFirst() then begin
+                resentry.FBM_Site := ItemJournalLine.FBM_Site;
+                resentry.Modify();
+            end;
 
         end;
         if itemLE.get(ItemLedgEntryNo) then begin
             itemLE.FBM_Site := ItemJournalLine.FBM_Site;
             itemLE.Modify();
-
+            resentry.SetRange("Item Ledger Entry No.", itemLE."Entry No.");
+            if resentry.FindFirst() then begin
+                resentry.FBM_Site := ItemJournalLine.FBM_Site;
+                resentry.Modify();
+            end;
         end;
     end;
 
