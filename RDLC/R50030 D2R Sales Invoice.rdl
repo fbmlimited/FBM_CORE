@@ -21,7 +21,7 @@
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>18.62931cm</Width>
+                      <Width>20.40214cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -36,16 +36,16 @@
                                   <TablixBody>
                                     <TablixColumns>
                                       <TablixColumn>
-                                        <Width>3.83723in</Width>
+                                        <Width>3.83972in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
-                                        <Width>1.06014in</Width>
+                                        <Width>1.06263in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
-                                        <Width>1.06014in</Width>
+                                        <Width>1.06263in</Width>
                                       </TablixColumn>
                                       <TablixColumn>
-                                        <Width>1.17902in</Width>
+                                        <Width>1.18151in</Width>
                                       </TablixColumn>
                                     </TablixColumns>
                                     <TablixRows>
@@ -1679,10 +1679,9 @@
                                       </FilterValues>
                                     </Filter>
                                   </Filters>
-                                  <Top>0.10583cm</Top>
-                                  <Left>0.08331in</Left>
+                                  <Left>0.08673in</Left>
                                   <Height>4.5119cm</Height>
-                                  <Width>7.13653in</Width>
+                                  <Width>7.14649in</Width>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
@@ -1802,7 +1801,8 @@ Cstr(Fields!CustomerCaption.Value)  + Chr(177) +
 Cstr(Fields!AddressCaption.Value)  + Chr(177) + 
 Cstr(Fields!InvoiceNumberCaption.Value)  + Chr(177) + 
 Cstr(Fields!DateCaption.Value)  + Chr(177) + 
-Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr(177) + Cstr(Fields!SiteAddr2.Value) + Chr(177) + Cstr(Fields!SiteAddr3.Value) + Chr(177) + Cstr(Fields!SiteAddr4.Value) + Chr(177) + Cstr(Fields!SiteAddr5.Value) + Chr(177) + Cstr(Fields!SiteAddr6.Value)  + Chr(177) + Cstr(Fields!TitleCaption.Value) + Chr(177) + Cstr(Fields!SiteCaption.Value)  +  Chr(177) + Cstr(Fields!CustomerNo.Value) + Chr(177) +Cstr(Fields!External_Document_No_.Value), 1)</Hidden>
+Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr(177) + Cstr(Fields!SiteAddr2.Value) + Chr(177) + Cstr(Fields!SiteAddr3.Value) + Chr(177) + Cstr(Fields!SiteAddr4.Value) + Chr(177) + Cstr(Fields!SiteAddr5.Value) + Chr(177) + Cstr(Fields!SiteAddr6.Value)  + Chr(177) + Cstr(Fields!TitleCaption.Value) + Chr(177) + Cstr(Fields!SiteCaption.Value)  +  Chr(177) + Cstr(Fields!CustomerNo.Value) + Chr(177) +Cstr(Fields!External_Document_No_.Value)+ Chr(177) + 
+Cstr(Fields!SiteAddr7.Value) , 1)</Hidden>
                                                 </Visibility>
                                                 <Style>
                                                   <Border />
@@ -4638,7 +4638,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                 </TablixRowHierarchy>
                 <DataSetName>DataSet_Result</DataSetName>
                 <Height>20.89037cm</Height>
-                <Width>18.62931cm</Width>
+                <Width>20.40214cm</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -4651,7 +4651,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
             <KeepTogether>true</KeepTogether>
             <Left>0.41902cm</Left>
             <Height>20.89037cm</Height>
-            <Width>18.62931cm</Width>
+            <Width>20.40214cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4662,7 +4662,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
         <Height>20.89037cm</Height>
         <Style />
       </Body>
-      <Width>19.04833cm</Width>
+      <Width>20.82116cm</Width>
       <Page>
         <PageHeader>
           <Height>7.9375cm</Height>
@@ -5574,7 +5574,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value />
+                      <Value>="TIN: " &amp; Code.GetData(72,1)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>

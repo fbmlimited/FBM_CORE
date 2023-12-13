@@ -17,7 +17,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             field("FBM_Name 3"; Rec."FBM_Name 3")
             {
                 ApplicationArea = all;
-                Editable = false;
+                Enabled = hascode;
             }
 
             field("Customer Since"; rec."FBM_Customer Since")
@@ -56,43 +56,43 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 
         modify(Name)
         {
-            Editable = false;
+            Enabled = not hascode;
 
         }
         modify(Address)
         {
-            Editable = false;
+            Enabled = not hascode;
 
         }
         modify("Address 2")
         {
-            Editable = false;
+            Enabled = not hascode;
 
         }
         modify(County)
         {
-            Editable = false;
+            Enabled = not hascode;
 
         }
         modify("Country/Region Code")
         {
-            Editable = false;
+            Enabled = not hascode;
 
         }
         modify("Post Code")
         {
-            Editable = false;
+            Enabled = not hascode;
 
 
         }
         modify(City)
         {
-            Editable = false;
+            Enabled = not hascode;
 
         }
         modify("VAT Registration No.")
         {
-            Editable = false;
+            Enabled = not hascode;
 
         }
 
@@ -144,6 +144,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         companyinfo: Record "Company Information";
         ShowSites: boolean;
         issup: boolean;
+        hascode: Boolean;
 
 
 
@@ -160,5 +161,11 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         end;
         issup := uper.IsSuper(UserSecurityId())
 
+    end;
+
+    trigger
+    OnAfterGetRecord()
+    begin
+        hascode := rec.FBM_GrCode <> '';
     end;
 }

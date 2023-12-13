@@ -12,6 +12,10 @@ page 60103 "FBM_Cust-Op-Site_CO"
         {
             repeater("Cust-Op-Site")
             {
+                field(Subsidiary; Rec.Subsidiary)
+                {
+                    ApplicationArea = All;
+                }
                 field("Customer No."; rec."Customer No.")
                 {
                     ApplicationArea = All;
@@ -40,7 +44,10 @@ page 60103 "FBM_Cust-Op-Site_CO"
                 {
                     ApplicationArea = All;
                 }
-
+                field(vatnumber; vatnumber)
+                {
+                    ApplicationArea = All;
+                }
 
 
             }
@@ -56,10 +63,22 @@ page 60103 "FBM_Cust-Op-Site_CO"
         "Customer Name": Text[250];
         "Operator Name": Text[250];
         "Site Name": Text[250];
-        Cust: Record Customer;
+        Cust: Record FBM_Customer;
         Operator: Record "Dimension Value";
         Site: Record FBM_CustomerSite_C;
         FASetup: Record "FA Setup";
+        vatnumber: text[20];
+        compinfo: record "Company Information";
+
+    trigger
+    OnOpenPage()
+    begin
+        compinfo.get;
+        Rec.Reset();
+        Rec.FilterGroup(2);
+        rec.setfilter(Subsidiary, '%1', compinfo."Custom System Indicator Text" + '*');
+        rec.FilterGroup(0);
+    end;
 
     trigger OnAfterGetRecord()
     begin
@@ -67,7 +86,8 @@ page 60103 "FBM_Cust-Op-Site_CO"
         Operator.Reset();
         Site.Reset();
         FASetup.Get();
-        if cust.Get(Rec."Customer No.") then
+        cust.SetRange("No.", Rec."Customer No.");
+        if cust.FindFirst() then
             "Customer Name" := Cust.Name
         else
             "Customer Name" := '';
@@ -75,9 +95,15 @@ page 60103 "FBM_Cust-Op-Site_CO"
             "Operator Name" := Operator.Name
         else
             "Operator Name" := '';
-        if Site.Get(rec."Customer No.", Rec."Site Code") then
-            "Site Name" := Site."Site Name_FF"
-        else
+        if Site.Get(rec."Cust Loc Code", Rec."Site Loc Code") then begin
+            site.CalcFields("Site Name_FF");
+            "Site Name" := Site."Site Name_FF";
+            vatnumber := site."Vat Number"
+        end
+        else begin
+            ;
             "Site Name" := '';
+            vatnumber := '';
+        end
     end;
 }

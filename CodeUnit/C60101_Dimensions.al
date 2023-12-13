@@ -532,11 +532,12 @@ codeunit 60101 FBM_Dimensions_CO
                 TmpDimensionSetEntry.Modify;
 
         end;
+        if GenJnlLine."Journal Template Name" <> '' then begin
 
-
-        GenJnlLine."Dimension Set ID" := DimMgMt.GetDimensionSetID(TmpDimensionSetEntry);
-        //GLEntry.Modify();
-        GenJnlLine.Modify();
+            GenJnlLine."Dimension Set ID" := DimMgMt.GetDimensionSetID(TmpDimensionSetEntry);
+            //GLEntry.Modify();
+            GenJnlLine.Modify();
+        end;
         TmpDimensionSetEntry.DeleteAll();
         CLEAR(TmpDimensionSetEntry);
     END;
@@ -865,8 +866,10 @@ codeunit 60101 FBM_Dimensions_CO
                         if not TmpDimensionSetEntry.INSERT then
                             TmpDimensionSetEntry.Modify;
                     END;
-                    GenJournalLine.validate("Dimension Set ID", DimMgMt.GetDimensionSetID(TmpDimensionSetEntry));
-                    GenJournalLine.Modify();
+                    if GenJournalLine."Journal Template Name" <> '' then begin
+                        GenJournalLine.validate("Dimension Set ID", DimMgMt.GetDimensionSetID(TmpDimensionSetEntry));
+                        GenJournalLine.Modify();
+                    end;
                     TmpDimensionSetEntry.DeleteAll();
                     CLEAR(TmpDimensionSetEntry);
 

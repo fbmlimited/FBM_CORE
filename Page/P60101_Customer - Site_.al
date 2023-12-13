@@ -1,9 +1,10 @@
 page 60101 "FBM_CustomerSite_CO"
 {
     PageType = List;
-    //ApplicationArea = All;
-    //UsageCategory = Lists;
+    ApplicationArea = All;
+    UsageCategory = Lists;
     SourceTable = FBM_CustomerSite_C;
+    caption = 'Customer/Site';
 
 
     layout

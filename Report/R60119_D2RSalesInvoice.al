@@ -2299,7 +2299,7 @@ report 60119 "D2R Sales - Invoice2"
                     SiteAddr[6] := Cnt.Name
                 else
                     SiteAddr[6] := '';
-                SiteAddr[7] := Site."Site Code";
+                SiteAddr[7] := Site."Vat Number";
             end
             else
                 HasSite := false

@@ -429,7 +429,7 @@ report 60140 FBM_SalesReportNew_CO
             salesinvoiceline.Type := scrmline.Type;
             salesinvoiceline."Gen. Bus. Posting Group" := scrmline."Gen. Bus. Posting Group";
             salesinvoiceline."Gen. Prod. Posting Group" := scrmline."Gen. Prod. Posting Group";
-            salesinvoiceline.Amount := scrmline.Amount;
+            salesinvoiceline.Amount := -scrmline.Amount;
             salesinvoiceline."FBM_Period Start" := scrmline."FBM_Period Start";
             salesinvoiceline."FBM_Period End" := scrmline."FBM_Period End";
             salesinvoiceline."Sell-to Customer No." := scrmline."Sell-to Customer No.";
