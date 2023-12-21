@@ -75,14 +75,16 @@ page 60132 "FBM_Customer List_CO"
                             customer.FBM_GrCode := cust."No.";
                             customer.name := cust.Name;
                             customer."Name 2" := cust."Name 2";
+                            customer."FBM_Name 3" := cust."FBM_Name 3";
+                            customer."Search Name" := cust."Search Name";
                             customer.Address := cust.Address;
                             customer."Address 2" := cust."Address 2";
                             customer.City := cust.City;
                             customer."Post Code" := cust."Post Code";
                             customer.County := cust.County;
                             customer."Country/Region Code" := cust."Country/Region Code";
-                            customer."Customer Posting Group" := cust."Customer Posting Group";
-                            customer."VAT Bus. Posting Group" := cust."VAT Bus. Posting Group";
+                            // customer."Customer Posting Group" := cust."Customer Posting Group";
+                            // customer."VAT Bus. Posting Group" := cust."VAT Bus. Posting Group";
                             customer."VAT Registration No." := cust."VAT Registration No.";
                             customer.Modify();
                             commit;

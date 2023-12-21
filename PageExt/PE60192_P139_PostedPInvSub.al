@@ -1,21 +1,10 @@
-pageextension 60157 FBM_PurchOrdSubExt_CO extends "Purchase Order Subform"
+pageextension 60192 FBM_PostedPInvSubExt_CO extends "Posted Purch. Invoice Subform"
 {
     layout
     {
-        modify("VAT Prod. Posting Group")
+        addafter(Description)
         {
-            Visible = true;
-        }
-        modify("Prepayment %")
-        {
-            Visible = true;
-        }
-        addafter("Location Code")
-        {
-            field(FBM_Site; Rec.FBM_Site)
-            {
-                ApplicationArea = all;
-            }
+
             field(FBM_Pedimento1; Rec.FBM_Pedimento1)
             {
                 ApplicationArea = all;
@@ -42,11 +31,9 @@ pageextension 60157 FBM_PurchOrdSubExt_CO extends "Purchase Order Subform"
                 Visible = isped;
             }
         }
-
-
     }
     trigger
-   OnOpenPage()
+  OnOpenPage()
     begin
         purchsetup.get;
         isped := purchsetup.FBM_Use_Pedimento;

@@ -43,11 +43,13 @@ page 60141 FBM_LinkedFA_CO
 
                 if fa.FindFirst() then
                     repeat
-                        id += 1;
-                        rec.id := id;
-                        rec.name := copystr(cinfo."Custom System Indicator Text" + '|' + fa."No." + '|' + fa.fbm_Site + '|' + format(fa.FBM_Status), 1, 250);
-                        rec.value := fa."Serial No.";
-                        rec.Insert();
+                        if fa."Serial No." <> '' then begin
+                            id += 1;
+                            rec.id := id;
+                            rec.name := copystr(cinfo."Custom System Indicator Text" + '|' + fa."No." + '|' + fa.fbm_Site + '|' + format(fa.FBM_Status), 1, 250);
+                            rec.value := fa."Serial No.";
+                            rec.Insert();
+                        end;
                     until fa.Next() = 0;
             //end;
             until comp.Next() = 0;

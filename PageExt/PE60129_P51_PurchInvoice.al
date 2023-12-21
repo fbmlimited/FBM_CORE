@@ -19,6 +19,33 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
 
             }
         }
+        addafter(General)
+        {
+            group(Pedimento)
+            {
+                visible = isped;
+                field(FBM_Pedimento1; Rec.FBM_Pedimento1)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_Pedimento2; Rec.FBM_Pedimento2)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_Pedimento3; Rec.FBM_Pedimento3)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_Pedimento4; Rec.FBM_Pedimento4)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_Pedimento; Rec.FBM_Pedimento)
+                {
+                    ApplicationArea = all;
+                }
+            }
+        }
         addafter("Vendor Invoice No.")
         {
             field("Posting Description89380"; Rec."Posting Description")
@@ -26,7 +53,7 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
                 ApplicationArea = All;
             }
         }
-       
+
     }
     actions
     {
@@ -52,7 +79,8 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
     var
         uper: Codeunit "User Permissions";
     begin
-
+        purchsetup.get;
+        isped := purchsetup.FBM_Use_Pedimento;
         if compinfo.Get() then begin
             isvisES := compinfo."Country/Region Code" = 'ES';
             isvisPH := compinfo."Country/Region Code" = 'PH';
@@ -66,4 +94,6 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
         isvisES: Boolean;
         isvisPH: Boolean;
         compinfo: record "Company Information";
+        purchsetup: record "Purchases & Payables Setup";
+        isped: Boolean;
 }

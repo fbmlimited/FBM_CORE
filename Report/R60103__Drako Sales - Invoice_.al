@@ -1976,10 +1976,20 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         //FormatAddr.GetCompanyAddr(SalesInvoiceHeader."Responsibility Center", RespCenter, CompanyInfo, CompanyAddr);
         FormatAddrCountry.GetCompanyAddrCountry(SalesInvoiceHeader."Responsibility Center", RespCenter, CompanyInfo, CompanyAddr);
         //FormatAddr.SalesInvBillTo(CustAddr, SalesInvoiceHeader);
-        FormatAddr.SalesInvSellTo(CustAddr, SalesInvoiceHeader);
+        formataddr.SalesInvSellTo(CustAddr, SalesInvoiceHeader);
         ShowShippingAddr := FormatAddr.SalesInvShipTo(ShipToAddr, CustAddr, SalesInvoiceHeader);
     end;
+    //  local procedure SalesInvSellTo2(var AddrArray: array[8] of Text[100]; var SalesInvHeader: Record "Sales Invoice Header")
+    //     var
+    //        customer:record customer;
+    //     begin
+    //        customer.get("Sales Invoice Header"."Sell-to Customer No.")
 
+    //         with SalesInvHeader do
+    //             formataddr.FormatAddr(
+    //               AddrArray, customer.Name, customer."Name 2", "Sell-to Contact", customer.address, customer."Address 2",
+    //                customer, "Sell-to Post Code", "Sell-to County", "Sell-to Country/Region Code");
+    //     end;
     local procedure CollectAsmInformation()
     var
         ValueEntry: Record "Value Entry";

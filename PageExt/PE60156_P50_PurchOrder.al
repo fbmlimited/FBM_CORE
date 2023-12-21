@@ -57,6 +57,33 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
             }
 
         }
+        addafter(General)
+        {
+            group(Pedimento)
+            {
+                visible = isped;
+                field(FBM_Pedimento1; Rec.FBM_Pedimento1)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_Pedimento2; Rec.FBM_Pedimento2)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_Pedimento3; Rec.FBM_Pedimento3)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_Pedimento4; Rec.FBM_Pedimento4)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_Pedimento; Rec.FBM_Pedimento)
+                {
+                    ApplicationArea = all;
+                }
+            }
+        }
         addafter(ShippingOptionWithLocation)
         {
             group(Control198)
@@ -480,7 +507,8 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         uper: Codeunit "User Permissions";
     begin
 
-
+        purchsetup.get;
+        isped := purchsetup.FBM_Use_Pedimento;
 
 
 
@@ -556,6 +584,8 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         VATAmount: Decimal;
         ShipToOptions2: Option "Default (Company Address)",Location,"Customer Address","Custom Address",Site;
         compinfo: record "Company Information";
+        purchsetup: record "Purchases & Payables Setup";
+        isped: Boolean;
 
     local procedure ValidateShippingOption2()
     begin

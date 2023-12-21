@@ -296,6 +296,11 @@ codeunit 60104 FBM_Events_CO
             resentry.SetRange("Item Ledger Entry No.", itemLE."Entry No.");
             if resentry.FindFirst() then begin
                 resentry.FBM_Site := ItemJournalLine.FBM_Site;
+                resentry.FBM_Pedimento := ItemJournalLine.FBM_Pedimento;
+                resentry.FBM_Pedimento1 := ItemJournalLine.FBM_Pedimento1;
+                resentry.FBM_Pedimento2 := ItemJournalLine.FBM_Pedimento2;
+                resentry.FBM_Pedimento3 := ItemJournalLine.FBM_Pedimento3;
+                resentry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
                 resentry.Modify();
             end;
 
@@ -341,6 +346,12 @@ codeunit 60104 FBM_Events_CO
     procedure OnAfterCopyItemJnlLineFromPurchLine(var ItemJnlLine: Record "Item Journal Line"; PurchLine: Record "Purchase Line")
     begin
         ItemJnlLine.FBM_Site := PurchLine.FBM_Site;
+        ItemJnlLine.FBM_Pedimento := PurchLine.FBM_Pedimento;
+        ItemJnlLine.FBM_Pedimento1 := PurchLine.FBM_Pedimento1;
+        ItemJnlLine.FBM_Pedimento2 := PurchLine.FBM_Pedimento2;
+        ItemJnlLine.FBM_Pedimento3 := PurchLine.FBM_Pedimento3;
+        ItemJnlLine.FBM_Pedimento4 := PurchLine.FBM_Pedimento4;
+
 
     end;
 
