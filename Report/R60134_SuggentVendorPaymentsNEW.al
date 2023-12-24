@@ -858,6 +858,8 @@ report 60134 "FBM_SuggVendPaymNew_CO"
         DimVal: Record "Dimension Value";
         NewDimensionID: Integer;
         DimSetIDArr: array[10] of Integer;
+        DefaultDimSource: List of [Dictionary of [Integer, Code[20]]];
+        dic: Dictionary of [Integer, Code[20]];
     begin
         begin
             NewDimensionID := GenJnlLine."Dimension Set ID";
@@ -876,12 +878,13 @@ report 60134 "FBM_SuggVendPaymNew_CO"
                 NewDimensionID := DimMgt.GetDimensionSetID(TempDimSetEntry);
                 GenJnlLine."Dimension Set ID" := NewDimensionID;
             end;
-            GenJnlLine.CreateDim(
-              DimMgt.TypeToTableID1(GenJnlLine."Account Type".AsInteger()), GenJnlLine."Account No.",
-              DimMgt.TypeToTableID1(GenJnlLine."Bal. Account Type".AsInteger()), GenJnlLine."Bal. Account No.",
-              DATABASE::Job, GenJnlLine."Job No.",
-              DATABASE::"Salesperson/Purchaser", GenJnlLine."Salespers./Purch. Code",
-              DATABASE::Campaign, GenJnlLine."Campaign No.");
+            // GenJnlLine.CreateDim(
+            //   DimMgt.TypeToTableID1(GenJnlLine."Account Type".AsInteger()), GenJnlLine."Account No.",
+            //   DimMgt.TypeToTableID1(GenJnlLine."Bal. Account Type".AsInteger()), GenJnlLine."Bal. Account No.",
+            //   DATABASE::Job, GenJnlLine."Job No.",
+            //   DATABASE::"Salesperson/Purchaser", GenJnlLine."Salespers./Purch. Code",
+            //   DATABASE::Campaign, GenJnlLine."Campaign No.");
+            GenJnlLine.CreateDim(DefaultDimSource);
             if NewDimensionID <> GenJnlLine."Dimension Set ID" then begin
                 DimSetIDArr[1] := GenJnlLine."Dimension Set ID";
                 DimSetIDArr[2] := NewDimensionID;

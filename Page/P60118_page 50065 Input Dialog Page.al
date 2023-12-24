@@ -17,6 +17,7 @@ page 60118 "FBM_Input Dialog Page_CO"
                 field(Info; search)
                 {
                     Editable = false;
+                    ApplicationArea = all;
                 }
                 field(periodstart; periodstart)
                 {

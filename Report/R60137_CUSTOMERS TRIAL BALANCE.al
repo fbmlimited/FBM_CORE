@@ -137,14 +137,17 @@ report 60137 "FBM_CUSTOMERS TRIAL BALANCE_CO"
                 field(fromdate; fromdate)
                 {
                     Caption = 'From date:';
+                    ApplicationArea = all;
                 }
                 field(todate; todate)
                 {
                     Caption = 'To date:';
+                    ApplicationArea = all;
                 }
                 field(Detail; Detail)
                 {
                     CaptionML = ENU = 'Detail';
+                    ApplicationArea = all;
 
                 }
             }

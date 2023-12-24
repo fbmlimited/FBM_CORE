@@ -12,6 +12,7 @@ pageextension 60180 FBM_CurrenciesExt_CO extends Currencies
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
+                ApplicationArea = all;
 
             }
 

@@ -6,7 +6,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 
         addbefore(Name)
         {
-            field("No. 2"; rec.FBM_GrCode)
+            field("No. 2_CO"; rec.FBM_GrCode)
             {
                 ApplicationArea = All;
                 Editable = issup;
@@ -20,34 +20,36 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
                 Enabled = hascode;
             }
 
-            field("Customer Since"; rec."FBM_Customer Since")
+            field("Customer Since_CO"; rec."FBM_Customer Since")
             {
                 ApplicationArea = All;
             }
         }
         addbefore("VAT Registration No.")
         {
-            field("Separate Halls Inv."; rec."FBM_Separate Halls Inv.")
+            field("Separate Halls Inv._CO"; rec."FBM_Separate Halls Inv.")
             {
                 ApplicationArea = All;
                 Caption = 'Separate Halls Inv.';
             }
-            field("Payment Bank Code"; rec."FBM_Payment Bank Code")
+            field("Payment Bank Code_CO"; rec."FBM_Payment Bank Code")
             {
                 Caption = 'Payment Bank Account';
+                ApplicationArea = all;
             }
             field("Payment Bank Code2"; rec."FBM_Payment Bank Code2")
             {
                 Caption = 'Payment Bank Account 2';
+                ApplicationArea = all;
             }
         }
         addafter("VAT Registration No.")
         {
-            field("Group Customer"; rec.FBM_Group)
+            field("Group Customer_CO"; rec.FBM_Group)
             {
                 ApplicationArea = All;
             }
-            field("SubGroup Customer"; rec.FBM_SubGroup)
+            field("SubGroup Customer_CO"; rec.FBM_SubGroup)
             {
                 ApplicationArea = All;
             }
@@ -106,7 +108,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
     {
         addlast(navigation)
         {
-            group("Customer Sites")
+            group("Customer Sites_CO")
             {
                 Image = Warehouse;
 

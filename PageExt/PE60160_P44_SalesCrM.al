@@ -45,7 +45,7 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
                 end;
             }
 
-            field("Contract Code"; rec."FBM_Contract Code")
+            field("FBM_Contract Code"; rec."FBM_Contract Code")
             {
                 ApplicationArea = All;
             }

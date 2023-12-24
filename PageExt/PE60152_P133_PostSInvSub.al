@@ -19,15 +19,16 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
 
         }
 
-        
+
     }
     actions
     {
         addLast(processing)
         {
-            action(ChangeGroup)
+            action(ChangeGroup_CO)
             {
                 Caption = 'Change Posting Group';
+                ApplicationArea = all;
 
                 trigger OnAction();
                 var
@@ -56,7 +57,7 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
     begin
 
         if compinfo.Get() then begin
-            
+
             showsite := compinfo.FBM_CustIsOp;
         end;
 
@@ -67,7 +68,7 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
 
 
     var
-        
+
         compinfo: record "Company Information";
         changedate: Codeunit FBM_ChangePerDateSales_CO;
 

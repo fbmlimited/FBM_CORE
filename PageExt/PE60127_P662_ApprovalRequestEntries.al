@@ -7,18 +7,22 @@ pageextension 60127 FBM_ApprReqEntriesExt_CO extends "Approval Request Entries"
             field(PostingDescription; PostingDescription)
             {
                 Caption = 'Posting Description';
+                ApplicationArea = all;
             }
             field(BudgetAccount; BudgetAccount)
             {
                 Caption = 'Budget Account';
+                ApplicationArea = all;
             }
             field(BudgetProject; BudgetProject)
             {
                 Caption = 'BudgetProject';
+                ApplicationArea = all;
             }
             field(BudgetGroupDimensions; BudgetGroupDimensions)
             {
                 Caption = 'Budget Group Dimensions';
+                ApplicationArea = all;
             }
         }
     }

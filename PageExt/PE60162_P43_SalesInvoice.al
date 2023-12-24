@@ -16,14 +16,14 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                 ApplicationArea = All;
             }
         }
-       
+
         addafter("External Document No.")
         {
-            field("Posting No."; rec."Posting No.")
+            field("Posting No._CO"; rec."Posting No.")
             {
                 ApplicationArea = All;
             }
-            field(Site; rec.FBM_Site)
+            field(Site_CO; rec.FBM_Site)
             {
                 Visible = showsite;
                 ApplicationArea = All;
@@ -68,23 +68,23 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                 end;
             }
 
-            field("Contract Code"; rec."FBM_Contract Code")
+            field("Contract Code_CO"; rec."FBM_Contract Code")
             {
                 ApplicationArea = All;
                 Editable = false;
                 Importance = Additional;
             }
-            field(Segment; rec.FBM_Segment)
+            field(Segment_CO; rec.FBM_Segment)
             {
                 ApplicationArea = All;
             }
 
-            field("Period Start"; rec."FBM_Period Start")
+            field("Period Start_CO"; rec."FBM_Period Start")
             {
                 Visible = showsite;
                 ApplicationArea = all;
             }
-            field("Period End"; rec."FBM_Period End")
+            field("Period End_CO"; rec."FBM_Period End")
             {
                 Visible = showsite;
                 ApplicationArea = all;
@@ -96,7 +96,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             }
 
 
-            field("Billing Statement"; rec."FBM_Billing Statement")
+            field("Billing Statement_CO"; rec."FBM_Billing Statement")
             {
                 ApplicationArea = all;
                 Importance = Additional;
@@ -107,17 +107,18 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
         }
         addlast(General)
         {
-            field(LocalCurrAmt; rec.FBM_LocalCurrAmt)
-            {
-                ApplicationArea = all;
-
-            }
             field(Currency2; rec.FBM_Currency2)
             {
                 ApplicationArea = all;
 
             }
-            field(LYC; glsetup."LCY Code")
+            field(LocalCurrAmt; rec.FBM_LocalCurrAmt)
+            {
+                ApplicationArea = all;
+
+            }
+
+            field(LCY; glsetup."LCY Code")
             {
                 ApplicationArea = All;
                 Editable = false;
@@ -152,6 +153,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             {
 
                 SubPageLink = "No." = field("No.");
+                ApplicationArea = all;
             }
         }
 

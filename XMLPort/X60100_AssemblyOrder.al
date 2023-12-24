@@ -100,16 +100,7 @@ xmlport 60100 FBM_AssemblyOrderExport_CO
             }
         }
 
-        actions
-        {
-            area(processing)
-            {
-                action(ActionName)
-                {
 
-                }
-            }
-        }
     }
 
     var

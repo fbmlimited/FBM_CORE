@@ -44,12 +44,14 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
                 Caption = 'Brand';
                 Enabled = isegm;
                 Editable = false;
+                ApplicationArea = all;
             }
             field(FBM_Lessee; Rec.FBM_Lessee)
             {
                 Caption = 'Lessee';
                 Enabled = isegm;
                 Editable = false;
+                ApplicationArea = all;
             }
             field(FBM_Site; Rec.FBM_Site)
             {
@@ -57,6 +59,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
                 ApplicationArea = all;
                 Enabled = isegm;
                 Editable = false;
+
             }
             field(siteloccode; siteloccode)
             {

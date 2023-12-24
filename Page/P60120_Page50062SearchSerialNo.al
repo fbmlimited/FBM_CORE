@@ -16,6 +16,7 @@ page 60120 "FBM_Search Serial No._CO"
                 field("Serial Filter"; SerialFilter)
                 {
                     Caption = 'Serial Filter';
+                    ApplicationArea = all;
 
                     trigger OnValidate();
                     begin
@@ -27,6 +28,7 @@ page 60120 "FBM_Search Serial No._CO"
                 field(ItemNoFilter; ItemNoFilter)
                 {
                     Caption = 'Item No Filter';
+                    ApplicationArea = all;
 
                     trigger OnLookup(var Text: Text): Boolean;
                     var
@@ -52,6 +54,7 @@ page 60120 "FBM_Search Serial No._CO"
                 {
                     Caption = 'Item Name Filter';
                     Visible = false;
+                    ApplicationArea = all;
 
                     trigger OnValidate();
                     begin
@@ -63,6 +66,7 @@ page 60120 "FBM_Search Serial No._CO"
                 field(DocNoFilter; DocNoFilter)
                 {
                     Caption = 'Purch. Doc. No. Filter';
+                    ApplicationArea = all;
 
                     trigger OnLookup(var Text: Text): Boolean;
                     var
@@ -90,30 +94,37 @@ page 60120 "FBM_Search Serial No._CO"
                 {
                     Caption = 'Vendor Name';
                     Editable = false;
+                    ApplicationArea = all;
                 }
                 field("Source ID"; rec."Source ID")
                 {
                     Editable = false;
+                    ApplicationArea = all;
                 }
                 field("Source Ref. No."; rec."Source Ref. No.")
                 {
                     Editable = false;
+                    ApplicationArea = all;
                 }
                 field("Item No."; rec."Item No.")
                 {
                     Editable = false;
+                    ApplicationArea = all;
                 }
                 field(Description; ItemName)
                 {
                     Editable = false;
+                    ApplicationArea = all;
                 }
                 field("Quantity (Base)"; rec."Quantity (Base)")
                 {
                     Editable = false;
+                    ApplicationArea = all;
                 }
                 field("Serial No."; rec."Serial No.")
                 {
                     Editable = false;
+                    ApplicationArea = all;
                 }
             }
         }

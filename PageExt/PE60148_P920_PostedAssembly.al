@@ -13,6 +13,7 @@ pageextension 60148 FBM_PostedAssemblyExt_CO extends "Posted Assembly Order"
         {
             action("Export XML")
             {
+                ApplicationArea = all;
                 trigger OnAction()
                 var
                     xml: XmlPort 60100;
@@ -30,6 +31,5 @@ pageextension 60148 FBM_PostedAssemblyExt_CO extends "Posted Assembly Order"
         }
     }
 
-    var
-        myInt: Integer;
+
 }

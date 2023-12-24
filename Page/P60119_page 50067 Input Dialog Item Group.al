@@ -17,9 +17,11 @@ page 60119 "FBM_Input Dialog Post Group_CO"
                 field(Info; search)
                 {
                     Editable = false;
+                    ApplicationArea = all;
                 }
                 field(searchField1; searchField1)
                 {
+                    ApplicationArea = all;
 
                     trigger OnLookup(var Text: Text): Boolean;
                     begin
@@ -32,7 +34,7 @@ page 60119 "FBM_Input Dialog Post Group_CO"
                 }
                 field(searchField2; searchField2)
                 {
-
+                    ApplicationArea = all;
                     trigger OnLookup(var Text: Text): Boolean;
                     begin
                         IF PAGE.RUNMODAL(0, GenProductPostingGroup) = ACTION::LookupOK THEN BEGIN

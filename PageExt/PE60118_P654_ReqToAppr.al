@@ -26,18 +26,22 @@ pageextension 60118 RequestToApproveExt extends "Requests to approve"
             field(PostingDescription; PostingDescription)
             {
                 Caption = 'Posting Description';
+                ApplicationArea = all;
             }
             field(BudgetAccount; BudgetAccount)
             {
                 Caption = 'Budget Account';
+                ApplicationArea = all;
             }
             field(BudgetProject; BudgetProject)
             {
                 Caption = 'BudgetProject';
+                ApplicationArea = all;
             }
             field(BudgetGroupDimensions; BudgetGroupDimensions)
             {
                 Caption = 'Budget Group Dimensions';
+                ApplicationArea = all;
             }
         }
     }

@@ -426,25 +426,42 @@ codeunit 60101 FBM_Dimensions_CO
     No5: Code[20])
     var
         SourceCodeSetup: Record "Source Code Setup";
-        TableId: Array[10] of Integer;
+        //TableId: Array[10] of Integer;
         No: Array[10] of Code[20];
         OldDimSetID: Integer;
+        TableId: List of [Dictionary of [Integer, Code[20]]];
+        dic: Dictionary of [Integer, Code[20]];
     begin
         SourceCodeSetup.GET;
-        TableID[1] := Type1;
-        No[1] := No1;
-        TableID[2] := Type2;
-        No[2] := No2;
-        TableID[3] := Type3;
-        No[3] := No3;
-        TableID[4] := Type4;
-        No[4] := No4;
-        TableID[5] := Type5;
-        No[5] := No5;
+        // TableID[1] := Type1;
+        // No[1] := No1;
+        // TableID[2] := Type2;
+        // No[2] := No2;
+        // TableID[3] := Type3;
+        // No[3] := No3;
+        // TableID[4] := Type4;
+        // No[4] := No4;
+        // TableID[5] := Type5;
+        // No[5] := No5;
+        dic.Add(1, format(Type1));
+        TableID.Add(dic);
+        clear(dic);
+        dic.Add(2, format(Type2));
+        TableID.add(dic);
+        clear(dic);
+        dic.Add(3, format(Type3));
+        TableID.add(dic);
+        clear(dic);
+        dic.Add(4, format(Type4));
+        TableID.add(dic);
+        clear(dic);
+        dic.Add(5, format(Type5));
+        TableID.add(dic);
         PSInv."Shortcut Dimension 1 Code" := '';
         PSInv."Shortcut Dimension 2 Code" := '';
         OldDimSetID := PSInv."Dimension Set ID";
-        PSInv."Dimension Set ID" := DimMgmt.GetRecDefaultDimID(PSInv, 2, TableID, No, SourceCodeSetup.Sales, PSInv."Shortcut Dimension 1 Code", PSInv."Shortcut Dimension 2 Code", 0, 0);
+        //PSInv."Dimension Set ID" := DimMgmt.GetRecDefaultDimID(PSInv, 2, TableID, No, SourceCodeSetup.Sales, PSInv."Shortcut Dimension 1 Code", PSInv."Shortcut Dimension 2 Code", 0, 0);
+        PSInv."Dimension Set ID" := DimMgmt.GetRecDefaultDimID(PSInv, 2, TableID, SourceCodeSetup.Sales, PSInv."Shortcut Dimension 1 Code", PSInv."Shortcut Dimension 2 Code", 0, 0);
         IF (OldDimSetID <> PSInv."Dimension Set ID") THEN BEGIN
             PSInv.MODIFY;
         END;
@@ -463,25 +480,41 @@ codeunit 60101 FBM_Dimensions_CO
     No5: Code[20])
     var
         SourceCodeSetup: Record "Source Code Setup";
-        TableId: Array[10] of Integer;
+        // TableId: Array[10] of Integer;
         No: Array[10] of Code[20];
         OldDimSetID: Integer;
+        TableId: List of [Dictionary of [Integer, Code[20]]];
+        dic: Dictionary of [Integer, Code[20]];
     begin
         SourceCodeSetup.GET;
-        TableID[1] := Type1;
-        No[1] := No1;
-        TableID[2] := Type2;
-        No[2] := No2;
-        TableID[3] := Type3;
-        No[3] := No3;
-        TableID[4] := Type4;
-        No[4] := No4;
-        TableID[5] := Type5;
-        No[5] := No5;
+        // TableID[1] := Type1;
+        // No[1] := No1;
+        // TableID[2] := Type2;
+        // No[2] := No2;
+        // TableID[3] := Type3;
+        // No[3] := No3;
+        // TableID[4] := Type4;
+        // No[4] := No4;
+        // TableID[5] := Type5;
+        // No[5] := No5;
+        dic.Add(1, format(Type1));
+        TableID.Add(dic);
+        clear(dic);
+        dic.Add(2, format(Type2));
+        TableID.add(dic);
+        clear(dic);
+        dic.Add(3, format(Type3));
+        TableID.add(dic);
+        clear(dic);
+        dic.Add(4, format(Type4));
+        TableID.add(dic);
+        clear(dic);
+        dic.Add(5, format(Type5));
+        TableID.add(dic);
         PSCRM."Shortcut Dimension 1 Code" := '';
         PSCRM."Shortcut Dimension 2 Code" := '';
         OldDimSetID := PSCRM."Dimension Set ID";
-        PSCRM."Dimension Set ID" := DimMgmt.GetRecDefaultDimID(PSCRM, 2, TableID, No, SourceCodeSetup.Sales, PSCRM."Shortcut Dimension 1 Code", PSCRM."Shortcut Dimension 2 Code", 0, 0);
+        PSCRM."Dimension Set ID" := DimMgmt.GetRecDefaultDimID(PSCRM, 2, TableID, SourceCodeSetup.Sales, PSCRM."Shortcut Dimension 1 Code", PSCRM."Shortcut Dimension 2 Code", 0, 0);
         IF (OldDimSetID <> PSCRM."Dimension Set ID") THEN BEGIN
             PSCRM.MODIFY;
         END;

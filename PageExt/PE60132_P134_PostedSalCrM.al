@@ -4,25 +4,25 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
     {
         addafter("External Document No.")
         {
-            field(Site; rec.FBM_Site)
+            field(Site_CO; rec.FBM_Site)
             {
                 Visible = showsite;
                 ApplicationArea = All;
             }
 
-            field("Contract Code"; rec."FBM_Contract Code")
+            field("Contract Code_CO"; rec."FBM_Contract Code")
             {
                 ApplicationArea = All;
                 Editable = false;
             }
 
-            field("Period Start"; rec."FBM_Period Start")
+            field("Period Start_CO"; rec."FBM_Period Start")
             {
                 Visible = showsite;
                 ApplicationArea = all;
                 Editable = false;
             }
-            field("Period End"; rec."FBM_Period End")
+            field("Period End_CO"; rec."FBM_Period End")
             {
                 Visible = showsite;
                 ApplicationArea = all;
@@ -44,6 +44,7 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
             {
 
                 SubPageLink = "No." = field("No.");
+                ApplicationArea = all;
             }
         }
     }
@@ -51,7 +52,7 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
     {
         addLast(Navigation)
         {
-            action(ChangePeriodDate)
+            action(ChangePeriodDate_CO)
             {
                 Caption = 'Change Period Date';
                 Image = ChangeDate;

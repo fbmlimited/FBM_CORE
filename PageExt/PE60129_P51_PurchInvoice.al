@@ -12,7 +12,7 @@ pageextension 60129 "FBM_PurchInvExt_CO" extends "Purchase Invoice"
             {
                 ApplicationArea = all;
             }
-            field(LYC; glsetup."LCY Code")
+            field(LCY; glsetup."LCY Code")
             {
                 ApplicationArea = All;
                 Editable = false;

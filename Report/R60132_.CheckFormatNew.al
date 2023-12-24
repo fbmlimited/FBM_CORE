@@ -829,6 +829,7 @@ report 60132 FBM_CheckFormatNew_CO
                     field(ChooseCheckFormat; ChooseCheckFormat)
                     {
                         Caption = 'Choose Bank Check Format';
+                        ApplicationArea = all;
                     }
                     field(BankAccount; BankAcc2."No.")
                     {

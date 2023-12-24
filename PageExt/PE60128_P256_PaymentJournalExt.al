@@ -18,7 +18,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
         {
             Visible = true;
         }
-        
+
         modify("Reason Code")
         {
             trigger OnBeforeValidate();
@@ -43,6 +43,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
             part("Banks"; "FBM_PayJnl Bank List Part_CO")
             {
                 ApplicationArea = Basic, Suite;
+
 
             }
         }
