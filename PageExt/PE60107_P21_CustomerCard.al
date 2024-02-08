@@ -14,7 +14,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         }
         addafter(Name)
         {
-            field("FBM_Name 3"; Rec."FBM_Name 3")
+            field("FBM_Name 3"; Rec."FBM_Name3")
             {
                 ApplicationArea = all;
                 Enabled = hascode;
@@ -59,6 +59,12 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         modify(Name)
         {
             Enabled = not hascode;
+
+        }
+        modify("Name 2")
+        {
+            Enabled = not hascode;
+            Visible = true;
 
         }
         modify(Address)
@@ -129,6 +135,26 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
                 }
             }
         }
+        addlast(processing)
+        {
+
+
+            action(Notes)
+            {
+                ApplicationArea = All;
+                Image = Notes;
+
+                trigger OnAction()
+                var
+                    pnote: page FBM_NotesCustList_CO;
+                begin
+                    pnote.passpar(rec."No.");
+                    pnote.Run();
+                    clear(pnote);
+                end;
+            }
+        }
+
     }
 
 

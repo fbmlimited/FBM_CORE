@@ -16,6 +16,8 @@ codeunit 60104 FBM_Events_CO
     begin
         if ReportId = 393 then
             NewReportId := 60134;
+        if ReportId = 405 then
+            NewReportId := 60142;
     end;
 
     [EventSubscriber(ObjectType::Table, 81, 'OnLookUpAppliesToDocVendOnAfterSetFilters', '', false, false)]
@@ -412,10 +414,14 @@ codeunit 60104 FBM_Events_CO
     var
         format: codeunit "Format Address";
     begin
-
-        format.FormatAddr(
-          AddrArray, SalesInvoiceHeader."Sell-to Customer Name", SalesInvoiceHeader."Sell-to Customer Name 2", '', SalesInvoiceHeader."Sell-to Address", SalesInvoiceHeader."Sell-to Address 2",
-          SalesInvoiceHeader."Sell-to City", SalesInvoiceHeader."Sell-to Post Code", SalesInvoiceHeader."Sell-to County", SalesInvoiceHeader."Sell-to Country/Region Code");
+        if SalesInvoiceHeader."Sell-to Customer Name 2" = '' then
+            format.FormatAddr(
+              AddrArray, SalesInvoiceHeader."Sell-to Customer Name", 'a', '', SalesInvoiceHeader."Sell-to Address", SalesInvoiceHeader."Sell-to Address 2",
+              SalesInvoiceHeader."Sell-to City", SalesInvoiceHeader."Sell-to Post Code", SalesInvoiceHeader."Sell-to County", SalesInvoiceHeader."Sell-to Country/Region Code")
+        else
+            format.FormatAddr(
+            AddrArray, SalesInvoiceHeader."Sell-to Customer Name", SalesInvoiceHeader."Sell-to Customer Name 2", '', SalesInvoiceHeader."Sell-to Address", SalesInvoiceHeader."Sell-to Address 2",
+            SalesInvoiceHeader."Sell-to City", SalesInvoiceHeader."Sell-to Post Code", SalesInvoiceHeader."Sell-to County", SalesInvoiceHeader."Sell-to Country/Region Code");
         Handled := true;
     end;
 

@@ -569,7 +569,7 @@ codeunit 60101 FBM_Dimensions_CO
 
             GenJnlLine."Dimension Set ID" := DimMgMt.GetDimensionSetID(TmpDimensionSetEntry);
             //GLEntry.Modify();
-            GenJnlLine.Modify();
+            // GenJnlLine.Modify();
         end;
         TmpDimensionSetEntry.DeleteAll();
         CLEAR(TmpDimensionSetEntry);

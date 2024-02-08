@@ -75,7 +75,7 @@ page 60132 "FBM_Customer List_CO"
                             customer.FBM_GrCode := cust."No.";
                             customer.name := cust.Name;
                             customer."Name 2" := cust."Name 2";
-                            customer."FBM_Name 3" := cust."FBM_Name 3";
+                            customer."FBM_Name3" := cust."FBM_Name3";
                             customer."Search Name" := cust."Search Name";
                             customer.Address := cust.Address;
                             customer."Address 2" := cust."Address 2";

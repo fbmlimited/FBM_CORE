@@ -5626,7 +5626,7 @@ Cstr(Fields!CustomerCaption.Value)  + Chr(177) +
 Cstr(Fields!AddressCaption.Value)  + Chr(177) + 
 Cstr(Fields!InvoiceNumberCaption.Value)  + Chr(177) + 
 Cstr(Fields!DateCaption.Value)  + Chr(177) + 
-Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr(177) + Cstr(Fields!SiteAddr2.Value) + Chr(177) + Cstr(Fields!SiteAddr3.Value) + Chr(177) + Cstr(Fields!SiteAddr4.Value) + Chr(177) + Cstr(Fields!SiteAddr5.Value) + Chr(177) + Cstr(Fields!SiteAddr6.Value)  + Chr(177) + Cstr(Fields!TitleCaption.Value) + Chr(177) + Cstr(Fields!SiteCaption.Value)  + Chr(177) + Cstr(Fields!CustomerNo.Value), 1)</Hidden>
+Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr(177) + Cstr(Fields!SiteAddr2.Value) + Chr(177) + Cstr(Fields!SiteAddr3.Value) + Chr(177) + Cstr(Fields!SiteAddr4.Value) + Chr(177) + Cstr(Fields!SiteAddr5.Value) + Chr(177) + Cstr(Fields!SiteAddr6.Value)  + Chr(177) + Cstr(Fields!TitleCaption.Value) + Chr(177) + Cstr(Fields!SiteCaption.Value)  + Chr(177) + Cstr(Fields!CustomerNo.Value) + Chr(177) + Cstr(Fields!SiteAddr7.Value), 1)</Hidden>
                                                 </Visibility>
                                                 <Style>
                                                   <Border />
@@ -12077,7 +12077,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Fields!SiteAddr7.Value</Value>
+                      <Value>=Code.GetData(71,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -12403,7 +12403,7 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=First(Fields!Segment.Value, "DataSet_Result") +" / "+First(Fields!Contract_Code.Value, "DataSet_Result")</Value>
+                      <Value>=Code.GetData(72,1)+" / "+Code.GetData(73,1)</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -12425,6 +12425,37 @@ Cstr(Fields!VATIDNoCaption.Value)+ Chr(177) + Cstr(Fields!SiteAddr1.Value) + Chr
                 <Border>
                   <Style>None</Style>
                 </Border>
+              </Style>
+            </Textbox>
+            <Textbox Name="CustAddr2">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Code.GetData(1,1) + chr(13) + chr(10) + iif(Code.GetData(2,1) = "a", "", Code.GetData(2,1))</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.65654cm</Top>
+              <Left>2.39411in</Left>
+              <Height>30.62183pt</Height>
+              <Width>222.65732pt</Width>
+              <ZIndex>36</ZIndex>
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Top</VerticalAlign>
               </Style>
             </Textbox>
           </ReportItems>

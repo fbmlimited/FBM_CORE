@@ -11,7 +11,7 @@ pageextension 60124 FBM_GLAccCardExt_CO extends "G/L Account Card"
         //}
         addbefore(Blocked)
         {
-            field("Period Required"; rec."FBM_Periods Required")
+            field("Period Required2"; rec."FBM_Periods Required")
             {
                 ApplicationArea = all;
             }

@@ -10,6 +10,11 @@ pageextension 60190 FBM_PurchSetupExt_CO extends "Purchases & Payables Setup"
                 ApplicationArea = all;
 
             }
+            field(FBM_PurchPhone; Rec.FBM_PurchPhone)
+            {
+                ApplicationArea = all;
+
+            }
 
         }
 
