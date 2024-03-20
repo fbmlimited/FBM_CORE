@@ -394,16 +394,7 @@ page 60132 "FBM_Customer List_CO"
                               "Global Dimension 2 Filter" = FIELD("Global Dimension 2 Filter");
                 Visible = false;
             }
-#if not CLEAN21
-            part("Power BI Report FactBox"; "Power BI Report FactBox")
-            {
-                ApplicationArea = Basic, Suite;
-                Visible = false;
-                ObsoleteReason = 'Use the part PowerBIEmbeddedReportPart instead';
-                ObsoleteState = Pending;
-                ObsoleteTag = '21.0';
-            }
-#endif
+
             systempart(Control1900383207; Links)
             {
                 ApplicationArea = RecordLinks;
@@ -1392,32 +1383,7 @@ page 60132 "FBM_Customer List_CO"
                 RunPageLink = "Source No." = FIELD("No.");
                 ToolTip = 'Process your customer payments by matching amounts received on your bank account with the related unpaid sales invoices, and then post the payments.';
             }
-#if not CLEAN21
-            group(Display)
-            {
-                Caption = 'Display';
-                Visible = false;
-                ObsoleteState = Pending;
-                ObsoleteReason = 'Use the Personalization mode to hide and show this factbox.';
-                ObsoleteTag = '21.0';
-                action(ReportFactBoxVisibility)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Show/Hide Power BI Reports';
-                    Image = "Report";
-                    ToolTip = 'Select if the Power BI FactBox is visible or not.';
-                    Visible = false;
-                    ObsoleteState = Pending;
-                    ObsoleteReason = 'Use the Personalization mode to hide and show this factbox.';
-                    ObsoleteTag = '21.0';
 
-                    trigger OnAction()
-                    begin
-                        CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
-                    end;
-                }
-            }
-#endif
         }
         area(reporting)
         {
@@ -1857,10 +1823,7 @@ action(ReportCustomerSummaryAging)
 
         WorkflowWebhookManagement.GetCanRequestAndCanCancel(rec.RecordId, CanRequestApprovalForFlow, CanCancelApprovalForFlow);
 
-#if not CLEAN21
-        // Contextual Power BI FactBox: send data to filter the report in the FactBox
-        CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(rec."No.", false, PowerBIVisible);
-#endif
+
         CurrPage.PowerBIEmbeddedReportPart.PAGE.SetCurrentListSelection(rec."No.");
 
         CurrPage.SetSelectionFilter(Customer);
@@ -1873,10 +1836,7 @@ action(ReportCustomerSummaryAging)
         //SetCaption(CaptionTxt);
         CurrPage.Caption(CaptionTxt);
 
-#if not CLEAN21
-        PowerBIVisible := false;
-        CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
-#endif
+
         CurrPage.PowerBIEmbeddedReportPart.PAGE.InitPageRatio(PowerBIServiceMgt.GetFactboxRatio());
         CurrPage.PowerBIEmbeddedReportPart.PAGE.SetPageContext(CurrPage.ObjectId(false));
 

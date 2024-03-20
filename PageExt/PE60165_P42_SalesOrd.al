@@ -62,6 +62,14 @@ pageextension 60165 FBM_SalesOrdExt_CO extends "Sales Order"
             }
 
         }
+        addlast(General)
+        {
+            field(FBM_PO_Customer; Rec.FBM_PO_Customer)
+            {
+                ApplicationArea = All;
+
+            }
+        }
     }
     trigger
         OnOpenPage()

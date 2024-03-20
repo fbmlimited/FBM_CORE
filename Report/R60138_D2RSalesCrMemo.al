@@ -1563,9 +1563,9 @@ report 60138 "D2R Sales - CrMemo_CO"
             if "Sales Cr.Memo Header".FindSet then
                 repeat
                     if "Sales Cr.Memo Header"."Bill-to Contact No." <> '' then
-                        SegManagement.LogDocument(SegManagement.SalesInvoiceInterDocType, "Sales Cr.Memo Header"."No.", 0, 0, DATABASE::Contact, "Sales Cr.Memo Header"."Bill-to Contact No.", "Sales Cr.Memo Header"."Salesperson Code", "Sales Cr.Memo Header"."Campaign No.", "Sales Cr.Memo Header"."Posting Description", '')
+                        SegManagement.LogDocument(enum::"Interaction Log Entry Document Type"::"Sales Cr. Memo", "Sales Cr.Memo Header"."No.", 0, 0, DATABASE::Contact, "Sales Cr.Memo Header"."Bill-to Contact No.", "Sales Cr.Memo Header"."Salesperson Code", "Sales Cr.Memo Header"."Campaign No.", "Sales Cr.Memo Header"."Posting Description", '')
                     else
-                        SegManagement.LogDocument(SegManagement.SalesInvoiceInterDocType, "Sales Cr.Memo Header"."No.", 0, 0, DATABASE::Customer, "Sales Cr.Memo Header"."Bill-to Customer No.", "Sales Cr.Memo Header"."Salesperson Code", "Sales Cr.Memo Header"."Campaign No.", "Sales Cr.Memo Header"."Posting Description", '');
+                        SegManagement.LogDocument(enum::"Interaction Log Entry Document Type"::"Sales Cr. Memo", "Sales Cr.Memo Header"."No.", 0, 0, DATABASE::Customer, "Sales Cr.Memo Header"."Bill-to Customer No.", "Sales Cr.Memo Header"."Salesperson Code", "Sales Cr.Memo Header"."Campaign No.", "Sales Cr.Memo Header"."Posting Description", '');
                 until "Sales Cr.Memo Header".Next = 0;
     end;
 

@@ -43,6 +43,14 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
                 ApplicationArea = all;
             }
         }
+        addlast(General)
+        {
+            field(FBM_Acronym; Rec.FBM_Acronym)
+            {
+                ApplicationArea = All;
+
+            }
+        }
         addafter("VAT Registration No.")
         {
             field("Group Customer_CO"; rec.FBM_Group)

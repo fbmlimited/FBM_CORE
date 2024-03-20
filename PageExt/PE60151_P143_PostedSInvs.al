@@ -1,7 +1,9 @@
 pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
 {
+
     layout
     {
+
         addafter("Location Code")
         {
             field("User ID77263"; Rec."User ID")
@@ -71,6 +73,41 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
 
             }
         }
+        // addafter(Print)
+        // {
+        //     action(Print2)
+        //     {
+        //         ApplicationArea = Basic, Suite;
+        //         Caption = '&Print';
+        //         Ellipsis = true;
+        //         Image = Print;
+        //         ToolTip = 'Prepare to print the document. A report request window for the document opens where you can specify what to include on the print-out.';
+        //         //Visible = NOT IsOfficeAddin;
+
+        //         trigger OnAction()
+        //         var
+        //             SalesInvHeader: Record "Sales Invoice Header";
+        //         begin
+        //             SalesInvHeader := Rec;
+        //             CurrPage.SetSelectionFilter(SalesInvHeader);
+        //             if SalesInvHeader.count > 1 then
+        //                 error('It is allowed printing only one invoice at time .')
+        //             else
+        //                 SalesInvHeader.PrintRecords(true);
+        //         end;
+        //     }
+        // }
+        // modify(Print)
+        // {
+        //     Visible = false;
+        // }
+        // addfirst(Category_Category7)
+        // {
+        //     actionref(Print_Promoted2; Print2)
+        //     {
+        //     }
+        // }
+
     }
-    var
+
 }

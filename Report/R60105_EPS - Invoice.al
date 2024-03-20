@@ -1530,9 +1530,9 @@ report 60105 "EPS Sales - Invoice_CO"
             if "Sales Invoice Header".FindSet then
                 repeat
                     if "Sales Invoice Header"."Bill-to Contact No." <> '' then
-                        SegManagement.LogDocument(SegManagement.SalesInvoiceInterDocType, "Sales Invoice Header"."No.", 0, 0, DATABASE::Contact, "Sales Invoice Header"."Bill-to Contact No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '')
+                        SegManagement.LogDocument(enum::"Interaction Log Entry Document Type"::"Sales Inv.", "Sales Invoice Header"."No.", 0, 0, DATABASE::Contact, "Sales Invoice Header"."Bill-to Contact No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '')
                     else
-                        SegManagement.LogDocument(SegManagement.SalesInvoiceInterDocType, "Sales Invoice Header"."No.", 0, 0, DATABASE::Customer, "Sales Invoice Header"."Bill-to Customer No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '');
+                        SegManagement.LogDocument(enum::"Interaction Log Entry Document Type"::"Sales Inv.", "Sales Invoice Header"."No.", 0, 0, DATABASE::Customer, "Sales Invoice Header"."Bill-to Customer No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '');
                 until "Sales Invoice Header".Next = 0;
     end;
 

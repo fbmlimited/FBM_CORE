@@ -64,7 +64,7 @@ page 60103 "FBM_Cust-Op-Site_CO"
         "Operator Name": Text[250];
         "Site Name": Text[250];
         Cust: Record FBM_Customer;
-        Operator: Record "Dimension Value";
+        Operator: Record FBM_Customer;
         Site: Record FBM_CustomerSite_C;
         FASetup: Record "FA Setup";
         vatnumber: text[20];
@@ -91,7 +91,8 @@ page 60103 "FBM_Cust-Op-Site_CO"
             "Customer Name" := Cust.Name
         else
             "Customer Name" := '';
-        if Operator.Get(FASetup."FBM_Operator Dimension", Rec."Operator No.") then
+        Operator.SetRange("No.", Rec."Operator No.");
+        if operator.findlast then
             "Operator Name" := Operator.Name
         else
             "Operator Name" := '';

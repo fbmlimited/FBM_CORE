@@ -85,6 +85,7 @@ pageextension 60177 FBM_CashRecJnlExt_CO extends "Cash Receipt Journal"
                     end;
                 end;
                 Rec.ValidateShortcutDimCode(dimsite, SD3);
+                rec.FBM_Site := sd3;
                 CurrPage.Update(true);
                 //DevOps #619 -- begin
                 Contract_CS.reset;
@@ -92,10 +93,12 @@ pageextension 60177 FBM_CashRecJnlExt_CO extends "Cash Receipt Journal"
                 if Contract_CS.FindFirst() then begin
                     if Contract_CS."Contract Code" <> '' then begin
                         Rec.ValidateShortcutDimCode(dimcontract, Contract_CS."Contract Code");
+
                         CurrPage.Update(true);
                     end;
                 end;
                 //DevOps #619 -- end
+                rec.Modify();
             end;
         }
         modify("Amount (LCY)")

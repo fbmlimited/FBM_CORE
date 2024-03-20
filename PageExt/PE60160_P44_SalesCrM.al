@@ -58,6 +58,10 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
             {
                 ApplicationArea = all;
             }
+            field(FBM_Segment; Rec.FBM_Segment)
+            {
+                ApplicationArea = all;
+            }
 
         }
     }
