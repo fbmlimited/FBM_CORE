@@ -20,6 +20,10 @@ page 60103 "FBM_Cust-Op-Site_CO"
                 {
                     ApplicationArea = All;
                 }
+                field("Cust Loc Code"; Rec."Cust Loc Code")
+                {
+                    ApplicationArea = All;
+                }
                 field("Customer Name"; "Customer Name")
                 {
                     ApplicationArea = All;

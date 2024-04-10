@@ -1473,7 +1473,7 @@ page 60132 "FBM_Customer List_CO"
                     }
 
 #if not SAAS
-action(ReportCustomerSummaryAging)
+                    action(ReportCustomerSummaryAging)
                     {
                         ApplicationArea = Suite;
                         Caption = 'Customer - Summary Aging';
@@ -1481,7 +1481,7 @@ action(ReportCustomerSummaryAging)
                         RunObject = Report "Customer - Summary Aging";
                         ToolTip = 'View, print, or save a summary of each customer''s total payments due, divided into three time periods. The report can be used to decide when to issue reminders, to evaluate a customer''s creditworthiness, or to prepare liquidity analyses.';
                     }
-                    
+
                     action(ReportCustomerDetailedAging)
                     {
                         ApplicationArea = Suite;
@@ -1849,6 +1849,17 @@ action(ReportCustomerSummaryAging)
         CRMIntegrationManagement: Codeunit "CRM Integration Management";
         PriceCalculationMgt: Codeunit "Price Calculation Mgt.";
         OfficeManagement: Codeunit "Office Management";
+        usetup: record "User Setup";
+        cos: record FBM_CustOpSite;
+        errsub: Boolean;
+        errcust: Boolean;
+        errsite: Boolean;
+        subs: record FBM_Subsidiary;
+        noti: Text;
+        notif: Notification;
+        cr: char;
+        lf: char;
+        cust: record Customer;
     begin
         CRMIntegrationEnabled := CRMIntegrationManagement.IsCRMIntegrationEnabled();
         CDSIntegrationEnabled := CRMIntegrationManagement.IsCDSIntegrationEnabled();
@@ -1862,7 +1873,48 @@ action(ReportCustomerSummaryAging)
 
         SalesReceivablesSetup.GetRecordOnce();
         IsAllowMultiplePostingGroupsVisible := SalesReceivablesSetup."Allow Multiple Posting Groups";
+
+        cr := 13;
+        lf := 10;
+
+        if usetup.get(UserId) then
+            if usetup.FBM_CheckWS then
+                if cos.FindFirst() then
+                    repeat
+                        errsub := false;
+                        errcust := false;
+                        errsite := false;
+                        subs.SetRange(Subsidiary, cos.Subsidiary);
+                        if not subs.FindFirst() then
+                            errsub := true;
+                        if cust.get(cos."Cust Loc Code") then
+                            if (cos."Customer No." = cos."Cust Loc Code") and (cust."No." <> cust.FBM_GrCode) then errcust := true;
+                        if cos."Site Code" = cos."Site Loc Code" then errsite := true;
+                        if errsub then begin
+                            noti := 'Subsidiary ' + cos.Subsidiary + ' is not a valid code' + format(cr) + format(lf);
+
+                            notif.message := noti;
+                            notif.Send();
+                        end;
+                        if errcust then begin
+                            noti := 'Loc. Customer ' + cos."Cust Loc Code" + ' in ' + cos.Subsidiary + ' is not a valid code' + format(cr) + format(lf);
+                            notif.message := noti;
+                            notif.Send();
+                        end;
+
+                        if errsite then begin
+                            noti := 'Loc. Site ' + cos."Site Loc Code" + ' in' + cos.Subsidiary + ' is not a valid code+' + format(cr) + format(lf);
+                            notif.message := noti;
+                            notif.Send();
+                        end;
+                        clear(notif);
+                    until cos.next = 0;
+
+
     end;
+
+
+
 
     var
         SalesReceivablesSetup: Record "Sales & Receivables Setup";

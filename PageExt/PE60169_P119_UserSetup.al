@@ -33,6 +33,10 @@ pageextension 60169 FBM_UserSetupExt_CO extends "User Setup"
             {
                 ApplicationArea = All;
             }
+            field(FBM_CheckWS; Rec.FBM_CheckWS)
+            {
+                ApplicationArea = All;
+            }
         }
     }
 

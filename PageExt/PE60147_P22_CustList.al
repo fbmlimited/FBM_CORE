@@ -83,6 +83,7 @@ pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
 
             custlist2.SetTableView(customer);
             custlist2.Run();
+            clear(custlist2);
 
         end;
 

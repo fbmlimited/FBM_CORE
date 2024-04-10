@@ -151,7 +151,7 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
 
 
     var
-        changedate: Codeunit FBM_ChangePerDateSales_CO;
+        changedate: Codeunit FBM_Events_CO;
         PeriodStart: Date;
         PeriodEnd: Date;
         InputDialog: Page "FBM_Input Dialog Page_CO";

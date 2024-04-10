@@ -86,7 +86,7 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
 
 
     var
-        changedate: Codeunit FBM_ChangePerDateSales_CO;
+        changedate: Codeunit FBM_Events_CO;
         PeriodStart: Date;
         PeriodEnd: Date;
         InputDialog: Page "FBM_Input Dialog Page_CO";

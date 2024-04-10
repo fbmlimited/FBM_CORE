@@ -1,11 +1,17 @@
 codeunit 60104 FBM_Events_CO
 {
-    Permissions = tabledata 32 = rimd, tabledata "Sales Cr.Memo Header" = rimd;
-    ;
+    Permissions = tabledata 32 = rimd, tabledata "Sales Cr.Memo Header" = rimd,
+    TableData "Sales Invoice Header" = rm,
+
+                  tabledata "Sales Cr.Memo Line" = rm,
+                  tabledata "Sales Invoice Line" = rm;
+
     EventSubscriberInstance = StaticAutomatic;
 
     var
         FormatAddress: Codeunit "Format Address";
+
+        sales: Integer;
 
     trigger OnRun()
     begin
@@ -302,7 +308,7 @@ codeunit 60104 FBM_Events_CO
                 resentry.FBM_Pedimento1 := ItemJournalLine.FBM_Pedimento1;
                 resentry.FBM_Pedimento2 := ItemJournalLine.FBM_Pedimento2;
                 resentry.FBM_Pedimento3 := ItemJournalLine.FBM_Pedimento3;
-                resentry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
+                //resentry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
                 resentry.Modify();
             end;
 
@@ -352,7 +358,7 @@ codeunit 60104 FBM_Events_CO
         ItemJnlLine.FBM_Pedimento1 := PurchLine.FBM_Pedimento1;
         ItemJnlLine.FBM_Pedimento2 := PurchLine.FBM_Pedimento2;
         ItemJnlLine.FBM_Pedimento3 := PurchLine.FBM_Pedimento3;
-        ItemJnlLine.FBM_Pedimento4 := PurchLine.FBM_Pedimento4;
+        //ItemJnlLine.FBM_Pedimento4 := PurchLine.FBM_Pedimento4;
 
 
     end;
@@ -427,4 +433,91 @@ codeunit 60104 FBM_Events_CO
 
 
 
+
+
+
+
+    procedure ChangeSalesInvoiceDate(PeriodeStart: Date; PeriodeEnd: Date; sales: Record "Sales Invoice Header");
+    var
+        salesline: Record "Sales Invoice Line";
+    begin
+        sales."FBM_Period Start" := PeriodeStart;
+        sales."FBM_Period End" := PeriodeEnd;
+        sales.MODIFY;
+        salesline.SETRANGE("Document No.", sales."No.");
+        IF salesline.FINDFIRST THEN
+            REPEAT
+                salesline."FBM_Period Start" := PeriodeStart;
+                salesline."FBM_Period End" := PeriodeEnd;
+                salesline.MODIFY;
+            UNTIL salesline.NEXT = 0;
+    end;
+
+    procedure ChangeSalesCrMemoDate(PeriodeStart: Date; PeriodeEnd: Date; sales: Record "Sales Cr.Memo Header");
+    var
+        salesline: Record "Sales Cr.Memo Line";
+    begin
+        sales."FBM_Period Start" := PeriodeStart;
+        sales."FBM_Period End" := PeriodeEnd;
+        sales.MODIFY;
+        salesline.SETRANGE("Document No.", sales."No.");
+        IF salesline.FINDFIRST THEN
+            REPEAT
+                salesline."FBM_Period Start" := PeriodeStart;
+                salesline."FBM_Period End" := PeriodeEnd;
+                salesline.MODIFY;
+            UNTIL salesline.NEXT = 0;
+    end;
+
+    procedure ChangeSalesInvoicePostGroup(GenBusGroup: Code[20]; GenItemGroup: Code[20]; sales: Record "Sales Invoice Line");
+    var
+    begin
+        IF GenBusGroup <> '' THEN
+            sales."Gen. Bus. Posting Group" := GenBusGroup;
+        IF GenItemGroup <> '' THEN
+            sales."Gen. Prod. Posting Group" := GenItemGroup;
+        sales.MODIFY;
+
+    end;
+
+    //[EventSubscriber(ObjectType::Codeunit, Codeunit::"System Initialization", 'OnAfterLogin', '', false, false)]
+    procedure OnAfterLogin()
+    var
+        usetup: record "User Setup";
+        cos: record FBM_CustOpSite;
+        errsub: Boolean;
+        errcust: Boolean;
+        errsite: Boolean;
+        subs: record FBM_Subsidiary;
+        noti: Notification;
+    begin
+        if usetup.get(UserId) then
+            if usetup.FBM_CheckWS then
+                if cos.FindFirst() then
+                    repeat
+                        errsub := false;
+                        errcust := false;
+                        errsite := false;
+                        subs.SetRange(Subsidiary, cos.Subsidiary);
+                        if not subs.FindFirst() then
+                            errsub := true;
+                        if cos."Customer No." = cos."Cust Loc Code" then errcust := true;
+                        if cos."Site Code" = cos."Site Loc Code" then errsite := true;
+                        if errsub then begin
+                            noti.message('Subsidiary ' + cos.Subsidiary + ' is not a valid code');
+                            NOTI.Scope := NotificationScope::LocalScope;
+                            noti.Send();
+                        end;
+                        if errcust then begin
+                            noti.message('Loc. Customer ' + cos."Cust Loc Code" + ' is not a valid code');
+                            noti.Send();
+                        end;
+
+                        if errsite then begin
+                            noti.message('Loc. Site ' + cos."Site Loc Code" + ' is not a valid code');
+                            noti.Send();
+                        end;
+                    until cos.next = 0
+
+    end;
 }

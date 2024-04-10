@@ -36,7 +36,7 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
                     GenBusGroup: Code[20];
                     GenItemgroup: Code[20];
                     search: Text;
-                    change: Codeunit FBM_ChangePerDateSales_CO;
+                    change: Codeunit FBM_Events_CO;
                 begin
 
                     CLEAR(InputDialog);
@@ -70,7 +70,7 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
     var
 
         compinfo: record "Company Information";
-        changedate: Codeunit FBM_ChangePerDateSales_CO;
+        changedate: Codeunit FBM_Events_CO;
 
         showsite: Boolean;
 

@@ -44,10 +44,13 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                     if companyinfo.FBM_CustIsOp then begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
                         if CustSite.FindFirst() then begin
-                            if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
-                            /*CustmoerSiteP.Editable := false;
-                                            if CustmoerSiteP.RunModal = Action::LookupOK then
-                                                Rec.Validate(Site, CustSite."Site Code");*/
+                            if page.RunModal(60101, CustSite) = Action::LookupOK then begin
+
+                                Rec.Validate(fbm_Site, CustSite."Site Code");
+
+                            end;
+                            /*if CustmoerSiteP.RunModal = Action::LookupOK then
+                               Rec.Validate(fbm_site, CustSite."Site Code");*/
                         end
                     end
                     else begin
