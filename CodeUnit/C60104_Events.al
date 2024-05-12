@@ -480,44 +480,54 @@ codeunit 60104 FBM_Events_CO
 
     end;
 
-    //[EventSubscriber(ObjectType::Codeunit, Codeunit::"System Initialization", 'OnAfterLogin', '', false, false)]
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"System Initialization", 'OnAfterLogin', '', false, false)]
     procedure OnAfterLogin()
     var
-        usetup: record "User Setup";
-        cos: record FBM_CustOpSite;
-        errsub: Boolean;
-        errcust: Boolean;
-        errsite: Boolean;
-        subs: record FBM_Subsidiary;
-        noti: Notification;
-    begin
-        if usetup.get(UserId) then
-            if usetup.FBM_CheckWS then
-                if cos.FindFirst() then
-                    repeat
-                        errsub := false;
-                        errcust := false;
-                        errsite := false;
-                        subs.SetRange(Subsidiary, cos.Subsidiary);
-                        if not subs.FindFirst() then
-                            errsub := true;
-                        if cos."Customer No." = cos."Cust Loc Code" then errcust := true;
-                        if cos."Site Code" = cos."Site Loc Code" then errsite := true;
-                        if errsub then begin
-                            noti.message('Subsidiary ' + cos.Subsidiary + ' is not a valid code');
-                            NOTI.Scope := NotificationScope::LocalScope;
-                            noti.Send();
-                        end;
-                        if errcust then begin
-                            noti.message('Loc. Customer ' + cos."Cust Loc Code" + ' is not a valid code');
-                            noti.Send();
-                        end;
 
-                        if errsite then begin
-                            noti.message('Loc. Site ' + cos."Site Loc Code" + ' is not a valid code');
-                            noti.Send();
-                        end;
-                    until cos.next = 0
+
+    begin
 
     end;
+
+    procedure updNewUsed()
+    var
+
+        usersetup: Record "User Setup";
+        id: Integer;
+        itemle: record "Item Ledger Entry";
+        loc: record Location;
+        subsidiary: text[20];
+        buftxt: record "Name/Value Buffer";
+        country: record "Country/Region";
+        Inventory_New: Decimal;
+        Inventory_Used: Decimal;
+        cinfo: record "Company Information";
+    begin
+        buftxt.DeleteAll();
+        if itemle.FindFirst() then
+            repeat
+                country.Reset();
+                if loc.get(itemle."Location Code") then begin
+                    itemle.FBM_NewItem := loc.FBM_NewItem;
+                    itemle.FBM_Country := loc."Country/Region Code";
+                    itemle.Modify();
+                    buftxt.reset;
+                    buftxt.SetRange(name, loc."Country/Region Code");
+                    if not buftxt.FindFirst() then begin
+                        buftxt.Init();
+                        id += 1;
+                        buftxt.id := id;
+                        buftxt.Name := loc."Country/Region Code";
+                        if country.get(loc."Country/Region Code") then
+                            buftxt.value := country.FBM_Country3;
+                        buftxt.Insert();
+                    end;
+
+                end;
+            until itemle.Next() = 0;
+
+
+    end;
+
+
 }

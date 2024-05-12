@@ -9,6 +9,11 @@ pageextension 60182 FBM_LocCardExt_CO extends "Location Card"
                 ApplicationArea = all;
 
             }
+            field(FBM_UedItem; Rec.FBM_UsedItem)
+            {
+                ApplicationArea = all;
+
+            }
             field("Country/Region Code2"; Rec."Country/Region Code")
             {
                 ApplicationArea = all;

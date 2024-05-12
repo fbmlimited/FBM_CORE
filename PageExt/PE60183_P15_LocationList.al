@@ -9,6 +9,11 @@ pageextension 60183 FBM_LocListExt_CO extends "Location List"
                 ApplicationArea = all;
 
             }
+            field(FBM_UsedItem; Rec.FBM_UsedItem)
+            {
+                ApplicationArea = all;
+
+            }
             field("Country/Region Code"; Rec."Country/Region Code")
             {
                 ApplicationArea = all;

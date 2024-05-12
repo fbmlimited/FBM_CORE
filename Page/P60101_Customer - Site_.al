@@ -31,6 +31,7 @@ page 60101 "FBM_CustomerSite_CO"
                         if site.findfirst then
                             repeat
                                 csite.setrange(sitegrcode, site."Site Code");
+                                csite.SetFilter(status, '<>%1', csite.status::"STOP OPERATION");// don't count the ceased ones
                                 if csite.IsEmpty then
                                     site.Mark(true)
                                 else

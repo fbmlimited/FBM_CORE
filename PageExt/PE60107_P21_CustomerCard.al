@@ -1,6 +1,7 @@
 pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 {
 
+
     layout
     {
 
@@ -120,6 +121,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 
     actions
     {
+#if not JYM
         addlast(navigation)
         {
             group("Customer Sites_CO")
@@ -143,6 +145,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
                 }
             }
         }
+#endif
         addlast(processing)
         {
 
@@ -188,6 +191,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
     var
         uper: Codeunit "User Permissions";
     begin
+
         if companyinfo.Get() then begin
             if companyinfo.FBM_CustIsOp then
                 ShowSites := true

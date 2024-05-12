@@ -5,8 +5,13 @@
 pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
 {
 
+
     layout
     {
+        modify(Control1)
+        {
+            Editable = false;
+        }
         addafter(Name)
         {
             field(FBM_GrCode; Rec.FBM_GrCode)
@@ -80,10 +85,11 @@ pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
     begin
         if GuiAllowed then begin
             customer.CopyFilters(rec);
-
+            //CurrPage.Close();
             custlist2.SetTableView(customer);
             custlist2.Run();
-            clear(custlist2);
+            error('');
+
 
         end;
 

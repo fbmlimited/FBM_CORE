@@ -2,6 +2,10 @@ tableextension 60100 FBM_ItemExt_CO extends Item
 {
     fields
     {
+        modify("Item Category Code")
+        {
+            TableRelation = "Item Category" where(FBM_Standard = const(true));
+        }
         field(60100; FBM_SiteFilter; code[20])
         {
             FieldClass = FlowFilter;
