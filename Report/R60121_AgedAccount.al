@@ -399,7 +399,7 @@ report 60121 "FBM_Aged AccRec New_CO"
                         { }
                         column(CustomerSite; VarCustomerSite)
                         { }
-                        column(segment; CustLedgEntryEndingDate.FBM_Segment)
+                        column(segment; CustLedgEntryEndingDate.FBM_Segment2)
                         { }
                         trigger OnAfterGetRecord()
                         var

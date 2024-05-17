@@ -95,10 +95,13 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             column(ForPaymentCaption; ForPaymentCaption)
             {
             }
-            column(Segment; FBM_Segment)
+            column(Segment; FBM_Segment2)
             {
             }
             column(Contract_Code; "FBM_Contract Code")
+            {
+            }
+            column(TandC; TandC)
             {
             }
             column(VATText;
@@ -121,8 +124,13 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             Curr2)
             {
             }
+
             column(VATAmtLineVATAmtText;
             'VAT @ ')
+            {
+            }
+            column(SubtotalCaption;
+            SubtotalCaptionLbl)
             {
             }
             column(TotalAmountVATC1;
@@ -191,8 +199,32 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                 AutoFormatExpression = 'USD';
                 AutoFormatType = 1;
             }
+            column(BankCurrencyCaption;
+            BankCurrencyCaption)
+            {
+            }
+            column(HasIntBank;
+            HasIntBank)
+            {
+            }
+            column(HasIntBank2;
+            HasIntBank2)
+            {
+            }
             column(VALExchRate;
             VALExchRate)
+            {
+            }
+            column(InqEmail;
+            InqEmail)
+            {
+            }
+            column(Curr1Cptn;
+            Curr1Cptn)
+            {
+            }
+            column(Curr2Cptn;
+            Curr2Cptn)
             {
             }
             dataitem(CopyLoop; "Integer")
@@ -265,6 +297,10 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     }
                     column(CustAddr5;
                     CustAddr[5])
+                    {
+                    }
+                    column(TitleCaption;
+                    'INVOICE')
                     {
                     }
                     column(CompanyInfoPhoneNo;
@@ -432,10 +468,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     PrintTIN)
                     {
                     }
-                    column(InqEmail;
-                    InqEmail)
-                    {
-                    }
+
                     column(CustomerRefCaption;
                     CustomerRefCaption)
                     {
@@ -488,10 +521,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     VATIDNoCaption)
                     {
                     }
-                    column(TitleCaption;
-                    TitleCaption)
-                    {
-                    }
+
                     column(SiteCaption;
                     SiteCaption)
                     {
@@ -504,10 +534,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     IBANCaption)
                     {
                     }
-                    column(BankCurrencyCaption;
-                    BankCurrencyCaption)
-                    {
-                    }
+
                     column(FurtherTransferCaption;
                     FurtherTransferCaption)
                     {
@@ -524,14 +551,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     CompanyInfo.FBM_BankAddress)
                     {
                     }
-                    column(Curr1Cptn;
-                    Curr1Cptn)
-                    {
-                    }
-                    column(Curr2Cptn;
-                    Curr2Cptn)
-                    {
-                    }
+
                     column(SIH_Currency;
                     Curr2)
                     {
@@ -608,10 +628,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     HasBank)
                     {
                     }
-                    column(HasIntBank;
-                    HasIntBank)
-                    {
-                    }
+
                     column(BankDetails21;
                     BankDetails2[1])
                     {
@@ -648,10 +665,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     HasBank2)
                     {
                     }
-                    column(HasIntBank2;
-                    HasIntBank2)
-                    {
-                    }
+
                     column(exchRate;
                     exchRate)
                     {
@@ -660,8 +674,19 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     CompanyInfo.FBM_TINNumber)
                     {
                     }
-                    column(TandC; TandC)
+
+
+                    column(TotalSubTotalC1;
+                    TotalSubTotalC1)
                     {
+                        AutoFormatExpression = 'USD';
+                        AutoFormatType = 1;
+                    }
+                    column(TotalSubTotalC2;
+                    TotalSubTotalC2)
+                    {
+                        AutoFormatExpression = 'USD';
+                        AutoFormatType = 1;
                     }
                     //BFT-001 -- end                
 
@@ -902,10 +927,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                         PostedShipmentDateCaptionLbl)
                         {
                         }
-                        column(SubtotalCaption;
-                        SubtotalCaptionLbl)
-                        {
-                        }
+
                         column(LineAmtAfterInvDiscCptn;
                         LineAmtAfterInvDiscCptnLbl)
                         {
@@ -949,12 +971,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                         }
 
 
-                        column(TotalSubTotalC1;
-                        TotalSubTotalC1)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
+
                         column(TotalInvDiscountAmountC1;
                         TotalInvDiscountAmountC1)
                         {
@@ -962,12 +979,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                             AutoFormatType = 1;
                         }
 
-                        column(TotalSubTotalC2;
-                        TotalSubTotalC2)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
+
                         column(TotalInvDiscountAmountC2;
                         TotalInvDiscountAmountC2)
                         {
@@ -1449,12 +1461,26 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             trigger OnAfterGetRecord()
             var
                 Handled: Boolean;
-
+                tcrec: record FBM_TermsConditions;
                 sl: record "Sales Invoice Line";
                 sh: record "Sales Invoice Header";
-
+                cr: char;
+                lf: char;
             begin
-
+                g_customer.get("Sales Invoice Header"."Bill-to Customer No.");
+                tcrec.SetRange(DocType, tcrec.DocType::SI);
+                tcrec.SetRange(Country, g_Customer."Country/Region Code");
+                if tcrec.FindFirst() then
+                    repeat
+                        if ((g_Customer."Country/Region Code" = 'MX') OR (g_Customer."Country/Region Code" = 'PH')) then begin
+                            if (TCrec.Country <> g_Customer."Country/Region Code") then tcrec.Next();
+                        end
+                        else
+                            if (TCrec.Country <> '') then tcrec.Next();
+                        cr := 13;
+                        lf := 10;
+                        tandc := tandc + tcrec."Terms Conditions" + cr + lf;
+                    until tcrec.Next() = 0;
                 CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
                 clear(SiteAddr);
                 FormatSiteAddress("Sales Invoice Header");
@@ -1464,15 +1490,11 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                 DimSetEntry1.SetRange("Dimension Set ID", "Dimension Set ID");
                 GetLineFeeNoteOnReportHist("No.");
                 //BFT1.00
-                GLSetup.get();
-                if (("Sales Invoice Header"."Currency Code" <> '') AND ("Sales Invoice Header"."Currency Code" <> GLSetup."LCY Code")) then begin
-                    curr1 := GLSetup."LCY Code";
-                    curr2 := "Sales Invoice Header"."Currency Code";
-                end
-                else begin
-                    curr1 := GLSetup."LCY Code";
 
-                end;
+                curr1 := "Sales Invoice Header"."Currency Code";
+                curr2 := "Sales Invoice Header".FBM_Currency2;
+
+
                 //CalculateCurrencyTotals("Sales Invoice Header", Curr1, Curr2);
                 SetReportCurrencies(Curr1, Curr2, "Sales Invoice Header");
                 //HasVAT := InvoiceHasVAT("Sales Invoice Header");
@@ -1482,9 +1504,9 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                 g_Customer.SetFilter(g_Customer."No.", "Sales Invoice Header"."Bill-to Customer No.");
                 g_Customer.FindFirst;
                 PrintTIN := false;
-                if currency.get("Currency Code") then
+                if currency.get(curr1) then
                     Curr1Name := currency.Description;
-                if currency.get(FBM_Currency2) then
+                if currency.get(curr2) then
                     Curr2Name := currency.Description;
                 if country.get(g_Customer."Country/Region Code") then
                     if country.FBM_Account = '' then
@@ -1506,8 +1528,17 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     else begin
                         RFCCaption := 'VAT:';
                         InqEmail := 'adm.customers@fbm.mt';
-                        PrintTIN := true;
+                        PrintTIN := false;
                     end;
+
+                CompanyInfo.get;
+                if CompanyInfo."Country/Region Code" = 'US' then begin
+                    InqEmail := 'admin@fbmgaming.com';
+
+                end;
+
+
+
                 FormatBankInfo(g_Customer);
                 //BFT-001
                 begin
@@ -1540,14 +1571,9 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                             TotalAmountInclVAT += sl."Amount Including VAT";
                             TotalPaymentDiscOnVAT += -(sl."Line Amount" - sl."Inv. Discount Amount" - sl."Amount Including VAT");
                             GLSetup.get;
-                            if ((sh."Currency Code" <> '') AND (sh."Currency Code" <> GLSetup."LCY Code")) then begin
-                                curr1 := GLSetup."LCY Code";
-                                curr2 := sh."Currency Code";
-                            end
-                            else begin
-                                curr1 := GLSetup."LCY Code";
 
-                            end;
+                            curr1 := sh."Currency Code";
+                            curr2 := sh.FBM_Currency2;
 
                             //BFT1.00
 
@@ -2223,20 +2249,19 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                 Curr2Cptn := GLSetup."Additional Reporting Currency";
             end
             else*/
-        if ((SIH."Currency Code" <> '') AND (SIH."Currency Code" <> GLSetup."LCY Code")) then //if not in LCY, values should be shown in FCY & LCY
-     begin
-            Currency1 := SIH."Currency Code";
-            Currency2 := GLSetup."LCY Code";
-            Curr1Cptn := SIH."Currency Code";
-            Curr2Cptn := GLSetup."LCY Code";
-        end
-        else begin //if in LCY, values should be shown in LCY;
-            Currency1 := GLSetup."LCY Code";
-            Currency2 := '';
-            Curr1Cptn := GLSetup."LCY Code";
-            Curr2Cptn := '';
+        // if ((SIH."Currency Code" <> '') AND (SIH."Currency Code" <> GLSetup."LCY Code")) then //if not in LCY, values should be shown in FCY & LCY
 
-        end;
+        Currency1 := SIH."Currency Code";
+        Currency2 := sih.FBM_Currency2;
+        Curr1Cptn := SIH."Currency Code";
+        Curr2Cptn := sih.FBM_Currency2;
+        // else begin //if in LCY, values should be shown in LCY;
+        //     Currency1 := GLSetup."LCY Code";
+        //     Currency2 := '';
+        //     Curr1Cptn := GLSetup."LCY Code";
+        //     Curr2Cptn := '';
+
+        // end;
     end;
     //end;
     //BFT-001 -- begin
@@ -2247,7 +2272,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         GLSetup: Record "General Ledger Setup";
     begin
         GLSetup.get();
-        if ((Currency1 = GLSetup."LCY Code") AND (Currency2 = '')) then begin
+        if ((Currency1 = GLSetup."LCY Code") AND (Currency2 = '') and (SIHeader.FBM_Currency2 = '')) then begin
             //calculate LCY only
             CalcLCY();
         end
@@ -2258,10 +2283,13 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     CalcLCYARC(SIHeader."Posting Date", ARC);
                 end*/
         else
-            if ((Currency1 <> GLSetup."LCY Code") AND (Currency2 = GLSetup."LCY Code")) then begin
+            if (SIHeader.FBM_Currency2 = '') and ((Currency1 <> GLSetup."LCY Code") AND (Currency2 = GLSetup."LCY Code")) or ((SIHeader.FBM_Currency2 = '') and (Currency1 = GLSetup."LCY Code") AND (Currency2 <> GLSetup."LCY Code")) then begin
                 //calculate FCY & LCY
                 CalcFCYLCY(SIHeader);
-            end;
+            end
+            else
+                // if SIHeader.FBM_Currency2 <> '' then
+                    calcC1C2(siheader);
         CalcVATEUR(SIHeader."Posting Date");
     end;
 
@@ -2321,16 +2349,18 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         if CurrencyExchangeRate.FindLast() then begin
             exchRate := CurrencyExchangeRate."Exchange Rate Amount";
         end;
-        If (Curr1 = GLSetup."LCY Code") then begin
+        If (Curr1 = 'EUR') then begin
+            TotalPreVATEUR := TotalSubTotalC1;
+            TotalVATEUR := TotalAmountVATC1;
+            TotalEUR := TotalAmountInclVATC1;
+        end
+        else begin
             TotalPreVATEUR := TotalSubTotalC1 * exchrate;
             TotalVATEUR := TotalAmountVATC1 * exchrate;
             TotalEUR := TotalAmountInclVATC1 * exchrate;
-        end
-        else begin
-            TotalPreVATEUR := TotalSubTotalC2 * exchrate;
-            TotalVATEUR := TotalAmountVATC2 * exchrate;
-            TotalEUR := TotalAmountInclVATC2 * exchrate;
         end;
+
+
     end;
 
     local procedure CalcFCYLCY(SIHeader: Record "Sales Invoice Header")
@@ -2349,6 +2379,26 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         TotalAmountInclVATC2 := TotalAmountInclVAT / exchRate;
         TotalPaymentDiscOnVATC2 := TotalPaymentDiscOnVAT / exchRate;
     end;
+
+    local procedure CalcC1C2(SIHeader: Record "Sales Invoice Header")
+    begin
+
+        TotalSubTotalC1 := TotalSubTotal;
+
+        TotalAmountC1 := TotalAmount;
+        TotalAmountVATC1 := TotalAmountVAT;
+        TotalAmountInclVATC1 := TotalAmountInclVAT;
+
+        TotalSubTotalC2 := SIHeader.FBM_LocalCurrAmt;
+
+        TotalAmountC2 := SIHeader.FBM_LocalCurrAmt;
+        ;
+        TotalAmountVATC2 := 0;
+        TotalAmountInclVATC2 := SIHeader.FBM_LocalCurrAmt;
+        ;
+
+    end;
+
 
     local procedure ResetLCYValues()
     begin

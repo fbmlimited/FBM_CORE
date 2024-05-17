@@ -9,7 +9,7 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
                 Visible = showsite;
                 ApplicationArea = All;
             }
-            field(Segment; rec.FBM_Segment)
+            field(Segment; rec.FBM_Segment2)
             {
                 ApplicationArea = All;
             }

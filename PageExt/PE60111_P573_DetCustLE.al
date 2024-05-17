@@ -16,7 +16,7 @@ pageextension 60111 FBM_DetCustLEExt_CO extends "Detailed Cust. Ledg. Entries"
             {
                 ApplicationArea = All;
             }
-            field(FBM_Segment; Rec.FBM_Segment)
+            field(FBM_Segment; Rec.FBM_Segment2)
             {
                 ApplicationArea = All;
             }

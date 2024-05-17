@@ -39,6 +39,20 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
         }
         addlast(General)
         {
+            field(FBM_Model; Rec.FBM_Model)
+            {
+
+                Enabled = isegm;
+                Editable = false;
+                ApplicationArea = all;
+            }
+            field(FBM_Segment2; Rec.FBM_Segment2)
+            {
+
+                Enabled = isegm;
+                Editable = false;
+                ApplicationArea = all;
+            }
             field(FBM_Brand; Rec.FBM_Brand)
             {
                 Caption = 'Brand';

@@ -1,6 +1,6 @@
 page 60154 FBM_ListValue_CO
 {
-    Caption = ' Values List';
+    Caption = ' Values List for CRM';
     PageType = List;
     UsageCategory = Lists;
     ApplicationArea = All;
@@ -12,6 +12,7 @@ page 60154 FBM_ListValue_CO
 
         area(Content)
         {
+
             group(header)
             {
                 field(ptype; ptype)
@@ -30,6 +31,7 @@ page 60154 FBM_ListValue_CO
                 field(Type; Rec.Type)
                 {
                     ApplicationArea = All;
+                    Width = 20;
                 }
                 field(Ord; Rec.Ord)
                 {

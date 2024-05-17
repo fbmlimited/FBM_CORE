@@ -122,7 +122,7 @@ codeunit 60104 FBM_Events_CO
     begin
         GenJournalLine."FBM_Period Start" := SalesHeader."FBM_Period Start";
         GenJournalLine."FBM_Period End" := SalesHeader."FBM_Period End";
-        GenJournalLine.FBM_Segment := SalesHeader.FBM_Segment;
+        GenJournalLine.FBM_Segment2 := SalesHeader.FBM_Segment2;
         GenJournalLine.FBM_Site := SalesHeader.FBM_Site;
     end;
 
@@ -133,7 +133,7 @@ codeunit 60104 FBM_Events_CO
         GLEntry."FBM_Period Start" := GenJournalLine."FBM_Period Start";
         GLEntry."FBM_Period End" := GenJournalLine."FBM_Period End";
 
-        GLEntry.FBM_Segment := GenJournalLine.FBM_Segment;
+        GLEntry.FBM_Segment2 := GenJournalLine.FBM_Segment2;
         GLEntry.FBM_Site := GenJournalLine.FBM_Site;
     end;
 
@@ -143,7 +143,7 @@ codeunit 60104 FBM_Events_CO
     begin
         GLEntry2."FBM_Period Start" := GenJournalLine."FBM_Period Start";
         GLEntry2."FBM_Period End" := GenJournalLine."FBM_Period End";
-        GLEntry2.FBM_Segment := GenJournalLine.FBM_Segment;
+        GLEntry2.FBM_Segment2 := GenJournalLine.FBM_Segment2;
         GLEntry2.FBM_Site := GenJournalLine.FBM_Site;
 
     end;
@@ -159,7 +159,7 @@ codeunit 60104 FBM_Events_CO
     begin
         TempGLEntryBuf."FBM_Period Start" := GenJournalLine."FBM_Period Start";
         TempGLEntryBuf."FBM_Period End" := GenJournalLine."FBM_Period End";
-        TempGLEntryBuf.FBM_Segment := GenJournalLine.FBM_Segment;
+        TempGLEntryBuf.FBM_Segment2 := GenJournalLine.FBM_Segment2;
         TempGLEntryBuf.FBM_Site := GenJournalLine.FBM_Site;
     end;
 
@@ -169,7 +169,7 @@ codeunit 60104 FBM_Events_CO
     begin
         CustLedgerEntry."FBM_Period Start" := GenJournalLine."FBM_Period Start";
         CustLedgerEntry."FBM_Period End" := GenJournalLine."FBM_Period End";
-        CustLedgerEntry.FBM_Segment := GenJournalLine.FBM_Segment;
+        CustLedgerEntry.FBM_Segment2 := GenJournalLine.FBM_Segment2;
         CustLedgerEntry.FBM_Site := GenJournalLine.FBM_Site;
     end;
 
@@ -179,7 +179,7 @@ codeunit 60104 FBM_Events_CO
     begin
         CustLedgerEntry."FBM_Period Start" := GenJournalLine."FBM_Period Start";
         CustLedgerEntry."FBM_Period End" := GenJournalLine."FBM_Period End";
-        CustLedgerEntry.FBM_Segment := GenJournalLine.FBM_Segment;
+        CustLedgerEntry.FBM_Segment2 := GenJournalLine.FBM_Segment2;
         CustLedgerEntry.FBM_Site := GenJournalLine.FBM_Site;
     end;
 
@@ -190,7 +190,7 @@ codeunit 60104 FBM_Events_CO
     begin
         DtldCustLedgEntry."FBM_Period Start" := GenJournalLine."FBM_Period Start";
         DtldCustLedgEntry."FBM_Period End" := GenJournalLine."FBM_Period End";
-        DtldCustLedgEntry.FBM_Segment := GenJournalLine.FBM_Segment;
+        DtldCustLedgEntry.FBM_Segment2 := GenJournalLine.FBM_Segment2;
         DtldCustLedgEntry.FBM_Site := GenJournalLine.FBM_Site;
     end;
 

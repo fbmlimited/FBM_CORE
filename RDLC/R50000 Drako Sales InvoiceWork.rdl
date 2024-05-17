@@ -1523,6 +1523,7 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="textbox175">
+                                            <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
@@ -2992,7 +2993,7 @@
                 <KeepTogether>true</KeepTogether>
                 <DataSetName>DataSet_Result</DataSetName>
                 <Top>0.1023cm</Top>
-                <Left>0.03063cm</Left>
+                <Left>0.03848cm</Left>
                 <Height>3.71954cm</Height>
                 <Width>19.98519cm</Width>
                 <Style>
@@ -3024,7 +3025,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <Top>0.77584cm</Top>
-                <Left>1.5311cm</Left>
+                <Left>1.53895cm</Left>
                 <Height>0.6cm</Height>
                 <Width>2.5cm</Width>
                 <ZIndex>1</ZIndex>
@@ -3043,9 +3044,9 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Left>0.05785cm</Left>
+            <Left>0.02788cm</Left>
             <Height>3.96296cm</Height>
-            <Width>20.01582cm</Width>
+            <Width>20.06049cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3053,6 +3054,7 @@
             </Style>
           </Rectangle>
           <Line Name="Line5">
+            <Top>0.17639cm</Top>
             <Left>0.1411cm</Left>
             <Height>0cm</Height>
             <Width>19.9365cm</Width>
@@ -3063,15 +3065,26 @@
               </Border>
             </Style>
           </Line>
+          <Line Name="Line7">
+            <Top>4.17639cm</Top>
+            <Height>0cm</Height>
+            <Width>20.0245cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
         </ReportItems>
-        <Height>4.13934cm</Height>
+        <Height>4.31573cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>20.11834cm</Width>
+      <Width>20.16571cm</Width>
       <Page>
         <PageHeader>
           <Height>8.28605cm</Height>
@@ -4132,14 +4145,127 @@
         <PageFooter>
           <Height>15.25568cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Rectangle Name="Rectangle1">
               <ReportItems>
+                <Rectangle Name="Rectangle5">
+                  <ReportItems>
+                    <Textbox Name="LocalCurrAmt5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Last(Fields!TotalAmountVATC2.Value, "DataSet_Result")</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <Format>#,0.00;-#,0.00;'-'</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LocalCurrAmt2</rd:DefaultName>
+                      <Top>1.5243cm</Top>
+                      <Left>2.11343cm</Left>
+                      <Height>0.48699cm</Height>
+                      <Width>2.09383cm</Width>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>1pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                    <Textbox Name="Textbox122">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!TotalAmountC2.Value, "DataSet_Result")</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <Format>#,0.00;-#,0.00;'-'</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox32</rd:DefaultName>
+                      <Top>1.98558cm</Top>
+                      <Left>2.09584cm</Left>
+                      <Height>0.4517cm</Height>
+                      <Width>2.09383cm</Width>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>1pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                    <Textbox Name="Currency3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!Curr2.Value, "DataSet_Result")</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Currency2</rd:DefaultName>
+                      <Top>0.02571cm</Top>
+                      <Left>2.09861cm</Left>
+                      <Height>0.40965cm</Height>
+                      <Width>2.09383cm</Width>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                          <Width>1.5pt</Width>
+                        </Border>
+                        <PaddingLeft>7pt</PaddingLeft>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                  <KeepTogether>true</KeepTogether>
+                  <Top>0.18867cm</Top>
+                  <Left>15.72425cm</Left>
+                  <Height>2.46299cm</Height>
+                  <Width>4.20726cm</Width>
+                  <Style>
+                    <Border>
+                      <Style>Solid</Style>
+                    </Border>
+                  </Style>
+                </Rectangle>
                 <Line Name="Line1">
                   <Top>0.10583cm</Top>
                   <Left>0.06588cm</Left>
                   <Height>15.04597cm</Height>
                   <Width>19.89628cm</Width>
+                  <ZIndex>1</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,true,false)</Hidden>
                   </Visibility>
@@ -4168,14 +4294,11 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox150</rd:DefaultName>
-                  <Top>5.32344cm</Top>
+                  <Top>5.28817cm</Top>
                   <Left>0.61976cm</Left>
                   <Height>0.38428cm</Height>
                   <Width>3.84457cm</Width>
-                  <ZIndex>1</ZIndex>
-                  <Visibility>
-                    <Hidden>=(Not (First(Fields!HasIntBank.Value, "DataSet_Result"))) and iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
+                  <ZIndex>2</ZIndex>
                   <Style>
                     <Border>
                       <Color>LightGrey</Color>
@@ -4208,10 +4331,7 @@
                   <Left>15.60461cm</Left>
                   <Height>1.56908cm</Height>
                   <Width>4.16921cm</Width>
-                  <ZIndex>2</ZIndex>
-                  <Visibility>
-                    <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
+                  <ZIndex>3</ZIndex>
                   <Style>
                     <Border>
                       <Color>LightGrey</Color>
@@ -4244,10 +4364,7 @@
                   <Left>12.06687cm</Left>
                   <Height>0.37064cm</Height>
                   <Width>7.63538cm</Width>
-                  <ZIndex>3</ZIndex>
-                  <Visibility>
-                    <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
+                  <ZIndex>4</ZIndex>
                   <Style>
                     <Border>
                       <Color>LightGrey</Color>
@@ -4281,7 +4398,7 @@
                   <Left>0.71984cm</Left>
                   <Height>0.34356cm</Height>
                   <Width>3.84457cm</Width>
-                  <ZIndex>4</ZIndex>
+                  <ZIndex>5</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
@@ -4318,10 +4435,7 @@
                   <Left>12.06687cm</Left>
                   <Height>0.34356cm</Height>
                   <Width>7.63538cm</Width>
-                  <ZIndex>5</ZIndex>
-                  <Visibility>
-                    <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
+                  <ZIndex>6</ZIndex>
                   <Style>
                     <Border>
                       <Color>LightGrey</Color>
@@ -4354,10 +4468,7 @@
                   <Left>12.06687cm</Left>
                   <Height>0.35306cm</Height>
                   <Width>7.63538cm</Width>
-                  <ZIndex>6</ZIndex>
-                  <Visibility>
-                    <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
+                  <ZIndex>7</ZIndex>
                   <Style>
                     <Border>
                       <Color>LightGrey</Color>
@@ -4391,10 +4502,314 @@
                   <Left>0.17226cm</Left>
                   <Height>0.35782cm</Height>
                   <Width>12.34975cm</Width>
-                  <ZIndex>7</ZIndex>
+                  <ZIndex>8</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>5pt</PaddingLeft>
+                    <PaddingRight>5pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="BankDetails28">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=First(Fields!BankDetails21.Value, "DataSet_Result")</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>BankDetails21</rd:DefaultName>
+                  <Top>5.35872cm</Top>
+                  <Left>11.89502cm</Left>
+                  <Height>0.38428cm</Height>
+                  <Width>7.63538cm</Width>
+                  <ZIndex>9</ZIndex>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>5pt</PaddingLeft>
+                    <PaddingRight>5pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="BankDetails34">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=First(Fields!BankDetails27.Value, "DataSet_Result") +" "+First(Fields!BankDetails28.Value, "DataSet_Result")</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>BankDetails27</rd:DefaultName>
+                  <Top>9.56617cm</Top>
+                  <Left>12.06687cm</Left>
+                  <Height>0.45198cm</Height>
+                  <Width>7.63538cm</Width>
+                  <ZIndex>10</ZIndex>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>5pt</PaddingLeft>
+                    <PaddingRight>5pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="BeneficiaryBank3">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=First(Fields!BeneficiaryBank.Value, "DataSet_Result")</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>BeneficiaryBank</rd:DefaultName>
+                  <Top>6.93376cm</Top>
+                  <Left>4.56441cm</Left>
+                  <Height>0.35306cm</Height>
+                  <Width>7.24956cm</Width>
+                  <ZIndex>11</ZIndex>
+                  <Visibility>
+                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
+                  </Visibility>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>5pt</PaddingLeft>
+                    <PaddingRight>5pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="BankDetails29">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=First(Fields!BankDetails22.Value, "DataSet_Result")</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>BankDetails22</rd:DefaultName>
+                  <Top>5.81356cm</Top>
+                  <Left>11.855cm</Left>
+                  <Height>0.35031cm</Height>
+                  <Width>7.63538cm</Width>
+                  <ZIndex>12</ZIndex>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>5pt</PaddingLeft>
+                    <PaddingRight>5pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="Textbox132">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=First(Fields!BankDetails1.Value, "DataSet_Result")</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox131</rd:DefaultName>
+                  <Top>5.35872cm</Top>
+                  <Left>4.46433cm</Left>
+                  <Height>0.38428cm</Height>
+                  <Width>7.24956cm</Width>
+                  <ZIndex>13</ZIndex>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>5pt</PaddingLeft>
+                    <PaddingRight>5pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="Textbox128">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=First(Fields!FurtherTransferCaption.Value, "DataSet_Result")</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox104</rd:DefaultName>
+                  <Top>6.30497cm</Top>
+                  <Left>0.06588cm</Left>
+                  <Height>0.41711cm</Height>
+                  <Width>11.74809cm</Width>
+                  <ZIndex>14</ZIndex>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>5pt</PaddingLeft>
+                    <PaddingRight>5pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="Textbox1">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>="Email: " + First(Fields!InqEmail.Value, "DataSet_Result")</Value>
+                          <Style />
+                        </TextRun>
+                      </TextRuns>
+                      <Style />
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox1</rd:DefaultName>
+                  <Top>1.00812cm</Top>
+                  <Left>0.46212cm</Left>
+                  <Height>0.6cm</Height>
+                  <Width>11.92225cm</Width>
+                  <ZIndex>15</ZIndex>
+                  <Visibility>
+                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
+                  </Visibility>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+                <Textbox Name="TotalExclVATText4">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=First(Fields!TotalInclVATLbl.Value, "DataSet_Result")</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <ListLevel>1</ListLevel>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>TotalExclVATText1</rd:DefaultName>
+                  <Top>2.17425cm</Top>
+                  <Left>4.81731cm</Left>
+                  <Height>0.48698cm</Height>
+                  <Width>10.71573cm</Width>
+                  <ZIndex>16</ZIndex>
+                  <Visibility>
+                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
+                  </Visibility>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>5pt</PaddingLeft>
+                    <PaddingRight>5pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="VATAmtLineVATAmtText4">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>="VAT @ "</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>VATAmtLineVATAmtText1</rd:DefaultName>
+                  <Top>1.74923cm</Top>
+                  <Left>12.06687cm</Left>
+                  <Height>0.39074cm</Height>
+                  <Width>3.46617cm</Width>
+                  <ZIndex>17</ZIndex>
                   <Style>
                     <Border>
                       <Color>LightGrey</Color>
@@ -4419,18 +4834,18 @@
                 </Border>
               </Style>
             </Rectangle>
-            <Rectangle Name="Rectangle5">
+            <Rectangle Name="Rectangle6">
               <ReportItems>
-                <Textbox Name="LocalCurrAmt5">
-                  <CanGrow>true</CanGrow>
+                <Textbox Name="TotalAmountVAT2">
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=First(Fields!LocalCurrAmt.Value, "DataSet_Result")</Value>
+                          <Value>=Last(Fields!TotalAmountVATC1.Value, "DataSet_Result")</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
                             <Format>#,0.00;-#,0.00;'-'</Format>
                           </Style>
                         </TextRun>
@@ -4440,13 +4855,13 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <rd:DefaultName>LocalCurrAmt2</rd:DefaultName>
-                  <Top>1.5243cm</Top>
-                  <Left>2.11343cm</Left>
-                  <Height>0.48699cm</Height>
-                  <Width>2.09383cm</Width>
+                  <rd:DefaultName>TotalAmountVAT1</rd:DefaultName>
+                  <Top>1.46331cm</Top>
+                  <Left>0.0501cm</Left>
+                  <Height>0.41644cm</Height>
+                  <Width>2.07538cm</Width>
                   <Visibility>
-                    <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
+                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
                   <Style>
                     <Border>
@@ -4456,16 +4871,16 @@
                     <PaddingRight>2pt</PaddingRight>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox122">
-                  <CanGrow>true</CanGrow>
+                <Textbox Name="TotalAmount3">
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=First(Fields!TotalAmountC2.Value, "DataSet_Result")</Value>
+                          <Value>=First(Fields!TotalAmountC1.Value, "DataSet_Result")</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
                             <Format>#,0.00;-#,0.00;'-'</Format>
                           </Style>
                         </TextRun>
@@ -4475,14 +4890,49 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <rd:DefaultName>Textbox32</rd:DefaultName>
-                  <Top>1.98558cm</Top>
-                  <Left>2.09584cm</Left>
-                  <Height>0.4517cm</Height>
-                  <Width>2.09383cm</Width>
+                  <rd:DefaultName>TotalAmount2</rd:DefaultName>
+                  <Top>1.91503cm</Top>
+                  <Left>0.01205cm</Left>
+                  <Height>0.48698cm</Height>
+                  <Width>2.07538cm</Width>
                   <ZIndex>1</ZIndex>
                   <Visibility>
-                    <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
+                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
+                  </Visibility>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>1pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                  </Style>
+                </Textbox>
+                <Textbox Name="TotalAmountInclVAT2">
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=First(Fields!TotalSubTotalC1.Value, "DataSet_Result")</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <Format>#,0.00;-#,0.00;'-'</Format>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>TotalAmountInclVAT</rd:DefaultName>
+                  <Top>1.0383cm</Top>
+                  <Height>0.3106cm</Height>
+                  <Width>2.07538cm</Width>
+                  <ZIndex>2</ZIndex>
+                  <Visibility>
+                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
                   <Style>
                     <Border>
@@ -4495,12 +4945,12 @@
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>0.36309cm</Top>
-              <Left>15.85337cm</Left>
-              <Height>2.46299cm</Height>
-              <Width>4.20726cm</Width>
+              <Left>15.84132cm</Left>
+              <Height>2.40201cm</Height>
+              <Width>2.12548cm</Width>
               <ZIndex>1</ZIndex>
               <Visibility>
-                <Hidden>=IIf(Last(Fields!Currency2.Value, "DataSet_Result")= "", True, False)</Hidden>
+                <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
               <Style>
                 <Border>
@@ -4510,46 +4960,6 @@
             </Rectangle>
             <Rectangle Name="Rectangle9">
               <ReportItems>
-                <Textbox Name="Textbox142">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Terms and Conditions</Value>
-                          <Style>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox47</rd:DefaultName>
-                  <Top>2.2726cm</Top>
-                  <Height>0.49742cm</Height>
-                  <Width>20.09935cm</Width>
-                  <Visibility>
-                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <LeftBorder>
-                      <Style>Solid</Style>
-                    </LeftBorder>
-                    <RightBorder>
-                      <Style>Solid</Style>
-                    </RightBorder>
-                    <PaddingLeft>5pt</PaddingLeft>
-                    <PaddingRight>5pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
                 <Textbox Name="Textbox143">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
@@ -4571,7 +4981,6 @@
                   <Left>0.03456cm</Left>
                   <Height>0.43392cm</Height>
                   <Width>20.06479cm</Width>
-                  <ZIndex>1</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
@@ -4617,9 +5026,10 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox126</rd:DefaultName>
                   <Top>0.72347cm</Top>
-                  <Height>1.51385cm</Height>
+                  <Left>0.0179cm</Left>
+                  <Height>1.49982cm</Height>
                   <Width>14.90557cm</Width>
-                  <ZIndex>2</ZIndex>
+                  <ZIndex>1</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
@@ -4665,7 +5075,7 @@
                   <Left>14.98411cm</Left>
                   <Height>0.50462cm</Height>
                   <Width>3.15904cm</Width>
-                  <ZIndex>3</ZIndex>
+                  <ZIndex>2</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
@@ -4702,7 +5112,7 @@
                   <Left>14.92347cm</Left>
                   <Height>0.55051cm</Height>
                   <Width>3.21607cm</Width>
-                  <ZIndex>4</ZIndex>
+                  <ZIndex>3</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
@@ -4744,7 +5154,7 @@
                   <Left>0.06636cm</Left>
                   <Height>0.54708cm</Height>
                   <Width>20.05198cm</Width>
-                  <ZIndex>5</ZIndex>
+                  <ZIndex>4</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
@@ -4782,7 +5192,7 @@
                   <Left>18.12618cm</Left>
                   <Height>0.50462cm</Height>
                   <Width>1.95981cm</Width>
-                  <ZIndex>6</ZIndex>
+                  <ZIndex>5</ZIndex>
                   <Visibility>
                     <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
                   </Visibility>
@@ -4801,11 +5211,50 @@
                     <PaddingRight>2pt</PaddingRight>
                   </Style>
                 </Textbox>
+                <Textbox Name="Textbox5">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>Terms &amp; Conditions</Value>
+                          <Style />
+                        </TextRun>
+                      </TextRuns>
+                      <Style />
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox5</rd:DefaultName>
+                  <Top>2.3644cm</Top>
+                  <Left>0.01326cm</Left>
+                  <Height>0.40562cm</Height>
+                  <Width>20.07803cm</Width>
+                  <ZIndex>6</ZIndex>
+                  <Visibility>
+                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
+                  </Visibility>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <LeftBorder>
+                      <Color>Black</Color>
+                      <Style>Solid</Style>
+                      <Width>1pt</Width>
+                    </LeftBorder>
+                    <RightBorder>
+                      <Style>Solid</Style>
+                    </RightBorder>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                  </Style>
+                </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>10.91921cm</Top>
               <Height>3.26388cm</Height>
-              <Width>20.11834cm</Width>
+              <Width>20.16571cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -4873,67 +5322,15 @@
               <Height>0.40965cm</Height>
               <Width>2.07538cm</Width>
               <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                  <Width>1.5pt</Width>
-                </Border>
-                <TopBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1.5pt</Width>
-                </TopBorder>
-                <BottomBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1.5pt</Width>
-                </BottomBorder>
-                <LeftBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1.5pt</Width>
-                </LeftBorder>
-                <RightBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1.5pt</Width>
-                </RightBorder>
-                <PaddingLeft>5pt</PaddingLeft>
-              </Style>
-            </Textbox>
-            <Textbox Name="Currency3">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!Currency2.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Currency2</rd:DefaultName>
-              <Top>0.36309cm</Top>
-              <Left>17.95198cm</Left>
-              <Height>0.40965cm</Height>
-              <Width>2.09383cm</Width>
-              <ZIndex>5</ZIndex>
               <Visibility>
-                <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
+                <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
               <Style>
                 <Border>
                   <Style>Solid</Style>
                   <Width>1.5pt</Width>
                 </Border>
-                <PaddingLeft>7pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
               </Style>
             </Textbox>
             <Textbox Name="Textbox121">
@@ -4943,7 +5340,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=First(Fields!TotalInclVATLbl.Value, "DataSet_Result")</Value>
+                      <Value>=First(Fields!SubtotalCaption.Value,"DataSet_Result")</Value>
                       <Style>
                         <FontSize>9pt</FontSize>
                       </Style>
@@ -4959,7 +5356,7 @@
               <Left>12.19599cm</Left>
               <Height>0.47741cm</Height>
               <Width>3.46617cm</Width>
-              <ZIndex>6</ZIndex>
+              <ZIndex>5</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -4979,7 +5376,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=First(Fields!LocalCurrAmt.Value, "DataSet_Result")</Value>
+                      <Value>=Last(Fields!TotalSubTotalC2.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontSize>9pt</FontSize>
                         <Format>#,0.00;-#,0.00;'-'</Format>
@@ -4996,125 +5393,13 @@
               <Left>17.95198cm</Left>
               <Height>0.47742cm</Height>
               <Width>2.09383cm</Width>
-              <ZIndex>7</ZIndex>
-              <Visibility>
-                <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
+              <ZIndex>6</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
                 <PaddingLeft>1pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
-              </Style>
-            </Textbox>
-            <Textbox Name="VATAmtLineVATAmtText4">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!VATAmtLineVATAmtText.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>VATAmtLineVATAmtText1</rd:DefaultName>
-              <Top>1.88738cm</Top>
-              <Left>4.94643cm</Left>
-              <Height>0.39074cm</Height>
-              <Width>10.71573cm</Width>
-              <ZIndex>8</ZIndex>
-              <Visibility>
-                <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Color>LightGrey</Color>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>5pt</PaddingLeft>
-                <PaddingRight>5pt</PaddingRight>
-              </Style>
-            </Textbox>
-            <Textbox Name="TotalExclVATText4">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!TotalExclVATLbl.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <ListLevel>1</ListLevel>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>TotalExclVATText1</rd:DefaultName>
-              <Top>2.27812cm</Top>
-              <Left>4.94643cm</Left>
-              <Height>0.48698cm</Height>
-              <Width>10.71573cm</Width>
-              <ZIndex>9</ZIndex>
-              <Visibility>
-                <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Color>LightGrey</Color>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>5pt</PaddingLeft>
-                <PaddingRight>5pt</PaddingRight>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox128">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!FurtherTransferCaption.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox104</rd:DefaultName>
-              <Top>6.40885cm</Top>
-              <Left>0.195cm</Left>
-              <Height>0.41711cm</Height>
-              <Width>11.74809cm</Width>
-              <ZIndex>10</ZIndex>
-              <Visibility>
-                <Hidden>=(Not (First(Fields!HasIntBank.Value, "DataSet_Result"))) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Color>LightGrey</Color>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>5pt</PaddingLeft>
-                <PaddingRight>5pt</PaddingRight>
               </Style>
             </Textbox>
             <Textbox Name="Textbox133">
@@ -5140,43 +5425,7 @@
               <Left>0.84896cm</Left>
               <Height>0.35306cm</Height>
               <Width>3.84457cm</Width>
-              <ZIndex>11</ZIndex>
-              <Visibility>
-                <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Color>LightGrey</Color>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>5pt</PaddingLeft>
-                <PaddingRight>5pt</PaddingRight>
-              </Style>
-            </Textbox>
-            <Textbox Name="BeneficiaryBank3">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!BeneficiaryBank.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>BeneficiaryBank</rd:DefaultName>
-              <Top>7.00235cm</Top>
-              <Left>4.69353cm</Left>
-              <Height>0.35306cm</Height>
-              <Width>7.24956cm</Width>
-              <ZIndex>12</ZIndex>
+              <ZIndex>7</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5212,7 +5461,7 @@
               <Left>0.84896cm</Left>
               <Height>0.35782cm</Height>
               <Width>3.84457cm</Width>
-              <ZIndex>13</ZIndex>
+              <ZIndex>8</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5248,7 +5497,7 @@
               <Left>4.69353cm</Left>
               <Height>0.35782cm</Height>
               <Width>7.24956cm</Width>
-              <ZIndex>14</ZIndex>
+              <ZIndex>9</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5284,10 +5533,7 @@
               <Left>12.19599cm</Left>
               <Height>0.35782cm</Height>
               <Width>7.63538cm</Width>
-              <ZIndex>15</ZIndex>
-              <Visibility>
-                <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
+              <ZIndex>10</ZIndex>
               <Style>
                 <Border>
                   <Color>LightGrey</Color>
@@ -5320,7 +5566,7 @@
               <Left>0.84896cm</Left>
               <Height>0.39595cm</Height>
               <Width>3.84457cm</Width>
-              <ZIndex>16</ZIndex>
+              <ZIndex>11</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5356,7 +5602,7 @@
               <Left>4.69353cm</Left>
               <Height>0.39595cm</Height>
               <Width>7.24956cm</Width>
-              <ZIndex>17</ZIndex>
+              <ZIndex>12</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5392,10 +5638,7 @@
               <Left>12.19599cm</Left>
               <Height>0.39595cm</Height>
               <Width>7.63538cm</Width>
-              <ZIndex>18</ZIndex>
-              <Visibility>
-                <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
+              <ZIndex>13</ZIndex>
               <Style>
                 <Border>
                   <Color>LightGrey</Color>
@@ -5428,7 +5671,7 @@
               <Left>0.84896cm</Left>
               <Height>0.37064cm</Height>
               <Width>3.84457cm</Width>
-              <ZIndex>19</ZIndex>
+              <ZIndex>14</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5464,7 +5707,7 @@
               <Left>4.69353cm</Left>
               <Height>0.37064cm</Height>
               <Width>7.24956cm</Width>
-              <ZIndex>20</ZIndex>
+              <ZIndex>15</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5501,7 +5744,7 @@
               <Left>4.69353cm</Left>
               <Height>0.34356cm</Height>
               <Width>7.24956cm</Width>
-              <ZIndex>21</ZIndex>
+              <ZIndex>16</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5537,7 +5780,7 @@
               <Left>0.84896cm</Left>
               <Height>0.45198cm</Height>
               <Width>3.84457cm</Width>
-              <ZIndex>22</ZIndex>
+              <ZIndex>17</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5573,45 +5816,9 @@
               <Left>4.69353cm</Left>
               <Height>0.45198cm</Height>
               <Width>7.24956cm</Width>
-              <ZIndex>23</ZIndex>
+              <ZIndex>18</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Color>LightGrey</Color>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>5pt</PaddingLeft>
-                <PaddingRight>5pt</PaddingRight>
-              </Style>
-            </Textbox>
-            <Textbox Name="BankDetails34">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!BankDetails27.Value, "DataSet_Result") +" "+First(Fields!BankDetails28.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>BankDetails27</rd:DefaultName>
-              <Top>9.67004cm</Top>
-              <Left>12.19599cm</Left>
-              <Height>0.45198cm</Height>
-              <Width>7.63538cm</Width>
-              <ZIndex>24</ZIndex>
-              <Visibility>
-                <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
               <Style>
                 <Border>
@@ -5645,7 +5852,7 @@
               <Left>0.84896cm</Left>
               <Height>0.46907cm</Height>
               <Width>19.19408cm</Width>
-              <ZIndex>25</ZIndex>
+              <ZIndex>19</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5682,7 +5889,7 @@
               <Left>14.96714cm</Left>
               <Height>0.50462cm</Height>
               <Width>3.15904cm</Width>
-              <ZIndex>26</ZIndex>
+              <ZIndex>20</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5720,7 +5927,7 @@
               <Left>18.13954cm</Left>
               <Height>0.50462cm</Height>
               <Width>1.95981cm</Width>
-              <ZIndex>27</ZIndex>
+              <ZIndex>21</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5764,7 +5971,7 @@
               <Left>18.13954cm</Left>
               <Height>0.50462cm</Height>
               <Width>1.95981cm</Width>
-              <ZIndex>28</ZIndex>
+              <ZIndex>22</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5811,7 +6018,7 @@
               <Left>0.06636cm</Left>
               <Height>0.6cm</Height>
               <Width>19.97668cm</Width>
-              <ZIndex>29</ZIndex>
+              <ZIndex>23</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -5821,39 +6028,6 @@
                 </Border>
                 <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>5pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox1">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>="Email: " &amp;First(Fields!InqEmail.Value, "DataSet_Result")</Value>
-                      <Style />
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>1.11199cm</Top>
-              <Left>0.59124cm</Left>
-              <Height>0.6cm</Height>
-              <Width>11.92225cm</Width>
-              <ZIndex>30</ZIndex>
-              <Visibility>
-                <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
@@ -5881,10 +6055,7 @@
               <Left>0.70886cm</Left>
               <Height>0.35031cm</Height>
               <Width>3.84457cm</Width>
-              <ZIndex>31</ZIndex>
-              <Visibility>
-                <Hidden>=(Not (First(Fields!HasIntBank.Value, "DataSet_Result"))) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
+              <ZIndex>24</ZIndex>
               <Style>
                 <Border>
                   <Color>LightGrey</Color>
@@ -5917,46 +6088,7 @@
               <Left>4.55343cm</Left>
               <Height>0.35031cm</Height>
               <Width>7.24956cm</Width>
-              <ZIndex>32</ZIndex>
-              <Visibility>
-                <Hidden>=(Not( First(Fields!HasIntBank.Value, "DataSet_Result"))) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Color>LightGrey</Color>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>5pt</PaddingLeft>
-                <PaddingRight>5pt</PaddingRight>
-              </Style>
-            </Textbox>
-            <Textbox Name="BankDetails29">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!BankDetails22.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>BankDetails22</rd:DefaultName>
-              <Top>5.9527cm</Top>
-              <Left>11.98412cm</Left>
-              <Height>0.35031cm</Height>
-              <Width>7.63538cm</Width>
-              <ZIndex>33</ZIndex>
-              <Visibility>
-                <Hidden>=(IIf((First(Fields!Currency2.Value, "DataSet_Result") = "" ) OR (Not (First(Fields!HasIntBank.Value, "DataSet_Result"))), True, False)) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
+              <ZIndex>25</ZIndex>
               <Style>
                 <Border>
                   <Color>LightGrey</Color>
@@ -5990,7 +6122,7 @@
               <Left>0.74888cm</Left>
               <Height>0.37069cm</Height>
               <Width>11.09413cm</Width>
-              <ZIndex>34</ZIndex>
+              <ZIndex>26</ZIndex>
               <Visibility>
                 <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
               </Visibility>
@@ -6027,9 +6159,9 @@
               <Left>12.30758cm</Left>
               <Height>0.37069cm</Height>
               <Width>7.63538cm</Width>
-              <ZIndex>35</ZIndex>
+              <ZIndex>27</ZIndex>
               <Visibility>
-                <Hidden>=IIf(First(Fields!Currency2.Value, "DataSet_Result") = "", True, False) and iif(Globals!PageNumber=1,false,true)</Hidden>
+                <Hidden>=not((First(Fields!Currency2.Value, "DataSet_Result")&lt;&gt; "") AND (Globals!PageNumber=1))</Hidden>
               </Visibility>
               <Style>
                 <Border>
@@ -6040,202 +6172,6 @@
                 <PaddingRight>5pt</PaddingRight>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox132">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!BankDetails1.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox131</rd:DefaultName>
-              <Top>5.46259cm</Top>
-              <Left>4.59345cm</Left>
-              <Height>0.38428cm</Height>
-              <Width>7.24956cm</Width>
-              <ZIndex>36</ZIndex>
-              <Visibility>
-                <Hidden>=(Not( First(Fields!HasIntBank.Value, "DataSet_Result"))) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Color>LightGrey</Color>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>5pt</PaddingLeft>
-                <PaddingRight>5pt</PaddingRight>
-              </Style>
-            </Textbox>
-            <Textbox Name="BankDetails28">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!BankDetails21.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>BankDetails21</rd:DefaultName>
-              <Top>5.46259cm</Top>
-              <Left>12.02414cm</Left>
-              <Height>0.38428cm</Height>
-              <Width>7.63538cm</Width>
-              <ZIndex>37</ZIndex>
-              <Visibility>
-                <Hidden>=(IIf((First(Fields!Currency2.Value, "DataSet_Result") = "" ) OR (Not (First(Fields!HasIntBank.Value, "DataSet_Result"))), True, False)) and iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Color>LightGrey</Color>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>5pt</PaddingLeft>
-                <PaddingRight>5pt</PaddingRight>
-              </Style>
-            </Textbox>
-            <Rectangle Name="Rectangle6">
-              <ReportItems>
-                <Textbox Name="TotalAmountVAT2">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=Last(Fields!TotalAmountVATC1.Value, "DataSet_Result")</Value>
-                          <Style>
-                            <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                            <Format>=First(Fields!Amount_AmtInclVATFormat.Value, "DataSet_Result")</Format>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Right</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>TotalAmountVAT1</rd:DefaultName>
-                  <Top>1.46331cm</Top>
-                  <Left>0.0501cm</Left>
-                  <Height>0.41644cm</Height>
-                  <Width>2.07538cm</Width>
-                  <Visibility>
-                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>1pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                  </Style>
-                </Textbox>
-                <Textbox Name="TotalAmount3">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=First(Fields!TotalAmountC1.Value, "DataSet_Result")</Value>
-                          <Style>
-                            <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                            <Format>=First(Fields!LineAmt_SalesInvLineFormat.Value, "DataSet_Result")</Format>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Right</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>TotalAmount2</rd:DefaultName>
-                  <Top>1.91503cm</Top>
-                  <Left>0.01205cm</Left>
-                  <Height>0.48698cm</Height>
-                  <Width>2.07538cm</Width>
-                  <ZIndex>1</ZIndex>
-                  <Visibility>
-                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>1pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                  </Style>
-                </Textbox>
-                <Textbox Name="TotalAmountInclVAT2">
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=Last(Fields!TotalAmountInclVATC1.Value, "DataSet_Result")</Value>
-                          <Style>
-                            <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                            <Format>=First(Fields!AmtInclVAT_SalesInvLineFormat.Value, "DataSet_Result")</Format>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Right</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>TotalAmountInclVAT</rd:DefaultName>
-                  <Top>1.04688cm</Top>
-                  <Height>0.3106cm</Height>
-                  <Width>2.07538cm</Width>
-                  <ZIndex>2</ZIndex>
-                  <Visibility>
-                    <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-                  </Visibility>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>1pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                  </Style>
-                </Textbox>
-              </ReportItems>
-              <KeepTogether>true</KeepTogether>
-              <Top>0.36309cm</Top>
-              <Left>15.84132cm</Left>
-              <Height>2.40201cm</Height>
-              <Width>2.12548cm</Width>
-              <ZIndex>38</ZIndex>
-              <Visibility>
-                <Hidden>=iif(Globals!PageNumber=1,false,true)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Rectangle>
           </ReportItems>
           <Style>
             <Border>
@@ -6438,7 +6374,7 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
           <DataField>ForPaymentCaption</DataField>
         </Field>
         <Field Name="Segment">
-          <DataField>Segment</DataField>
+          <DataField>Segment2</DataField>
         </Field>
         <Field Name="Contract_Code">
           <DataField>Contract_Code</DataField>
@@ -6460,6 +6396,9 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         </Field>
         <Field Name="VATAmtLineVATAmtText">
           <DataField>VATAmtLineVATAmtText</DataField>
+        </Field>
+        <Field Name="SubtotalCaption">
+          <DataField>SubtotalCaption</DataField>
         </Field>
         <Field Name="TotalAmountVATC1">
           <DataField>TotalAmountVATC1</DataField>
@@ -6527,8 +6466,26 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="TotalEURFormat">
           <DataField>TotalEURFormat</DataField>
         </Field>
+        <Field Name="BankCurrencyCaption">
+          <DataField>BankCurrencyCaption</DataField>
+        </Field>
+        <Field Name="HasIntBank">
+          <DataField>HasIntBank</DataField>
+        </Field>
+        <Field Name="HasIntBank2">
+          <DataField>HasIntBank2</DataField>
+        </Field>
         <Field Name="VALExchRate">
           <DataField>VALExchRate</DataField>
+        </Field>
+        <Field Name="InqEmail">
+          <DataField>InqEmail</DataField>
+        </Field>
+        <Field Name="Curr1Cptn">
+          <DataField>Curr1Cptn</DataField>
+        </Field>
+        <Field Name="Curr2Cptn">
+          <DataField>Curr2Cptn</DataField>
         </Field>
         <Field Name="HomePage">
           <DataField>HomePage</DataField>
@@ -6698,9 +6655,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="PrintTIN">
           <DataField>PrintTIN</DataField>
         </Field>
-        <Field Name="InqEmail">
-          <DataField>InqEmail</DataField>
-        </Field>
         <Field Name="CustomerRefCaption">
           <DataField>CustomerRefCaption</DataField>
         </Field>
@@ -6752,9 +6706,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="IBANCaption">
           <DataField>IBANCaption</DataField>
         </Field>
-        <Field Name="BankCurrencyCaption">
-          <DataField>BankCurrencyCaption</DataField>
-        </Field>
         <Field Name="FurtherTransferCaption">
           <DataField>FurtherTransferCaption</DataField>
         </Field>
@@ -6766,12 +6717,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         </Field>
         <Field Name="CompanyInfoBankAddress">
           <DataField>CompanyInfoBankAddress</DataField>
-        </Field>
-        <Field Name="Curr1Cptn">
-          <DataField>Curr1Cptn</DataField>
-        </Field>
-        <Field Name="Curr2Cptn">
-          <DataField>Curr2Cptn</DataField>
         </Field>
         <Field Name="SIH_Currency">
           <DataField>SIH_Currency</DataField>
@@ -6830,9 +6775,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="HasBank">
           <DataField>HasBank</DataField>
         </Field>
-        <Field Name="HasIntBank">
-          <DataField>HasIntBank</DataField>
-        </Field>
         <Field Name="BankDetails21">
           <DataField>BankDetails21</DataField>
         </Field>
@@ -6860,9 +6802,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="HasBank2">
           <DataField>HasBank2</DataField>
         </Field>
-        <Field Name="HasIntBank2">
-          <DataField>HasIntBank2</DataField>
-        </Field>
         <Field Name="exchRate">
           <DataField>exchRate</DataField>
         </Field>
@@ -6874,6 +6813,18 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         </Field>
         <Field Name="TandC">
           <DataField>TandC</DataField>
+        </Field>
+        <Field Name="TotalSubTotalC1">
+          <DataField>TotalSubTotalC1</DataField>
+        </Field>
+        <Field Name="TotalSubTotalC1Format">
+          <DataField>TotalSubTotalC1Format</DataField>
+        </Field>
+        <Field Name="TotalSubTotalC2">
+          <DataField>TotalSubTotalC2</DataField>
+        </Field>
+        <Field Name="TotalSubTotalC2Format">
+          <DataField>TotalSubTotalC2Format</DataField>
         </Field>
         <Field Name="DimText">
           <DataField>DimText</DataField>
@@ -7034,9 +6985,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="PostedShipmentDateCaption">
           <DataField>PostedShipmentDateCaption</DataField>
         </Field>
-        <Field Name="SubtotalCaption">
-          <DataField>SubtotalCaption</DataField>
-        </Field>
         <Field Name="LineAmtAfterInvDiscCptn">
           <DataField>LineAmtAfterInvDiscCptn</DataField>
         </Field>
@@ -7070,23 +7018,11 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="VATLinePrint">
           <DataField>VATLinePrint</DataField>
         </Field>
-        <Field Name="TotalSubTotalC1">
-          <DataField>TotalSubTotalC1</DataField>
-        </Field>
-        <Field Name="TotalSubTotalC1Format">
-          <DataField>TotalSubTotalC1Format</DataField>
-        </Field>
         <Field Name="TotalInvDiscountAmountC1">
           <DataField>TotalInvDiscountAmountC1</DataField>
         </Field>
         <Field Name="TotalInvDiscountAmountC1Format">
           <DataField>TotalInvDiscountAmountC1Format</DataField>
-        </Field>
-        <Field Name="TotalSubTotalC2">
-          <DataField>TotalSubTotalC2</DataField>
-        </Field>
-        <Field Name="TotalSubTotalC2Format">
-          <DataField>TotalSubTotalC2Format</DataField>
         </Field>
         <Field Name="TotalInvDiscountAmountC2">
           <DataField>TotalInvDiscountAmountC2</DataField>

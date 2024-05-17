@@ -2,6 +2,8 @@ page 60153 FBM_ListValueType
 {
     Caption = 'Types for Values List';
     PageType = List;
+    ApplicationArea = ALL;
+    UsageCategory = Lists;
 
     SourceTable = FBM_ListValues;
 
@@ -34,7 +36,7 @@ page 60153 FBM_ListValueType
     var
         lv: record FBM_ListValues;
     begin
-        //lv.SETRANGE(IsDefault, true);
+        lv.SETRANGE(IsDefault, true);
         lv.DeleteAll();
         lv.Reset();
         lv.SETRANGE(IsDefault, true);
@@ -46,14 +48,14 @@ page 60153 FBM_ListValueType
             lv.IsDefault := true;
             lv.Insert();
             lv.Init();
-            lv.ord := 2;
+            lv.ord := 3;
             lv.type := 'TYPE';
-            lv.value := 'TYPE';
+            lv.value := 'FAMODEL';
             lv.IsDefault := true;
             lv.Insert();
 
             lv.Init();
-            lv.ord := 3;
+            lv.ord := 2;
             lv.type := 'TYPE';
             lv.value := 'COMMENTTYPE';
             lv.IsDefault := true;

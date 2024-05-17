@@ -67,15 +67,35 @@ pageextension 60165 FBM_SalesOrdExt_CO extends "Sales Order"
             field(FBM_PO_Customer; Rec.FBM_PO_Customer)
             {
                 ApplicationArea = All;
+                enabled = povis;
 
             }
         }
+        modify("Bill-to Name")
+        {
+            trigger
+            OnAfterValidate()
+            begin
+                if cust.get(rec."Bill-to Customer No.") then
+                    if cust.FBM_Acronym <> '' then
+                        povis := true
+                    else
+                        povis := false;
+            end;
+        }
     }
+    var
+        POvis: Boolean;
+        cust: record Customer;
+
     trigger
         OnOpenPage()
     begin
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
+        if cust.get(rec."Bill-to Customer No.") then
+            if cust.FBM_Acronym <> '' then
+                povis := true;
 
     end;
 

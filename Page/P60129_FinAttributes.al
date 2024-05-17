@@ -24,7 +24,7 @@ page 60129 FBM_FinAttributes
                 {
                     ApplicationArea = All;
                 }
-                field(Segment; Rec.Segment)
+                field(Segment; Rec.FBM_Segment2)
                 {
                     ApplicationArea = All;
                 }

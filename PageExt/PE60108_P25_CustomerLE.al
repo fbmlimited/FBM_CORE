@@ -24,7 +24,7 @@ pageextension 60108 FBM_CustomerLEExt_CO extends "Customer Ledger Entries"
             {
                 ApplicationArea = All;
             }
-            field(FBM_Segment; Rec.FBM_Segment)
+            field(FBM_Segment; Rec.FBM_Segment2)
             {
                 ApplicationArea = All;
             }

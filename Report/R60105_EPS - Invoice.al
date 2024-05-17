@@ -494,7 +494,7 @@ report 60105 "EPS Sales - Invoice_CO"
                     CompanyInfo.FBM_TINNumber)
                     {
                     }
-                    column(Segment; "Sales Invoice Header".FBM_Segment)
+                    column(Segment; "Sales Invoice Header".FBM_Segment2)
                     {
                     }
                     column(Contract_Code; "Sales Invoice Header"."FBM_Contract Code")

@@ -77,7 +77,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                 Editable = false;
                 Importance = Additional;
             }
-            field(Segment_CO; rec.FBM_Segment)
+            field(Segment_CO; rec.FBM_Segment2)
             {
                 ApplicationArea = All;
             }
