@@ -109,23 +109,23 @@ pageextension 60184 FBM_ItemCardExt_CO extends "Item Card"
    OnAfterGetRecord()
     begin
         cinfo.get;
-        if buftxt.FindFirst() then
-            repeat
-                if country.get(buftxt.Name) then
-                    subsidiary := cinfo."Custom System Indicator Text" + ' ' + country.FBM_Country3;
-                itemle.reset;
-                itemle.SetRange(FBM_Country, buftxt.Name);
-                itemle.SetRange("Item No.", rec."No.");
-                itemle.SetRange(FBM_NewItem, true);
-                itemle.CalcSums(Quantity);
-                Inventory_New := itemle.Quantity;
-                itemle.reset;
-                itemle.SetRange(FBM_Country, buftxt.Name);
-                itemle.SetRange("Item No.", rec."No.");
-                itemle.SetRange(FBM_NewItem, false);
-                itemle.CalcSums(Quantity);
-                Inventory_Used := itemle.Quantity;
-            until buftxt.next = 0;
+        // if buftxt.FindFirst() then
+        //     repeat
+        if country.get(buftxt.Name) then
+            subsidiary := cinfo."Custom System Indicator Text" + ' ' + country.FBM_Country3;
+        itemle.reset;
+        itemle.SetRange(FBM_Country, cinfo."Country/Region Code");
+        itemle.SetRange("Item No.", rec."No.");
+        itemle.SetRange(FBM_NewItem, true);
+        itemle.CalcSums(Quantity);
+        Inventory_New := itemle.Quantity;
+        itemle.reset;
+        itemle.SetRange(FBM_Country, cinfo."Country/Region Code");
+        itemle.SetRange("Item No.", rec."No.");
+        itemle.SetRange(FBM_UsedItem, true);
+        itemle.CalcSums(Quantity);
+        Inventory_Used := itemle.Quantity;
+        // until buftxt.next = 0;
 
 
 

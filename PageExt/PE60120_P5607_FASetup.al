@@ -9,6 +9,7 @@ pageextension 60120 FBM_FASetupExt_CO extends "Fixed Asset Setup"
             group(CustomerSiteTracking)
             {
                 Caption = 'Customer - Site Tracking';
+                visible = false;
 
                 group(CSTrackingDimensions)
                 {
@@ -41,6 +42,7 @@ pageextension 60120 FBM_FASetupExt_CO extends "Fixed Asset Setup"
                 {
                     ApplicationArea = All;
                     Caption = 'Fixed Asset Company';
+                    visible = false;
                 }
             }
         }

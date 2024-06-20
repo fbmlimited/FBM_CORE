@@ -35,6 +35,7 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
             field(FBM_EnWS; Rec.FBM_EnWS)
             {
                 ApplicationArea = all;
+                visible = false;
             }
             field(FBM_EnSiteWS; Rec.FBM_EnSiteWS)
             {
@@ -47,6 +48,7 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
             field(FBM_EnMigr; Rec.FBM_EnMigr)
             {
                 ApplicationArea = all;
+                visible = false;
             }
             field(FBM_EnAppr; Rec.FBM_EnAppr)
             {
@@ -55,10 +57,12 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
             field(FBM_CustIsOp; Rec.FBM_CustIsOp)
             {
                 ApplicationArea = all;
+                visible = false;
             }
             field(FBM_TINNumber; Rec.FBM_TINNumber)
             {
                 ApplicationArea = all;
+                Visible = false;
             }
             field(FBM_Conso1; Rec.FBM_Conso1)
             {
@@ -72,11 +76,38 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
             {
                 ApplicationArea = all;
             }
+            field(FBM_IsOnMainServer; Rec.FBM_IsOnMainServer)
+            {
+                ApplicationArea = all;
+            }
+
+        }
+#if MAIN
+        modify("BIR PHL")
+        {
+            visible = isph;
         }
 
-
+#endif
 
     }
+    trigger
+    OnAfterGetRecord()
+    var
+        fasetup: record "FA Setup";
+    begin
+        isph := rec."Country/Region Code" = 'PH';
+        rec.FBM_CustIsOp := rec.FBM_EnSiteWS;
+
+        fasetup.Get();
+        fasetup."FBM_FA Company" := rec.FBM_FAProperty;
+        fasetup.Modify();
+
+
+    end;
+
+    var
+        isph: Boolean;
 
 
 }

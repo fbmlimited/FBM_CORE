@@ -320,12 +320,12 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewUnitOfMeasureCode: Code[10];
         IsHandled: Boolean;
     begin
-        with PurchLine do begin
-            TestField(Type, Type::Item);
-            TestField("No.");
+        begin
+            PurchLine.TestField(Type, PurchLine.Type::Item);
+            PurchLine.TestField("No.");
             Item.Reset();
-            Item.Get("No.");
-            FilterItem(Item, FBM_Site, "Variant Code", "Expected Receipt Date");
+            Item.Get(PurchLine."No.");
+            FilterItem(Item, PurchLine.FBM_Site, PurchLine."Variant Code", PurchLine."Expected Receipt Date");
 
             IsHandled := false;
             OnBeforeShowItemAvailFromPurchLine(Item, PurchLine, IsHandled, AvailabilityType);
@@ -334,23 +334,23 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
 
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Expected Receipt Date"), "Expected Receipt Date", NewDate) then
-                        Validate("Expected Receipt Date", NewDate);
+                    if ShowItemAvailByDate(Item, PurchLine.FieldCaption("Expected Receipt Date"), PurchLine."Expected Receipt Date", NewDate) then
+                        PurchLine.Validate("Expected Receipt Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, PurchLine.FieldCaption("Variant Code"), PurchLine."Variant Code", NewVariantCode) then
+                        PurchLine.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption(FBM_Site), FBM_Site, NewSiteCode) then
-                        Validate("Location Code", NewsiteCode);
+                    if ShowItemAvailByLoc(Item, PurchLine.FieldCaption(FBM_Site), PurchLine.FBM_Site, NewSiteCode) then
+                        PurchLine.Validate("Location Code", NewsiteCode);
                 AvailabilityType::"Event":
-                    if ShowItemAvailByEvent(Item, FieldCaption("Expected Receipt Date"), "Expected Receipt Date", NewDate, false) then
-                        Validate("Expected Receipt Date", NewDate);
+                    if ShowItemAvailByEvent(Item, PurchLine.FieldCaption("Expected Receipt Date"), PurchLine."Expected Receipt Date", NewDate, false) then
+                        PurchLine.Validate("Expected Receipt Date", NewDate);
                 AvailabilityType::BOM:
-                    if ShowItemAvailByBOMLevel(Item, FieldCaption("Expected Receipt Date"), "Expected Receipt Date", NewDate) then
-                        Validate("Expected Receipt Date", NewDate);
+                    if ShowItemAvailByBOMLevel(Item, PurchLine.FieldCaption("Expected Receipt Date"), PurchLine."Expected Receipt Date", NewDate) then
+                        PurchLine.Validate("Expected Receipt Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, PurchLine.FieldCaption("Unit of Measure Code"), PurchLine."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        PurchLine.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;

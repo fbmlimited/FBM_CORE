@@ -74,14 +74,15 @@ report 60117 CustBalancePerSite
                     FASetup.Get();
                     CalcFields("Remaining Amt. (LCY)");
                     if "Remaining Amt. (LCY)" = 0 then CurrReport.Skip();
-                    DimSetEntry.Reset();
-                    DimSetEntry.SetRange("Dimension Set ID", "Cust. Ledger Entry"."Dimension Set ID");
-                    DimSetEntry.SetFilter("Dimension Code", FASetup."FBM_Site Dimension");
-                    if not DimSetEntry.FindFirst() then
-                        CurrReport.Skip()
-                    else begin
-                        if DimSetEntry."Dimension Value Code" <> "Customer-Site"."Site Code" then CurrReport.Skip();
-                    end;
+                    // DimSetEntry.Reset();
+                    // DimSetEntry.SetRange("Dimension Set ID", "Cust. Ledger Entry"."Dimension Set ID");
+                    // DimSetEntry.SetFilter("Dimension Code", FASetup."FBM_Site Dimension");
+                    // if not DimSetEntry.FindFirst() then
+                    //     CurrReport.Skip()
+                    // else begin
+                    // if DimSetEntry."Dimension Value Code" <> "Customer-Site"."Site Code" then CurrReport.Skip();
+                    if "Cust. Ledger Entry".FBM_Site <> "Customer-Site"."Site Code" then CurrReport.Skip();
+                    // end;
                 end;
             }
             trigger OnAfterGetRecord()

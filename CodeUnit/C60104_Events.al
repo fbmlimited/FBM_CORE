@@ -58,21 +58,21 @@ codeunit 60104 FBM_Events_CO
         //             error(Text000, salesline."Line No.");
         //     until salesline.next = 0;
         FASetup.Get();
-        if FASetup."FBM_Enable FA Site Tracking" then begin
-            DimMgmt.GetDimensionSet(TempDimSetEntry, SalesHeader."Dimension Set ID");
-            DimVal.Reset();
-            if DimVal.get(FASetup."FBM_Site Dimension", SalesHeader.FBM_Site) then begin
-                TempDimSetEntry.Init();
-                //TempDimSetEntry."Dimension Set ID" := DimMgmt.GetDimensionSetID(TempDimSetEntry);
-                TempDimSetEntry."Dimension Code" := FASetup."FBM_Site Dimension";
-                TempDimSetEntry."Dimension Value Code" := SalesHeader.FBM_Site;
-                TempDimSetEntry."Dimension Value ID" := DimVal."Dimension Value ID";
-                TempDimSetEntry.Insert();
-                SalesHeader."Dimension Set ID" := DimMgmt.GetDimensionSetID(TempDimSetEntry);
-                SalesHeader.Modify();
-            end;
-            CLEAR(TempDimSetEntry);
-        end;
+        // if FASetup."FBM_Enable FA Site Tracking" then begin
+        //     DimMgmt.GetDimensionSet(TempDimSetEntry, SalesHeader."Dimension Set ID");
+        //     DimVal.Reset();
+        //     if DimVal.get(FASetup."FBM_Site Dimension", SalesHeader.FBM_Site) then begin
+        //         TempDimSetEntry.Init();
+        //         //TempDimSetEntry."Dimension Set ID" := DimMgmt.GetDimensionSetID(TempDimSetEntry);
+        //         TempDimSetEntry."Dimension Code" := FASetup."FBM_Site Dimension";
+        //         TempDimSetEntry."Dimension Value Code" := SalesHeader.FBM_Site;
+        //         TempDimSetEntry."Dimension Value ID" := DimVal."Dimension Value ID";
+        //         TempDimSetEntry.Insert();
+        //         SalesHeader."Dimension Set ID" := DimMgmt.GetDimensionSetID(TempDimSetEntry);
+        //         SalesHeader.Modify();
+        //     end;
+        //     CLEAR(TempDimSetEntry);
+        // end;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnBeforePostSalesDoc', '', true, true)]
@@ -282,6 +282,7 @@ codeunit 60104 FBM_Events_CO
             ItemJnlLine.FBM_Site := DirectTransHeader.FBM_SiteFrom
         else
             ItemJnlLine.FBM_Site := DirectTransHeader.FBM_SiteTo;
+        ItemJnlLine.FBM_FromOrion := DirectTransHeader.FBM_FromOrion;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, 5856, 'OnAfterInsertDirectTransHeader', '', true, true)]
@@ -289,6 +290,7 @@ codeunit 60104 FBM_Events_CO
     begin
         DirectTransHeader.FBM_SiteFrom := TransferHeader.FBM_SiteFrom;
         DirectTransHeader.FBM_SiteTo := TransferHeader.FBM_SiteTo;
+        DirectTransHeader.FBM_FromOrion := TransferHeader.FBM_FromOrion;
 
     end;
 
@@ -332,6 +334,7 @@ codeunit 60104 FBM_Events_CO
     begin
         if traheader.get(TransferLine."Document No.") then begin
             ItemJournalLine.FBM_Site := traheader.FBM_SiteTo;
+            ItemJournalLine.FBM_FromOrion := traheader.FBM_FromOrion;
 
         end;
     end;
@@ -344,6 +347,7 @@ codeunit 60104 FBM_Events_CO
     begin
         if traheader.get(TransferLine."Document No.") then begin
             ItemJournalLine.FBM_Site := traheader.FBM_SiteFrom;
+            ItemJournalLine.FBM_FromOrion := traheader.FBM_FromOrion;
 
         end;
     end;
@@ -368,6 +372,7 @@ codeunit 60104 FBM_Events_CO
     begin
         TransferLine.FBM_SiteFrom := TransferHeader.FBM_SiteFrom;
         TransferLine.FBM_SiteTo := TransferHeader.FBM_SiteTo;
+        TransferLine.FBM_FromOrion := TransferHeader.FBM_FromOrion;
 
     end;
 
@@ -529,5 +534,17 @@ codeunit 60104 FBM_Events_CO
 
     end;
 
-
+    [EventSubscriber(ObjectType::Table, 1173, 'OnAfterInitFieldsFromRecRef', '', false, false)]
+    procedure OnAfterInitFieldsFromRecRef(var DocumentAttachment: Record "Document Attachment"; var RecRef: RecordRef)
+    var
+        FieldRef: FieldRef;
+        RecNo: code[20];
+    begin
+        if recref.Number = 70015 then begin
+            FieldRef := RecRef.Field(16);
+            RecNo := FieldRef.Value();
+            DocumentAttachment."No." := RecNo;
+            DocumentAttachment."Document Type" := DocumentAttachment."Document Type"::Note;
+        end;
+    end;
 }

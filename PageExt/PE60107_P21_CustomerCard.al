@@ -2,6 +2,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 {
 
 
+
     layout
     {
 
@@ -127,12 +128,14 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             group("Customer Sites_CO")
             {
                 Image = Warehouse;
+                caption = 'Sites';
 
                 action(Sites)
                 {
                     ApplicationArea = All;
                     Image = Warehouse;
                     Visible = ShowSites;
+                    caption = 'Local Sites';
 
                     trigger OnAction()
                     begin
@@ -146,6 +149,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             }
         }
 #endif
+
         addlast(processing)
         {
 
@@ -162,6 +166,30 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
                     pnote.passpar(rec."No.");
                     pnote.Run();
                     clear(pnote);
+                end;
+            }
+            action(sol)
+            {
+                ApplicationArea = All;
+                Image = SendApprovalRequest;
+                Visible = ShowSites;
+                caption = 'Change Request';
+
+                trigger OnAction()
+                var
+                    req: record FBM_CustSiteReq;
+                    reqpage: page FBM_CustomerReq_DD;
+                begin
+                    reqpage.passpar(rec.FBM_GrCode, true);
+                    req.Init();
+                    req.ReqType := req.ReqType::Edit;
+                    req.CustSiteCode := rec.FBM_GrCode;
+                    REQ.Rectype := 'CUST';
+                    req.Insert();
+                    commit;
+                    reqpage.SetTableView(req);
+                    reqpage.Runmodal();
+                    clear(reqpage);
                 end;
             }
         }

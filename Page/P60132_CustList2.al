@@ -431,6 +431,28 @@ page 60132 "FBM_Customer List_CO"
     {
         area(navigation)
         {
+            group("Customer Sites_CO")
+            {
+                Image = Warehouse;
+                caption = 'Sites';
+
+                action(Sites)
+                {
+                    ApplicationArea = All;
+                    Image = Warehouse;
+                    Visible = ShowSites;
+                    caption = 'Local Sites';
+
+                    trigger OnAction()
+                    begin
+                        Clear(CustomerSite);
+                        Clear(CustomerSiteP);
+                        CustomerSite.SetFilter("Customer No.", Rec."No.");
+                        CustomerSiteP.SetTableView(CustomerSite);
+                        CustomerSiteP.RunModal();
+                    end;
+                }
+            }
             group("&Customer")
             {
                 Caption = '&Customer';
@@ -1882,6 +1904,12 @@ page 60132 "FBM_Customer List_CO"
         lf: char;
         cust: record Customer;
     begin
+        if companyinfo.Get() then begin
+            if companyinfo.FBM_CustIsOp then
+                ShowSites := true
+            else
+                ShowSites := false;
+        end;
         CRMIntegrationEnabled := CRMIntegrationManagement.IsCRMIntegrationEnabled();
         CDSIntegrationEnabled := CRMIntegrationManagement.IsCDSIntegrationEnabled();
         if CRMIntegrationEnabled or CDSIntegrationEnabled then
@@ -1963,6 +1991,12 @@ page 60132 "FBM_Customer List_CO"
 
         selcust: code[20];
         cust: record FBM_Customer;
+        showsites: Boolean;
+        companyinfo: record "Company Information";
+        CustomerSiteP: Page FBM_CustomerSite_CO;
+        CustomerSite: Record FBM_CustomerSite_C;
+        Operators: Record "Dimension Value";
+        OperatorsP: Page "Dimension Values";
 
 
     procedure GetSelectionFilter(): Text

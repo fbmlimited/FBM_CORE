@@ -95,7 +95,7 @@ page 60103 "FBM_Cust-Op-Site_CO"
         Site.Reset();
         FASetup.Get();
         cust.SetRange("No.", Rec."Customer No.");
-        if cust.FindFirst() then
+        if cust.FindLast() then
             "Customer Name" := Cust.Name
         else
             "Customer Name" := '';

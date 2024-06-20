@@ -24,6 +24,18 @@ pageextension 60185 FBM_TransferOrderExt_CO extends "Transfer Order"
 
 
         }
+        addlast(General)
+        {
+            field(FBM_FromOrion; Rec.FBM_FromOrion)
+            {
+                ApplicationArea = all;
+                Editable = false;
+
+
+            }
+
+
+        }
         modify("Transfer-from Code")
         {
             trigger

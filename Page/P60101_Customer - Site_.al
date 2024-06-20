@@ -156,6 +156,33 @@ page 60101 "FBM_CustomerSite_CO"
     }
     actions
     {
+        area(Processing)
+        {
+            action(sol)
+            {
+                ApplicationArea = All;
+                Image = SendApprovalRequest;
+
+                caption = 'Change Request';
+
+                trigger OnAction()
+                var
+                    req: record FBM_CustSiteReq;
+                    reqpage: page FBM_CustomerReq_DD;
+                begin
+                    reqpage.passpar(rec.SiteGrCode, true);
+                    req.Init();
+                    req.ReqType := req.ReqType::Edit;
+                    req.CustSiteCode := rec.SiteGrCode;
+                    req.Rectype := 'SITE';
+                    req.Insert();
+                    commit;
+                    reqpage.SetTableView(req);
+                    reqpage.Runmodal();
+                    clear(reqpage);
+                end;
+            }
+        }
     }
     trigger
     OnOpenPage()
@@ -180,3 +207,4 @@ page 60101 "FBM_CustomerSite_CO"
         uper: codeunit "User Permissions";
         issuper: boolean;
 }
+
