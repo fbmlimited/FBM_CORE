@@ -12,13 +12,18 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         dataitem("Sales Invoice Header"; "Sales Invoice Header")
         {
             DataItemTableView = SORTING("No.");
-            RequestFilterFields = "No.", "Sell-to Customer No.", "No. Printed";
+            RequestFilterFields = "No.";//, "Sell-to Customer No.", "No. Printed";
             RequestFilterHeading = 'Posted Sales Invoice';
 
             column(CustomerNo;
             g_Customer."No.")
             {
             }
+            column(SiteAddr7;
+            SiteAddr[7])
+            {
+            }
+
             column(No_SalesInvHdr;
             ConvertStr("No.", '.', ' '))
             {
@@ -132,6 +137,18 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
             column(SubtotalCaption;
             SubtotalCaptionLbl)
             {
+            }
+            column(TotalSubTotalC1;
+            TotalSubTotalC1)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalSubTotalC2;
+            TotalSubTotalC2)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
             }
             column(TotalAmountVATC1;
             TotalAmountVATC1)
@@ -584,10 +601,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     SiteAddr[6])
                     {
                     }
-                    column(SiteAddr7;
-                    SiteAddr[7])
-                    {
-                    }
+
                     column(HasSite;
                     HasSite)
                     {
@@ -676,18 +690,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                     }
 
 
-                    column(TotalSubTotalC1;
-                    TotalSubTotalC1)
-                    {
-                        AutoFormatExpression = 'USD';
-                        AutoFormatType = 1;
-                    }
-                    column(TotalSubTotalC2;
-                    TotalSubTotalC2)
-                    {
-                        AutoFormatExpression = 'USD';
-                        AutoFormatType = 1;
-                    }
+
                     //BFT-001 -- end                
 
                     dataitem(DimensionLoop1; "Integer")
@@ -1455,7 +1458,17 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
 
             }
 
-
+            trigger
+            OnPreDataItem()
+            begin
+                TotalSubTotal := 0;
+                TotalInvDiscAmount := 0;
+                TotalAmount := 0;
+                TotalAmountVAT := 0;
+                TotalAmountInclVAT := 0;
+                TotalPaymentDiscOnVAT := 0;
+                ResetLCYValues();
+            end;
 
 
             trigger OnAfterGetRecord()
@@ -1467,6 +1480,18 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                 cr: char;
                 lf: char;
             begin
+                //      trigger OnPostDataItem()
+                // begin
+                // OnAfterPostDataItem("Sales Invoice Header");
+                TotalSubTotal := 0;
+                TotalInvDiscAmount := 0;
+                TotalAmount := 0;
+                TotalAmountVAT := 0;
+                TotalAmountInclVAT := 0;
+                TotalPaymentDiscOnVAT := 0;
+                ResetLCYValues();
+                // end;
+
                 g_customer.get("Sales Invoice Header"."Bill-to Customer No.");
                 tcrec.SetRange(DocType, tcrec.DocType::SI);
                 tcrec.SetRange(Country, g_Customer."Country/Region Code");
@@ -1544,9 +1569,11 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                 begin
                     //if not ShowInternalInfo then CurrReport.Break;
 
-
-                    sh.get("Sales Invoice Header".GetFilter("No."));
-                    sl.SetRange("Document No.", "Sales Invoice Header".GetFilter("No."));
+                    // sh.CopyFilter("No.", "Sales Invoice Header"."No.");
+                    // sh.FindFirst();
+                    sh.get("Sales Invoice Header"."No.");
+                    sl.SetRange("Document No.", "Sales Invoice Header"."No.");
+                    //sl.SetRange("Document No.", "Sales Invoice Header".GetFilter("No."));
                     if sl.FindFirst() then
                         repeat
                             InitializeShipmentBuffer;
@@ -1584,21 +1611,10 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
                                 VATLinePrint := StrSubstNo('%1%', sl."VAT %");
                         //BFT
                         until sl.Next() = 0;
-                    CalculateCurrencyTotals("Sales Invoice Header", Curr1, Curr2);
+                    CalculateCurrencyTotals(sh, Curr1, Curr2);
                 end;
             end;
 
-            trigger OnPostDataItem()
-            begin
-                OnAfterPostDataItem("Sales Invoice Header");
-                // TotalSubTotal := 0;
-                // TotalInvDiscAmount := 0;
-                // TotalAmount := 0;
-                // TotalAmountVAT := 0;
-                // TotalAmountInclVAT := 0;
-                // TotalPaymentDiscOnVAT := 0;
-                // ResetLCYValues();
-            end;
 
 
 
@@ -2295,6 +2311,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
 
     local procedure CalcLCY()
     begin
+        ResetLCYValues();
         TotalSubTotalC1 := TotalSubTotal;
         TotalInvDiscountAmountC1 := TotalInvDiscAmount;
         TotalAmountC1 := TotalAmount;

@@ -1438,7 +1438,7 @@ report 60119 "D2R Sales - Invoice2"
                 else
                     titletxt := salinvtxt;
                 if usersetup.get("Sales Invoice Header"."User ID") then begin
-#if not SAAS
+#if MAIN
                     FOR Index := 1 to usersetup."Signature PHL".COUNT DO BEGIN
                         mediaid := usersetup."Signature PHL".Item(1);
                         "Sales Invoice Header".FBM_Signature_pic.Insert(mediaid);

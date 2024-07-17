@@ -2,6 +2,12 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
 {
     layout
     {
+#if MAIN
+        modify("IDPIRPF IRPF Group")
+        {
+            Visible = ises;
+        }
+#endif
         modify("Buy-from Vendor No.")
         {
             trigger
@@ -510,11 +516,8 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         purchsetup.get;
         isped := purchsetup.FBM_Use_Pedimento;
 
-
-
-
-
         compinfo.get;
+        ises := compinfo."Country/Region Code" = 'ES';
         if rec."FBM_Consignee Name" = '' then begin
             rec."FBM_Consignee Address" := compinfo.Address;
             rec."FBM_Consignee Address 2" := compinfo."Address 2";
@@ -586,6 +589,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         compinfo: record "Company Information";
         purchsetup: record "Purchases & Payables Setup";
         isped: Boolean;
+        ises: Boolean;
 
     local procedure ValidateShippingOption2()
     begin

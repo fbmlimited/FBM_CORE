@@ -18,6 +18,7 @@ page 60144 FBM_ExchRatePHP_CO
                 field(stdate; stdate)
                 {
                     ApplicationArea = All;
+                    caption = 'Date:';
                     trigger
                     OnValidate()
                     begin
@@ -35,8 +36,9 @@ page 60144 FBM_ExchRatePHP_CO
                 field(exrateC; exrate)
                 {
                     Enabled = rateen;
+                    DecimalPlaces = 2 : 5;
 
-                    caption = 'PHP/USD Rate';
+                    caption = 'PHP/USD Rate:';
                     ApplicationArea = All;
                     trigger
                     OnValidate()
@@ -58,11 +60,15 @@ page 60144 FBM_ExchRatePHP_CO
                         end;
                         if rec."Relational Exch. Rate Amount" <> 0 then begin
                             if Confirm('There is already a value set. Do you really want to change %1 with %2?', false, rec."Relational Exch. Rate Amount", exrate) then begin
-                                if not confirm('Are you sure?', false) then
+                                if not confirm('Are you sure?', false) then begin
+                                    exrate := 0;
                                     exit;
+                                end;
                             end
-                            else
+                            else begin
+                                exrate := 0;
                                 exit;
+                            end;
                         end;
                         append();
                     end;

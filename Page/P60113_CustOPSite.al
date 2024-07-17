@@ -96,10 +96,12 @@ page 60113 FBM_CustSite_CO
     OnAfterGetRecord()
     begin
         if rec."Customer No." <> '' then begin
-            cust.get(rec."Customer No.");
-            cos.setrange("Customer No.", rec."Customer No.");
-            cos.SetRange("Site Code", rec."Site Code");
-            if cos.FindFirst() then begin end;
+            cos.Reset();
+            if cust.get(rec."Customer No.") then begin
+                cos.setrange("Customer No.", rec."Customer No.");
+                cos.SetRange("Site Code", rec."Site Code");
+                if cos.FindFirst() then begin end;
+            end
         end;
 
     end;

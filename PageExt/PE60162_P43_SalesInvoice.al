@@ -2,6 +2,13 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
 {
     layout
     {
+#if MAIN
+        modify("IDPIRPF IRPF Group")
+        {
+            visible = ises;
+        }
+#endif
+
         modify("Sell-to Contact")
         {
             Importance = Additional;
@@ -171,6 +178,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
     begin
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
+        ises := compinfo."Country/Region Code" = 'ES';
 
     end;
 
@@ -183,6 +191,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
         usersetup: record "User Setup";
         compinfo: record "Company Information";
         showsite: Boolean;
-
+        ises: Boolean;
+        cinfo: record "Company Information";
 
 }

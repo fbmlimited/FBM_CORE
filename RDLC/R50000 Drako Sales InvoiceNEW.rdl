@@ -8846,6 +8846,9 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="CustomerNo">
           <DataField>CustomerNo</DataField>
         </Field>
+        <Field Name="SiteAddr7">
+          <DataField>SiteAddr7</DataField>
+        </Field>
         <Field Name="No_SalesInvHdr">
           <DataField>No_SalesInvHdr</DataField>
         </Field>
@@ -8918,6 +8921,129 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="Contract_Code">
           <DataField>Contract_Code</DataField>
         </Field>
+        <Field Name="TandC">
+          <DataField>TandC</DataField>
+        </Field>
+        <Field Name="VATText">
+          <DataField>VATText</DataField>
+        </Field>
+        <Field Name="TotalInclVATLbl">
+          <DataField>TotalInclVATLbl</DataField>
+        </Field>
+        <Field Name="TotalExclVATLbl">
+          <DataField>TotalExclVATLbl</DataField>
+        </Field>
+        <Field Name="Curr1">
+          <DataField>Curr1</DataField>
+        </Field>
+        <Field Name="Curr2">
+          <DataField>Curr2</DataField>
+        </Field>
+        <Field Name="VATAmtLineVATAmtText">
+          <DataField>VATAmtLineVATAmtText</DataField>
+        </Field>
+        <Field Name="SubtotalCaption">
+          <DataField>SubtotalCaption</DataField>
+        </Field>
+        <Field Name="TotalSubTotalC1">
+          <DataField>TotalSubTotalC1</DataField>
+        </Field>
+        <Field Name="TotalSubTotalC1Format">
+          <DataField>TotalSubTotalC1Format</DataField>
+        </Field>
+        <Field Name="TotalSubTotalC2">
+          <DataField>TotalSubTotalC2</DataField>
+        </Field>
+        <Field Name="TotalSubTotalC2Format">
+          <DataField>TotalSubTotalC2Format</DataField>
+        </Field>
+        <Field Name="TotalAmountVATC1">
+          <DataField>TotalAmountVATC1</DataField>
+        </Field>
+        <Field Name="TotalAmountVATC1Format">
+          <DataField>TotalAmountVATC1Format</DataField>
+        </Field>
+        <Field Name="TotalAmountInclVATC1">
+          <DataField>TotalAmountInclVATC1</DataField>
+        </Field>
+        <Field Name="TotalAmountInclVATC1Format">
+          <DataField>TotalAmountInclVATC1Format</DataField>
+        </Field>
+        <Field Name="TotalPaymentDiscOnVATC1">
+          <DataField>TotalPaymentDiscOnVATC1</DataField>
+        </Field>
+        <Field Name="TotalPaymentDiscOnVATC1Format">
+          <DataField>TotalPaymentDiscOnVATC1Format</DataField>
+        </Field>
+        <Field Name="TotalAmountC1">
+          <DataField>TotalAmountC1</DataField>
+        </Field>
+        <Field Name="TotalAmountC1Format">
+          <DataField>TotalAmountC1Format</DataField>
+        </Field>
+        <Field Name="TotalAmountVATC2">
+          <DataField>TotalAmountVATC2</DataField>
+        </Field>
+        <Field Name="TotalAmountVATC2Format">
+          <DataField>TotalAmountVATC2Format</DataField>
+        </Field>
+        <Field Name="TotalAmountInclVATC2">
+          <DataField>TotalAmountInclVATC2</DataField>
+        </Field>
+        <Field Name="TotalAmountInclVATC2Format">
+          <DataField>TotalAmountInclVATC2Format</DataField>
+        </Field>
+        <Field Name="TotalPaymentDiscOnVATC2">
+          <DataField>TotalPaymentDiscOnVATC2</DataField>
+        </Field>
+        <Field Name="TotalPaymentDiscOnVATC2Format">
+          <DataField>TotalPaymentDiscOnVATC2Format</DataField>
+        </Field>
+        <Field Name="TotalAmountC2">
+          <DataField>TotalAmountC2</DataField>
+        </Field>
+        <Field Name="TotalAmountC2Format">
+          <DataField>TotalAmountC2Format</DataField>
+        </Field>
+        <Field Name="TotalPreVATEUR">
+          <DataField>TotalPreVATEUR</DataField>
+        </Field>
+        <Field Name="TotalPreVATEURFormat">
+          <DataField>TotalPreVATEURFormat</DataField>
+        </Field>
+        <Field Name="TotalVATEUR">
+          <DataField>TotalVATEUR</DataField>
+        </Field>
+        <Field Name="TotalVATEURFormat">
+          <DataField>TotalVATEURFormat</DataField>
+        </Field>
+        <Field Name="TotalEUR">
+          <DataField>TotalEUR</DataField>
+        </Field>
+        <Field Name="TotalEURFormat">
+          <DataField>TotalEURFormat</DataField>
+        </Field>
+        <Field Name="BankCurrencyCaption">
+          <DataField>BankCurrencyCaption</DataField>
+        </Field>
+        <Field Name="HasIntBank">
+          <DataField>HasIntBank</DataField>
+        </Field>
+        <Field Name="HasIntBank2">
+          <DataField>HasIntBank2</DataField>
+        </Field>
+        <Field Name="VALExchRate">
+          <DataField>VALExchRate</DataField>
+        </Field>
+        <Field Name="InqEmail">
+          <DataField>InqEmail</DataField>
+        </Field>
+        <Field Name="Curr1Cptn">
+          <DataField>Curr1Cptn</DataField>
+        </Field>
+        <Field Name="Curr2Cptn">
+          <DataField>Curr2Cptn</DataField>
+        </Field>
         <Field Name="HomePage">
           <DataField>HomePage</DataField>
         </Field>
@@ -8965,6 +9091,9 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         </Field>
         <Field Name="CustAddr5">
           <DataField>CustAddr5</DataField>
+        </Field>
+        <Field Name="TitleCaption">
+          <DataField>TitleCaption</DataField>
         </Field>
         <Field Name="CompanyInfoPhoneNo">
           <DataField>CompanyInfoPhoneNo</DataField>
@@ -9086,9 +9215,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="PrintTIN">
           <DataField>PrintTIN</DataField>
         </Field>
-        <Field Name="InqEmail">
-          <DataField>InqEmail</DataField>
-        </Field>
         <Field Name="CustomerRefCaption">
           <DataField>CustomerRefCaption</DataField>
         </Field>
@@ -9128,9 +9254,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="VATIDNoCaption">
           <DataField>VATIDNoCaption</DataField>
         </Field>
-        <Field Name="TitleCaption">
-          <DataField>TitleCaption</DataField>
-        </Field>
         <Field Name="SiteCaption">
           <DataField>SiteCaption</DataField>
         </Field>
@@ -9139,9 +9262,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         </Field>
         <Field Name="IBANCaption">
           <DataField>IBANCaption</DataField>
-        </Field>
-        <Field Name="BankCurrencyCaption">
-          <DataField>BankCurrencyCaption</DataField>
         </Field>
         <Field Name="FurtherTransferCaption">
           <DataField>FurtherTransferCaption</DataField>
@@ -9179,9 +9299,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="SiteAddr6">
           <DataField>SiteAddr6</DataField>
         </Field>
-        <Field Name="SiteAddr7">
-          <DataField>SiteAddr7</DataField>
-        </Field>
         <Field Name="HasSite">
           <DataField>HasSite</DataField>
         </Field>
@@ -9212,9 +9329,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="HasBank">
           <DataField>HasBank</DataField>
         </Field>
-        <Field Name="HasIntBank">
-          <DataField>HasIntBank</DataField>
-        </Field>
         <Field Name="BankDetails21">
           <DataField>BankDetails21</DataField>
         </Field>
@@ -9242,9 +9356,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="HasBank2">
           <DataField>HasBank2</DataField>
         </Field>
-        <Field Name="HasIntBank2">
-          <DataField>HasIntBank2</DataField>
-        </Field>
         <Field Name="exchRate">
           <DataField>exchRate</DataField>
         </Field>
@@ -9253,9 +9364,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         </Field>
         <Field Name="TINNo">
           <DataField>TINNo</DataField>
-        </Field>
-        <Field Name="TandC">
-          <DataField>TandC</DataField>
         </Field>
         <Field Name="DimText">
           <DataField>DimText</DataField>
@@ -9356,9 +9464,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="AmtInclVAT_SalesInvLineFormat">
           <DataField>AmtInclVAT_SalesInvLineFormat</DataField>
         </Field>
-        <Field Name="VATAmtLineVATAmtText">
-          <DataField>VATAmtLineVATAmtText</DataField>
-        </Field>
         <Field Name="TotalExclVATText">
           <DataField>TotalExclVATText</DataField>
         </Field>
@@ -9419,9 +9524,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="PostedShipmentDateCaption">
           <DataField>PostedShipmentDateCaption</DataField>
         </Field>
-        <Field Name="SubtotalCaption">
-          <DataField>SubtotalCaption</DataField>
-        </Field>
         <Field Name="LineAmtAfterInvDiscCptn">
           <DataField>LineAmtAfterInvDiscCptn</DataField>
         </Field>
@@ -9455,116 +9557,17 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         <Field Name="VATLinePrint">
           <DataField>VATLinePrint</DataField>
         </Field>
-        <Field Name="Curr1">
-          <DataField>Curr1</DataField>
-        </Field>
-        <Field Name="Curr2">
-          <DataField>Curr2</DataField>
-        </Field>
-        <Field Name="Curr1Cptn">
-          <DataField>Curr1Cptn</DataField>
-        </Field>
-        <Field Name="Curr2Cptn">
-          <DataField>Curr2Cptn</DataField>
-        </Field>
-        <Field Name="TotalSubTotalC1">
-          <DataField>TotalSubTotalC1</DataField>
-        </Field>
-        <Field Name="TotalSubTotalC1Format">
-          <DataField>TotalSubTotalC1Format</DataField>
-        </Field>
         <Field Name="TotalInvDiscountAmountC1">
           <DataField>TotalInvDiscountAmountC1</DataField>
         </Field>
         <Field Name="TotalInvDiscountAmountC1Format">
           <DataField>TotalInvDiscountAmountC1Format</DataField>
         </Field>
-        <Field Name="TotalAmountVATC1">
-          <DataField>TotalAmountVATC1</DataField>
-        </Field>
-        <Field Name="TotalAmountVATC1Format">
-          <DataField>TotalAmountVATC1Format</DataField>
-        </Field>
-        <Field Name="TotalAmountInclVATC1">
-          <DataField>TotalAmountInclVATC1</DataField>
-        </Field>
-        <Field Name="TotalAmountInclVATC1Format">
-          <DataField>TotalAmountInclVATC1Format</DataField>
-        </Field>
-        <Field Name="TotalPaymentDiscOnVATC1">
-          <DataField>TotalPaymentDiscOnVATC1</DataField>
-        </Field>
-        <Field Name="TotalPaymentDiscOnVATC1Format">
-          <DataField>TotalPaymentDiscOnVATC1Format</DataField>
-        </Field>
-        <Field Name="TotalAmountC1">
-          <DataField>TotalAmountC1</DataField>
-        </Field>
-        <Field Name="TotalAmountC1Format">
-          <DataField>TotalAmountC1Format</DataField>
-        </Field>
-        <Field Name="TotalSubTotalC2">
-          <DataField>TotalSubTotalC2</DataField>
-        </Field>
-        <Field Name="TotalSubTotalC2Format">
-          <DataField>TotalSubTotalC2Format</DataField>
-        </Field>
         <Field Name="TotalInvDiscountAmountC2">
           <DataField>TotalInvDiscountAmountC2</DataField>
         </Field>
         <Field Name="TotalInvDiscountAmountC2Format">
           <DataField>TotalInvDiscountAmountC2Format</DataField>
-        </Field>
-        <Field Name="TotalAmountVATC2">
-          <DataField>TotalAmountVATC2</DataField>
-        </Field>
-        <Field Name="TotalAmountVATC2Format">
-          <DataField>TotalAmountVATC2Format</DataField>
-        </Field>
-        <Field Name="TotalAmountInclVATC2">
-          <DataField>TotalAmountInclVATC2</DataField>
-        </Field>
-        <Field Name="TotalAmountInclVATC2Format">
-          <DataField>TotalAmountInclVATC2Format</DataField>
-        </Field>
-        <Field Name="TotalPaymentDiscOnVATC2">
-          <DataField>TotalPaymentDiscOnVATC2</DataField>
-        </Field>
-        <Field Name="TotalPaymentDiscOnVATC2Format">
-          <DataField>TotalPaymentDiscOnVATC2Format</DataField>
-        </Field>
-        <Field Name="TotalAmountC2">
-          <DataField>TotalAmountC2</DataField>
-        </Field>
-        <Field Name="TotalAmountC2Format">
-          <DataField>TotalAmountC2Format</DataField>
-        </Field>
-        <Field Name="TotalPreVATEUR">
-          <DataField>TotalPreVATEUR</DataField>
-        </Field>
-        <Field Name="TotalPreVATEURFormat">
-          <DataField>TotalPreVATEURFormat</DataField>
-        </Field>
-        <Field Name="TotalVATEUR">
-          <DataField>TotalVATEUR</DataField>
-        </Field>
-        <Field Name="TotalVATEURFormat">
-          <DataField>TotalVATEURFormat</DataField>
-        </Field>
-        <Field Name="TotalEUR">
-          <DataField>TotalEUR</DataField>
-        </Field>
-        <Field Name="TotalEURFormat">
-          <DataField>TotalEURFormat</DataField>
-        </Field>
-        <Field Name="VATText">
-          <DataField>VATText</DataField>
-        </Field>
-        <Field Name="TotalInclVATLbl">
-          <DataField>TotalInclVATLbl</DataField>
-        </Field>
-        <Field Name="TotalExclVATLbl">
-          <DataField>TotalExclVATLbl</DataField>
         </Field>
         <Field Name="Period_Start">
           <DataField>Period_Start</DataField>
@@ -9685,9 +9688,6 @@ BgYdYZSFgYGBgUFJGGVhYGBgYFASRlkYGBgYGJSEURYGBgYGBiVhlIWBgYGBQUkYZWFgYGBgUAKM/R/5
         </Field>
         <Field Name="VALSpecLCYHeader">
           <DataField>VALSpecLCYHeader</DataField>
-        </Field>
-        <Field Name="VALExchRate">
-          <DataField>VALExchRate</DataField>
         </Field>
         <Field Name="VALVATBaseLCY">
           <DataField>VALVATBaseLCY</DataField>

@@ -168,7 +168,7 @@ page 60101 "FBM_CustomerSite_CO"
                 trigger OnAction()
                 var
                     req: record FBM_CustSiteReq;
-                    reqpage: page FBM_CustomerReq_DD;
+                    reqpage: page FBM_SiteChangeReq_DD;
                 begin
                     reqpage.passpar(rec.SiteGrCode, true);
                     req.Init();

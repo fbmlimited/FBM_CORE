@@ -18,12 +18,35 @@ pageextension 60133 FBM_PostSCrMSubExt_CO extends "Posted Sales Cr. Memo Subform
             }
 
         }
+#if MAIN
+        modify("IDPIRPF IRPF Amount")
+        {
+            Visible = ises;
+
+        }
+        modify("IDPIRPF IRPF Group")
+        {
+            Visible = ises;
+
+        }
+        modify("IDPIRPF Total IRPF Amount")
+        {
+            Visible = ises;
+
+        }
+        modify("IDPIRPF TotalAmountWithVATWithoutIRPF")
+        {
+            Visible = ises;
+
+        }
+#endif
     }
     trigger OnOpenPage()
     begin
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
-
+        ;
+        ises := compinfo."Country/Region Code" = 'ES';
     end;
 
 
@@ -31,4 +54,5 @@ pageextension 60133 FBM_PostSCrMSubExt_CO extends "Posted Sales Cr. Memo Subform
 
         compinfo: record "Company Information";
         showsite: Boolean;
+        ises: Boolean;
 }

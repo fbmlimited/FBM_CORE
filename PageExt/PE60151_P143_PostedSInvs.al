@@ -73,40 +73,61 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
 
             }
         }
-        // addafter(Print)
-        // {
-        //     action(Print2)
-        //     {
-        //         ApplicationArea = Basic, Suite;
-        //         Caption = '&Print';
-        //         Ellipsis = true;
-        //         Image = Print;
-        //         ToolTip = 'Prepare to print the document. A report request window for the document opens where you can specify what to include on the print-out.';
-        //         //Visible = NOT IsOfficeAddin;
+        addafter(Print)
+        {
+            action(Print2)
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = '&Print';
+                Ellipsis = true;
+                Image = Print;
+                ToolTip = 'Prepare to print the document. A report request window for the document opens where you can specify what to include on the print-out.';
+                //Visible = NOT IsOfficeAddin;
 
-        //         trigger OnAction()
-        //         var
-        //             SalesInvHeader: Record "Sales Invoice Header";
-        //         begin
-        //             SalesInvHeader := Rec;
-        //             CurrPage.SetSelectionFilter(SalesInvHeader);
-        //             if SalesInvHeader.count > 1 then
-        //                 error('It is allowed printing only one invoice at time .')
-        //             else
-        //                 SalesInvHeader.PrintRecords(true);
-        //         end;
-        //     }
-        // }
-        // modify(Print)
-        // {
-        //     Visible = false;
-        // }
-        // addfirst(Category_Category7)
-        // {
-        //     actionref(Print_Promoted2; Print2)
-        //     {
-        //     }
-        // }
+                trigger OnAction()
+                var
+                    SalesInvHeader: Record "Sales Invoice Header";
+                    SInv: Record "Sales Invoice Header";
+                    selrep: record "Report Selections";
+                    repinv: report "FBM_Drako Sales - Invoice_CO";
+                    RPL: TEXT;
+                begin
+                    //SalesInvHeader := Rec;
+                    CurrPage.SetSelectionFilter(SalesInvHeader);
+                    SalesInvHeader.MarkedOnly(true);
+                    if SalesInvHeader.count > 1 then begin
+                        SalesInvHeader.FindFirst();
+                        sinv.Reset();
+                        repeat
+                            sinv.SETRANGE("No.", SalesInvHeader."No.");
+                            SINV.FindFirst();
+                            // selrep.setrange(Usage, selrep.Usage::"S.Invoice");
+                            // selrep.FindFirst();
+                            // RPL:=REPORT.RunRequestPage(SELREP."Report ID");
+                            //report.runmodal(selrep."Report ID", true, true, sinv);
+                            SInv.PrintRecords(true);
+                        //REPORT.Print(selrep."Report ID",RPL);
+
+                        until SalesInvHeader.Next() = 0;
+                    end
+                    else
+
+                        //                 error('It is allowed printing only one invoice at time .')
+                        //             else
+                        SalesInvHeader.PrintRecords(true);
+                end;
+            }
+        }
+        modify(Print)
+        {
+            Visible = false;
+        }
+        addfirst(Category_Category7)
+        {
+            actionref(Print_Promoted2; Print2)
+            {
+            }
+        }
 
     }
 

@@ -6,7 +6,24 @@ pageextension 60164 FBM_SalesInvSubExt_CO extends "Sales Invoice Subform"
         {
             Visible = true;
         }
-
+#if MAIN
+        modify("IDPIRPF IRPF")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF IRPF Amount")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF Total IRPF Amount")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF TotalAmountWithVATWithoutIRPF")
+        {
+            Visible = ises;
+        }
+#endif
         addafter("VAT Prod. Posting Group")
         {
 
@@ -40,7 +57,7 @@ pageextension 60164 FBM_SalesInvSubExt_CO extends "Sales Invoice Subform"
             }
 
         }
-        
+
     }
     trigger OnOpenPage()
     var
@@ -48,9 +65,9 @@ pageextension 60164 FBM_SalesInvSubExt_CO extends "Sales Invoice Subform"
     begin
 
         if compinfo.Get() then begin
-            
-            showsite := compinfo.FBM_CustIsOp;
 
+            showsite := compinfo.FBM_CustIsOp;
+            ises := compinfo."Country/Region Code" = 'ES';
 
         end;
 
@@ -58,7 +75,8 @@ pageextension 60164 FBM_SalesInvSubExt_CO extends "Sales Invoice Subform"
     end;
 
     var
-        
+
         compinfo: record "Company Information";
         showsite: Boolean;
+        ises: Boolean;
 }

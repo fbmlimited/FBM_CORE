@@ -11,18 +11,7 @@
   "url": "",
   "logo": "",
   "dependencies": [
-    {
-      "id": "16d404c0-c1b7-447c-b405-277f5a881999",
-  "name": "iDynamics IRPF W1",
-  "publisher": "iDynamics Business Solutions",
-  "version": "6.5.1.0"
-},
-{
-  "id": "abc622d1-0d07-40e3-9518-9a9adc77322a",
-  "name": "Philippine Localization",
-  "version": "1.0.0.42",
-  "publisher": "PASI"
-},
+    
 
     {
       "id": "9d836a4f-3b97-4179-ae7d-608f099ba7f3",
@@ -50,7 +39,6 @@
   "features": [
     "NoImplicitWith"
   ],
-  "target": "Cloud",
-  "preprocessorSymbols":["MAIN"]
+  "target": "Cloud"
 
 }

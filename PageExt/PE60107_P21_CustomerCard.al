@@ -5,7 +5,10 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 
     layout
     {
-
+        modify(Control10)
+        {
+            Visible = true;
+        }
         addbefore(Name)
         {
             field("No. 2_CO"; rec.FBM_GrCode)
@@ -16,11 +19,11 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         }
         addafter(Name)
         {
-            field("FBM_Name 3"; Rec."FBM_Name3")
-            {
-                ApplicationArea = all;
-                Enabled = hascode;
-            }
+            // field("FBM_Name 3"; Rec."FBM_Name3")
+            // {
+            //     ApplicationArea = all;
+            //     Enabled = hascode;
+            // }
 
             field("Customer Since_CO"; rec."FBM_Customer Since")
             {
@@ -50,6 +53,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             field(FBM_Acronym; Rec.FBM_Acronym)
             {
                 ApplicationArea = All;
+                enabled = isic;
 
             }
         }
@@ -113,6 +117,18 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             Enabled = not hascode;
 
         }
+#if MAIN
+        modify("IDPIRPF IRPF Group")
+        {
+            Enabled = ises;
+
+        }
+        modify("WHT Business Posting Group PHL")
+        {
+            Enabled = isph;
+
+        }
+#endif
 
     }
 
@@ -178,7 +194,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
                 trigger OnAction()
                 var
                     req: record FBM_CustSiteReq;
-                    reqpage: page FBM_CustomerReq_DD;
+                    reqpage: page FBM_CustomerChangeReq_DD;
                 begin
                     reqpage.passpar(rec.FBM_GrCode, true);
                     req.Init();
@@ -212,6 +228,9 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         ShowSites: boolean;
         issup: boolean;
         hascode: Boolean;
+        isic: Boolean;
+        ises: Boolean;
+        isph: Boolean;
 
 
 
@@ -233,7 +252,14 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 
     trigger
     OnAfterGetRecord()
+    var
+        cpg: Text;
+        cinfo: record "Company Information";
     begin
         hascode := rec.FBM_GrCode <> '';
+        cpg := rec."Customer Posting Group";
+        isic := cpg.Contains('IC');
+        ises := cinfo."Country/Region Code" = 'ES';
+        isph := cinfo."Country/Region Code" = 'PH';
     end;
 }

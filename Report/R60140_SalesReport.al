@@ -11,7 +11,7 @@ report 60140 FBM_SalesReportNew_CO
     {
         dataitem(salesinvoiceline; FBM_SalesInvLineTmp)
         {
-            RequestFilterFields = "Posting Date", "Sell-to customer no.";
+            RequestFilterFields = "Posting Date";
 
             column(DocType; DocType)
             {
@@ -129,6 +129,10 @@ report 60140 FBM_SalesReportNew_CO
             { }
             column(RegistrationDate; RegistrationDate)
             { }
+            column(Grouping; Grouping)
+            { }
+            column(Summary; summary)
+            { }
 
             trigger OnPreDataItem()
             begin
@@ -171,6 +175,10 @@ report 60140 FBM_SalesReportNew_CO
                 invGlEntryGlAccountName := '';
 
                 invsite := salesinvoiceline.FBM_Site;
+                if summary then
+                    grouping := salesinvoiceline."Document No."
+                else
+                    grouping := salesinvoiceline."Document No." + format(salesinvoiceline."Line No.");
                 if salesinvoiceline.DocType = salesinvoiceline.DocType::Invoice then begin
                     invheader.SetRange("No.", salesinvoiceline."Document No.");
                     if invheader.FindFirst() then begin
@@ -380,6 +388,12 @@ report 60140 FBM_SalesReportNew_CO
                         ApplicationArea = All;
 
                     }
+                    field(Summary; summary)
+                    {
+                        ApplicationArea = All;
+                        caption = 'Summary';
+
+                    }
 
 
 
@@ -396,6 +410,7 @@ report 60140 FBM_SalesReportNew_CO
     trigger
     OnPreReport()
     begin
+        sinvline.CopyFilter("Posting Date", salesinvoiceline."Posting Date");
 
         sinvline.FindFirst();
         repeat
@@ -416,7 +431,7 @@ report 60140 FBM_SalesReportNew_CO
             salesinvoiceline.Insert();
 
         until sinvline.Next() = 0;
-
+        scrmline.CopyFilter("Posting Date", salesinvoiceline."Posting Date");
         scrmline.FindFirst();
         repeat
             salesinvoiceline.Init();
@@ -479,6 +494,8 @@ report 60140 FBM_SalesReportNew_CO
         crSalesCustomerName: Text[100];
         SalesCustomerName: Text[100];
         RegistrationDate: Date;
+        summary: boolean;
+        Grouping: text[100];
 
         sinvline: record "Sales Invoice Line";
         scrmline: record "Sales Cr.Memo Line";
