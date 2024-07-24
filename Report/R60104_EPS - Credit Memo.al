@@ -1,11 +1,13 @@
 report 60104 "FBM_EPS Sales - Credit Memo_CO"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './RDLC/R50026 EPS SalesCreditMemo.rdl';
+    //RDLCLayout = './RDLC/R50026 EPS SalesCreditMemo.rdl';
+    RDLCLayout = './RDLC/R50025 EPS Sales Invoice.rdl';
     Caption = 'Factura Rectificativa de Ventas';
 
     Permissions = TableData "Sales Shipment Buffer" = rimd;
     PreviewMode = PrintLayout;
+    EnableHyperlinks = true;
 
     dataset
     {
@@ -15,6 +17,17 @@ report 60104 "FBM_EPS Sales - Credit Memo_CO"
             DataItemTableView = SORTING("No.");
             RequestFilterFields = "No.", "Sell-to Customer No.", "No. Printed";
             RequestFilterHeading = 'Notas de crédito Registradas';
+            column(Showperiod; Showperiod)
+            {
+
+            }
+            column(Contract_Code; "FBM_Contract Code")
+            {
+
+            }
+            column(Segment; FBM_Segment2)
+            {
+            }
 
             column(CustomerNo;
             g_Customer."No.")
@@ -86,10 +99,17 @@ report 60104 "FBM_EPS Sales - Credit Memo_CO"
                 "Integer")
                 {
                     DataItemTableView = SORTING(Number) WHERE(Number = CONST(1));
-
+                    column(TitleCaption;
+                    TitleCaption)
+                    {
+                    }
                     column(HomePage;
                     CompanyInfo."Home Page")
                     {
+                    }
+                    column(Country; "Sales Cr.Memo Header"."Sell-to Country/Region Code")
+                    {
+
                     }
                     column(EMail;
                     CompanyInfo."E-Mail")
@@ -395,10 +415,7 @@ report 60104 "FBM_EPS Sales - Credit Memo_CO"
                     VATIDNoCaption)
                     {
                     }
-                    column(TitleCaption;
-                    TitleCaption)
-                    {
-                    }
+
                     column(SiteCaption;
                     SiteCaption)
                     {
@@ -1537,6 +1554,7 @@ report 60104 "FBM_EPS Sales - Credit Memo_CO"
     end;
 
     var
+        Showperiod: Boolean;
         Text004: Label 'NOTA DE CRÉDITO %1', Comment = '%1 = Document No.';
         PageCaptionCap: Label 'Página %1 de %2';
         GLSetup: Record "General Ledger Setup";
@@ -1646,7 +1664,7 @@ report 60104 "FBM_EPS Sales - Credit Memo_CO"
         CustomerRefCaption: Label 'Customer Reference:';
         CustomerCaption: Label 'Cliente:';
         AddressCaption: Label 'Dirección:';
-        InvoiceNumberCaption: Label 'Nota crédito No:';
+        InvoiceNumberCaption: Label 'Factura Rectificativa No:';
         DateCaption: Label 'Fecha:';
         VATRateCaption: Label 'VAT Rate';
         InquiriesCaption: Label 'DIRECT ALL INQUIRIES TO:';
@@ -1657,7 +1675,7 @@ report 60104 "FBM_EPS Sales - Credit Memo_CO"
         AccountCaption: Label 'Account';
         BankAddressCaption: Label 'Bank Address: ';
         VATIDNoCaption: Label 'VAT ID Number';
-        TitleCaption: Label 'INVOICE';
+        TitleCaption: Label 'Factura Rectiificativa';
         SiteCaption: Label 'Site:';
         IntBankCaption: Label 'Intermediary Bank: ';
         IBANCaption: Label 'Account: ';

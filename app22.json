@@ -2,7 +2,7 @@
   "id": "e6857996-833b-464e-91d1-e5102f622d69",
   "name": "FBM_CORE",
   "publisher": "FBM Group",
-  "version": "122.1.150.6",
+  "version": "122.1.151.0",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -11,24 +11,25 @@
   "url": "",
   "logo": "",
   "dependencies": [
-    {
-      "id": "16d404c0-c1b7-447c-b405-277f5a881999",
-  "name": "iDynamics IRPF W1",
-  "publisher": "iDynamics Business Solutions",
-  "version": "6.5.1.0"
-},
-{
-  "id": "abc622d1-0d07-40e3-9518-9a9adc77322a",
-  "name": "Philippine Localization",
-  "version": "1.0.0.42",
-  "publisher": "PASI"
-},
+    
 
     {
       "id": "9d836a4f-3b97-4179-ae7d-608f099ba7f3",
       "name": "FBM Data Dictionary",
       "publisher": "FBM Group",
-      "version": "122.1.150.10"
+      "version": "122.1.151.0"
+    },
+    {
+      "appId": "abc622d1-0d07-40e3-9518-9a9adc77322a",
+      "name": "Philippine Localization",
+      "version": "1.0.0.42",
+      "publisher": "PASI"
+    },
+    {
+      "appId": "16d404c0-c1b7-447c-b405-277f5a881999",
+      "name": "iDynamics IRPF W1",
+      "version": "6.5.1.0",
+      "publisher": "iDynamics Business Solutions"
     }
    
   ],
@@ -52,5 +53,6 @@
   ],
   "target": "Cloud",
   "preprocessorSymbols":["MAIN"]
+  
 
 }

@@ -6,7 +6,7 @@ report 60143 FBM_SalesReportNP_CO
     UsageCategory = Administration;
     RDLCLayout = './RDLC/R60143_SalesReportNP.rdl';
     ApplicationArea = All;
-    Caption = 'Sales Report Not Posted';
+    Caption = 'Sales Report Not Posted New';
 
     dataset
     {
@@ -84,7 +84,7 @@ report 60143 FBM_SalesReportNP_CO
 
             trigger OnPreDataItem()
             begin
-                SetFilter("Document Type", 'Invoice|Credit Memo');
+                SetFilter("Document Type", '%1|%2', salesinvoiceline."Document Type"::Invoice, salesinvoiceline."Document Type"::"Credit Memo");
                 filters := salesinvoiceline.GetFilters();
                 if (filters <> '') then begin
 
@@ -95,8 +95,7 @@ report 60143 FBM_SalesReportNP_CO
             trigger OnAfterGetRecord()
 
 
-            var
-                myInt: Integer;
+
 
             begin
                 if summary then
