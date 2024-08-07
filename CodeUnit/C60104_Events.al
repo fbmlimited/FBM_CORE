@@ -547,4 +547,28 @@ codeunit 60104 FBM_Events_CO
             DocumentAttachment."Document Type" := DocumentAttachment."Document Type"::Note;
         end;
     end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, 12, 'OnBeforeRunWithCheck', '', false, false)]
+    procedure OnBeforeRunWithCheck(var GenJournalLine: Record "Gen. Journal Line"; var GenJournalLine2: Record "Gen. Journal Line")
+    var
+        cinfo: record "Company Information";
+        exchrate: record "Currency Exchange Rate";
+        glsetup: record "General Ledger Setup";
+    begin
+        cinfo.get();
+        glsetup.Get();
+        if cinfo."Country/Region Code" = 'PH' then begin
+            exchrate.SetRange("Starting Date", GenJournalLine2."Posting Date");
+            exchrate.SetRange("Currency Code", 'USD');
+            if not exchrate.FindFirst() then
+                error('Missing USD exchange rarte for posting date  %1', format(GenJournalLine2."Posting Date"))
+            else
+                if (exchrate."Relational Exch. Rate Amount" < glsetup.FBM_ExchRatePHPMin) or (exchrate."Relational Exch. Rate Amount" > glsetup.FBM_ExchRatePHPMax) then
+                    error('Wrong exch rate for USD and date %1', format(GenJournalLine2."Posting Date"));
+        end;
+
+    end;
+
+
 }

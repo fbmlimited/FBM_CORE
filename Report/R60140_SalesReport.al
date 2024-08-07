@@ -427,6 +427,7 @@ report 60140 FBM_SalesReportNew_CO
             salesinvoiceline.Amount := sinvline.Amount;
             salesinvoiceline."FBM_Period Start" := sinvline."FBM_Period Start";
             salesinvoiceline."FBM_Period End" := sinvline."FBM_Period End";
+            salesinvoiceline.FBM_Site := sinvline.FBM_Site;
             salesinvoiceline."Sell-to Customer No." := sinvline."Sell-to Customer No.";
             salesinvoiceline.Insert();
 
@@ -447,6 +448,7 @@ report 60140 FBM_SalesReportNew_CO
             salesinvoiceline.Amount := -scrmline.Amount;
             salesinvoiceline."FBM_Period Start" := scrmline."FBM_Period Start";
             salesinvoiceline."FBM_Period End" := scrmline."FBM_Period End";
+            salesinvoiceline.FBM_Site := sinvline.FBM_Site;
             salesinvoiceline."Sell-to Customer No." := scrmline."Sell-to Customer No.";
             salesinvoiceline.Insert();
 

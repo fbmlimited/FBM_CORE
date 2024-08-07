@@ -11,12 +11,27 @@ pageextension 60123 FBM_GLSetupExt_CO extends "General Ledger Setup"
         //     Editable = false;
         // }
 
-        addlast(General)
+        addafter(General)
         {
-            field(FBM_ExchRateFluctuation; Rec.FBM_ExchRateFluctuation)
+            group("Exchange Rate")
             {
-                ApplicationArea = all;
-                Visible = issuper;
+                Visible = issuperPH;
+
+                field(FBM_ExchRateFluctuation; Rec.FBM_ExchRateFluctuation)
+                {
+                    ApplicationArea = all;
+
+                }
+                field(FBM_ExchRateFluctuationPHPMin; Rec.FBM_ExchRatePHPMin)
+                {
+                    ApplicationArea = all;
+
+                }
+                field(FBM_ExchRateFluctuationPHPMax; Rec.FBM_ExchRatePHPMax)
+                {
+                    ApplicationArea = all;
+
+                }
             }
         }
     }
@@ -26,7 +41,7 @@ pageextension 60123 FBM_GLSetupExt_CO extends "General Ledger Setup"
         cinfo.get();
         visph := (cinfo."Country/Region Code" = 'PH');
 
-        issuper := uper.IsSuper(UserSecurityId())
+        issuperph := uper.IsSuper(UserSecurityId()) and visph;
 
     end;
 
@@ -34,7 +49,7 @@ pageextension 60123 FBM_GLSetupExt_CO extends "General Ledger Setup"
         cinfo: record "Company Information";
         visph: Boolean;
         uper: codeunit "User Permissions";
-        issuper: boolean;
+        issuperPH: boolean;
 
 
 }

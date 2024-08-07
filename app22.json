@@ -20,13 +20,13 @@
       "version": "122.1.151.0"
     },
     {
-      "appId": "abc622d1-0d07-40e3-9518-9a9adc77322a",
+      "id": "abc622d1-0d07-40e3-9518-9a9adc77322a",
       "name": "Philippine Localization",
       "version": "1.0.0.42",
       "publisher": "PASI"
     },
     {
-      "appId": "16d404c0-c1b7-447c-b405-277f5a881999",
+      "id": "16d404c0-c1b7-447c-b405-277f5a881999",
       "name": "iDynamics IRPF W1",
       "version": "6.5.1.0",
       "publisher": "iDynamics Business Solutions"

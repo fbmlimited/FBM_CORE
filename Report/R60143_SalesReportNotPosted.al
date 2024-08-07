@@ -84,7 +84,7 @@ report 60143 FBM_SalesReportNP_CO
 
             trigger OnPreDataItem()
             begin
-                SetFilter("Document Type", '%1|%2', salesinvoiceline."Document Type"::Invoice, salesinvoiceline."Document Type"::"Credit Memo");
+                salesinvoiceline.SetFilter("Document Type", '%1|%2', salesinvoiceline."Document Type"::Invoice, salesinvoiceline."Document Type"::"Credit Memo");
                 filters := salesinvoiceline.GetFilters();
                 if (filters <> '') then begin
 
@@ -98,6 +98,7 @@ report 60143 FBM_SalesReportNP_CO
 
 
             begin
+                grouping := '';
                 if summary then
                     grouping := salesinvoiceline."Document No."
                 else
@@ -105,6 +106,7 @@ report 60143 FBM_SalesReportNP_CO
                 invsite := '';
                 invContract := '';
                 invglaccountname := '';
+                invsite := salesinvoiceline.FBM_Site;
                 invheader.SetRange("No.", salesinvoiceline."Document No.");
                 if invheader.FindFirst() then begin
                     invsite := invheader.FBM_Site;

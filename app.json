@@ -2,7 +2,7 @@
   "id": "e6857996-833b-464e-91d1-e5102f622d69",
   "name": "FBM_CORE",
   "publisher": "FBM Group",
-  "version": "124.2.151.0",
+  "version": "122.1.152.0",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -17,16 +17,29 @@
       "id": "9d836a4f-3b97-4179-ae7d-608f099ba7f3",
       "name": "FBM Data Dictionary",
       "publisher": "FBM Group",
-      "version": "124.2.151.0"
+      "version": "122.1.152.0"
+    },
+    {
+      "id": "abc622d1-0d07-40e3-9518-9a9adc77322a",
+      "name": "Philippine Localization",
+      "version": "1.0.0.42",
+      "publisher": "PASI"
+    },
+    {
+      "id": "16d404c0-c1b7-447c-b405-277f5a881999",
+      "name": "iDynamics IRPF W1",
+      "version": "6.5.1.0",
+      "publisher": "iDynamics Business Solutions"
     }
+   
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "24.0.0.0",
+  "application": "22.0.0.0",
   "idRanges": [
     {
       "from": 60100,
-      "to": 60199
+      "to": 60999
     }
   ],
   "resourceExposurePolicy": {
@@ -34,11 +47,12 @@
     "allowDownloadingSource": false,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "13.0",
+  "runtime": "11.0",
   "features": [
     "NoImplicitWith"
   ],
   "target": "Cloud",
-  "preprocessorSymbols":["JYM","SAAS"]
+  "preprocessorSymbols":["MAIN"]
+  
 
 }

@@ -1,22 +1,12 @@
 report 60144 FBM_CheckExchRate_CO
 {
-    Caption = 'Chexk Exchange Rate';
+    Caption = 'Check Exchange Rate';
     UsageCategory = Administration;
     ApplicationArea = All;
-
-    dataset
-    {
-        dataitem("Company Information"; "Company Information")
-        {
-            column(Name; Name)
-            {
+    ProcessingOnly = true;
 
 
-            }
-        }
-    }
 
-    var
 
     trigger
 
