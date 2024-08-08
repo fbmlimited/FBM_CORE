@@ -558,16 +558,29 @@ codeunit 60104 FBM_Events_CO
     begin
         cinfo.get();
         glsetup.Get();
-        if cinfo."Country/Region Code" = 'PH' then begin
-            exchrate.SetRange("Starting Date", GenJournalLine2."Posting Date");
-            exchrate.SetRange("Currency Code", 'USD');
-            if not exchrate.FindFirst() then
-                error('Missing USD exchange rarte for posting date  %1', format(GenJournalLine2."Posting Date"))
-            else
-                if (exchrate."Relational Exch. Rate Amount" < glsetup.FBM_ExchRatePHPMin) or (exchrate."Relational Exch. Rate Amount" > glsetup.FBM_ExchRatePHPMax) then
-                    error('Wrong exch rate for USD and date %1', format(GenJournalLine2."Posting Date"));
-        end;
+        if glsetup.FBM_CheckMinMaMax then
+            if (cinfo."Country/Region Code" = 'PH') and (glsetup."LCY Code" = 'PHP') then begin
+                exchrate.SetRange("Starting Date", GenJournalLine2."Posting Date");
+                exchrate.SetRange("Currency Code", 'USD');
+                if not exchrate.FindFirst() then
+                    error('Missing USD exchange rate for posting date  %1', format(GenJournalLine2."Posting Date"))
+                else
+                    if (exchrate."Relational Exch. Rate Amount" < glsetup.FBM_ExchRatePHPMin) or (exchrate."Relational Exch. Rate Amount" > glsetup.FBM_ExchRatePHPMax) then
+                        error('Wrong exch rate for USD and date %1', format(GenJournalLine2."Posting Date"));
+            end;
 
+    end;
+
+
+    [EventSubscriber(ObjectType::Table, 36, 'OnAfterGetPostingNoSeriesCode', '', false, false)]
+    procedure OnAfterGetPostingNoSeriesCode(SalesHeader: Record "Sales Header"; var PostingNos: Code[20])
+    var
+        salessetup: record "Sales & Receivables Setup";
+    begin
+        salessetup.Get();
+        if SalesHeader."Document Type" = SalesHeader."Document Type"::Invoice then
+            if SalesHeader."FBM_Billing Statement" then
+                PostingNos := salessetup."FBM_Billing Statement Nos.";
     end;
 
 

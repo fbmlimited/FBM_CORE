@@ -32,9 +32,16 @@ pageextension 60123 FBM_GLSetupExt_CO extends "General Ledger Setup"
                     ApplicationArea = all;
 
                 }
+                field(FBM_CheckMinMaMax; Rec.FBM_CheckMinMaMax)
+                {
+                    ApplicationArea = all;
+
+                }
             }
         }
     }
+
+
     trigger
     OnOpenPage()
     begin

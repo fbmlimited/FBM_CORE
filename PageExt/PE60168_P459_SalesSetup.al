@@ -19,6 +19,14 @@ pageextension 60168 FBM_SalesSetupExt_CO extends "Sales & Receivables Setup"
 
             }
         }
+        addlast("Number Series")
+        {
+            field("FBM_Billing Statement Nos."; Rec."FBM_Billing Statement Nos.")
+            {
+                ApplicationArea = All;
+
+            }
+        }
     }
     actions
     {
