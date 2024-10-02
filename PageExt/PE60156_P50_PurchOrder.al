@@ -63,33 +63,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
             }
 
         }
-        addafter(General)
-        {
-            group(Pedimento)
-            {
-                visible = isped;
-                field(FBM_Pedimento1; Rec.FBM_Pedimento1)
-                {
-                    ApplicationArea = all;
-                }
-                field(FBM_Pedimento2; Rec.FBM_Pedimento2)
-                {
-                    ApplicationArea = all;
-                }
-                field(FBM_Pedimento3; Rec.FBM_Pedimento3)
-                {
-                    ApplicationArea = all;
-                }
-                field(FBM_Pedimento4; Rec.FBM_Pedimento4)
-                {
-                    ApplicationArea = all;
-                }
-                field(FBM_Pedimento; Rec.FBM_Pedimento)
-                {
-                    ApplicationArea = all;
-                }
-            }
-        }
+
         addafter(ShippingOptionWithLocation)
         {
             group(Control198)
@@ -108,6 +82,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
                     begin
                         compinfo.get();
                         cs.SetRange("Site Code", rec.FBM_Site);
+                        cs.SetRange(ActiveRec, true);
                         if cs.FindFirst() then begin
                             cs.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                             rec."Ship-to Address" := cs.Address_FF;
@@ -513,8 +488,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         uper: Codeunit "User Permissions";
     begin
 
-        purchsetup.get;
-        isped := purchsetup.FBM_Use_Pedimento;
+
 
         compinfo.get;
         ises := compinfo."Country/Region Code" = 'ES';
@@ -587,8 +561,7 @@ pageextension 60156 FBM_PurchOrderExt_CO extends "Purchase Order"
         VATAmount: Decimal;
         ShipToOptions2: Option "Default (Company Address)",Location,"Customer Address","Custom Address",Site;
         compinfo: record "Company Information";
-        purchsetup: record "Purchases & Payables Setup";
-        isped: Boolean;
+
         ises: Boolean;
 
     local procedure ValidateShippingOption2()

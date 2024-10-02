@@ -478,8 +478,8 @@ report 60134 "FBM_SuggVendPaymNew_CO"
         BankAcc: Record "Bank Account";
         PayableVendLedgEntry: Record "Payable Vendor Ledger Entry" temporary;
         CompanyInformation: Record "Company Information";
-        TempPaymentBuffer: Record "Payment Buffer" temporary;
-        OldTempPaymentBuffer: Record "Payment Buffer" temporary;
+        TempPaymentBuffer: Record "Vendor Payment Buffer" temporary;
+        OldTempPaymentBuffer: Record "Vendor Payment Buffer" temporary;
         SelectedDim: Record "Selected Dimension";
         VendorLedgEntryTemp: Record "Vendor Ledger Entry" temporary;
         TempErrorMessage: Record "Error Message" temporary;
@@ -1178,7 +1178,7 @@ report 60134 "FBM_SuggVendPaymNew_CO"
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnUpdateTempBufferFromVendorLedgerEntry(var TempPaymentBuffer: Record "Payment Buffer" temporary; VendorLedgerEntry: Record "Vendor Ledger Entry")
+    local procedure OnUpdateTempBufferFromVendorLedgerEntry(var TempPaymentBuffer: Record "Vendor Payment Buffer" temporary; VendorLedgerEntry: Record "Vendor Ledger Entry")
     begin
     end;
 
@@ -1188,7 +1188,7 @@ report 60134 "FBM_SuggVendPaymNew_CO"
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnBeforeUpdateGnlJnlLineDimensionsFromTempBuffer(var GenJournalLine: Record "Gen. Journal Line"; TempPaymentBuffer: Record "Payment Buffer" temporary)
+    local procedure OnBeforeUpdateGnlJnlLineDimensionsFromTempBuffer(var GenJournalLine: Record "Gen. Journal Line"; TempPaymentBuffer: Record "Vendor Payment Buffer" temporary)
     begin
     end;
 

@@ -9,7 +9,7 @@ tableextension 60100 FBM_ItemExt_CO extends Item
         field(60100; FBM_SiteFilter; code[20])
         {
             FieldClass = FlowFilter;
-            TableRelation = FBM_CustomerSite_C."Site Code";
+            TableRelation = FBM_CustomerSite_C."Site Code" where(ActiveRec = const(true));
         }
         field(60101; FBM_Inventory_FF; Decimal)
         {

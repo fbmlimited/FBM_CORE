@@ -1696,7 +1696,7 @@ report 60115 "FBM_NTT Sales - Invoice_CO"
         nonvatsales: Decimal;
         vatsales: Decimal;
         //BFT-001 -- end
-        salinvtxt: label 'SALES INVOICE';
+        salinvtxt: label 'SALES INVOICEE';
         billinvtxt: label 'BILLING INVOICE';
         titletxt: Text;
 
@@ -2229,6 +2229,7 @@ report 60115 "FBM_NTT Sales - Invoice_CO"
     begin
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
             Site.SetFilter(Site."Site Code", SalesInvoiceHeader.FBM_Site);
+            Site.SetRange(ActiveRec, true);
             if (Site.FindFirst()) then begin
                 site.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;

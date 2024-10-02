@@ -4,6 +4,12 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
     {
         addafter("External Document No.")
         {
+            field("Billing Statement"; Rec."FBM_Billing Statement")
+            {
+
+                ApplicationArea = All;
+                visible = isph;
+            }
             field(Site_CO; rec.FBM_Site)
             {
                 Visible = showsite;
@@ -146,6 +152,7 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
     begin
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
+        isph := compinfo."Country/Region Code" = 'PH';
 
     end;
 
@@ -162,4 +169,5 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
 
         compinfo: record "Company Information";
         showsite: Boolean;
+        isph: Boolean;
 }

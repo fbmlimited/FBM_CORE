@@ -115,6 +115,12 @@ page 60132 "FBM_Customer List_CO"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the customer''s name that appears on all related documents. For companies, specify the company''s name here, and then add the relevant people as contacts that you link to this customer.';
                 }
+                field("Responsibility Center"; Rec."Responsibility Center")
+                {
+                    Editable = false;
+                    ApplicationArea = All;
+
+                }
                 field("VAT Registration No."; rec."VAT Registration No.")
                 {
                     ApplicationArea = all;
@@ -445,11 +451,25 @@ page 60132 "FBM_Customer List_CO"
 
                     trigger OnAction()
                     begin
-                        Clear(CustomerSite);
-                        Clear(CustomerSiteP);
-                        CustomerSite.SetFilter("Customer No.", Rec."No.");
-                        CustomerSiteP.SetTableView(CustomerSite);
+
+                        CustomerSiteP.passpar(rec."No.", CustomerSite.Typerec::Landbase, CustomerSite.TypeSite::Site);
                         CustomerSiteP.RunModal();
+                        clear(CustomerSiteP);
+                    end;
+                }
+                action(Online)
+                {
+                    ApplicationArea = All;
+                    Image = Warehouse;
+                    Visible = ShowSites;
+                    caption = 'Local Online';
+
+                    trigger OnAction()
+                    begin
+
+                        CustomerSiteP.passpar(rec."No.", CustomerSite.Typerec::Online, CustomerSite.TypeSite::" ");
+                        CustomerSiteP.RunModal();
+                        clear(CustomerSiteP);
                     end;
                 }
             }

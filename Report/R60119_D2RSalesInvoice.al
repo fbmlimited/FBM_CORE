@@ -2284,6 +2284,7 @@ report 60119 "D2R Sales - Invoice2"
     begin
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
             Site.Setrange(Site."Site Code", SalesInvoiceHeader.FBM_Site);
+            Site.SetRange(ActiveRec, true);
             if (Site.FindFirst()) then begin
                 site.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;

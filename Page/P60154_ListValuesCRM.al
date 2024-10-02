@@ -49,7 +49,7 @@ page 60154 FBM_ListValue_CO
     }
 
     var
-        ptype: option COMMENTTYPE,LEVEL;
+        ptype: option COMMENTTYPE,LEVEL,DEPARTMENT;
 
     trigger
     OnOpenPage()

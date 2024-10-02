@@ -54,7 +54,7 @@
                       <Width>2.21546cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>7.69386cm</Width>
+                      <Width>7.45855cm</Width>
                     </TablixColumn>
                     <TablixColumn>
                       <Width>2.33595cm</Width>
@@ -69,7 +69,7 @@
                       <Width>1.94488cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>1.8077cm</Width>
+                      <Width>2.04301cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -3023,8 +3023,9 @@
               </Tablix>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
+            <Top>0cm</Top>
             <Left>0.05801cm</Left>
-            <Height>8.83146cm</Height>
+            <Height>8.10827cm</Height>
             <Width>20.18378cm</Width>
             <Style>
               <Border>
@@ -3033,7 +3034,7 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>8.83146cm</Height>
+        <Height>8.24938cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3745,10 +3746,10 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.47042cm</Top>
+              <Top>1.54098cm</Top>
               <Left>18.03256cm</Left>
               <Height>11.29991pt</Height>
-              <Width>2.30725cm</Width>
+              <Width>2.16965cm</Width>
               <ZIndex>25</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -3777,7 +3778,7 @@
               <Top>1.86906cm</Top>
               <Left>18.05257cm</Left>
               <Height>11.3003pt</Height>
-              <Width>2.30725cm</Width>
+              <Width>2.14964cm</Width>
               <ZIndex>26</ZIndex>
               <Style>
                 <Border />
@@ -3930,9 +3931,9 @@
               </Style>
             </Textbox>
             <Line Name="Line3">
-              <Top>0.30418cm</Top>
+              <Top>0.00749cm</Top>
               <Left>20.25277cm</Left>
-              <Height>8.28605cm</Height>
+              <Height>8.58274cm</Height>
               <Width>0cm</Width>
               <ZIndex>32</ZIndex>
               <Style>
@@ -3958,7 +3959,7 @@
               <Top>0.00749cm</Top>
               <Left>0.5957cm</Left>
               <Height>0cm</Height>
-              <Width>19.72343cm</Width>
+              <Width>19.58651cm</Width>
               <ZIndex>34</ZIndex>
               <Style>
                 <Border>
@@ -4101,7 +4102,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>13.08535cm</Height>
+          <Height>13.12062cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4215,8 +4216,8 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.16363cm</Top>
-              <Left>16.05453cm</Left>
+              <Top>0.17639cm</Top>
+              <Left>15.8986cm</Left>
               <Height>2.46299cm</Height>
               <Width>4.20726cm</Width>
               <Visibility>
@@ -4663,7 +4664,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox52</rd:DefaultName>
-                  <Top>3.28372cm</Top>
+                  <Top>3.31899cm</Top>
                   <Left>0.02658cm</Left>
                   <Height>0.6cm</Height>
                   <Width>19.97668cm</Width>
@@ -4815,7 +4816,7 @@
               <KeepTogether>true</KeepTogether>
               <Top>9.20163cm</Top>
               <Left>0.07557cm</Left>
-              <Height>3.88372cm</Height>
+              <Height>3.91899cm</Height>
               <Width>20.12664cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -4951,10 +4952,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>LocalCurrAmt2</rd:DefaultName>
-              <Top>1.27149cm</Top>
+              <Top>1.26291cm</Top>
               <Left>18.1254cm</Left>
               <Height>0.47742cm</Height>
-              <Width>2.09383cm</Width>
+              <Width>1.95098cm</Width>
               <ZIndex>6</ZIndex>
               <Visibility>
                 <Hidden>=not((First(Fields!Currency2.Value, "DataSet_Result")&lt;&gt; "") AND (Globals!PageNumber=1))</Hidden>
@@ -5357,7 +5358,7 @@
               <Top>2.80301cm</Top>
               <Left>16.16992cm</Left>
               <Height>0.65186cm</Height>
-              <Width>4.16921cm</Width>
+              <Width>3.83656cm</Width>
               <ZIndex>18</ZIndex>
               <Visibility>
                 <Hidden>=not((First(Fields!Currency2.Value, "DataSet_Result")&lt;&gt; "") AND (Globals!PageNumber=1))</Hidden>
@@ -6172,6 +6173,7 @@
         <PageWidth>21cm</PageWidth>
         <InteractiveHeight>11in</InteractiveHeight>
         <InteractiveWidth>8.5in</InteractiveWidth>
+        <LeftMargin>0.5cm</LeftMargin>
         <TopMargin>0.5cm</TopMargin>
         <BottomMargin>0.5cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>

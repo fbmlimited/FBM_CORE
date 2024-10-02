@@ -9,7 +9,12 @@ pageextension 60182 FBM_LocCardExt_CO extends "Location Card"
                 ApplicationArea = all;
 
             }
-            field(FBM_UedItem; Rec.FBM_UsedItem)
+            field(FBM_UsedItem; Rec.FBM_UsedItem)
+            {
+                ApplicationArea = all;
+
+            }
+            field(FBM_TransitLoc; Rec.FBM_TransitLoc)
             {
                 ApplicationArea = all;
 

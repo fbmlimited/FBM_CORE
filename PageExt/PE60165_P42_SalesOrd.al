@@ -23,12 +23,14 @@ pageextension 60165 FBM_SalesOrdExt_CO extends "Sales Order"
                     companyinfo.Get();
                     if companyinfo.FBM_CustIsOp then begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
+                        CustSite.SetRange(ActiveRec, true);
                         if CustSite.FindFirst() then begin
                             if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
                         end
                     end
                     else begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
+                        CustSite.SetRange(ActiveRec, true);
                         if CustSite.FindFirst() then begin
                             if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
                         end

@@ -65,12 +65,7 @@ page 60122 "FBM_Payment Approval_CO"
                     ToolTip = 'Specifies a description of the vendor entry.';
                     Editable = false;
                 }
-                field("Currency Code"; Rec."Currency Code")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Currency Code field.';
-                    Editable = false;
-                }
+
                 field("External Document No."; Rec."External Document No.")
                 {
                     ApplicationArea = All;
@@ -96,7 +91,12 @@ page 60122 "FBM_Payment Approval_CO"
                         end;
                     end;
                 }
-
+                field("Currency Code"; Rec."Currency Code")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Currency Code field.';
+                    Editable = false;
+                }
 
                 field(Amount; Rec.FBM_Amount)
                 {

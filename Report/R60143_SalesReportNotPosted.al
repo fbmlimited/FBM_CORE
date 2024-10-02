@@ -6,7 +6,7 @@ report 60143 FBM_SalesReportNP_CO
     UsageCategory = Administration;
     RDLCLayout = './RDLC/R60143_SalesReportNP.rdl';
     ApplicationArea = All;
-    Caption = 'Sales Report Not Posted New';
+    Caption = 'Sales Report Not Posted';
 
     dataset
     {
@@ -20,6 +20,10 @@ report 60143 FBM_SalesReportNP_CO
 
             }
             column(filters; filters)
+            {
+
+            }
+            column(respcent; respcent)
             {
 
             }
@@ -77,6 +81,10 @@ report 60143 FBM_SalesReportNP_CO
             {
 
             }
+            column(sitename; sitename)
+            {
+
+            }
             column(Grouping; Grouping)
             { }
             column(Summary; summary)
@@ -94,7 +102,8 @@ report 60143 FBM_SalesReportNP_CO
 
             trigger OnAfterGetRecord()
 
-
+            var
+                csite: record FBM_CustomerSite_C;
 
 
             begin
@@ -107,9 +116,25 @@ report 60143 FBM_SalesReportNP_CO
                 invContract := '';
                 invglaccountname := '';
                 invsite := salesinvoiceline.FBM_Site;
+                csite.SetRange("Site Code", salesinvoiceline.FBM_Site);
+                if csite.FindFirst() then begin
+                    csite.CalcFields("Site Name_FF");
+                    sitename := csite."Site Name_FF";
+                end;
+
+
                 invheader.SetRange("No.", salesinvoiceline."Document No.");
                 if invheader.FindFirst() then begin
-                    invsite := invheader.FBM_Site;
+                    respcent := invheader."Responsibility Center";
+                    if invsite = '' then begin
+                        csite.SetRange("Site Code", invheader.FBM_Site);
+                        if csite.FindFirst() then begin
+                            csite.CalcFields("Site Name_FF");
+                            sitename := csite."Site Name_FF";
+                        end;
+                        invsite := invheader.FBM_Site;
+                    end;
+
                     invContract := invheader."FBM_Contract Code";
                 end;
                 if glaccount.Get("No.") then begin
@@ -129,7 +154,7 @@ report 60143 FBM_SalesReportNP_CO
         {
             area(Content)
             {
-                group(GroupName)
+                group(Parameters)
                 {
                     field(Summary; summary)
                     {
@@ -171,4 +196,6 @@ report 60143 FBM_SalesReportNP_CO
         crmemoglaccountname: Text;
         summary: boolean;
         Grouping: text[100];
+        sitename: text[100];
+        respcent: text[10];
 }

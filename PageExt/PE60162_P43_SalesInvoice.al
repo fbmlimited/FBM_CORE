@@ -50,6 +50,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                     companyinfo.Get();
                     if companyinfo.FBM_CustIsOp then begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
+                        CustSite.SetRange(ActiveRec, true);
                         if CustSite.FindFirst() then begin
                             if page.RunModal(60101, CustSite) = Action::LookupOK then begin
 
@@ -62,6 +63,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
                     end
                     else begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
+                        CustSite.SetRange(ActiveRec, true);
                         if CustSite.FindFirst() then begin
                             if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_Site, CustSite."Site Code");
                         end
@@ -109,7 +111,8 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             field("Billing Statement_CO"; rec."FBM_Billing Statement")
             {
                 ApplicationArea = all;
-                Importance = Additional;
+                //Importance = Additional;
+                Visible = isph;
 
 
             }
@@ -179,6 +182,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
         ises := compinfo."Country/Region Code" = 'ES';
+        isph := compinfo."Country/Region Code" = 'PH';
 
     end;
 
@@ -193,5 +197,6 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
         showsite: Boolean;
         ises: Boolean;
         cinfo: record "Company Information";
+        isph: Boolean;
 
 }

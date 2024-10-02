@@ -1714,7 +1714,7 @@ report 60105 "EPS Sales - Invoice_CO"
     //BFT-001 -- end
     procedure InitLogInteraction()
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
+        //LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
     end;
 
     local procedure IsReportInPreviewMode(): Boolean
@@ -2250,6 +2250,7 @@ report 60105 "EPS Sales - Invoice_CO"
     begin
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
             Site.SetFilter(Site."Site Code", SalesInvoiceHeader.FBM_Site);
+            Site.SetRange(ActiveRec, true);
             if (Site.FindFirst()) then begin
                 site.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;

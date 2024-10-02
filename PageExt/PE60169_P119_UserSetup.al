@@ -38,6 +38,13 @@ pageextension 60169 FBM_UserSetupExt_CO extends "User Setup"
                 ApplicationArea = All;
             }
         }
+        addlast(Control1)
+        {
+            field(FBM_EditMaster; Rec.FBM_EditMaster)
+            {
+                ApplicationArea = All;
+            }
+        }
     }
 
 }

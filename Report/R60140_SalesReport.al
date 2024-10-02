@@ -5,13 +5,14 @@ report 60140 FBM_SalesReportNew_CO
 
     RDLCLayout = './RDLC/R60140_SalesReport.rdl';
     ApplicationArea = All;
-    Caption = 'Sales Report New';
+    Caption = 'Sales Report';
 
     dataset
     {
         dataitem(salesinvoiceline; FBM_SalesInvLineTmp)
         {
             RequestFilterFields = "Posting Date";
+            RequestFilterHeading = 'Sales Invoice Line';
 
             column(DocType; DocType)
             {
@@ -22,6 +23,10 @@ report 60140 FBM_SalesReportNew_CO
 
             }
             column(filters; filters)
+            {
+
+            }
+            column(respcent; respcent)
             {
 
             }
@@ -76,6 +81,10 @@ report 60140 FBM_SalesReportNew_CO
 
             }
             column(invsite; invsite)
+            {
+
+            }
+            column(sitename; sitename)
             {
 
             }
@@ -134,25 +143,7 @@ report 60140 FBM_SalesReportNew_CO
             column(Summary; summary)
             { }
 
-            trigger OnPreDataItem()
-            begin
-                filters := salesinvoiceline.GetFilters();
-                if (filters <> '') then begin
 
-                end;
-                compinfo.get();
-                if (showWithholdingtax = false) and (showfranchisetax = false) then begin
-                    SetFilter("No.", '<>S0011|<>S0012|<>S0007|<>S0008|<>S0009|<>S0010');
-                end
-                else
-                    if (showfranchisetax = false) then begin
-                        SetFilter("No.", '<>S0008|<>S0009|<>S0010');
-                    end
-                    else
-                        if (showWithholdingtax = false) then
-                            SetFilter("No.", '<>S0011|<>S0012|<>S0007');
-
-            end;
 
 
 
@@ -164,8 +155,27 @@ report 60140 FBM_SalesReportNew_CO
             var
                 myInt: Integer;
                 glentries: Record "G/L Entry";
+                csite: record FBM_CustomerSite_C;
+                GLACC: RECORD "G/L Account";
+
+                sinvh: record "Sales Invoice Header";
+                crmh: record "Sales Cr.Memo Header";
 
             begin
+                if salesinvoiceline.DocType = salesinvoiceline.DocType::Invoice then
+                    if sinvh.get(salesinvoiceline."Document No.") then
+                        respcent := sinvh."Responsibility Center";
+                if salesinvoiceline.DocType = salesinvoiceline.DocType::"Credit Memo" then
+                    if crmh.get(salesinvoiceline."Document No.") then
+                        respcent := crmh."Responsibility Center";
+                IF salesinvoiceline.Type = salesinvoiceline.TYPE::"G/L Account" THEN begin
+                    IF GLACC.get(salesinvoiceline."No.") then begin
+                        if not showfranchisetax and GLACC.FBM_FranchiseTax then
+                            CurrReport.Skip();
+                        if not showWithholdingtax and glacc.FBM_WHTax then
+                            CurrReport.Skip();
+                    end;
+                end;
                 invsite := '';
                 invContract := '';
                 invglaccountname := '';
@@ -173,8 +183,13 @@ report 60140 FBM_SalesReportNew_CO
                 invGlEntryAmountAdditionalcurr := 0;
                 invGlEntryGlAccountNo := '';
                 invGlEntryGlAccountName := '';
-
+                sitename := '';
                 invsite := salesinvoiceline.FBM_Site;
+                csite.SetRange("Site Code", salesinvoiceline.FBM_Site);
+                if csite.FindFirst() then begin
+                    csite.CalcFields("Site Name_FF");
+                    sitename := csite."Site Name_FF";
+                end;
                 if summary then
                     grouping := salesinvoiceline."Document No."
                 else
@@ -184,6 +199,12 @@ report 60140 FBM_SalesReportNew_CO
                     if invheader.FindFirst() then begin
                         if invsite = '' then
                             invsite := invheader.FBM_Site;
+                        csite.SetRange("Site Code", invheader.FBM_Site);
+                        if csite.FindFirst() then begin
+                            csite.CalcFields("Site Name_FF");
+                            sitename := csite."Site Name_FF";
+                        end;
+
                         invContract := invheader."FBM_Contract Code";
                         SalesCustomerName := invheader."Sell-to Customer Name";
                     end;
@@ -376,7 +397,7 @@ report 60140 FBM_SalesReportNew_CO
         {
             area(Content)
             {
-                group(GroupName)
+                group(Parameters)
                 {
                     field("Show Withholding Tax"; showWithholdingtax)
                     {
@@ -430,6 +451,7 @@ report 60140 FBM_SalesReportNew_CO
             salesinvoiceline.FBM_Site := sinvline.FBM_Site;
             salesinvoiceline."Sell-to Customer No." := sinvline."Sell-to Customer No.";
             salesinvoiceline.Insert();
+
 
         until sinvline.Next() = 0;
         scrmline.CopyFilter("Posting Date", salesinvoiceline."Posting Date");
@@ -501,5 +523,7 @@ report 60140 FBM_SalesReportNew_CO
 
         sinvline: record "Sales Invoice Line";
         scrmline: record "Sales Cr.Memo Line";
+        sitename: text[100];
+        respcent: text[10];
 
 }

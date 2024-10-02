@@ -307,10 +307,10 @@ codeunit 60104 FBM_Events_CO
             if resentry.FindFirst() then begin
                 resentry.FBM_Site := ItemJournalLine.FBM_Site;
                 resentry.FBM_Pedimento := ItemJournalLine.FBM_Pedimento;
-                resentry.FBM_Pedimento1 := ItemJournalLine.FBM_Pedimento1;
-                resentry.FBM_Pedimento2 := ItemJournalLine.FBM_Pedimento2;
+                resentry.FBM_Pedimento12 := ItemJournalLine.FBM_Pedimento12;
+
                 resentry.FBM_Pedimento3 := ItemJournalLine.FBM_Pedimento3;
-                //resentry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
+                resentry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
                 resentry.Modify();
             end;
 
@@ -359,10 +359,10 @@ codeunit 60104 FBM_Events_CO
     begin
         ItemJnlLine.FBM_Site := PurchLine.FBM_Site;
         ItemJnlLine.FBM_Pedimento := PurchLine.FBM_Pedimento;
-        ItemJnlLine.FBM_Pedimento1 := PurchLine.FBM_Pedimento1;
-        ItemJnlLine.FBM_Pedimento2 := PurchLine.FBM_Pedimento2;
+        ItemJnlLine.FBM_Pedimento12 := PurchLine.FBM_Pedimento12;
+
         ItemJnlLine.FBM_Pedimento3 := PurchLine.FBM_Pedimento3;
-        //ItemJnlLine.FBM_Pedimento4 := PurchLine.FBM_Pedimento4;
+        ItemJnlLine.FBM_Pedimento4 := PurchLine.FBM_Pedimento4;
 
 
     end;
@@ -374,6 +374,18 @@ codeunit 60104 FBM_Events_CO
         TransferLine.FBM_SiteTo := TransferHeader.FBM_SiteTo;
         TransferLine.FBM_FromOrion := TransferHeader.FBM_FromOrion;
 
+    end;
+
+    [EventSubscriber(ObjectType::codeunit, 22, 'OnBeforeInsertItemLedgEntry', '', true, true)]
+    procedure OnBeforeInsertItemLedgEntry(var ItemLedgerEntry: Record "Item Ledger Entry"; ItemJournalLine: Record "Item Journal Line"; TransferItem: Boolean; OldItemLedgEntry: Record "Item Ledger Entry"; ItemJournalLineOrigin: Record "Item Journal Line")
+    begin
+        ItemLedgerEntry.FBM_Pedimento12 := ItemJournalLine.FBM_Pedimento12;
+
+        ItemLedgerEntry.FBM_Pedimento3 := ItemJournalLine.FBM_Pedimento3;
+
+        ItemLedgerEntry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
+
+        ItemLedgerEntry.FBM_Pedimento := ItemJournalLine.FBM_Pedimento;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, 5400, 'OnAfterCalcAvailableQty', '', true, true)]
@@ -491,10 +503,10 @@ codeunit 60104 FBM_Events_CO
 
 
     begin
-
+        //updNewUsed('ALL');
     end;
 
-    procedure updNewUsed()
+    procedure updNewUsed(ItemNo: code[20])
     var
 
         usersetup: Record "User Setup";
@@ -508,6 +520,9 @@ codeunit 60104 FBM_Events_CO
         Inventory_Used: Decimal;
         cinfo: record "Company Information";
     begin
+        if itemno <> 'ALL' then
+            itemle.setrange("Item No.", ItemNo);
+
         buftxt.DeleteAll();
         if itemle.FindFirst() then
             repeat
@@ -560,11 +575,12 @@ codeunit 60104 FBM_Events_CO
         glsetup.Get();
         if glsetup.FBM_CheckMinMaMax then
             if (cinfo."Country/Region Code" = 'PH') and (glsetup."LCY Code" = 'PHP') then begin
-                exchrate.SetRange("Starting Date", GenJournalLine2."Posting Date");
+                exchrate.setfilter("Starting Date", '<=%1', GenJournalLine2."Posting Date");
                 exchrate.SetRange("Currency Code", 'USD');
-                if not exchrate.FindFirst() then
-                    error('Missing USD exchange rate for posting date  %1', format(GenJournalLine2."Posting Date"))
-                else
+                // if not exchrate.FindFirst() then
+                //     error('Missing USD exchange rate for posting date  %1', format(GenJournalLine2."Posting Date"))
+                // else
+                if exchrate.FindLast() then
                     if (exchrate."Relational Exch. Rate Amount" < glsetup.FBM_ExchRatePHPMin) or (exchrate."Relational Exch. Rate Amount" > glsetup.FBM_ExchRatePHPMax) then
                         error('Wrong exch rate for USD and date %1', format(GenJournalLine2."Posting Date"));
             end;
@@ -579,8 +595,10 @@ codeunit 60104 FBM_Events_CO
     begin
         salessetup.Get();
         if SalesHeader."Document Type" = SalesHeader."Document Type"::Invoice then
-            if SalesHeader."FBM_Billing Statement" then
+            if SalesHeader."FBM_Billing Statement" then begin
+                salessetup.TestField("FBM_Billing Statement Nos.");
                 PostingNos := salessetup."FBM_Billing Statement Nos.";
+            end;
     end;
 
 

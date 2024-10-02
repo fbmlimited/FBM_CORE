@@ -1,10 +1,10 @@
-page 60113 FBM_CustSite_CO
+page 60166 FBM_FAHistory_CO
 {
-    Caption = 'CustSite';
+    Caption = 'FA History';
     PageType = List;
     UsageCategory = Lists;
     ApplicationArea = All;
-    SourceTable = FBM_CustomerSite_C;
+    SourceTable = FBM_FAHistory_DD;
 
     layout
     {
@@ -12,63 +12,83 @@ page 60113 FBM_CustSite_CO
         {
             repeater(Group)
             {
-                field("Customer No."; rec."Customer No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
                 }
-                field(CName; cust.Name)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                 }
-                field(CAddress; cust.Address)
+                field(Version; Rec.Version)
                 {
                     ApplicationArea = All;
                 }
-                field(CCity; cust.City)
+                field(ActiveRec; Rec.ActiveRec)
                 {
                     ApplicationArea = All;
                 }
-                field(CVAT; cust."VAT Registration No.")
+                field("Serial No."; Rec."Serial No.")
                 {
                     ApplicationArea = All;
                 }
-                field(CGrCode; cust.FBM_GrCode)
+                field("FA Class Code"; Rec."FA Class Code")
                 {
                     ApplicationArea = All;
                 }
-                field(Operator; cos."Operator No.")
+                field("FA Subclass Code"; Rec."FA Subclass Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Site Code"; rec."Site Code")
+                field("FA Location Code"; Rec."FA Location Code")
                 {
                     ApplicationArea = All;
                 }
-                field(Status; Rec.Status)
+                field(FBM_Model; Rec.FBM_Model)
                 {
                     ApplicationArea = All;
                 }
-                field(SName; rec."Site Name_FF")
+                field(FBM_Brand; Rec.FBM_Brand)
                 {
                     ApplicationArea = All;
                 }
-                field(SAddress; rec.Address_FF)
+                field(FBM_Segment2; Rec.FBM_Segment2)
                 {
                     ApplicationArea = All;
                 }
-                field(SCity; rec.City_FF)
+                field(FBM_Lessee; Rec.FBM_Lessee)
                 {
                     ApplicationArea = All;
                 }
-                field("Vat Number"; Rec."Vat Number")
+                field(FBM_Status; Rec.FBM_Status)
                 {
                     ApplicationArea = All;
                 }
-                field(SiteGrCode; Rec.SiteGrCode)
+                field(FBM_Site; Rec.FBM_Site)
                 {
                     ApplicationArea = All;
                 }
 
+                field(FBM_DatePrepared; Rec.FBM_DatePrepared)
+                {
+                    ApplicationArea = All;
+                }
+                field("Valid From"; Rec."Valid From")
+                {
+                    ApplicationArea = All;
+                }
+                field("Valid To"; Rec."Valid To")
+                {
+                    ApplicationArea = All;
+                }
+                field("Record Owner"; Rec."Record Owner")
+                {
+                    ApplicationArea = All;
+                }
+                field("Change Note"; Rec."Change Note")
+                {
+                    ApplicationArea = All;
+                }
             }
         }
         area(Factboxes)
@@ -92,28 +112,4 @@ page 60113 FBM_CustSite_CO
             }
         }
     }
-    trigger
-    OnOpenPage()
-    begin
-        rec.SetRange(ActiveRec, true);
-    end;
-
-    trigger
-    OnAfterGetRecord()
-    begin
-        if rec."Customer No." <> '' then begin
-            cos.Reset();
-            if cust.get(rec."Customer No.") then begin
-                cos.setrange("Customer No.", rec."Customer No.");
-                cos.SetRange("Site Code", rec."Site Code");
-                if cos.FindFirst() then begin end;
-            end
-        end;
-
-    end;
-
-    var
-
-        cust: record Customer;
-        cos: record FBM_CustOpSite;
 }

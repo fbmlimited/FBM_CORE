@@ -2481,6 +2481,7 @@ report 60103 "FBM_Drako Sales - Invoice_CO"
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
             site.Reset();
             Site.Setrange(Site."Site Code", SalesInvoiceHeader.FBM_Site);
+            Site.SetRange(ActiveRec, true);
             if (Site.FindFirst()) then begin
                 site.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
                 HasSite := true;

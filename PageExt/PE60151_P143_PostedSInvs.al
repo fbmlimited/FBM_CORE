@@ -24,6 +24,7 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
             field("FBM_Billing Statement"; Rec."FBM_Billing Statement")
             {
                 ApplicationArea = all;
+                visible = isph;
             }
         }
         modify("Document Date")
@@ -130,5 +131,18 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
         }
 
     }
+
+    trigger
+    OnOpenPage()
+    begin
+        cinfo.get;
+        isph := cinfo."Country/Region Code" = 'PH';
+
+    end;
+
+    var
+        cinfo: record "Company Information";
+        isph: Boolean;
+
 
 }

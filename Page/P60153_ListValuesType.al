@@ -47,17 +47,24 @@ page 60153 FBM_ListValueType
             lv.value := 'LEVEL';
             lv.IsDefault := true;
             lv.Insert();
+
+
+            lv.Init();
+            lv.ord := 2;
+            lv.type := 'TYPE';
+            lv.value := 'COMMENTTYPE';
+            lv.IsDefault := true;
+            lv.Insert();
             lv.Init();
             lv.ord := 3;
             lv.type := 'TYPE';
             lv.value := 'FAMODEL';
             lv.IsDefault := true;
             lv.Insert();
-
             lv.Init();
-            lv.ord := 2;
+            lv.ord := 4;
             lv.type := 'TYPE';
-            lv.value := 'COMMENTTYPE';
+            lv.value := 'DEPARTMENT';
             lv.IsDefault := true;
             lv.Insert();
             lv.Init();
@@ -94,6 +101,24 @@ page 60153 FBM_ListValueType
             lv.ord := 3;
             lv.type := 'COMMENTTYPE';
             lv.value := 'VISIT';
+            lv.IsDefault := true;
+            lv.Insert();
+            lv.Init();
+            lv.ord := 1;
+            lv.type := 'DEPARTMENT';
+            lv.value := 'Account Manager';
+            lv.IsDefault := true;
+            lv.Insert();
+            lv.Init();
+            lv.ord := 2;
+            lv.type := 'DEPARTMENT';
+            lv.value := 'Commercial Team';
+            lv.IsDefault := true;
+            lv.Insert();
+            lv.Init();
+            lv.ord := 3;
+            lv.type := 'DEPARTMENT';
+            lv.value := 'Tech Team';
             lv.IsDefault := true;
             lv.Insert();
         end;

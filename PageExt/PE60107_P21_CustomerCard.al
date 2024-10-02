@@ -141,28 +141,30 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
 #if not JYM
         addlast(navigation)
         {
-            group("Customer Sites_CO")
-            {
-                Image = Warehouse;
-                caption = 'Sites';
+            // group("Customer Sites_CO")
+            // {
+            //     Image = Warehouse;
+            //     caption = 'Sites';
 
-                action(Sites)
-                {
-                    ApplicationArea = All;
-                    Image = Warehouse;
-                    Visible = ShowSites;
-                    caption = 'Local Sites';
+            //     action(Sites)
+            //     {
+            //         ApplicationArea = All;
+            //         Image = Warehouse;
+            //         Visible = ShowSites;
+            //         caption = 'Local Sites';
+            //         // Promoted = true;
+            //         // PromotedCategory = Category8;
+            //         // PromotedIsBig = true;
 
-                    trigger OnAction()
-                    begin
-                        Clear(CustomerSite);
-                        Clear(CustomerSiteP);
-                        CustomerSite.SetFilter("Customer No.", Rec."No.");
-                        CustomerSiteP.SetTableView(CustomerSite);
-                        CustomerSiteP.RunModal();
-                    end;
-                }
-            }
+            //         trigger OnAction()
+            //         begin
+
+            //             CustomerSiteP.passpar(rec."No.");
+            //             CustomerSiteP.RunModal();
+            //             clear(CustomerSiteP);
+            //         end;
+            //     }
+            // }
         }
 #endif
 
@@ -174,6 +176,7 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
             {
                 ApplicationArea = All;
                 Image = Notes;
+                Caption = 'Agenda CRM';
 
                 trigger OnAction()
                 var
@@ -255,11 +258,13 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
     var
         cpg: Text;
         cinfo: record "Company Information";
+        eve: Codeunit FBM_Events_CO;
     begin
         hascode := rec.FBM_GrCode <> '';
         cpg := rec."Customer Posting Group";
         isic := cpg.Contains('IC');
         ises := cinfo."Country/Region Code" = 'ES';
         isph := cinfo."Country/Region Code" = 'PH';
+        eve.updNewUsed(rec."No.");
     end;
 }

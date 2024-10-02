@@ -142,6 +142,7 @@ page 60149 FBM_ItemsBySite_CO
 
         if MATRIX_CurrSetLength > 0 then begin
             TempMatrixLocation.SetPosition(MATRIX_PKFirstRecInCurrSet);
+            TempMatrixLocation.SetFilter(ActiveRec, '%1', true);
             TempMatrixLocation.Find();
             repeat
                 MatrixRecords[CurrentMatrixRecordOrdinal].Copy(TempMatrixLocation);

@@ -502,8 +502,10 @@ report 60121 "FBM_Aged AccRec New_CO"
                             VarCustomerSiteName := '';
                             if CustLedgEntryEndingDate."Document Type" = CustLedgEntryEndingDate."Document Type"::Invoice then begin
                                 if sales.get(CustLedgEntryEndingDate."Document No.") then begin
-
-                                    if customersite.get(CustLedgEntryEndingDate."Customer No.", sales.FBM_Site)
+                                    customersite.SetRange("Customer No.", CustLedgEntryEndingDate."Customer No.");
+                                    customersite.SetRange("Site Code", sales.FBM_Site);
+                                    customersite.SetRange(ActiveRec, true);
+                                    if customersite.FindFirst()
                                      then begin
                                         VarCustomerSite := customersite."Site Code";
 
@@ -515,8 +517,10 @@ report 60121 "FBM_Aged AccRec New_CO"
 
                             if CustLedgEntryEndingDate."Document Type" = CustLedgEntryEndingDate."Document Type"::"Credit Memo" then begin
                                 if crmemo.get(CustLedgEntryEndingDate."Document No.") then begin
-
-                                    if customersite.get(CustLedgEntryEndingDate."Customer No.", crmemo.FBM_Site)
+                                    customersite.SetRange("Customer No.", CustLedgEntryEndingDate."Customer No.");
+                                    customersite.SetRange("Site Code", crmemo.FBM_Site);
+                                    customersite.SetRange(ActiveRec, true);
+                                    if customersite.FindFirst()
                                      then begin
                                         VarCustomerSite := customersite."Site Code";
 

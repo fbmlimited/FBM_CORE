@@ -46,6 +46,10 @@ pageextension 60184 FBM_ItemCardExt_CO extends "Item Card"
         }
         addlast(Item)
         {
+            field(FBM_MachineType; Rec.FBM_MachineType)
+            {
+                ApplicationArea = all;
+            }
             field(FBM_MultiCat; Rec.FBM_MultiCat)
             {
                 Caption = 'Multi Categorías';

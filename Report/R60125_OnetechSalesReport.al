@@ -1,7 +1,7 @@
 report 60125 FBM_SalesReport_CO
 {
     DefaultLayout = RDLC;
-    UsageCategory = Administration;
+    //UsageCategory = Administration;
 
     RDLCLayout = './RDLC/OnetechSalesReport.rdl';
     ApplicationArea = All;

@@ -85,6 +85,12 @@ report 60117 CustBalancePerSite
                     // end;
                 end;
             }
+            trigger
+            OnPreDataItem()
+            begin
+                "Customer-Site".SetRange(ActiveRec, true);
+            end;
+
             trigger OnAfterGetRecord()
             begin
                 prevCust := Cust;

@@ -86,11 +86,31 @@ pageextension 60194 FBM_ContactsExt_CO extends "Contact Card"
     }
     var
         showrole: Boolean;
+        cust: record Customer;
+        cust2: record Customer;
+        comp: record Company;
+        cont: record Contact;
+        contp: record Contact;
 
     trigger
      OnOpenPage()
     begin
         showrole := (rec.FBM_RoleTXT = '');
+        contp.get(rec."Company No.");
+        cust.SetRange("Primary Contact No.", contp."No.");
+        if cust.FindFirst() then begin
+            comp.FindFirst();
+
+
+            repeat
+                cust2.ChangeCompany(comp.Name);
+                cust2.setrange(FBM_GrCode, cust.FBM_GrCode);
+                if cust2.FindFirst() then begin
+                    cont.TransferFields(rec, false);
+
+                end;
+            until comp.next = 0;
+        end;
     end;
 
     trigger

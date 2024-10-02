@@ -131,6 +131,19 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
                 Enabled = isegm;
 
             }
+            field(FBM_IsLocalRec; Rec.FBM_IsLocalRec)
+            {
+                ApplicationArea = all;
+
+
+            }
+            field(Version; Rec.Version)
+            {
+                ApplicationArea = all;
+
+
+            }
+
         }
         addafter(BookValue)
         {
@@ -172,6 +185,73 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
     }
     actions
     {
+        addlast(processing)
+        {
+            action("Set initial record")
+            {
+                ApplicationArea = all;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                image = Process;
+                trigger
+                OnAction()
+                var
+                    hist: record FBM_FAHistory_DD;
+                begin
+                    hist.DeleteAll();
+                    rec.FindFirst();
+                    if Rec.FindSet() then
+                        repeat
+                            hist.Init();
+                            hist."No." := rec."No.";
+                            hist.Description := rec.Description;
+                            hist."FA Class Code" := rec."FA Class Code";
+                            hist."FA Subclass Code" := rec."FA Subclass Code";
+                            hist."FA Location Code" := rec."FA Location Code";
+                            hist."Serial No." := rec."Serial No.";
+                            hist.FBM_Model := rec.FBM_Model;
+                            hist.FBM_Brand := rec.FBM_Brand;
+                            hist.FBM_Lessee := rec.FBM_Lessee;
+                            hist.FBM_Segment2 := rec.FBM_Segment2;
+                            hist.FBM_Site := rec.FBM_Site;
+                            hist.FBM_Status := rec.FBM_Status;
+                            hist.FBM_DatePrepared := rec.FBM_DatePrepared;
+                            hist.Version := 0;
+                            hist.ActiveRec := true;
+                            hist.Insert();
+                            rec.Version := 0;
+                            rec.ActiveRec := true;
+                            rec.Modify();
+
+
+                        until Rec.Next() = 0;
+                    rec.Reset();
+
+                end;
+            }
+            action(RecHistory)
+            {
+                ApplicationArea = All;
+                Image = History;
+
+                caption = 'History';
+
+                trigger OnAction()
+                var
+                    rpage: record FBM_FAHistory_DD;
+                    hpage: page FBM_FAHistory_CO;
+                begin
+                    rpage.SetRange("No.", rec."No.");
+                    hpage.SetTableView(rpage);
+
+
+                    hpage.Run();
+                    clear(hpage);
+                end;
+            }
+        }
+
 
         addafter(Dimensions)
         {
@@ -273,7 +353,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
     trigger OnOpenPage()
     begin
 
-
+        //rec.SetRange(ActiveRec, true);
         GetAcquisitionDate(Rec);
     end;
 

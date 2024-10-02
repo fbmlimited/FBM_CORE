@@ -14,6 +14,7 @@ pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
         }
         addafter(Name)
         {
+
             field(FBM_GrCode; Rec.FBM_GrCode)
             {
                 ApplicationArea = all;

@@ -23,12 +23,14 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
                     companyinfo.Get();
                     if companyinfo.FBM_CustIsOp then begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
+                        CustSite.SetRange(ActiveRec, true);
                         if CustSite.FindFirst() then begin
                             if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_site, CustSite."Site Code");
                         end
                     end
                     else begin
                         CustSite.SetFilter(CustSite."Customer No.", rec."Sell-to Customer No.");
+                        CustSite.SetRange(ActiveRec, true);
                         if CustSite.FindFirst() then begin
                             if page.RunModal(60101, CustSite) = Action::LookupOK then Rec.Validate(fbm_site, CustSite."Site Code");
                         end

@@ -309,6 +309,7 @@ page 60152 FBM_ItemAvBySiteLines
     begin
         PeriodStart := 0D;
         PeriodEnd := DMY2Date(31, 12, 1999);
+        rec.SetRange(ActiveRec, true);
 
         rec.GetLocationsIncludingUnspecifiedLocation(false, false);
     end;

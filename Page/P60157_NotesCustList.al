@@ -17,6 +17,10 @@ page 60157 FBM_NotesCustList_CO
                 {
                     ApplicationArea = All;
                 }
+                field(IsActive; Rec.IsActive)
+                {
+                    ApplicationArea = All;
+                }
                 field(SavedAt; Rec.SavedAt)
                 {
                     ApplicationArea = All;
@@ -33,7 +37,7 @@ page 60157 FBM_NotesCustList_CO
                 {
                     ApplicationArea = All;
                 }
-                field(Note; copystr(Rec.Note, 1, 20))
+                field(pnote; pnote)
                 {
                     ApplicationArea = All;
                 }
@@ -50,9 +54,21 @@ page 60157 FBM_NotesCustList_CO
 
     end;
 
+    trigger
+    OnAfterGetRecord()
+    begin
+        rec.CalcFields(NoteBlob);
+        rec.NoteBlob.CreateInStream(InStream, TEXTENCODING::UTF8);
+        pnote := copystr(TypeHelper.ReadAsTextWithSeparator(InStream, TypeHelper.LFSeparator), 1, 20);
+
+    end;
+
     var
 
         ssetup: Record "Sales & Receivables Setup";
+        pnote: text[20];
+        TypeHelper: Codeunit "Type Helper";
+        InStream: InStream;
 
     procedure passpar(pcust: code[20])
     begin

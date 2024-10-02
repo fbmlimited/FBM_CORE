@@ -4,7 +4,7 @@ report 60127 FBM_SalSummFBMNotPosted_CO
 
 {
     DefaultLayout = RDLC;
-    UsageCategory = Administration;
+    //UsageCategory = Administration;
     RDLCLayout = './RDLC/OTSalesSummaryFBMNotPosted.rdl';
     ApplicationArea = All;
     Caption = 'Summary of Invoices Not Posted FBM';
@@ -118,6 +118,7 @@ report 60127 FBM_SalSummFBMNotPosted_CO
                     invsite := invheader.FBM_Site;
                     siterec.SetRange("Site Code", invsite);
                     siterec.SetRange("Customer No.", invheader."Sell-to Customer No.");
+                    siterec.SetRange(ActiveRec, true);
                     if siterec.FindFirst() then begin
                         siterec.calcfields("Site Name_FF");
                         invsitename := siterec."Site Name_FF";

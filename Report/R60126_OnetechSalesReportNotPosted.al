@@ -3,7 +3,7 @@
 report 60126 FBM_SalesReportNotPosted_CO
 {
     DefaultLayout = RDLC;
-    UsageCategory = Administration;
+    //UsageCategory = Administration;
     RDLCLayout = './RDLC/OnetechSalesReportNotPosted.rdl';
     ApplicationArea = All;
     Caption = 'Sales Report Not Posted';

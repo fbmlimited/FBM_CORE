@@ -24,6 +24,7 @@ pageextension 60168 FBM_SalesSetupExt_CO extends "Sales & Receivables Setup"
             field("FBM_Billing Statement Nos."; Rec."FBM_Billing Statement Nos.")
             {
                 ApplicationArea = All;
+                visible = isph;
 
             }
         }
@@ -46,6 +47,16 @@ pageextension 60168 FBM_SalesSetupExt_CO extends "Sales & Receivables Setup"
             }
         }
     }
+    trigger
+    OnOpenPage()
+    begin
+        cinfo.get;
+        isph := cinfo."Country/Region Code" = 'PH';
+
+    end;
+
     var
         TCP: Page FBM_TermsConditions_CO;
+        isph: Boolean;
+        cinfo: record "Company Information";
 }

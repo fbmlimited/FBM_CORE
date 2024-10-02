@@ -104,7 +104,10 @@ page 60103 "FBM_Cust-Op-Site_CO"
             "Operator Name" := Operator.Name
         else
             "Operator Name" := '';
-        if Site.Get(rec."Cust Loc Code", Rec."Site Loc Code") then begin
+        site.SetRange("Customer No.", rec."Cust Loc Code");
+        site.SetRange("Site Code", rec."Site Loc Code");
+        site.SetRange(ActiveRec, true);
+        if Site.FindFirst() then begin
             site.CalcFields("Site Name_FF");
             "Site Name" := Site."Site Name_FF";
             vatnumber := site."Vat Number"

@@ -16,31 +16,7 @@ pageextension 60157 FBM_PurchOrdSubExt_CO extends "Purchase Order Subform"
             {
                 ApplicationArea = all;
             }
-            field(FBM_Pedimento1; Rec.FBM_Pedimento1)
-            {
-                ApplicationArea = all;
-                Visible = isped;
-            }
-            field(FBM_Pedimento2; Rec.FBM_Pedimento2)
-            {
-                ApplicationArea = all;
-                Visible = isped;
-            }
-            field(FBM_Pedimento3; Rec.FBM_Pedimento3)
-            {
-                ApplicationArea = all;
-                Visible = isped;
-            }
-            field(FBM_Pedimento4; Rec.FBM_Pedimento4)
-            {
-                ApplicationArea = all;
-                Visible = isped;
-            }
-            field(FBM_Pedimento; Rec.FBM_Pedimento)
-            {
-                ApplicationArea = all;
-                Visible = isped;
-            }
+
         }
 #if MAIN
         modify("IDPIRPF IRPF")
@@ -75,16 +51,13 @@ pageextension 60157 FBM_PurchOrdSubExt_CO extends "Purchase Order Subform"
     trigger
    OnOpenPage()
     begin
-        purchsetup.get;
-        isped := purchsetup.FBM_Use_Pedimento;
+
         compinfo.get;
         ises := compinfo."Country/Region Code" = 'ES';
 
     end;
 
     var
-        purchsetup: record "Purchases & Payables Setup";
-        isped: Boolean;
         ises: Boolean;
         compinfo: record "Company Information";
 

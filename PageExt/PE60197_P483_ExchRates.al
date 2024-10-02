@@ -1,5 +1,9 @@
-pageextension 60180 FBM_CurrenciesExt_CO extends Currencies
+pageextension 60197 FBM_ExchRatesExt_CO extends "Currency Exchange Rates"
 {
+    layout
+    {
+
+    }
     actions
     {
         addlast(processing)
@@ -9,6 +13,7 @@ pageextension 60180 FBM_CurrenciesExt_CO extends Currencies
                 Visible = visph;
                 Image = ExchangeRateAdjustRegister;
                 RunObject = page FBM_ExchRatePHP_CO;
+                RunPageOnRec = true;
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
@@ -20,7 +25,7 @@ pageextension 60180 FBM_CurrenciesExt_CO extends Currencies
 
     }
     trigger
-    OnOpenPage()
+   OnOpenPage()
     begin
         cinfo.get();
         if cinfo."Country/Region Code" = 'PH' then
@@ -33,3 +38,4 @@ pageextension 60180 FBM_CurrenciesExt_CO extends Currencies
         cinfo: record "Company Information";
         visph: Boolean;
 }
+

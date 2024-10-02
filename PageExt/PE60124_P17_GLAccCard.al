@@ -27,6 +27,17 @@ pageextension 60124 FBM_GLAccCardExt_CO extends "G/L Account Card"
         {
             Visible = false;
         }
+        addlast(General)
+        {
+            field(FBM_FranchiseTax; Rec.FBM_FranchiseTax)
+            {
+                ApplicationArea = all;
+            }
+            field(FBM_WHTax; Rec.FBM_WHTax)
+            {
+                ApplicationArea = all;
+            }
+        }
     }
     actions
     {

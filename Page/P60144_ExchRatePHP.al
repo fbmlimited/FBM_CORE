@@ -13,12 +13,12 @@ page 60144 FBM_ExchRatePHP_CO
 
         area(Content)
         {
-            group("Filter")
+            group("New Exchange Rate")
             {
                 field(stdate; stdate)
                 {
                     ApplicationArea = All;
-                    caption = 'Date:';
+                    caption = 'Starting Date:';
                     trigger
                     OnValidate()
                     begin
@@ -75,7 +75,7 @@ page 60144 FBM_ExchRatePHP_CO
                 }
 
             }
-            group("Exchange Rate")
+            group("Old Exchange Rate")
             {
                 field("Starting Date"; Rec."Starting Date")
                 {
