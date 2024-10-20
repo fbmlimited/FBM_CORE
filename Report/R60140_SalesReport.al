@@ -39,6 +39,11 @@ report 60140 FBM_SalesReportNew_CO
             {
 
             }
+            column(docNo; "Description 2")
+            {
+
+            }
+
             column(invNo; "No.")
             {
 
@@ -430,34 +435,41 @@ report 60140 FBM_SalesReportNew_CO
     }
     trigger
     OnPreReport()
+    var
+        sh: record "Sales Invoice Header";
+        ch: record "Sales Cr.Memo Header";
     begin
         sinvline.CopyFilter("Posting Date", salesinvoiceline."Posting Date");
 
-        sinvline.FindFirst();
-        repeat
-            salesinvoiceline.Init();
-            salesinvoiceline."Line No." := sinvline."Line No.";
-            salesinvoiceline.DocType := salesinvoiceline.DocType::Invoice;
-            salesinvoiceline."Posting Date" := sinvline."Posting Date";
-            salesinvoiceline."Document No." := sinvline."Document No.";
-            salesinvoiceline."No." := sinvline."No.";
-            salesinvoiceline.Description := sinvline.Description;
-            salesinvoiceline.Type := sinvline.Type;
-            salesinvoiceline."Gen. Bus. Posting Group" := sinvline."Gen. Bus. Posting Group";
-            salesinvoiceline."Gen. Prod. Posting Group" := sinvline."Gen. Prod. Posting Group";
-            salesinvoiceline.Amount := sinvline.Amount;
-            salesinvoiceline."FBM_Period Start" := sinvline."FBM_Period Start";
-            salesinvoiceline."FBM_Period End" := sinvline."FBM_Period End";
-            salesinvoiceline.FBM_Site := sinvline.FBM_Site;
-            salesinvoiceline."Sell-to Customer No." := sinvline."Sell-to Customer No.";
-            salesinvoiceline.Insert();
+        if sinvline.FindFirst() then
+            repeat
+                if sh.get(sinvline."Document No.") then
+                    salesinvoiceline.Init();
+                salesinvoiceline."Description 2" := sh."Pre-Assigned No.";
+                salesinvoiceline."Line No." := sinvline."Line No.";
+                salesinvoiceline.DocType := salesinvoiceline.DocType::Invoice;
+                salesinvoiceline."Posting Date" := sinvline."Posting Date";
+                salesinvoiceline."Document No." := sinvline."Document No.";
+                salesinvoiceline."No." := sinvline."No.";
+                salesinvoiceline.Description := sinvline.Description;
+                salesinvoiceline.Type := sinvline.Type;
+                salesinvoiceline."Gen. Bus. Posting Group" := sinvline."Gen. Bus. Posting Group";
+                salesinvoiceline."Gen. Prod. Posting Group" := sinvline."Gen. Prod. Posting Group";
+                salesinvoiceline.Amount := sinvline.Amount;
+                salesinvoiceline."FBM_Period Start" := sinvline."FBM_Period Start";
+                salesinvoiceline."FBM_Period End" := sinvline."FBM_Period End";
+                salesinvoiceline.FBM_Site := sinvline.FBM_Site;
+                salesinvoiceline."Sell-to Customer No." := sinvline."Sell-to Customer No.";
+                salesinvoiceline.Insert();
 
 
-        until sinvline.Next() = 0;
+            until sinvline.Next() = 0;
         scrmline.CopyFilter("Posting Date", salesinvoiceline."Posting Date");
         scrmline.FindFirst();
         repeat
-            salesinvoiceline.Init();
+            if ch.get(scrmline."Document No.") then
+                salesinvoiceline.Init();
+            salesinvoiceline."Description 2" := ch."Pre-Assigned No.";
             salesinvoiceline."Line No." := scrmline."Line No.";
             salesinvoiceline.DocType := salesinvoiceline.DocType::"Credit Memo";
             salesinvoiceline."Posting Date" := scrmline."Posting Date";

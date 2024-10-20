@@ -15,6 +15,7 @@ tableextension 60101 FBM_FAExt_CO extends "Fixed Asset"
             CalcFormula = lookup("FA Subclass".FBM_EGM where(code = field("FA Subclass Code")));
 
         }
+
         modify("Serial No.")
         {
             trigger OnAfterValidate()

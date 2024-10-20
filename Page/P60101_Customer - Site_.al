@@ -93,6 +93,7 @@ page 60101 "FBM_CustomerSite_CO"
                                 csite.ActiveRec := true;
                                 csite.SiteGrCode := rec.SiteGrCode;
                                 csite.Typerec := prec;
+                                csite.Typerec := prec;
                                 if prec = prec::Landbase then
                                     csite.TypeSite := rec.TypeSite::Site;
                                 csite.Insert(true);

@@ -23,6 +23,14 @@ report 60144 FBM_CheckExchRate_CO
             if jobq.FindFirst() then
                 if jobq.Status = jobq.Status::Error then
                     jobq.Restart();
+
+            jobq.setrange("Object Type to Run", jobq."Object Type to Run"::Codeunit);
+            jobq.SetRange("Object ID to Run", 60201);
+            if jobq.FindFirst() then
+                if jobq.Status = jobq.Status::Error then
+                    jobq.Restart();
+
+
         until comp.next = 0;
 
     end;

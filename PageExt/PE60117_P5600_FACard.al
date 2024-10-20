@@ -75,6 +75,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
                 Editable = false;
 
             }
+#if not JYM
             field(siteloccode; siteloccode)
             {
                 Caption = 'Site Loc. Code';
@@ -119,6 +120,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
                 Enabled = isegm;
                 Editable = false;
             }
+#endif
             field(Status; rec.FBM_Status)
             {
                 ApplicationArea = all;
@@ -144,10 +146,19 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
 
             }
 
+
         }
         addafter(BookValue)
         {
-            field(AcquisitionDate; AcquisitionDate)
+            field(AcquisitionDate; rec.FBM_AcquisitionDate)
+            {
+                ApplicationArea = all;
+            }
+            field(AcquisitionCost; Rec.FBM_AcquisitionCost)
+            {
+                ApplicationArea = all;
+            }
+            field(DeprDate; Rec.FBM_DepreciationDate)
             {
                 ApplicationArea = all;
             }
@@ -314,6 +325,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
         subs: record FBM_Subsidiary;
         cinfo: record "Company Information";
     begin
+#if not JYM
         rec.CalcFields(FBM_Is_EGM_FF);
         isegm := rec.FBM_Is_EGM_FF;
         cos.SetRange("Site Code", rec.FBM_Site);
@@ -347,7 +359,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
             sitename := site."Site Name";
         // end;
 
-
+#endif
     end;
 
     trigger OnOpenPage()

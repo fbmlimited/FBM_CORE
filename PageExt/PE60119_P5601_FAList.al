@@ -153,7 +153,10 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
         visdupe: boolean;
 
     trigger OnAfterGetRecord()
+    var
+        fale: record "FA Ledger Entry";
     begin
+        compinfob.get;
         if comp.FindFirst() and uper.IsSuper(UserSecurityId()) then begin
             visdupe := true;
             repeat
@@ -168,8 +171,27 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
                         rec.Modify();
                     end;
                 end;
+
+
             until comp.Next() = 0;
-        end
+        end;
+#if not JYM
+        fale.SetRange("FA No.", rec."No.");
+        fale.SetRange("FA Posting Type", fale."FA Posting Type"::"Acquisition Cost");
+
+        if fale.FindFirst() then begin
+            rec.CalcFields(FBM_AcqCost, FBM_DeprDate);
+            if ((rec.FBM_AcquisitionCost <> rec.FBM_AcqCost) or
+            (rec.FBM_AcquisitionDate <> fale."FA Posting Date") or
+(rec.FBM_DepreciationDate <> rec.FBM_Deprdate))
+            then begin
+                rec.FBM_AcquisitionCost := rec.FBM_AcqCost;
+                rec.FBM_AcquisitionDate := fale."FA Posting Date";
+                rec.FBM_DepreciationDate := rec.FBM_DeprDate;
+                rec.Modify();
+            end;
+        end;
+#endif
     end;
 
     trigger OnOpenPage()

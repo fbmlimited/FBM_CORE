@@ -2048,19 +2048,19 @@ report 60101 "FBM_Drako Sales - CrM_CO"
                 Curr2Cptn := GLSetup."Additional Reporting Currency";
             end
             else*/
-        if ((SIH."Currency Code" <> '') AND (SIH."Currency Code" <> GLSetup."LCY Code")) then //if not in LCY, values should be shown in FCY & LCY
-     begin
+        // if ((SIH."Currency Code" <> '') AND (SIH."Currency Code" <> GLSetup."LCY Code")) then //if not in LCY, values should be shown in FCY & LCY
+        begin
             Currency1 := SIH."Currency Code";
-            Currency2 := GLSetup."LCY Code";
+            Currency2 := sih.FBM_Currency2;
             Curr1Cptn := SIH."Currency Code";
-            Curr2Cptn := GLSetup."LCY Code";
+            Curr2Cptn := sih.FBM_Currency2;
         end
-        else begin //if in LCY, values should be shown in LCY;
-            Currency1 := GLSetup."LCY Code";
-            Currency2 := '';
-            Curr1Cptn := GLSetup."LCY Code";
-            Curr2Cptn := '';
-        end;
+        // else begin //if in LCY, values should be shown in LCY;
+        //     Currency1 := GLSetup."LCY Code";
+        //     Currency2 := '';
+        //     Curr1Cptn := GLSetup."LCY Code";
+        //     Curr2Cptn := '';
+        // end;
     end;
     //end;
     //BFT-001 -- begin
@@ -2082,10 +2082,14 @@ report 60101 "FBM_Drako Sales - CrM_CO"
                     CalcLCYARC(SIHeader."Posting Date", ARC);
                 end*/
         else
-            if ((Currency1 <> GLSetup."LCY Code") AND (Currency2 = GLSetup."LCY Code")) then begin
+            if (SIHeader.FBM_Currency2 = '') and ((Currency1 <> GLSetup."LCY Code") AND (Currency2 = GLSetup."LCY Code")) or ((SIHeader.FBM_Currency2 = '') and (Currency1 = GLSetup."LCY Code") AND (Currency2 <> GLSetup."LCY Code")) then begin
                 //calculate FCY & LCY
                 CalcFCYLCY(SIHeader);
-            end;
+            end
+            else
+                // if SIHeader.FBM_Currency2 <> '' then
+                    calcC1C2(siheader);
+
         CalcVATEUR(SIHeader."Posting Date");
     end;
 
@@ -2145,7 +2149,7 @@ report 60101 "FBM_Drako Sales - CrM_CO"
         if CurrencyExchangeRate.FindLast() then begin
             exchRate := CurrencyExchangeRate."Exchange Rate Amount";
         end;
-        If (Curr1 = GLSetup."LCY Code") then begin
+        If (Curr1 = 'EUR') then begin
             TotalPreVATEUR := TotalSubTotalC1 * exchrate;
             TotalVATEUR := TotalAmountVATC1 * exchrate;
             TotalEUR := TotalAmountInclVATC1 * exchrate;
@@ -2172,6 +2176,25 @@ report 60101 "FBM_Drako Sales - CrM_CO"
         TotalAmountVATC2 := TotalAmountVAT / exchRate;
         TotalAmountInclVATC2 := TotalAmountInclVAT / exchRate;
         TotalPaymentDiscOnVATC2 := TotalPaymentDiscOnVAT / exchRate;
+    end;
+
+    local procedure CalcC1C2(SIHeader: Record "Sales Cr.Memo Header")
+    begin
+
+        TotalSubTotalC1 := TotalSubTotal;
+
+        TotalAmountC1 := TotalAmount;
+        TotalAmountVATC1 := TotalAmountVAT;
+        TotalAmountInclVATC1 := TotalAmountInclVAT;
+
+        TotalSubTotalC2 := SIHeader.FBM_LocalCurrAmt;
+
+        TotalAmountC2 := SIHeader.FBM_LocalCurrAmt;
+        ;
+        TotalAmountVATC2 := 0;
+        TotalAmountInclVATC2 := SIHeader.FBM_LocalCurrAmt;
+        ;
+
     end;
 
     local procedure ResetLCYValues()
