@@ -18,8 +18,35 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
             }
 
         }
+#if MAIN
+        modify("IDPIRPF IRPF Group")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF IRPF Amount")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF Total IRPF Amount")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF TotalAmountWithVATWithoutIRPF")
+        {
+            Visible = ises;
+        }
+#endif
+        addafter("Quantity")
+        {
 
+            field(FBM_Site; Rec.FBM_Site)
+            {
+                Visible = showsite;
 
+                ApplicationArea = all;
+            }
+
+        }
     }
     actions
     {
@@ -59,6 +86,7 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
         if compinfo.Get() then begin
 
             showsite := compinfo.FBM_CustIsOp;
+            ises := compinfo."Country/Region Code" = 'ES';
         end;
 
 
@@ -73,5 +101,6 @@ pageextension 60152 FBM_PostSISubExt_CO extends "Posted Sales Invoice Subform"
         changedate: Codeunit FBM_Events_CO;
 
         showsite: Boolean;
+        ises: Boolean;
 
 }

@@ -145,6 +145,13 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
 
 
             }
+            field(FBM_ReplicaStatus; Rec.FBM_ReplicaStatus2)
+            {
+                ApplicationArea = all;
+                //Editable = false;
+
+
+            }
 
 
         }
@@ -153,14 +160,17 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
             field(AcquisitionDate; rec.FBM_AcquisitionDate)
             {
                 ApplicationArea = all;
+                //Editable=false;
             }
             field(AcquisitionCost; Rec.FBM_AcquisitionCost)
             {
                 ApplicationArea = all;
+                Editable = false;
             }
             field(DeprDate; Rec.FBM_DepreciationDate)
             {
                 ApplicationArea = all;
+                Editable = false;
             }
 
             field(FBM_Subsidiary; Rec.FBM_Subsidiary)
@@ -316,6 +326,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
         cust: record FBM_Customer;
         op: record FBM_Customer;
 
+
     trigger
     OnAfterGetRecord()
     var
@@ -367,6 +378,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
 
         //rec.SetRange(ActiveRec, true);
         GetAcquisitionDate(Rec);
+
     end;
 
 

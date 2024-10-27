@@ -4,6 +4,10 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
     {
         addafter("FA Subclass Code")
         {
+            field(FBM_ReplicaStatus; Rec.FBM_ReplicaStatus2)
+            {
+                ApplicationArea = All;
+            }
             field(Brand71635; Rec.FBM_Brand)
             {
                 ApplicationArea = All;
@@ -66,6 +70,14 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
     {
         addlast(navigation)
         {
+            action("New FA")
+            {
+                image = ListPage;
+                ApplicationArea = all;
+
+                RunObject = page FBM_FAListNew_CO;
+
+            }
             group("FA History Movement")
             {
                 Image = FixedAssetLedger;
@@ -196,5 +208,6 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
 
     trigger OnOpenPage()
     begin
+        rec.setfilter(FBM_ReplicaStatus2, '<>%1', rec.FBM_ReplicaStatus2::Sent);
     end;
 }

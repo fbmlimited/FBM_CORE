@@ -1,17 +1,26 @@
-pageextension 60199 FBM_BinContentExt_CO extends "Bin Contents"
+pageextension 60200 FBM_WarehouseEntryExt_CO extends "Warehouse Entries"
 {
     layout
     {
-        addafter("Item No.")
+        addafter(Description)
         {
             field(itemdesc; itemdesc)
             {
+                caption = 'Description';
                 ApplicationArea = all;
-                Caption = 'Description';
+
 
             }
 
+
         }
+        modify(Description)
+        {
+            Visible = false;
+
+
+        }
+
 
     }
     trigger
@@ -25,4 +34,5 @@ pageextension 60199 FBM_BinContentExt_CO extends "Bin Contents"
     var
         item: record Item;
         itemdesc: text[100];
+
 }

@@ -2,7 +2,7 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
 {
     layout
     {
-        addafter("External Document No.")
+        addafter("No.")
         {
             field("Billing Statement"; Rec."FBM_Billing Statement")
             {
@@ -10,21 +10,27 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
                 ApplicationArea = All;
                 visible = isph;
             }
+        }
+        addafter("External Document No.")
+        {
+
             field(Site_CO; rec.FBM_Site)
             {
                 Visible = showsite;
                 ApplicationArea = All;
+            }
+            field("Contract Code_CO"; rec."FBM_Contract Code")
+            {
+                ApplicationArea = All;
+                Editable = false;
+                //Importance = Additional;
             }
             field(Segment; rec.FBM_Segment2)
             {
                 ApplicationArea = All;
             }
 
-            field("Contract Code_CO"; rec."FBM_Contract Code")
-            {
-                ApplicationArea = All;
-                Editable = false;
-            }
+
 
             field("Period Start_CO"; rec."FBM_Period Start")
             {
@@ -40,18 +46,35 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
             }
 
         }
+        moveafter("External Document No."; "Shortcut Dimension 1 Code")
+        moveafter("External Document No."; "Shortcut Dimension 2 Code")
+        addafter("Shortcut Dimension 1 Code")
+        {
+            field("Posting Description63167"; Rec."Posting Description")
+            {
+                ApplicationArea = All;
+            }
+        }
+
         addlast(General)
         {
-            field(LocalCurrAmt; rec.FBM_LocalCurrAmt)
-            {
-                ApplicationArea = all;
-                Editable = false;
-            }
             field(Currency2; rec.FBM_Currency2)
             {
                 ApplicationArea = all;
                 Editable = false;
             }
+            field(LocalCurrAmt; rec.FBM_LocalCurrAmt)
+            {
+                ApplicationArea = all;
+                Editable = false;
+            }
+
+            field(LCY; glsetup."LCY Code")
+            {
+                ApplicationArea = All;
+                Editable = false;
+            }
+
 
         }
         addafter("Currency Code")
@@ -153,7 +176,7 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
         isph := compinfo."Country/Region Code" = 'PH';
-
+        glsetup.Get();
     end;
 
 
@@ -163,6 +186,7 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
         PeriodEnd: Date;
         InputDialog: Page "FBM_Input Dialog Page_CO";
         search: Text;
+        glsetup: record "General Ledger Setup";
 
 
 

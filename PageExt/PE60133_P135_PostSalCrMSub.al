@@ -40,12 +40,22 @@ pageextension 60133 FBM_PostSCrMSubExt_CO extends "Posted Sales Cr. Memo Subform
 
         }
 #endif
+        addafter("Quantity")
+        {
+
+            field(FBM_Site; Rec.FBM_Site)
+            {
+                Visible = showsite;
+
+                ApplicationArea = all;
+            }
+
+        }
     }
     trigger OnOpenPage()
     begin
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
-        ;
         ises := compinfo."Country/Region Code" = 'ES';
     end;
 

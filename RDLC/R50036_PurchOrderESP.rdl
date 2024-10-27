@@ -19,7 +19,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>18.55703cm</Width>
+                  <Width>17.74679cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -173,10 +173,10 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                     <Width>2.5cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>7.38837cm</Width>
+                                    <Width>2.5cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.5cm</Width>
+                                    <Width>7.38837cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>2.25014cm</Width>
@@ -246,6 +246,61 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <Textbox Name="Textbox24">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>PROD.#</Value>
+                                                    <Style>
+                                                      <FontSize>9pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox24</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <TopBorder>
+                                                <Color>Black</Color>
+                                                <Style>Solid</Style>
+                                                <Width>1pt</Width>
+                                              </TopBorder>
+                                              <BottomBorder>
+                                                <Color>Black</Color>
+                                                <Style>Solid</Style>
+                                                <Width>1pt</Width>
+                                              </BottomBorder>
+                                              <LeftBorder>
+                                                <Color>Black</Color>
+                                                <Style>Solid</Style>
+                                                <Width>1pt</Width>
+                                              </LeftBorder>
+                                              <RightBorder>
+                                                <Color>Black</Color>
+                                                <Style>Solid</Style>
+                                                <Width>1pt</Width>
+                                              </RightBorder>
+                                              <BackgroundColor>LightGrey</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
                                           <Textbox Name="Textbox9">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -253,7 +308,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>DESCRiCCIÓN</Value>
+                                                    <Value>DESIRiCCIÓN</Value>
                                                     <Style>
                                                       <FontSize>9pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
@@ -299,61 +354,6 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox11">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>PROD.#</Value>
-                                                    <Style>
-                                                      <FontSize>9pt</FontSize>
-                                                      <FontWeight>Bold</FontWeight>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style>
-                                                  <TextAlign>Center</TextAlign>
-                                                </Style>
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>Textbox11</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Style>Solid</Style>
-                                              </Border>
-                                              <TopBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </TopBorder>
-                                              <BottomBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </BottomBorder>
-                                              <LeftBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </LeftBorder>
-                                              <RightBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </RightBorder>
-                                              <BackgroundColor>LightGrey</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
                                           <Textbox Name="Textbox13">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -361,7 +361,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>PRCIO UN.</Value>
+                                                    <Value>PRECIO UN.</Value>
                                                     <Style>
                                                       <FontSize>9pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
@@ -521,14 +521,14 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Desc_PurchLine">
+                                          <Textbox Name="Textbox25">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Desc_PurchLine.Value</Value>
+                                                    <Value>=Fields!No_PurchLine.Value</Value>
                                                     <Style>
                                                       <FontSize>9pt</FontSize>
                                                     </Style>
@@ -537,7 +537,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Desc_PurchLine</rd:DefaultName>
+                                            <rd:DefaultName>Textbox25</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -572,25 +572,23 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="No_PurchLine">
+                                          <Textbox Name="Desc_PurchLine">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!No_PurchLine.Value</Value>
+                                                    <Value>=Fields!Desc_PurchLine.Value</Value>
                                                     <Style>
                                                       <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style>
-                                                  <TextAlign>Center</TextAlign>
-                                                </Style>
+                                                <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>No_PurchLine</rd:DefaultName>
+                                            <rd:DefaultName>Desc_PurchLine</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -769,6 +767,37 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <Textbox Name="Textbox26">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontSize>9pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox26</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
                                           <Textbox Name="Textbox14">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -786,39 +815,6 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox14</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Style>None</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="Textbox16">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontSize>9pt</FontSize>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style>
-                                                  <TextAlign>Center</TextAlign>
-                                                </Style>
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>Textbox16</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
@@ -976,7 +972,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                                   </FilterValues>
                                 </Filter>
                               </Filters>
-                              <Top>0.52556cm</Top>
+                              <Top>0.49028cm</Top>
                               <Left>0.31184cm</Left>
                               <Height>1.8cm</Height>
                               <Width>17.43495cm</Width>
@@ -1199,14 +1195,14 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Height>7.21065cm</Height>
-            <Width>18.55703cm</Width>
+            <Width>17.74679cm</Width>
             <Style />
           </Tablix>
         </ReportItems>
         <Height>7.21065cm</Height>
         <Style />
       </Body>
-      <Width>18.55703cm</Width>
+      <Width>18.30727cm</Width>
       <Page>
         <PageHeader>
           <Height>11.83286cm</Height>
@@ -1277,8 +1273,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
               <Value>=First(Fields!Logo.Value, "DataSet_Result")</Value>
               <MIMEType>image/jpeg</MIMEType>
               <Sizing>FitProportional</Sizing>
-              <Top>0.21167cm</Top>
-              <Left>0.25825cm</Left>
+              <Top>0.07056cm</Top>
+              <Left>0.23994cm</Left>
               <Height>2.04611cm</Height>
               <Width>4.7559cm</Width>
               <ZIndex>2</ZIndex>
@@ -1295,7 +1291,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetData(43,1)</Value>
+                      <Value>=Code.GetData(78,1)</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -1305,8 +1301,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox139</rd:DefaultName>
-              <Top>2.29306cm</Top>
-              <Left>0.29353cm</Left>
+              <Top>2.15195cm</Top>
+              <Left>0.27522cm</Left>
               <Height>0.49417cm</Height>
               <Width>4.72062cm</Width>
               <ZIndex>3</ZIndex>
@@ -1337,7 +1333,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox140</rd:DefaultName>
-              <Top>2.78723cm</Top>
+              <Top>2.64612cm</Top>
               <Left>0.29353cm</Left>
               <Height>0.49417cm</Height>
               <Width>4.72062cm</Width>
@@ -1359,7 +1355,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetData(66,1) &amp; ", " &amp; Code.GetData(67,1) &amp; " " &amp; Code.GetData(68,1)</Value>
+                      <Value>=Code.GetData(65,1)</Value>
                       <Style>
                         <FontSize>9pt</FontSize>
                       </Style>
@@ -1369,8 +1365,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox140</rd:DefaultName>
-              <Top>3.2814cm</Top>
-              <Left>0.29353cm</Left>
+              <Top>3.14029cm</Top>
+              <Left>0.27522cm</Left>
               <Height>0.49417cm</Height>
               <Width>4.72062cm</Width>
               <ZIndex>5</ZIndex>
@@ -1589,7 +1585,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Fechja Entrega</Value>
+                      <Value>Fecha Entrega</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -1688,7 +1684,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Términoss de Pago</Value>
+                      <Value>Términos de Pago</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -1700,7 +1696,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox159</rd:DefaultName>
-              <Top>10.26866cm</Top>
+              <Top>10.26583cm</Top>
               <Left>8.75012cm</Left>
               <Height>0.52634cm</Height>
               <Width>5.9652cm</Width>
@@ -2169,7 +2165,9 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                       <TextRuns>
                         <TextRun>
                           <Value>PROVEEDOR:</Value>
-                          <Style />
+                          <Style>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
                         </TextRun>
                       </TextRuns>
                       <Style />
@@ -2202,6 +2200,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                       <Style>Solid</Style>
                       <Width>1pt</Width>
                     </RightBorder>
+                    <BackgroundColor>LightGrey</BackgroundColor>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
                     <PaddingTop>2pt</PaddingTop>
@@ -2215,8 +2214,10 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>ENVIAR A:</Value>
-                          <Style />
+                          <Value>ENTREGAR EN:</Value>
+                          <Style>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
                         </TextRun>
                       </TextRuns>
                       <Style />
@@ -2251,6 +2252,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                       <Style>Solid</Style>
                       <Width>1pt</Width>
                     </RightBorder>
+                    <BackgroundColor>LightGrey</BackgroundColor>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
                     <PaddingTop>2pt</PaddingTop>
@@ -2579,8 +2581,10 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>FACTURAR A::</Value>
-                          <Style />
+                          <Value>FACTURAR A:</Value>
+                          <Style>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
                         </TextRun>
                       </TextRuns>
                       <Style />
@@ -2613,6 +2617,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                       <Style>Solid</Style>
                       <Width>1pt</Width>
                     </RightBorder>
+                    <BackgroundColor>LightGrey</BackgroundColor>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
                     <PaddingTop>2pt</PaddingTop>
@@ -2626,15 +2631,17 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>ENTREGAR A::</Value>
-                          <Style />
+                          <Value>CONSIGNAR A:</Value>
+                          <Style>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
                         </TextRun>
                       </TextRuns>
                       <Style />
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox145</rd:DefaultName>
-                  <Top>2.85736cm</Top>
+                  <Top>2.89008cm</Top>
                   <Height>0.6cm</Height>
                   <Width>8.56758cm</Width>
                   <ZIndex>1</ZIndex>
@@ -2662,6 +2669,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                       <Style>Solid</Style>
                       <Width>1pt</Width>
                     </RightBorder>
+                    <BackgroundColor>LightGrey</BackgroundColor>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
                     <PaddingTop>2pt</PaddingTop>
@@ -2685,7 +2693,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox148</rd:DefaultName>
-                  <Top>0.67311cm</Top>
+                  <Top>0.70583cm</Top>
                   <Left>0.02369cm</Left>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
@@ -2713,7 +2721,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox148</rd:DefaultName>
-                  <Top>1.51749cm</Top>
+                  <Top>1.55021cm</Top>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
                   <ZIndex>3</ZIndex>
@@ -2740,7 +2748,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox148</rd:DefaultName>
-                  <Top>1.09389cm</Top>
+                  <Top>1.12661cm</Top>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
                   <ZIndex>4</ZIndex>
@@ -2767,7 +2775,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox148</rd:DefaultName>
-                  <Top>1.97638cm</Top>
+                  <Top>2.0091cm</Top>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
                   <ZIndex>5</ZIndex>
@@ -2794,7 +2802,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox148</rd:DefaultName>
-                  <Top>4.41041cm</Top>
+                  <Top>4.44313cm</Top>
                   <Left>0.05964cm</Left>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
@@ -2822,7 +2830,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox154</rd:DefaultName>
-                  <Top>3.56319cm</Top>
+                  <Top>3.59591cm</Top>
                   <Left>0.05964cm</Left>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
@@ -2850,7 +2858,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox154</rd:DefaultName>
-                  <Top>3.98681cm</Top>
+                  <Top>4.01953cm</Top>
                   <Left>0.05964cm</Left>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
@@ -2878,7 +2886,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox154</rd:DefaultName>
-                  <Top>4.79874cm</Top>
+                  <Top>4.83146cm</Top>
                   <Left>0.05964cm</Left>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
@@ -2906,7 +2914,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox154</rd:DefaultName>
-                  <Top>5.18707cm</Top>
+                  <Top>5.21979cm</Top>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
                   <ZIndex>10</ZIndex>
@@ -2933,7 +2941,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox148</rd:DefaultName>
-                  <Top>2.34556cm</Top>
+                  <Top>2.37828cm</Top>
                   <Left>0.02368cm</Left>
                   <Height>0.38833cm</Height>
                   <Width>8.50794cm</Width>
@@ -2946,9 +2954,9 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>4.21078cm</Top>
+              <Top>4.17806cm</Top>
               <Left>9.17921cm</Left>
-              <Height>5.66208cm</Height>
+              <Height>5.6948cm</Height>
               <Width>8.56758cm</Width>
               <ZIndex>23</ZIndex>
               <Style>
@@ -3115,8 +3123,40 @@ Cstr(Fields!ciaddress.Value) + Chr(177) + Cstr(Fields!ciaddress2.Value) + Chr(17
 Cstr(Fields!cicity.Value) + Chr(177) + Cstr(Fields!cicounty.Value) + Chr(177) + 
 Cstr(Fields!cipostcode.Value) + Chr(177) + Cstr(Fields!cicountry.Value) + Chr(177) +
 Cstr(Fields!cicontact.Value) + Chr(177) + Cstr(Fields!Transport_Method.Value) + Chr(177) +
-Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date.Value) + Chr(177) + Cstr(Fields!PaymentTerms.Value) + Chr(177) + Cstr(Fields!Currency_Code.Value)  + Chr(177) + Cstr(Fields!Requisition.Value)+ Chr(177) +  Cstr(Fields!authorizedby.Value), 1)</Hidden>
+Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date.Value) + Chr(177) + Cstr(Fields!PaymentTerms.Value) + Chr(177) + Cstr(Fields!Currency_Code.Value)  + Chr(177) + Cstr(Fields!Requisition.Value)+ Chr(177) +  Cstr(Fields!authorizedby.Value))+ Chr(177) + Cstr(Fields!ciname2.Value, 1)</Hidden>
               </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox142">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Code.GetData(66,1) &amp; ", " &amp; Code.GetData(67,1) &amp; " " &amp; Code.GetData(68,1)</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox140</rd:DefaultName>
+              <Top>3.59178cm</Top>
+              <Left>0.27522cm</Left>
+              <Height>0.49417cm</Height>
+              <Width>4.72062cm</Width>
+              <ZIndex>27</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3142,7 +3182,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Authorized by</Value>
+                      <Value>Autorizado por</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -3175,7 +3215,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Date</Value>
+                      <Value>Fecha</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -3226,240 +3266,6 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
                 </Border>
               </Style>
             </Line>
-            <Textbox Name="Textbox163">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Phone</Value>
-                      <Style>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox159</rd:DefaultName>
-              <Top>1.07894cm</Top>
-              <Left>0.41278cm</Left>
-              <Height>0.52634cm</Height>
-              <Width>2.85524cm</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-                <TopBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </TopBorder>
-                <BottomBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </BottomBorder>
-                <LeftBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </LeftBorder>
-                <RightBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </RightBorder>
-                <BackgroundColor>LightGrey</BackgroundColor>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox183">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Last(Fields!CompanyInfoPhoneNo.Value, "DataSet_Result")</Value>
-                      <Style />
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox161</rd:DefaultName>
-              <Top>1.60528cm</Top>
-              <Left>0.41278cm</Left>
-              <Height>0.45578cm</Height>
-              <Width>2.85195cm</Width>
-              <ZIndex>5</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox184">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Fax</Value>
-                      <Style>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox159</rd:DefaultName>
-              <Top>1.07894cm</Top>
-              <Left>3.26802cm</Left>
-              <Height>0.52634cm</Height>
-              <Width>2.85524cm</Width>
-              <ZIndex>6</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-                <TopBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </TopBorder>
-                <BottomBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </BottomBorder>
-                <LeftBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </LeftBorder>
-                <RightBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </RightBorder>
-                <BackgroundColor>LightGrey</BackgroundColor>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox185">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Last(Fields!CompanyInfoFaxNo.Value, "DataSet_Result")</Value>
-                      <Style />
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox161</rd:DefaultName>
-              <Top>1.60528cm</Top>
-              <Left>3.26802cm</Left>
-              <Height>0.45578cm</Height>
-              <Width>2.78139cm</Width>
-              <ZIndex>7</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox186">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>E-mail</Value>
-                      <Style>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox159</rd:DefaultName>
-              <Top>1.07894cm</Top>
-              <Left>6.04941cm</Left>
-              <Height>0.52634cm</Height>
-              <Width>5.60691cm</Width>
-              <ZIndex>8</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-                <TopBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </TopBorder>
-                <BottomBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </BottomBorder>
-                <LeftBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </LeftBorder>
-                <RightBorder>
-                  <Color>Black</Color>
-                  <Style>Solid</Style>
-                  <Width>1pt</Width>
-                </RightBorder>
-                <BackgroundColor>LightGrey</BackgroundColor>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox187">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Last(Fields!CompanyInfoEmail.Value, "DataSet_Result")</Value>
-                      <Style />
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox161</rd:DefaultName>
-              <Top>1.60528cm</Top>
-              <Left>6.04941cm</Left>
-              <Height>0.45578cm</Height>
-              <Width>5.60691cm</Width>
-              <ZIndex>9</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Textbox>
             <Textbox Name="Textbox22">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
@@ -3481,7 +3287,7 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
               <Left>11.93461cm</Left>
               <Height>0.6cm</Height>
               <Width>3.6826cm</Width>
-              <ZIndex>10</ZIndex>
+              <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3503,7 +3309,8 @@ Cstr(Fields!ShipmentMethod.Value) + Chr(177) + Cstr(Fields!Expected_Receipt_Date
         <PageWidth>21cm</PageWidth>
         <InteractiveHeight>11in</InteractiveHeight>
         <InteractiveWidth>8.5in</InteractiveWidth>
-        <RightMargin>0in</RightMargin>
+        <LeftMargin>1cm</LeftMargin>
+        <RightMargin>1cm</RightMargin>
         <TopMargin>1.05834cm</TopMargin>
         <BottomMargin>1.48166cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
@@ -3938,6 +3745,9 @@ End Function</Code>
         </Field>
         <Field Name="ciname">
           <DataField>ciname</DataField>
+        </Field>
+        <Field Name="ciname2">
+          <DataField>ciname2</DataField>
         </Field>
         <Field Name="ciaddress">
           <DataField>ciaddress</DataField>

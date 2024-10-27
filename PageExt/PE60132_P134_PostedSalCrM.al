@@ -2,6 +2,15 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
 {
     layout
     {
+        moveafter("External Document No."; "Shortcut Dimension 1 Code")
+        moveafter("External Document No."; "Shortcut Dimension 2 Code")
+        addafter("Shortcut Dimension 1 Code")
+        {
+            field("Posting Description63167"; Rec."Posting Description")
+            {
+                ApplicationArea = All;
+            }
+        }
         addafter("External Document No.")
         {
             field(Site_CO; rec.FBM_Site)
@@ -11,6 +20,11 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
             }
 
             field("Contract Code_CO"; rec."FBM_Contract Code")
+            {
+                ApplicationArea = All;
+                Editable = false;
+            }
+            field(FBM_Segment2; Rec.FBM_Segment2)
             {
                 ApplicationArea = All;
                 Editable = false;
@@ -29,11 +43,23 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
                 Editable = false;
             }
         }
+
         addlast(General)
         {
+            field(Currency2; rec.FBM_Currency2)
+            {
+                ApplicationArea = all;
+
+            }
             field(LocalCurrAmt; rec.FBM_LocalCurrAmt)
             {
                 ApplicationArea = all;
+
+            }
+
+            field(LCY; glsetup."LCY Code")
+            {
+                ApplicationArea = All;
                 Editable = false;
             }
         }
@@ -81,6 +107,7 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
     begin
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
+        glsetup.Get();
 
     end;
 
@@ -93,5 +120,6 @@ pageextension 60132 FBM_PostedSCrMExt_CO extends "Posted Sales Credit Memo"
         search: Text;
         compinfo: record "Company Information";
         showsite: Boolean;
+        glsetup: record "General Ledger Setup";
 
 }

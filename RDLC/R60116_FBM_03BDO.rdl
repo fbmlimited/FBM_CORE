@@ -349,6 +349,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <Top>0cm</Top>
             <Left>9.24766cm</Left>
             <Height>0.52989cm</Height>
             <Width>1.5615cm</Width>
@@ -361,7 +362,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
       <Width>20.05681cm</Width>
       <Page>
         <PageHeader>
-          <Height>6.70278cm</Height>
+          <Height>6cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -371,7 +372,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=mid(Code.GetData(4,3),6,1)</Value>
+                      <Value>=mid(Code.GetData(4,3),1,1)</Value>
                       <Style>
                         <FontFamily>IDAutomationMICR</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -381,13 +382,14 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.28236in</Top>
-              <Left>5.94792in</Left>
+              <Top>1.085cm</Top>
+              <Left>15.062cm</Left>
               <Height>0.52883cm</Height>
               <Width>0.52918cm</Width>
               <Style>
                 <Border />
-                <PaddingLeft>4pt</PaddingLeft>
+                <VerticalAlign>Bottom</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
@@ -408,8 +410,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.70584in</Top>
-              <Left>1.47036in</Left>
+              <Top>2cm</Top>
+              <Left>2.672cm</Left>
               <Height>0.56411cm</Height>
               <Width>10.68347cm</Width>
               <ZIndex>1</ZIndex>
@@ -434,8 +436,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.94182in</Top>
-              <Left>1.47036in</Left>
+              <Top>2.778cm</Top>
+              <Left>1.885cm</Left>
               <Height>0.58175cm</Height>
               <Width>13.1cm</Width>
               <ZIndex>2</ZIndex>
@@ -465,8 +467,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.65028in</Top>
-              <Left>5.94792in</Left>
+              <Top>2cm</Top>
+              <Left>14.72cm</Left>
               <Height>0.59939cm</Height>
               <Width>4.30923cm</Width>
               <ZIndex>3</ZIndex>
@@ -484,7 +486,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= mid(Code.GetData(4,3), 7, 1)</Value>
+                      <Value>= mid(Code.GetData(4,3), 2, 1)</Value>
                       <Style>
                         <FontFamily>IDAutomationMICR</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -494,13 +496,14 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.28236in</Top>
-              <Left>6.18403in</Left>
+              <Top>1.085cm</Top>
+              <Left>15.528cm</Left>
               <Height>0.52883cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border />
+                <VerticalAlign>Bottom</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -513,7 +516,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= mid(Code.GetData(4,3), 9, 1)</Value>
+                      <Value>= mid(Code.GetData(4,3), 4, 1)</Value>
                       <Style>
                         <FontFamily>IDAutomationMICR</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -523,8 +526,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.28236in</Top>
-              <Left>6.49155in</Left>
+              <Top>1.085cm</Top>
+              <Left>16.299cm</Left>
               <Height>0.52883cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>5</ZIndex>
@@ -542,7 +545,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= mid(Code.GetData(4,3), 10, 1)</Value>
+                      <Value>= mid(Code.GetData(4,3), 5, 1)</Value>
                       <Style>
                         <FontFamily>IDAutomationMICR</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -552,8 +555,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.28236in</Top>
-              <Left>6.69728in</Left>
+              <Top>1.085cm</Top>
+              <Left>16.807cm</Left>
               <Height>0.52883cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>6</ZIndex>
@@ -571,7 +574,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= mid(Code.GetData(4,3), 1, 1)</Value>
+                      <Value>= mid(Code.GetData(4,3), 7, 1)</Value>
                       <Style>
                         <FontFamily>IDAutomationMICR</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -581,8 +584,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.28236in</Top>
-              <Left>7.00481in</Left>
+              <Top>1.085cm</Top>
+              <Left>17.492cm</Left>
               <Height>0.52883cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>7</ZIndex>
@@ -600,7 +603,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= mid(Code.GetData(4,3), 2, 1)</Value>
+                      <Value>= mid(Code.GetData(4,3), 8, 1)</Value>
                       <Style>
                         <FontFamily>IDAutomationMICR</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -610,8 +613,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.28236in</Top>
-              <Left>7.21054in</Left>
+              <Top>1.085cm</Top>
+              <Left>17.992cm</Left>
               <Height>0.52883cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>8</ZIndex>
@@ -629,7 +632,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=mid(Code.GetData(4,3), 3, 1)</Value>
+                      <Value>=mid(Code.GetData(4,3), 9, 1)</Value>
                       <Style>
                         <FontFamily>IDAutomationMICR</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -639,8 +642,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.28236in</Top>
-              <Left>7.43873in</Left>
+              <Top>1.085cm</Top>
+              <Left>18.491cm</Left>
               <Height>0.52883cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>9</ZIndex>
@@ -657,7 +660,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=mid(Code.GetData(4,3), 4, 1)</Value>
+                      <Value>=mid(Code.GetData(4,3), 10, 1)</Value>
                       <Style>
                         <FontFamily>IDAutomationMICR</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -667,8 +670,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.28236in</Top>
-              <Left>7.64446in</Left>
+              <Top>1.085cm</Top>
+              <Left>18.982cm</Left>
               <Height>0.52883cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>10</ZIndex>
@@ -686,11 +689,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
             </Border>
           </Style>
         </PageHeader>
-        <PageHeight>7.12cm</PageHeight>
+        <PageHeight>7.62cm</PageHeight>
         <PageWidth>20.32cm</PageWidth>
         <InteractiveHeight>11in</InteractiveHeight>
         <InteractiveWidth>8.5in</InteractiveWidth>
-        <BottomMargin>0in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

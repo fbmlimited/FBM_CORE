@@ -13,9 +13,21 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
         {
             Importance = Additional;
         }
+        addafter("No.")
+        {
 
-        moveafter(Status; "Shortcut Dimension 1 Code")
-        moveafter(Status; "Shortcut Dimension 2 Code")
+            field("Billing Statement_CO"; rec."FBM_Billing Statement")
+            {
+                ApplicationArea = all;
+                //Importance = Additional;
+                Visible = isph;
+
+
+            }
+        }
+
+        moveafter("External Document No."; "Shortcut Dimension 1 Code")
+        moveafter("External Document No."; "Shortcut Dimension 2 Code")
         addafter("Shortcut Dimension 1 Code")
         {
             field("Posting Description63167"; Rec."Posting Description")
@@ -108,14 +120,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             }
 
 
-            field("Billing Statement_CO"; rec."FBM_Billing Statement")
-            {
-                ApplicationArea = all;
-                //Importance = Additional;
-                Visible = isph;
 
-
-            }
 
         }
         addlast(General)
@@ -144,7 +149,7 @@ pageextension 60162 FBM_SalesInvExt_CO extends "Sales Invoice"
             {
                 ApplicationArea = all;
                 Editable = false;
-                Importance = Additional;
+                //Importance = Additional;
             }
 
             field("Customer Payment Bank Code2"; rec."FBM_Cust Payment Bank Code2_FF")

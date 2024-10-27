@@ -338,6 +338,9 @@ report 60145 "FBM_PurchaseOrderESP_CO"
                     column(ciname; CompanyInfo.Name)
                     {
                     }
+                    column(ciname2; CompanyInfo."Name 2")
+                    {
+                    }
                     column(ciaddress; CompanyInfo.Address)
                     {
                     }

@@ -2,6 +2,13 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
 {
     layout
     {
+        addafter(Name)
+        {
+            field("Name 2"; Rec."Name 2")
+            {
+                ApplicationArea = all;
+            }
+        }
         addafter(General)
         {
             group("FA Defaults")

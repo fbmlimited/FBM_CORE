@@ -24,7 +24,7 @@ pageextension 60164 FBM_SalesInvSubExt_CO extends "Sales Invoice Subform"
             Visible = ises;
         }
 #endif
-        addafter("VAT Prod. Posting Group")
+        addafter("Variant Code")
         {
 
 

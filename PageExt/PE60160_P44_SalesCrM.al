@@ -2,8 +2,27 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
 {
     layout
     {
+#if MAIN
+        modify("IDPIRPF IRPF Group")
+        {
+            visible = ises;
+        }
+#endif
+        moveafter("External Document No."; "Shortcut Dimension 1 Code")
+        moveafter("External Document No."; "Shortcut Dimension 2 Code")
+        addafter("Shortcut Dimension 1 Code")
+        {
+            field("Posting Description63167"; Rec."Posting Description")
+            {
+                ApplicationArea = All;
+            }
+        }
         addafter("External Document No.")
         {
+            field("Posting No."; Rec."Posting No.")
+            {
+                ApplicationArea = All;
+            }
             field(FBM_Site; Rec.FBM_Site)
             {
                 Visible = showsite;
@@ -51,6 +70,10 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
             {
                 ApplicationArea = All;
             }
+            field(FBM_Segment2; Rec.FBM_Segment2)
+            {
+                ApplicationArea = All;
+            }
 
             field("FBM_Period Start"; Rec."FBM_Period Start")
             {
@@ -60,10 +83,7 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
             {
                 ApplicationArea = all;
             }
-            field(FBM_Segment; Rec.FBM_Segment2)
-            {
-                ApplicationArea = all;
-            }
+
 
         }
         addlast(General)
@@ -93,6 +113,7 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
         compinfo.Get();
         showsite := compinfo.FBM_CustIsOp;
         glsetup.Get();
+        ises := compinfo."Country/Region Code" = 'ES';
 
     end;
 
@@ -104,4 +125,5 @@ pageextension 60160 SalesCreditMemoExt extends "Sales Credit Memo"
         compinfo: record "Company Information";
         showsite: Boolean;
         glsetup: record "General Ledger Setup";
+        ises: Boolean;
 }

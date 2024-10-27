@@ -10,6 +10,9 @@ pageextension 60153 FBM_PostSCrMemosExt_CO extends "Posted Sales Credit Memos"
         {
             Visible = true;
         }
+
+
+
     }
     actions
     {
