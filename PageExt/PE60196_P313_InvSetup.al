@@ -16,6 +16,12 @@ pageextension 60196 FBM_InvSetupExt_CO extends "Inventory Setup"
 
 
             }
+            field(FBM_EmailTransfer; Rec.FBM_EmailTransfer)
+            {
+                ApplicationArea = all;
+
+
+            }
 
 
         }

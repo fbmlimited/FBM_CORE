@@ -349,7 +349,6 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0cm</Top>
             <Left>9.24766cm</Left>
             <Height>0.52989cm</Height>
             <Width>1.5615cm</Width>
@@ -689,8 +688,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
             </Border>
           </Style>
         </PageHeader>
-        <PageHeight>7.62cm</PageHeight>
-        <PageWidth>20.32cm</PageWidth>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
         <InteractiveHeight>11in</InteractiveHeight>
         <InteractiveWidth>8.5in</InteractiveWidth>
         <Style />

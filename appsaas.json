@@ -2,14 +2,14 @@
   "id": "e6857996-833b-464e-91d1-e5102f622d69",
   "name": "FBM_CORE",
   "publisher": "FBM Group",
-  "version": "124.5.156.131",
+  "version": "124.5.156.161",
   "brief": "",
   "description": "",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
   "url": "",
-  "logo": "",
+  "logo": "./fbm.png",
   "dependencies": [
     
 
@@ -18,7 +18,7 @@
       "id": "9d836a4f-3b97-4179-ae7d-608f099ba7f3",
       "name": "FBM Data Dictionary",
       "publisher": "FBM Group",
-      "version": "124.5.156.3"
+      "version": "124.5.156.6"
     }
   ],
   "screenshots": [],

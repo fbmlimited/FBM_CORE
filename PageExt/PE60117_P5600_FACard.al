@@ -160,7 +160,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
             field(AcquisitionDate; rec.FBM_AcquisitionDate)
             {
                 ApplicationArea = all;
-                //Editable=false;
+                Editable = false;
             }
             field(AcquisitionCost; Rec.FBM_AcquisitionCost)
             {

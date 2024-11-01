@@ -359,9 +359,10 @@ report 60145 "FBM_PurchaseOrderESP_CO"
                     column(cicountry; CompanyInfo."Country/Region Code")
                     {
                     }
-                    column(cicontact; CompanyInfo."Name 2")
+                    column(cicontact; CompanyInfo."Contact Person")
                     {
                     }
+
                     column(ShipToAddr1; ShipToAddr[1])
                     {
                     }
@@ -454,7 +455,7 @@ report 60145 "FBM_PurchaseOrderESP_CO"
                         column(AllowInvDisctxt; AllowInvDisctxt)
                         {
                         }
-                        column(Type_PurchLine; Format("Purchase Line".Type, 0, 2))
+                        column(Type_PurchLine; Format("Purchase Line".Type))
                         {
                         }
                         column(No_PurchLine; "Purchase Line"."No.")
@@ -1286,7 +1287,7 @@ report 60145 "FBM_PurchaseOrderESP_CO"
         TotalAmount: Decimal;
         TotalInvoiceDiscountAmount: Decimal;
         CompanyInfoPhoneNoCaptionLbl: Label 'Phone No.';
-        CompanyInfoVATRegNoCaptionLbl: Label 'VAT Registration No.';
+        CompanyInfoVATRegNoCaptionLbl: Label 'RFC: ';
         CompanyInfoGiroNoCaptionLbl: Label 'Giro No.';
         CompanyInfoBankNameCaptionLbl: Label 'Bank';
         CompanyInfoBankAccNoCaptionLbl: Label 'Account No.';

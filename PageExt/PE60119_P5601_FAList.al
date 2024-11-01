@@ -197,9 +197,12 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
             (rec.FBM_AcquisitionDate <> fale."FA Posting Date") or
 (rec.FBM_DepreciationDate <> rec.FBM_Deprdate))
             then begin
-                rec.FBM_AcquisitionCost := rec.FBM_AcqCost;
-                rec.FBM_AcquisitionDate := fale."FA Posting Date";
-                rec.FBM_DepreciationDate := rec.FBM_DeprDate;
+                if rec.FBM_AcquisitionCost = 0 then
+                    rec.FBM_AcquisitionCost := rec.FBM_AcqCost;
+                if rec.FBM_AcquisitionDate = 0D then
+                    rec.FBM_AcquisitionDate := fale."FA Posting Date";
+                if rec.FBM_DepreciationDate = 0D then
+                    rec.FBM_DepreciationDate := rec.FBM_DeprDate;
                 rec.Modify();
             end;
         end;

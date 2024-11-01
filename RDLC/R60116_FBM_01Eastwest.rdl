@@ -389,10 +389,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <Width>0.52918cm</Width>
               <Style>
                 <Border />
-                <PaddingLeft>3pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="DescriptionLine1">
@@ -418,10 +418,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="DescriptionLine2">
@@ -444,10 +444,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="CheckAmountText">
@@ -504,10 +504,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="CheckNoTextControl23">
@@ -533,10 +533,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="CheckNoTextControl24">
@@ -562,10 +562,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="CheckNoTextControl25">
@@ -591,10 +591,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>7</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="CheckNoTextControl26">
@@ -620,10 +620,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>8</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="CheckNoTextControl27">
@@ -649,10 +649,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>9</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>1pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="CheckNoTextControl28">
@@ -678,10 +678,10 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
               <ZIndex>10</ZIndex>
               <Style>
                 <Border />
-                <PaddingLeft>1pt</PaddingLeft>
+                <PaddingLeft>5pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingBottom>5pt</PaddingBottom>
               </Style>
             </Textbox>
           </ReportItems>
@@ -691,8 +691,8 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
             </Border>
           </Style>
         </PageHeader>
-        <PageHeight>7.62cm</PageHeight>
-        <PageWidth>20.32cm</PageWidth>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
         <InteractiveHeight>11in</InteractiveHeight>
         <InteractiveWidth>8.5in</InteractiveWidth>
         <Style />

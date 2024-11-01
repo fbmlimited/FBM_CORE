@@ -601,6 +601,47 @@ codeunit 60104 FBM_Events_CO
             end;
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, 5706, 'OnAfterPost', '', false, false)]
+    procedure OnAfterPost(var TransHeader: Record "Transfer Header"; Selection: Option " ",Shipment,Receipt)
+    var
+        bodytxt: Text;
+        ile: record "Item Ledger Entry";
+        cr: char;
+        lf: char;
+        crlf: text[2];
+        item: record Item;
+        bodyline: Text;
+        itemdesc: text[100];
+        message: Codeunit "Email Message";
+        mail: codeunit Email;
+        invsetup: record "Inventory Setup";
+    begin
+        cr := 13;
+        lf := 10;
+        crlf := format(cr) + format(lf);
+        bodytxt := 'No.: ' + '|' + TransHeader."No." + crlf;
+        bodytxt += 'From: ' + '|' + TransHeader."Transfer-from Code" + crlf;
+        bodytxt += 'To: ' + '|' + TransHeader."Transfer-to Code" + crlf;
+
+
+        ile.SetRange("Order No.", TransHeader."No.");
+        ile.setrange("Document Type", ile."Document Type"::"Transfer Receipt");
+        ile.setrange("Location Code", TransHeader."Transfer-to Code");
+        if ile.FindSet() then
+            repeat
+                bodyline := '';
+                if item.get(ile."Item No.") then
+                    itemdesc := item.Description;
+                bodyline := 'Item: ' + '|' + ile."Item No." + '|' + itemdesc + '|' + format(ile.Quantity) + '|' + ile."Serial No." + crlf;
+                bodytxt += bodyline;
+            until ile.next = 0;
+        invsetup.get;
+        invsetup.TestField(FBM_EmailTransfer);
+        message.create(invsetup.FBM_EmailTransfer, TransHeader."No.", bodytxt);
+        mail.Send(message);
+
+
+    end;
 
 
 }
