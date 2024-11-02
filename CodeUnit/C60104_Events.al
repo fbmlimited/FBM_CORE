@@ -308,7 +308,8 @@ codeunit 60104 FBM_Events_CO
                 resentry.FBM_Site := ItemJournalLine.FBM_Site;
                 resentry.FBM_Pedimento := ItemJournalLine.FBM_Pedimento;
                 resentry.FBM_Pedimento12 := ItemJournalLine.FBM_Pedimento12;
-
+                resentry.FBM_Pedimento1 := ItemJournalLine.FBM_Pedimento1;
+                resentry.FBM_Pedimento2 := ItemJournalLine.FBM_Pedimento2;
                 resentry.FBM_Pedimento3 := ItemJournalLine.FBM_Pedimento3;
                 resentry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
                 resentry.Modify();
@@ -360,7 +361,8 @@ codeunit 60104 FBM_Events_CO
         ItemJnlLine.FBM_Site := PurchLine.FBM_Site;
         ItemJnlLine.FBM_Pedimento := PurchLine.FBM_Pedimento;
         ItemJnlLine.FBM_Pedimento12 := PurchLine.FBM_Pedimento12;
-
+        ItemJnlLine.FBM_Pedimento1 := PurchLine.FBM_Pedimento1;
+        ItemJnlLine.FBM_Pedimento2 := PurchLine.FBM_Pedimento2;
         ItemJnlLine.FBM_Pedimento3 := PurchLine.FBM_Pedimento3;
         ItemJnlLine.FBM_Pedimento4 := PurchLine.FBM_Pedimento4;
 
@@ -380,7 +382,8 @@ codeunit 60104 FBM_Events_CO
     procedure OnBeforeInsertItemLedgEntry(var ItemLedgerEntry: Record "Item Ledger Entry"; ItemJournalLine: Record "Item Journal Line"; TransferItem: Boolean; OldItemLedgEntry: Record "Item Ledger Entry"; ItemJournalLineOrigin: Record "Item Journal Line")
     begin
         ItemLedgerEntry.FBM_Pedimento12 := ItemJournalLine.FBM_Pedimento12;
-
+        ItemLedgerEntry.FBM_Pedimento1 := ItemJournalLine.FBM_Pedimento1;
+        ItemLedgerEntry.FBM_Pedimento2 := ItemJournalLine.FBM_Pedimento2;
         ItemLedgerEntry.FBM_Pedimento3 := ItemJournalLine.FBM_Pedimento3;
 
         ItemLedgerEntry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
@@ -623,9 +626,9 @@ codeunit 60104 FBM_Events_CO
         bodytxt += 'From: ' + '|' + TransHeader."Transfer-from Code" + crlf;
         bodytxt += 'To: ' + '|' + TransHeader."Transfer-to Code" + crlf;
 
-
+        invsetup.get;
         ile.SetRange("Order No.", TransHeader."No.");
-        ile.setrange("Document Type", ile."Document Type"::"Transfer Receipt");
+        ile.setrange("Document Type", invsetup.FBM_TransferReceipt);
         ile.setrange("Location Code", TransHeader."Transfer-to Code");
         if ile.FindSet() then
             repeat
@@ -635,13 +638,12 @@ codeunit 60104 FBM_Events_CO
                 bodyline := 'Item: ' + '|' + ile."Item No." + '|' + itemdesc + '|' + format(ile.Quantity) + '|' + ile."Serial No." + crlf;
                 bodytxt += bodyline;
             until ile.next = 0;
-        invsetup.get;
+
         invsetup.TestField(FBM_EmailTransfer);
         message.create(invsetup.FBM_EmailTransfer, TransHeader."No.", bodytxt);
         mail.Send(message);
 
 
     end;
-
 
 }

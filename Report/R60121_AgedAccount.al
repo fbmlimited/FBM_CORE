@@ -758,6 +758,9 @@ report 60121 "FBM_Aged AccRec New_CO"
 
         GLSetup.Get;
 
+        evaluate(PeriodLength, '<6M>');
+        EndingDate := Today;
+
         CalcDates;
         CreateHeadings;
 
@@ -766,6 +769,7 @@ report 60121 "FBM_Aged AccRec New_CO"
         CustFilterCheck := (CustFilter <> 'No.');
 
         CompanyDisplayName := COMPANYPROPERTY.DisplayName;
+
     end;
 
     var
