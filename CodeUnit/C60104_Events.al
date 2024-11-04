@@ -618,6 +618,7 @@ codeunit 60104 FBM_Events_CO
         message: Codeunit "Email Message";
         mail: codeunit Email;
         invsetup: record "Inventory Setup";
+        cinfo: record "Company Information";
     begin
         cr := 13;
         lf := 10;
@@ -638,9 +639,9 @@ codeunit 60104 FBM_Events_CO
                 bodyline := 'Item: ' + '|' + ile."Item No." + '|' + itemdesc + '|' + format(ile.Quantity) + '|' + ile."Serial No." + crlf;
                 bodytxt += bodyline;
             until ile.next = 0;
-
+        cinfo.get();
         invsetup.TestField(FBM_EmailTransfer);
-        message.create(invsetup.FBM_EmailTransfer, TransHeader."No.", bodytxt);
+        message.create(invsetup.FBM_EmailTransfer, cinfo."Custom System Indicator Text" + '|' + TransHeader."No.", bodytxt);
         mail.Send(message);
 
 

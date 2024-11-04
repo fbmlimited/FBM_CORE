@@ -1,7 +1,7 @@
-report 60146 FBM_SendAgedRec_cO
+report 60146 FBM_SendAgedRec_CO
 {
-    Caption = 'send Agd Receivable';
-    UsageCategory = Administration;
+    Caption = 'Send Aged Receivable';
+    //UsageCategory = Administration;
     ApplicationArea = All;
     ProcessingOnly = true;
 

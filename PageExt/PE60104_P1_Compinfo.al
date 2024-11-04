@@ -2,6 +2,10 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
 {
     layout
     {
+        modify("System Indicator Text")
+        {
+            Visible = issuper;
+        }
         addafter(Name)
         {
             field("Name 2"; Rec."Name 2")
@@ -99,6 +103,12 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
 
     }
     trigger
+    OnOpenPage()
+    begin
+        issuper := uper.IsSuper(UserSecurityId())
+    end;
+
+    trigger
     OnAfterGetRecord()
     var
         fasetup: record "FA Setup";
@@ -115,6 +125,8 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
 
     var
         isph: Boolean;
+        issuper: Boolean;
+        uper: Codeunit "User Permissions";
 
 
 }
