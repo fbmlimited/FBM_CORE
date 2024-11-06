@@ -629,7 +629,10 @@ codeunit 60104 FBM_Events_CO
 
         invsetup.get;
         ile.SetRange("Order No.", TransHeader."No.");
-        ile.setrange("Document Type", invsetup.FBM_TransferReceipt);
+        if invsetup."Direct Transfer Posting" = invsetup."Direct Transfer Posting"::"Direct Transfer" then
+            ile.setrange("Document Type", invsetup.FBM_TransferReceipt::"Direct Transfer")
+        else
+            ile.setrange("Document Type", invsetup.FBM_TransferReceipt::"Transfer Receipt");
         ile.setrange("Location Code", TransHeader."Transfer-to Code");
         if ile.FindSet() then
             repeat
@@ -639,6 +642,7 @@ codeunit 60104 FBM_Events_CO
                 bodyline := 'Item: ' + '|' + ile."Item No." + '|' + itemdesc + '|' + format(ile.Quantity) + '|' + ile."Serial No." + crlf;
                 bodytxt += bodyline;
             until ile.next = 0;
+        bodytxt += crlf + crlf + 'Version 124.5.156.190' + crlf;
         cinfo.get();
         invsetup.TestField(FBM_EmailTransfer);
         message.create(invsetup.FBM_EmailTransfer, cinfo."Custom System Indicator Text" + '|' + TransHeader."No.", bodytxt);
