@@ -387,6 +387,7 @@ pageextension 60117 FBM_FACardExt_CO extends "Fixed Asset Card"
     var
         FALE: record "FA Ledger Entry";
     begin
+
         FALE.Reset();
         FALE.SetCurrentKey("Posting Date");
         FALE.SetFilter(FALE."FA No.", FA."No.");

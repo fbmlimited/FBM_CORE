@@ -306,12 +306,13 @@ codeunit 60104 FBM_Events_CO
             resentry.SetRange("Item Ledger Entry No.", itemLE."Entry No.");
             if resentry.FindFirst() then begin
                 resentry.FBM_Site := ItemJournalLine.FBM_Site;
-                resentry.FBM_Pedimento := ItemJournalLine.FBM_Pedimento;
+                resentry.FBM_Pedimento_2 := ItemJournalLine.FBM_Pedimento_2;
                 resentry.FBM_Pedimento12 := ItemJournalLine.FBM_Pedimento12;
                 resentry.FBM_Pedimento1 := ItemJournalLine.FBM_Pedimento1;
                 resentry.FBM_Pedimento2 := ItemJournalLine.FBM_Pedimento2;
                 resentry.FBM_Pedimento3 := ItemJournalLine.FBM_Pedimento3;
-                resentry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
+                resentry.FBM_Pedimento34 := ItemJournalLine.FBM_Pedimento34;
+                resentry.FBM_Pedimento42 := ItemJournalLine.FBM_Pedimento42;
                 resentry.Modify();
             end;
 
@@ -359,12 +360,13 @@ codeunit 60104 FBM_Events_CO
     procedure OnAfterCopyItemJnlLineFromPurchLine(var ItemJnlLine: Record "Item Journal Line"; PurchLine: Record "Purchase Line")
     begin
         ItemJnlLine.FBM_Site := PurchLine.FBM_Site;
-        ItemJnlLine.FBM_Pedimento := PurchLine.FBM_Pedimento;
+        ItemJnlLine.FBM_Pedimento_2 := PurchLine.FBM_Pedimento_2;
         ItemJnlLine.FBM_Pedimento12 := PurchLine.FBM_Pedimento12;
         ItemJnlLine.FBM_Pedimento1 := PurchLine.FBM_Pedimento1;
         ItemJnlLine.FBM_Pedimento2 := PurchLine.FBM_Pedimento2;
         ItemJnlLine.FBM_Pedimento3 := PurchLine.FBM_Pedimento3;
-        ItemJnlLine.FBM_Pedimento4 := PurchLine.FBM_Pedimento4;
+        ItemJnlLine.FBM_Pedimento34 := PurchLine.FBM_Pedimento34;
+        ItemJnlLine.FBM_Pedimento42 := PurchLine.FBM_Pedimento42;
 
 
     end;
@@ -385,10 +387,10 @@ codeunit 60104 FBM_Events_CO
         ItemLedgerEntry.FBM_Pedimento1 := ItemJournalLine.FBM_Pedimento1;
         ItemLedgerEntry.FBM_Pedimento2 := ItemJournalLine.FBM_Pedimento2;
         ItemLedgerEntry.FBM_Pedimento3 := ItemJournalLine.FBM_Pedimento3;
+        ItemLedgerEntry.FBM_Pedimento34 := ItemJournalLine.FBM_Pedimento34;
+        ItemLedgerEntry.FBM_Pedimento42 := ItemJournalLine.FBM_Pedimento42;
 
-        ItemLedgerEntry.FBM_Pedimento4 := ItemJournalLine.FBM_Pedimento4;
-
-        ItemLedgerEntry.FBM_Pedimento := ItemJournalLine.FBM_Pedimento;
+        ItemLedgerEntry.FBM_Pedimento_2 := ItemJournalLine.FBM_Pedimento_2;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, 5400, 'OnAfterCalcAvailableQty', '', true, true)]
@@ -642,7 +644,7 @@ codeunit 60104 FBM_Events_CO
                 bodyline := 'Item: ' + '|' + ile."Item No." + '|' + itemdesc + '|' + format(ile.Quantity) + '|' + ile."Serial No." + crlf;
                 bodytxt += bodyline;
             until ile.next = 0;
-        bodytxt += crlf + crlf + 'Version 124.5.156.190' + crlf;
+        bodytxt += crlf + crlf + 'Version 124.5.156.191' + crlf;
         cinfo.get();
         invsetup.TestField(FBM_EmailTransfer);
         message.create(invsetup.FBM_EmailTransfer, cinfo."Custom System Indicator Text" + '|' + TransHeader."No.", bodytxt);
@@ -651,4 +653,54 @@ codeunit 60104 FBM_Events_CO
 
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, 57, 'OnAfterPurchDeltaUpdateTotals', '', false, false)]
+    procedure OnAfterPurchDeltaUpdateTotals(var PurchaseLine: Record "Purchase Line"; var xPurchaseLine: Record "Purchase Line"; var TotalPurchaseLine: Record "Purchase Line"; var VATAmount: Decimal; var InvoiceDiscountAmount: Decimal; var InvoiceDiscountPct: Decimal)
+    var
+
+    begin
+        if (not PurchaseLine.FBM_IsFreight) and (not PurchaseLine.FBM_IsWht) then
+            TotalPurchaseLine.FBM_TotProd += (PurchaseLine.Amount - xPurchaseLine.Amount - PurchaseLine."Inv. Discount Amount" + xPurchaseLine."Inv. Discount Amount" - PurchaseLine."Line Discount Amount" + xPurchaseLine."Line Discount Amount");
+        TotalPurchaseLine.FBM_TotDiscount += (PurchaseLine."Inv. Discount Amount" + PurchaseLine."Line Discount Amount" - xPurchaseLine."Inv. Discount Amount" - xPurchaseLine."Line Discount Amount");
+        if PurchaseLine.FBM_IsFreight then
+            TotalPurchaseLine.FBM_TotFreight += (PurchaseLine.Amount - xPurchaseLine.Amount - PurchaseLine."Inv. Discount Amount" + xPurchaseLine."Inv. Discount Amount" - PurchaseLine."Line Discount Amount" + xPurchaseLine."Line Discount Amount");
+        if PurchaseLine.FBM_IsWht then
+            TotalPurchaseLine.FBM_TotWht += (PurchaseLine.Amount - xPurchaseLine.Amount - PurchaseLine."Inv. Discount Amount" + xPurchaseLine."Inv. Discount Amount" - PurchaseLine."Line Discount Amount" + xPurchaseLine."Line Discount Amount");
+        TotalPurchaseLine.FBM_TotVAT := VATAmount;
+        TotalPurchaseLine.FBM_GrandTot += (PurchaseLine."Amount Including VAT" - xPurchaseLine."Amount Including VAT");
+
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 57, 'OnAfterCalculatePurchaseSubPageTotals', '', false, false)]
+    procedure OnAfterCalculatePurchaseSubPageTotals(var TotalPurchHeader: Record "Purchase Header"; var TotalPurchLine: Record "Purchase Line"; var VATAmount: Decimal; var InvoiceDiscountAmount: Decimal; var InvoiceDiscountPct: Decimal; var TotalPurchaseLine2: Record "Purchase Line")
+    var
+
+    begin
+        TotalPurchaseLine2.SetRange("Document Type", TotalPurchHeader."Document Type");
+        TotalPurchaseLine2.SetRange("Document No.", TotalPurchHeader."No.");
+        TotalPurchaseLine2.SetRange(fbm_isfreight, false);
+        TotalPurchaseLine2.SetRange(fbm_iswht, false);
+        TotalPurchaseLine2.CalcSums(amount);
+        TotalPurchaseLine2.FBM_TotProd := TotalPurchaseLine2.Amount;
+        TotalPurchaseLine2.Reset();
+        TotalPurchaseLine2.SetRange("Document Type", TotalPurchHeader."Document Type");
+        TotalPurchaseLine2.SetRange("Document No.", TotalPurchHeader."No.");
+        TotalPurchaseLine2.CalcSums("Inv. Discount Amount", "Line Discount Amount");
+        TotalPurchaseLine2.FBM_TotDiscount := TotalPurchaseLine2."Inv. Discount Amount" + TotalPurchaseLine2."Line Discount Amount";
+        TotalPurchaseLine2.SetRange("Document Type", TotalPurchHeader."Document Type");
+        TotalPurchaseLine2.SetRange("Document No.", TotalPurchHeader."No.");
+        TotalPurchaseLine2.SetRange(fbm_isfreight, true);
+        TotalPurchaseLine2.CalcSums(amount);
+        TotalPurchaseLine2.FBM_TotFreight := TotalPurchaseLine2.Amount;
+        TotalPurchaseLine2.SetRange(fbm_isfreight);
+        TotalPurchaseLine2.SetRange(fbm_iswht, true);
+        TotalPurchaseLine2.CalcSums(amount);
+        TotalPurchaseLine2.FBM_TotWht := TotalPurchaseLine2.Amount;
+        TotalPurchLine.FBM_TotVAT := VATAmount;
+        TotalPurchaseLine2.Reset();
+        TotalPurchaseLine2.SetRange("Document Type", TotalPurchHeader."Document Type");
+        TotalPurchaseLine2.SetRange("Document No.", TotalPurchHeader."No.");
+        TotalPurchaseLine2.CalcSums("Amount Including VAT");
+        TotalPurchaseLine2.FBM_GrandTot := TotalPurchaseLine2."Amount Including VAT";
+
+    end;
 }

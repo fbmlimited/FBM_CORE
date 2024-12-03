@@ -363,40 +363,40 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[10];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with ReqLine do begin
-            TestField(Type, Type::Item);
-            TestField("No.");
+        begin
+            ReqLine.TestField(Type, ReqLine.Type::Item);
+            ReqLine.TestField("No.");
             Item.Reset();
-            Item.Get("No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Due Date");
+            Item.Get(ReqLine."No.");
+            FilterItem(Item, ReqLine."Location Code", ReqLine."Variant Code", ReqLine."Due Date");
 
             OnBeforeShowItemAvailFromReqLine(Item, ReqLine, AvailabilityType);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByDate(Item, ReqLine.FieldCaption("Due Date"), ReqLine."Due Date", NewDate) then
+                        ReqLine.Validate("Due Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, ReqLine.FieldCaption("Variant Code"), ReqLine."Variant Code", NewVariantCode) then
+                        ReqLine.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewSiteCode) then
-                        Validate("Location Code", NewSiteCode);
+                    if ShowItemAvailByLoc(Item, ReqLine.FieldCaption("Location Code"), ReqLine."Location Code", NewSiteCode) then
+                        ReqLine.Validate("Location Code", NewSiteCode);
                 AvailabilityType::"Event":
                     begin
                         Item.SetRange("Date Filter");
 
                         ForecastName := '';
-                        FindCurrForecastName(ForecastName);
+                        ReqLine.FindCurrForecastName(ForecastName);
 
-                        if ShowItemAvailByEvent(Item, FieldCaption("Due Date"), "Due Date", NewDate, true) then
-                            Validate("Due Date", NewDate);
+                        if ShowItemAvailByEvent(Item, ReqLine.FieldCaption("Due Date"), ReqLine."Due Date", NewDate, true) then
+                            ReqLine.Validate("Due Date", NewDate);
                     end;
                 AvailabilityType::BOM:
-                    if ShowItemAvailByBOMLevel(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByBOMLevel(Item, ReqLine.FieldCaption("Due Date"), ReqLine."Due Date", NewDate) then
+                        ReqLine.Validate("Due Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, ReqLine.FieldCaption("Unit of Measure Code"), ReqLine."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        ReqLine.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -409,32 +409,32 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[10];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with ProdOrderLine do begin
-            TestField("Item No.");
+        begin
+            ProdOrderLine.TestField("Item No.");
             Item.Reset();
-            Item.Get("Item No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Due Date");
+            Item.Get(ProdOrderLine."Item No.");
+            FilterItem(Item, ProdOrderLine."Location Code", ProdOrderLine."Variant Code", ProdOrderLine."Due Date");
 
             OnBeforeShowItemAvailFromProdOrderLine(Item, ProdOrderLine);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByDate(Item, ProdOrderLine.FieldCaption("Due Date"), ProdOrderLine."Due Date", NewDate) then
+                        ProdOrderLine.Validate("Due Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, ProdOrderLine.FieldCaption("Variant Code"), ProdOrderLine."Variant Code", NewVariantCode) then
+                        ProdOrderLine.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::site:
-                    if ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewSiteCode) then
-                        Validate("Location Code", NewSiteCode);
+                    if ShowItemAvailByLoc(Item, ProdOrderLine.FieldCaption("Location Code"), ProdOrderLine."Location Code", NewSiteCode) then
+                        ProdOrderLine.Validate("Location Code", NewSiteCode);
                 AvailabilityType::"Event":
-                    if ShowItemAvailByEvent(Item, FieldCaption("Due Date"), "Due Date", NewDate, false) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByEvent(Item, ProdOrderLine.FieldCaption("Due Date"), ProdOrderLine."Due Date", NewDate, false) then
+                        ProdOrderLine.Validate("Due Date", NewDate);
                 AvailabilityType::BOM:
-                    if ShowCustomProdItemAvailByBOMLevel(ProdOrderLine, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowCustomProdItemAvailByBOMLevel(ProdOrderLine, ProdOrderLine.FieldCaption("Due Date"), ProdOrderLine."Due Date", NewDate) then
+                        ProdOrderLine.Validate("Due Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, ProdOrderLine.FieldCaption("Unit of Measure Code"), ProdOrderLine."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        ProdOrderLine.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -447,32 +447,32 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[10];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with ProdOrderComp do begin
-            TestField("Item No.");
+        begin
+            ProdOrderComp.TestField("Item No.");
             Item.Reset();
-            Item.Get("Item No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Due Date");
+            Item.Get(ProdOrderComp."Item No.");
+            FilterItem(Item, ProdOrderComp."Location Code", ProdOrderComp."Variant Code", ProdOrderComp."Due Date");
 
             OnBeforeShowItemAvailFromProdOrderComp(Item, ProdOrderComp);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByDate(Item, ProdOrderComp.FieldCaption("Due Date"), ProdOrderComp."Due Date", NewDate) then
+                        ProdOrderComp.Validate("Due Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, ProdOrderComp.FieldCaption("Variant Code"), ProdOrderComp."Variant Code", NewVariantCode) then
+                        ProdOrderComp.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewSiteCode) then
-                        Validate("Location Code", NewSiteCode);
+                    if ShowItemAvailByLoc(Item, ProdOrderComp.FieldCaption("Location Code"), ProdOrderComp."Location Code", NewSiteCode) then
+                        ProdOrderComp.Validate("Location Code", NewSiteCode);
                 AvailabilityType::"Event":
-                    if ShowItemAvailByEvent(Item, FieldCaption("Due Date"), "Due Date", NewDate, false) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByEvent(Item, ProdOrderComp.FieldCaption("Due Date"), ProdOrderComp."Due Date", NewDate, false) then
+                        ProdOrderComp.Validate("Due Date", NewDate);
                 AvailabilityType::BOM:
-                    if ShowItemAvailByBOMLevel(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByBOMLevel(Item, ProdOrderComp.FieldCaption("Due Date"), ProdOrderComp."Due Date", NewDate) then
+                        ProdOrderComp.Validate("Due Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, ProdOrderComp.FieldCaption("Unit of Measure Code"), ProdOrderComp."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        ProdOrderComp.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -485,32 +485,32 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with TransLine do begin
-            TestField("Item No.");
+        begin
+            TransLine.TestField("Item No.");
             Item.Reset();
-            Item.Get("Item No.");
-            FilterItem(Item, "Transfer-from Code", "Variant Code", "Shipment Date");
+            Item.Get(TransLine."Item No.");
+            FilterItem(Item, TransLine."Transfer-from Code", TransLine."Variant Code", TransLine."Shipment Date");
 
             OnBeforeShowItemAvailFromTransLine(Item, TransLine, AvailabilityType);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Shipment Date"), "Shipment Date", NewDate) then
-                        Validate("Shipment Date", NewDate);
+                    if ShowItemAvailByDate(Item, TransLine.FieldCaption("Shipment Date"), TransLine."Shipment Date", NewDate) then
+                        TransLine.Validate("Shipment Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, TransLine.FieldCaption("Variant Code"), TransLine."Variant Code", NewVariantCode) then
+                        TransLine.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption("Transfer-from Code"), "Transfer-from Code", NewSiteCode) then
-                        Validate("Transfer-from Code", NewSiteCode);
+                    if ShowItemAvailByLoc(Item, TransLine.FieldCaption("Transfer-from Code"), TransLine."Transfer-from Code", NewSiteCode) then
+                        TransLine.Validate("Transfer-from Code", NewSiteCode);
                 AvailabilityType::"Event":
-                    if ShowItemAvailByEvent(Item, FieldCaption("Shipment Date"), "Shipment Date", NewDate, false) then
-                        Validate("Shipment Date", NewDate);
+                    if ShowItemAvailByEvent(Item, TransLine.FieldCaption("Shipment Date"), TransLine."Shipment Date", NewDate, false) then
+                        TransLine.Validate("Shipment Date", NewDate);
                 AvailabilityType::BOM:
-                    if ShowItemAvailByBOMLevel(Item, FieldCaption("Shipment Date"), "Shipment Date", NewDate) then
-                        Validate("Shipment Date", NewDate);
+                    if ShowItemAvailByBOMLevel(Item, TransLine.FieldCaption("Shipment Date"), TransLine."Shipment Date", NewDate) then
+                        TransLine.Validate("Shipment Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, TransLine.FieldCaption("Unit of Measure Code"), TransLine."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        TransLine.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -523,26 +523,26 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with WhseActivLine do begin
-            TestField("Item No.");
+        begin
+            WhseActivLine.TestField("Item No.");
             Item.Reset();
-            Item.Get("Item No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Due Date");
+            Item.Get(WhseActivLine."Item No.");
+            FilterItem(Item, WhseActivLine."Location Code", WhseActivLine."Variant Code", WhseActivLine."Due Date");
 
             OnBeforeShowItemAvailFromWhseActivLine(Item, WhseActivLine, AvailabilityType);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    ShowItemAvailByDate(Item, FieldCaption("Due Date"), "Due Date", NewDate);
+                    ShowItemAvailByDate(Item, WhseActivLine.FieldCaption("Due Date"), WhseActivLine."Due Date", NewDate);
                 AvailabilityType::Variant:
-                    ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode);
+                    ShowItemAvailVariant(Item, WhseActivLine.FieldCaption("Variant Code"), WhseActivLine."Variant Code", NewVariantCode);
                 AvailabilityType::site:
-                    ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewSiteCode);
+                    ShowItemAvailByLoc(Item, WhseActivLine.FieldCaption("Location Code"), WhseActivLine."Location Code", NewSiteCode);
                 AvailabilityType::"Event":
-                    ShowItemAvailByEvent(Item, FieldCaption("Due Date"), "Due Date", NewDate, false);
+                    ShowItemAvailByEvent(Item, WhseActivLine.FieldCaption("Due Date"), WhseActivLine."Due Date", NewDate, false);
                 AvailabilityType::BOM:
-                    ShowItemAvailByBOMLevel(Item, FieldCaption("Due Date"), "Due Date", NewDate);
+                    ShowItemAvailByBOMLevel(Item, WhseActivLine.FieldCaption("Due Date"), WhseActivLine."Due Date", NewDate);
                 AvailabilityType::UOM:
-                    ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode);
+                    ShowItemAvailByUOM(Item, WhseActivLine.FieldCaption("Unit of Measure Code"), WhseActivLine."Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -556,31 +556,31 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with ServLine do begin
-            ServHeader.Get("Document Type", "Document No.");
-            TestField(Type, Type::Item);
-            TestField("No.");
+        begin
+            ServHeader.Get(ServLine."Document Type", ServLine."Document No.");
+            ServLine.TestField(Type, ServLine.Type::Item);
+            ServLine.TestField("No.");
             Item.Reset();
-            Item.Get("No.");
-            FilterItem(Item, "Location Code", "Variant Code", ServHeader."Response Date");
+            Item.Get(ServLine."No.");
+            FilterItem(Item, ServLine."Location Code", ServLine."Variant Code", ServHeader."Response Date");
 
             OnBeforeShowItemAvailFromServLine(Item, ServLine);
             case AvailabilityType of
                 AvailabilityType::Date:
                     ShowItemAvailByDate(Item, ServHeader.FieldCaption("Response Date"), ServHeader."Response Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, ServLine.FieldCaption("Variant Code"), ServLine."Variant Code", NewVariantCode) then
+                        ServLine.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewSiteCode) then
-                        Validate("Location Code", NewSiteCode);
+                    if ShowItemAvailByLoc(Item, ServLine.FieldCaption("Location Code"), ServLine."Location Code", NewSiteCode) then
+                        ServLine.Validate("Location Code", NewSiteCode);
                 AvailabilityType::"Event":
                     ShowItemAvailByEvent(Item, ServHeader.FieldCaption("Response Date"), ServHeader."Response Date", NewDate, false);
                 AvailabilityType::BOM:
                     ShowItemAvailByBOMLevel(Item, ServHeader.FieldCaption("Response Date"), ServHeader."Response Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, ServLine.FieldCaption("Unit of Measure Code"), ServLine."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        ServLine.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -593,26 +593,26 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with WhseRcptLine do begin
-            TestField("Item No.");
+        begin
+            WhseRcptLine.TestField("Item No.");
             Item.Reset();
-            Item.Get("Item No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Due Date");
+            Item.Get(WhseRcptLine."Item No.");
+            FilterItem(Item, WhseRcptLine."Location Code", WhseRcptLine."Variant Code", WhseRcptLine."Due Date");
 
             OnBeforeShowItemAvailFromWhseRcptLine(Item, WhseRcptLine, AvailabilityType);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    ShowItemAvailByDate(Item, FieldCaption("Due Date"), "Due Date", NewDate);
+                    ShowItemAvailByDate(Item, WhseRcptLine.FieldCaption("Due Date"), WhseRcptLine."Due Date", NewDate);
                 AvailabilityType::Variant:
-                    ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode);
+                    ShowItemAvailVariant(Item, WhseRcptLine.FieldCaption("Variant Code"), WhseRcptLine."Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewSiteCode);
+                    ShowItemAvailByLoc(Item, WhseRcptLine.FieldCaption("Location Code"), WhseRcptLine."Location Code", NewSiteCode);
                 AvailabilityType::"Event":
-                    ShowItemAvailByEvent(Item, FieldCaption("Due Date"), "Due Date", NewDate, false);
+                    ShowItemAvailByEvent(Item, WhseRcptLine.FieldCaption("Due Date"), WhseRcptLine."Due Date", NewDate, false);
                 AvailabilityType::BOM:
-                    ShowItemAvailByBOMLevel(Item, FieldCaption("Due Date"), "Due Date", NewDate);
+                    ShowItemAvailByBOMLevel(Item, WhseRcptLine.FieldCaption("Due Date"), WhseRcptLine."Due Date", NewDate);
                 AvailabilityType::UOM:
-                    ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode);
+                    ShowItemAvailByUOM(Item, WhseRcptLine.FieldCaption("Unit of Measure Code"), WhseRcptLine."Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -625,32 +625,32 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with ItemJnlLine do begin
-            TestField("Item No.");
+        begin
+            ItemJnlLine.TestField("Item No.");
             Item.Reset();
-            Item.Get("Item No.");
-            FilterItem(Item, FBM_Site, "Variant Code", "Posting Date");
+            Item.Get(ItemJnlLine."Item No.");
+            FilterItem(Item, ItemJnlLine.FBM_Site, ItemJnlLine."Variant Code", ItemJnlLine."Posting Date");
 
             OnBeforeShowItemAvailFromItemJnlLine(Item, ItemJnlLine, AvailabilityType);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Posting Date"), "Posting Date", NewDate) then
-                        Validate("Posting Date", NewDate);
+                    if ShowItemAvailByDate(Item, ItemJnlLine.FieldCaption("Posting Date"), ItemJnlLine."Posting Date", NewDate) then
+                        ItemJnlLine.Validate("Posting Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, ItemJnlLine.FieldCaption("Variant Code"), ItemJnlLine."Variant Code", NewVariantCode) then
+                        ItemJnlLine.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption(FBM_Site), FBM_Site, NewSiteCode) then
-                        Validate(FBM_Site, NewSiteCode);
+                    if ShowItemAvailByLoc(Item, ItemJnlLine.FieldCaption(FBM_Site), ItemJnlLine.FBM_Site, NewSiteCode) then
+                        ItemJnlLine.Validate(FBM_Site, NewSiteCode);
                 AvailabilityType::"Event":
-                    if ShowItemAvailByEvent(Item, FieldCaption("Posting Date"), "Posting Date", NewDate, false) then
-                        Validate("Posting Date", NewDate);
+                    if ShowItemAvailByEvent(Item, ItemJnlLine.FieldCaption("Posting Date"), ItemJnlLine."Posting Date", NewDate, false) then
+                        ItemJnlLine.Validate("Posting Date", NewDate);
                 AvailabilityType::BOM:
-                    if ShowItemAvailByBOMLevel(Item, FieldCaption("Posting Date"), "Posting Date", NewDate) then
-                        Validate("Posting Date", NewDate);
+                    if ShowItemAvailByBOMLevel(Item, ItemJnlLine.FieldCaption("Posting Date"), ItemJnlLine."Posting Date", NewDate) then
+                        ItemJnlLine.Validate("Posting Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, ItemJnlLine.FieldCaption("Unit of Measure Code"), ItemJnlLine."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        ItemJnlLine.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -663,32 +663,32 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with AsmHeader do begin
-            TestField("Item No.");
+        begin
+            AsmHeader.TestField("Item No.");
             Item.Reset();
-            Item.Get("Item No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Due Date");
+            Item.Get(AsmHeader."Item No.");
+            FilterItem(Item, AsmHeader."Location Code", AsmHeader."Variant Code", AsmHeader."Due Date");
 
             OnBeforeShowItemAvailFromAsmHeader(Item, AsmHeader);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByDate(Item, AsmHeader.FieldCaption("Due Date"), AsmHeader."Due Date", NewDate) then
+                        AsmHeader.Validate("Due Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, AsmHeader.FieldCaption("Variant Code"), AsmHeader."Variant Code", NewVariantCode) then
+                        AsmHeader.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewsiteCode) then
-                        Validate("Location Code", NewsiteCode);
+                    if ShowItemAvailByLoc(Item, AsmHeader.FieldCaption("Location Code"), AsmHeader."Location Code", NewsiteCode) then
+                        AsmHeader.Validate("Location Code", NewsiteCode);
                 AvailabilityType::"Event":
-                    if ShowItemAvailByEvent(Item, FieldCaption("Due Date"), "Due Date", NewDate, false) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByEvent(Item, AsmHeader.FieldCaption("Due Date"), AsmHeader."Due Date", NewDate, false) then
+                        AsmHeader.Validate("Due Date", NewDate);
                 AvailabilityType::BOM:
-                    if ShowCustomAsmItemAvailByBOMLevel(AsmHeader, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowCustomAsmItemAvailByBOMLevel(AsmHeader, AsmHeader.FieldCaption("Due Date"), AsmHeader."Due Date", NewDate) then
+                        AsmHeader.Validate("Due Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, AsmHeader.FieldCaption("Unit of Measure Code"), AsmHeader."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        AsmHeader.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -701,33 +701,33 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with AsmLine do begin
-            TestField(Type, Type::Item);
-            TestField("No.");
+        begin
+            AsmLine.TestField(Type, AsmLine.Type::Item);
+            AsmLine.TestField("No.");
             Item.Reset();
-            Item.Get("No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Due Date");
+            Item.Get(AsmLine."No.");
+            FilterItem(Item, AsmLine."Location Code", AsmLine."Variant Code", AsmLine."Due Date");
 
             OnBeforeShowItemAvailFromAsmLine(Item, AsmLine);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByDate(Item, AsmLine.FieldCaption("Due Date"), AsmLine."Due Date", NewDate) then
+                        AsmLine.Validate("Due Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, AsmLine.FieldCaption("Variant Code"), AsmLine."Variant Code", NewVariantCode) then
+                        AsmLine.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewSiteCode) then
-                        Validate("Location Code", NewSiteCode);
+                    if ShowItemAvailByLoc(Item, AsmLine.FieldCaption("Location Code"), AsmLine."Location Code", NewSiteCode) then
+                        AsmLine.Validate("Location Code", NewSiteCode);
                 AvailabilityType::"Event":
-                    if ShowItemAvailByEvent(Item, FieldCaption("Due Date"), "Due Date", NewDate, false) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByEvent(Item, AsmLine.FieldCaption("Due Date"), AsmLine."Due Date", NewDate, false) then
+                        AsmLine.Validate("Due Date", NewDate);
                 AvailabilityType::BOM:
-                    if ShowItemAvailByBOMLevel(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByBOMLevel(Item, AsmLine.FieldCaption("Due Date"), AsmLine."Due Date", NewDate) then
+                        AsmLine.Validate("Due Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, AsmLine.FieldCaption("Unit of Measure Code"), AsmLine."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        AsmLine.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;
@@ -740,37 +740,37 @@ codeunit 60100 FBM_ItemAvFormsMgt_CO
         NewSiteCode: Code[20];
         NewUnitOfMeasureCode: Code[10];
     begin
-        with PlanningComp do begin
-            TestField("Item No.");
+        begin
+            PlanningComp.TestField("Item No.");
             Item.Reset();
-            Item.Get("Item No.");
-            FilterItem(Item, "Location Code", "Variant Code", "Due Date");
+            Item.Get(PlanningComp."Item No.");
+            FilterItem(Item, PlanningComp."Location Code", PlanningComp."Variant Code", PlanningComp."Due Date");
 
             OnBeforeShowItemAvailFromPlanningComp(Item, PlanningComp);
             case AvailabilityType of
                 AvailabilityType::Date:
-                    if ShowItemAvailByDate(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByDate(Item, PlanningComp.FieldCaption("Due Date"), PlanningComp."Due Date", NewDate) then
+                        PlanningComp.Validate("Due Date", NewDate);
                 AvailabilityType::Variant:
-                    if ShowItemAvailVariant(Item, FieldCaption("Variant Code"), "Variant Code", NewVariantCode) then
-                        Validate("Variant Code", NewVariantCode);
+                    if ShowItemAvailVariant(Item, PlanningComp.FieldCaption("Variant Code"), PlanningComp."Variant Code", NewVariantCode) then
+                        PlanningComp.Validate("Variant Code", NewVariantCode);
                 AvailabilityType::Site:
-                    if ShowItemAvailByLoc(Item, FieldCaption("Location Code"), "Location Code", NewSiteCode) then
-                        Validate("Location Code", NewSiteCode);
+                    if ShowItemAvailByLoc(Item, PlanningComp.FieldCaption("Location Code"), PlanningComp."Location Code", NewSiteCode) then
+                        PlanningComp.Validate("Location Code", NewSiteCode);
                 AvailabilityType::"Event":
                     begin
                         ForecastName := '';
-                        FindCurrForecastName(ForecastName);
+                        PlanningComp.FindCurrForecastName(ForecastName);
 
-                        if ShowItemAvailByEvent(Item, FieldCaption("Due Date"), "Due Date", NewDate, true) then
-                            Validate("Due Date", NewDate);
+                        if ShowItemAvailByEvent(Item, PlanningComp.FieldCaption("Due Date"), PlanningComp."Due Date", NewDate, true) then
+                            PlanningComp.Validate("Due Date", NewDate);
                     end;
                 AvailabilityType::BOM:
-                    if ShowItemAvailByBOMLevel(Item, FieldCaption("Due Date"), "Due Date", NewDate) then
-                        Validate("Due Date", NewDate);
+                    if ShowItemAvailByBOMLevel(Item, PlanningComp.FieldCaption("Due Date"), PlanningComp."Due Date", NewDate) then
+                        PlanningComp.Validate("Due Date", NewDate);
                 AvailabilityType::UOM:
-                    if ShowItemAvailByUOM(Item, FieldCaption("Unit of Measure Code"), "Unit of Measure Code", NewUnitOfMeasureCode) then
-                        Validate("Unit of Measure Code", NewUnitOfMeasureCode);
+                    if ShowItemAvailByUOM(Item, PlanningComp.FieldCaption("Unit of Measure Code"), PlanningComp."Unit of Measure Code", NewUnitOfMeasureCode) then
+                        PlanningComp.Validate("Unit of Measure Code", NewUnitOfMeasureCode);
             end;
         end;
     end;

@@ -21,7 +21,7 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
                 {
                     ApplicationArea = all;
                 }
-                field(FBM_FAProperty; Rec.FBM_FAProperty)
+                field(FBM_FAProperty; Rec.FBM_FAProperty2)
                 {
                     ApplicationArea = all;
                 }
@@ -91,7 +91,25 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
             {
                 ApplicationArea = all;
             }
-
+            group(GDPR)
+            {
+                field(FBM_GDPR_Company; Rec.FBM_GDPR_Company)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_GDPR_Address; Rec.FBM_GDPR_Address)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_GDPR_email; Rec.FBM_GDPR_email)
+                {
+                    ApplicationArea = all;
+                }
+                field(FBM_GDPR_Url; Rec.FBM_GDPR_Url)
+                {
+                    ApplicationArea = all;
+                }
+            }
         }
 #if MAIN
         modify("BIR PHL")
@@ -117,7 +135,7 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
         rec.FBM_CustIsOp := rec.FBM_EnSiteWS;
 
         fasetup.Get();
-        fasetup."FBM_FA Company" := rec.FBM_FAProperty;
+        fasetup."FBM_FA Company" := rec.FBM_FAProperty2;
         fasetup.Modify();
 
 

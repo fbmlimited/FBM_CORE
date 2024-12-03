@@ -6,6 +6,21 @@ pageextension 60120 FBM_FASetupExt_CO extends "Fixed Asset Setup"
 
         addafter(Numbering)
         {
+            group("FA Import")
+            {
+
+                field("FBM_FA Company"; Rec."FBM_FA Company")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Fixed Asset Company';
+                    //visible = false;
+                }
+                field(FBM_FAsubclassImport; Rec.FBM_FAsubclassImport)
+                {
+                    ApplicationArea = All;
+
+                }
+            }
             group(CustomerSiteTracking)
             {
                 Caption = 'Customer - Site Tracking';
@@ -38,14 +53,9 @@ pageextension 60120 FBM_FASetupExt_CO extends "Fixed Asset Setup"
                 {
                     ApplicationArea = All;
                 }
-                field("FBM_FA Company"; Rec."FBM_FA Company")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Fixed Asset Company';
-                    visible = false;
-                }
+
             }
         }
-    }
 
+    }
 }

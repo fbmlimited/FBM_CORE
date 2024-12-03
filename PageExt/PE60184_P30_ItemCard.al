@@ -72,6 +72,14 @@ pageextension 60184 FBM_ItemCardExt_CO extends "Item Card"
                         exit(false);
                 end;
             }
+            field(FBM_IsFreight; Rec.FBM_IsFreight)
+            {
+                ApplicationArea = all;
+            }
+            field(FBM_IsWht; Rec.FBM_IsWht)
+            {
+                ApplicationArea = all;
+            }
 
         }
     }

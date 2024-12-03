@@ -113,6 +113,42 @@ pageextension 60177 FBM_CashRecJnlExt_CO extends "Cash Receipt Journal"
     }
     actions
     {
+        addlast("P&osting")
+        {
+            action("Post/Customer Payment Receipt")
+            {
+                image = Receipt;
+                ApplicationArea = all;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Report;
+                trigger
+                OnAction()
+                var
+                    cle: record "Cust. Ledger Entry";
+                    rep: report "Customer - Payment Receipt";
+                    custno: code[20];
+                    docno: code[20];
+                begin
+                    custno := rec."Account No.";
+                    docno := rec."Document No.";
+                    Rec.SendToPosting(Codeunit::"Gen. Jnl.-Post");
+
+                    //CurrentJnlBatchName := Rec.GetRangeMax("Journal Batch Name");
+                    //SetJobQueueVisibility();
+                    CurrPage.Update(false);
+                    cle.SetRange("Customer No.", custno);
+                    cle.SetRange("Document No.", docno);
+                    cle.SetRange("Document Type", cle."Document Type"::Payment);
+                    rep.SetTableView(cle);
+                    rep.RunModal();
+
+
+                end;
+            }
+
+        }
+
     }
     var
         DimensionValue: Record "Dimension Value";
@@ -134,4 +170,5 @@ pageextension 60177 FBM_CashRecJnlExt_CO extends "Cash Receipt Journal"
         else
             SeeLCY := false;
     end;
+
 }

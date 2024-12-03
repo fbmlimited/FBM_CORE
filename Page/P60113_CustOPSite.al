@@ -48,6 +48,10 @@ page 60113 FBM_CustSite_CO
                 {
                     ApplicationArea = All;
                 }
+                field(ActiveRec; Rec.ActiveRec)
+                {
+                    ApplicationArea = All;
+                }
                 field(SName; rec."Site Name_FF")
                 {
                     ApplicationArea = All;

@@ -1,5 +1,7 @@
 pageextension 60127 FBM_ApprReqEntriesExt_CO extends "Approval Request Entries"
 {
+
+
     layout
     {
         addafter("Currency Code")
@@ -34,7 +36,13 @@ pageextension 60127 FBM_ApprReqEntriesExt_CO extends "Approval Request Entries"
         getshortdimensions: Codeunit "Get Shortcut Dimension Values";
         ShortcutDimCodeList: array[8] of Code[20];
 
+    trigger
+    OnOpenPage()
+    begin
+        PAGE.RunModal(PAGE::"FBM_ApprRequest Entries New_CO");
 
+        error('');
+    end;
 
     trigger OnAfterGetRecord()
     var

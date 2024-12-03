@@ -2,7 +2,7 @@
   "id": "e6857996-833b-464e-91d1-e5102f622d69",
   "name": "FBM_CORE",
   "publisher": "FBM Group",
-  "version": "124.5.156.191",
+  "version": "124.5.156.210",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -18,7 +18,7 @@
       "id": "9d836a4f-3b97-4179-ae7d-608f099ba7f3",
       "name": "FBM Data Dictionary",
       "publisher": "FBM Group",
-      "version": "124.5.156.9"
+      "version": "124.5.156.11"
     }
   ],
   "screenshots": [],
@@ -27,7 +27,7 @@
   "idRanges": [
     {
       "from": 60100,
-      "to": 60299
+      "to": 60999
     }
   ],
   "resourceExposurePolicy": {
@@ -37,7 +37,7 @@
   },
   "runtime": "13.0",
   "features": [
-    "NoImplicitWith"
+    "NoImplicitWith","TranslationFile"
   ],
   "target": "Cloud",
   "preprocessorSymbols":["JYM","SAAS"]

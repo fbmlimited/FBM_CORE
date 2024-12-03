@@ -757,7 +757,8 @@ report 60116 FBM_Check_CO
                             end
                     end;
 
-                    CheckDateText := Format("Posting Date", 0, 9);
+                    // CheckDateText := Format("Posting Date", 0, 9);
+                    CheckDateText := Format("Posting Date", 0, '<Month,2>/<Day,2>/<Year4>');
                 end else begin
                     if ChecksPrinted > 0 then
                         CurrReport.Break();
@@ -1039,7 +1040,8 @@ report 60116 FBM_Check_CO
     begin
         Clear(NoText);
         NoTextIndex := 1;
-        NoText[1] := '****';
+        //NoText[1] := '****';
+        NoText[1] := '';
         GLSetup.Get();
 
         if No < 1 then

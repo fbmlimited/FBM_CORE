@@ -1,7 +1,7 @@
-report 60102 "FBM_Drako Sales-Invnotpost_CO"
+report 60102 FBM_FBMSalesInvoice_CO
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './RDLC/R50020 Drako Sales InvoiceNotPosted.rdl';
+    RDLCLayout = './RDLC/R60102 FBMSalesInvoice.rdl';
     Caption = 'Sales Invoice';
 
     Permissions = TableData "Sales Shipment Buffer" = rimd;
@@ -9,17 +9,21 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
 
     dataset
     {
-        dataitem("Sales Header";
-        "Sales Header")
+        dataitem("Sales Invoice Header"; "Sales Invoice Header")
         {
             DataItemTableView = SORTING("No.");
-            RequestFilterFields = "No.", "Sell-to Customer No.", "No. Printed";
-            RequestFilterHeading = 'Sales Invoice';
+            RequestFilterFields = "No.";//, "Sell-to Customer No.", "No. Printed";
+            RequestFilterHeading = 'Posted Sales Invoice';
 
             column(CustomerNo;
             g_Customer."No.")
             {
             }
+            column(SiteAddr7;
+            SiteAddr[7])
+            {
+            }
+
             column(No_SalesInvHdr;
             ConvertStr("No.", '.', ' '))
             {
@@ -72,13 +76,179 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
             DisplayAdditionalFeeNote)
             {
             }
-            dataitem(CopyLoop;
-            "Integer")
+            column(Showperiod; Showperiod)
+            {
+            }
+            column(LocalCurrAmt; FBM_LocalCurrAmt)
+            {
+            }
+            column(Currency2; FBM_Currency2)
+            {
+            }
+            column(Curr1Name; Curr1Name)
+            {
+            }
+            column(Curr2Name; Curr2Name)
+            {
+            }
+            column(BeneficiaryBank; BenBank)
+            {
+            }
+            column(BeneficiaryBank2; BenBank2)
+            {
+            }
+            column(ForPaymentCaption; ForPaymentCaption)
+            {
+            }
+            column(Segment; FBM_Segment2)
+            {
+            }
+            column(Contract_Code; "FBM_Contract Code")
+            {
+            }
+            column(TandC; TandC)
+            {
+            }
+            column(VATText;
+            VATText)
+            {
+            }
+            column(TotalInclVATLbl;
+            TotalInclVATLbl)
+            {
+            }
+            column(TotalExclVATLbl;
+            TotalExclVATLbl)
+            {
+            }
+            column(Curr1;
+            Curr1)
+            {
+            }
+            column(Curr2;
+            Curr2)
+            {
+            }
+
+            column(VATAmtLineVATAmtText;
+            'VAT @ ')
+            {
+            }
+            column(SubtotalCaption;
+            SubtotalCaptionLbl)
+            {
+            }
+            column(TotalSubTotalC1;
+            TotalSubTotalC1)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalSubTotalC2;
+            TotalSubTotalC2)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalAmountVATC1;
+            TotalAmountVATC1)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalAmountInclVATC1;
+            TotalAmountInclVATC1)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalPaymentDiscOnVATC1;
+            TotalPaymentDiscOnVATC1)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalAmountC1;
+            TotalAmountC1)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalAmountVATC2;
+            TotalAmountVATC2)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalAmountInclVATC2;
+            TotalAmountInclVATC2)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalPaymentDiscOnVATC2;
+            TotalPaymentDiscOnVATC2)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalAmountC2;
+            TotalAmountC2)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalPreVATEUR;
+            TotalPreVATEUR)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalVATEUR;
+            TotalVATEUR)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(TotalEUR;
+            TotalEUR)
+            {
+                AutoFormatExpression = 'USD';
+                AutoFormatType = 1;
+            }
+            column(BankCurrencyCaption;
+            BankCurrencyCaption)
+            {
+            }
+            column(HasIntBank;
+            HasIntBank)
+            {
+            }
+            column(HasIntBank2;
+            HasIntBank2)
+            {
+            }
+            column(VALExchRate;
+            VALExchRate)
+            {
+            }
+            column(InqEmail;
+            InqEmail)
+            {
+            }
+            column(Curr1Cptn;
+            Curr1Cptn)
+            {
+            }
+            column(Curr2Cptn;
+            Curr2Cptn)
+            {
+            }
+            dataitem(CopyLoop; "Integer")
             {
                 DataItemTableView = SORTING(Number);
 
-                dataitem(PageLoop;
-                "Integer")
+                dataitem(PageLoop; "Integer")
                 {
                     DataItemTableView = SORTING(Number) WHERE(Number = CONST(1));
 
@@ -146,6 +316,10 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     CustAddr[5])
                     {
                     }
+                    column(TitleCaption;
+                    'INVOICE')
+                    {
+                    }
                     column(CompanyInfoPhoneNo;
                     CompanyInfo."Phone No.")
                     {
@@ -171,11 +345,11 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     {
                     }
                     column(BilltoCustNo_SalesInvHdr;
-                    "Sales Header"."Bill-to Customer No.")
+                    "Sales Invoice Header"."Bill-to Customer No.")
                     {
                     }
                     column(PostingDate_SalesInvHdr;
-                    Format("Sales Header"."Posting Date", 0, 4))
+                    Format("Sales Invoice Header"."Posting Date", 0, 4))
                     {
                     }
                     column(VATNoText;
@@ -189,7 +363,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     }
                     //column(DueDate_SalesInvHdr; Format("Sales Invoice Header"."Due Date", 0, 4))
                     column(DueDate_SalesInvHdr;
-                    Format("Sales Header"."Due Date", 0, '<Day,2>-<Month Text,3>-<Year4>'))
+                    Format("Sales Invoice Header"."Due Date", 0, '<Day,2>-<Month Text,3>-<Year4>'))
                     {
                     }
                     column(SalesPersonText;
@@ -205,7 +379,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     {
                     }
                     column(YourReference_SalesInvHdr;
-                    "Sales Header"."Your Reference")
+                    "Sales Invoice Header"."Your Reference")
                     {
                     }
                     column(OrderNoText;
@@ -213,7 +387,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     {
                     }
                     column(HdrOrderNo_SalesInvHdr;
-                    "Sales Header"."No.")
+                    "Sales Invoice Header"."Order No.")
                     {
                     }
                     column(CustAddr7;
@@ -235,11 +409,11 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     //BFT-001
                     //column(DocDate_SalesInvHdr; Format("Sales Invoice Header"."Document Date", 0, 4))
                     column(DocDate_SalesInvHdr;
-                    Format("Sales Header"."Document Date", 0, '<Day,2>-<Month Text,3>-<Year4>'))
+                    Format("Sales Invoice Header"."Document Date", 0, '<Day,2>-<Month Text,3>-<Year4>'))
                     {
                     }
                     column(PricesInclVAT_SalesInvHdr;
-                    "Sales Header"."Prices Including VAT")
+                    "Sales Invoice Header"."Prices Including VAT")
                     {
                     }
                     column(OutputNo;
@@ -247,7 +421,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     {
                     }
                     column(PricesInclVATYesNo_SalesInvHdr;
-                    Format("Sales Header"."Prices Including VAT"))
+                    Format("Sales Invoice Header"."Prices Including VAT"))
                     {
                     }
                     column(PageCaption;
@@ -295,11 +469,11 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     {
                     }
                     column(BilltoCustNo_SalesInvHdrCaption;
-                    "Sales Header".FieldCaption("Bill-to Customer No."))
+                    "Sales Invoice Header".FieldCaption("Bill-to Customer No."))
                     {
                     }
                     column(PricesInclVAT_SalesInvHdrCaption;
-                    "Sales Header".FieldCaption("Prices Including VAT"))
+                    "Sales Invoice Header".FieldCaption("Prices Including VAT"))
                     {
                     }
                     //BFT-001 -- begin
@@ -311,10 +485,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     PrintTIN)
                     {
                     }
-                    column(InqEmail;
-                    InqEmail)
-                    {
-                    }
+
                     column(CustomerRefCaption;
                     CustomerRefCaption)
                     {
@@ -367,10 +538,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     VATIDNoCaption)
                     {
                     }
-                    column(TitleCaption;
-                    TitleCaption)
-                    {
-                    }
+
                     column(SiteCaption;
                     SiteCaption)
                     {
@@ -383,10 +551,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     IBANCaption)
                     {
                     }
-                    column(BankCurrencyCaption;
-                    BankCurrencyCaption)
-                    {
-                    }
+
                     column(FurtherTransferCaption;
                     FurtherTransferCaption)
                     {
@@ -403,6 +568,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     CompanyInfo.FBM_BankAddress)
                     {
                     }
+
                     column(SIH_Currency;
                     Curr2)
                     {
@@ -435,10 +601,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     SiteAddr[6])
                     {
                     }
-                    column(SiteAddr7;
-                    SiteAddr[7])
-                    {
-                    }
+
                     column(HasSite;
                     HasSite)
                     {
@@ -479,10 +642,44 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     HasBank)
                     {
                     }
-                    column(HasIntBank;
-                    HasIntBank)
+
+                    column(BankDetails21;
+                    BankDetails2[1])
                     {
                     }
+                    column(BankDetails22;
+                    BankDetails2[2])
+                    {
+                    }
+                    column(BankDetails23;
+                    BankDetails2[3])
+                    {
+                    }
+                    column(BankDetails24;
+                    BankDetails2[4])
+                    {
+                    }
+                    column(BankDetails25;
+                    BankDetails2[5])
+                    {
+                    }
+                    column(BankDetails26;
+                    BankDetails2[6])
+                    {
+                    }
+                    column(BankDetails27;
+                    BankDetails2[7])
+                    {
+                    }
+                    column(BankDetails28;
+                    BankDetails2[8])
+                    {
+                    }
+                    column(HasBank2;
+                    HasBank2)
+                    {
+                    }
+
                     column(exchRate;
                     exchRate)
                     {
@@ -491,25 +688,31 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     CompanyInfo.FBM_TINNumber)
                     {
                     }
-                    //BFT-001 -- end                
-                    dataitem(DimensionLoop1;
-                    "Integer")
+                    column(gdprtxt; StrSubstNo(gdprtxt, CompanyInfo.FBM_GDPR_Company, CompanyInfo.FBM_GDPR_Address, CompanyInfo.FBM_GDPR_email, CompanyInfo.FBM_GDPR_Url))
                     {
-                        DataItemLinkReference = "Sales Header";
+                    }
+
+
+
+                    //BFT-001 -- end                
+
+                    dataitem(DimensionLoop1; "Integer")
+                    {
+                        DataItemLinkReference = "Sales Invoice Header";
                         DataItemTableView = SORTING(Number) WHERE(Number = FILTER(1 ..));
 
                         column(DimText;
                         DimText)
                         {
                         }
-                        column(DimensionLoop1Number;
-                        Number)
+                        column(DimensionLoop1Number; Number)
                         {
                         }
                         column(HeaderDimCaption;
                         HeaderDimCaptionLbl)
                         {
                         }
+
                         trigger OnAfterGetRecord()
                         begin
                             if Number = 1 then begin
@@ -533,42 +736,83 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                             until DimSetEntry1.Next = 0;
                         end;
 
-                        trigger OnPreDataItem()
-                        begin
-                            if not ShowInternalInfo then CurrReport.Break;
-                        end;
+
+
                     }
 
                     dataitem(TC;
                     FBM_TermsConditions)
                     {
 
-                        DataItemLinkReference = "Sales Header";
+                        DataItemLinkReference = "Sales Invoice Header";
 
                         column(TermsConditions;
                         "Terms Conditions")
                         {
                         }
                         trigger OnAfterGetRecord()
+                        var
+                            cr: char;
+                            lf: char;
+
                         begin
                             if ((g_Customer."Country/Region Code" = 'MX') OR (g_Customer."Country/Region Code" = 'PH')) then begin
                                 if (TC.Country <> g_Customer."Country/Region Code") then CurrReport.Skip();
                             end
                             else
                                 if (TC.Country <> '') then CurrReport.Skip();
+                            cr := 13;
+                            lf := 10;
+                            tandc := tandc + tc."Terms Conditions" + cr + lf;
                         end;
+
                     }
-                    dataitem("Sales Line";
-                    "Sales Line")
+                    dataitem("VAT Entry"; "VAT Entry")
                     {
                         DataItemLink = "Document No." = FIELD("No.");
-                        DataItemLinkReference = "Sales Header";
+                        DataItemLinkReference = "Sales Invoice Header";
+                        column(VAT_Prod__Posting_Group; "VAT Prod. Posting Group")
+                        {
+                        }
+                        column(Base; -Base)
+                        {
+                        }
+                        column(Amount; -Amount)
+                        {
+                        }
+                        column(vatpct; vatpct)
+                        {
+                        }
+                        column(Additional_Currency_Amount; -"Additional-Currency Amount")
+                        {
+                        }
+                        column(curr; curr)
+                        {
+                        }
+                        column(addcurr; addcurr)
+                        {
+                        }
+                        trigger
+                        OnAfterGetRecord()
+                        begin
+                            if vatsetup.get("VAT Entry"."VAT Bus. Posting Group", "VAT Entry"."VAT Prod. Posting Group") then
+                                vatpct := vatsetup."VAT %";
+                            GLSetup.Get();
+                            curr := GLSetup."LCY Code";
+                            addcurr := GLSetup."Additional Reporting Currency";
+                        end;
+                    }
+                    dataitem("Sales Invoice Line";
+                    "Sales Invoice Line")
+                    {
+                        DataItemLink = "Document No." = FIELD("No.");
+                        DataItemLinkReference = "Sales Invoice Header";
                         DataItemTableView = SORTING("Document No.", "Line No.");
 
                         column(LineAmt_SalesInvLine;
                         "Line Amount")
                         {
-                            //AutoFormatExpression = GetCurrencyCode;
+                            AutoFormatExpression = GetCurrencyCode;
                             AutoFormatType = 1;
                         }
                         column(Desc_SalesInvLine;
@@ -590,7 +834,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         column(UnitPrice_SalesInvLine;
                         "Unit Price")
                         {
-                            //AutoFormatExpression = GetCurrencyCode;
+                            AutoFormatExpression = GetCurrencyCode;
                             AutoFormatType = 2;
                         }
                         column(Discount_SalesInvLine;
@@ -612,19 +856,19 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         column(InvDiscLineAmt_SalesInvLine;
                         -"Inv. Discount Amount")
                         {
-                            //AutoFormatExpression = GetCurrencyCode;
+                            AutoFormatExpression = GetCurrencyCode;
                             AutoFormatType = 1;
                         }
                         column(TotalSubTotal;
                         TotalSubTotal)
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(TotalInvDiscAmount;
                         TotalInvDiscAmount)
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(TotalText;
@@ -634,31 +878,28 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         column(Amount_SalesInvLine;
                         Amount)
                         {
-                            // AutoFormatExpression = GetCurrencyCode;
+                            AutoFormatExpression = GetCurrencyCode;
                             AutoFormatType = 1;
                         }
                         column(TotalAmount;
                         TotalAmount)
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(Amount_AmtInclVAT;
                         "Amount Including VAT" - Amount)
                         {
-                            // AutoFormatExpression = GetCurrencyCode;
+                            AutoFormatExpression = GetCurrencyCode;
                             AutoFormatType = 1;
                         }
                         column(AmtInclVAT_SalesInvLine;
                         "Amount Including VAT")
                         {
-                            // AutoFormatExpression = GetCurrencyCode;
+                            AutoFormatExpression = GetCurrencyCode;
                             AutoFormatType = 1;
                         }
-                        column(VATAmtLineVATAmtText;
-                        'VAT @ ')
-                        {
-                        }
+
                         column(TotalExclVATText;
                         TotalExclVATText)
                         {
@@ -670,23 +911,23 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         column(TotalAmountInclVAT;
                         TotalAmountInclVAT)
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(TotalAmountVAT;
                         TotalAmountVAT)
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(LineAmtAfterInvDiscAmt;
                         -("Line Amount" - "Inv. Discount Amount" - "Amount Including VAT"))
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(VATBaseDisc_SalesInvHdr;
-                        "Sales Header"."VAT Base Discount %")
+                        "Sales Invoice Header"."VAT Base Discount %")
                         {
                             AutoFormatType = 1;
                         }
@@ -727,10 +968,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         PostedShipmentDateCaptionLbl)
                         {
                         }
-                        column(SubtotalCaption;
-                        SubtotalCaptionLbl)
-                        {
-                        }
+
                         column(LineAmtAfterInvDiscCptn;
                         LineAmtAfterInvDiscCptnLbl)
                         {
@@ -765,131 +1003,32 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         {
                         }
                         column(SIL_VATP;
-                        "Sales Line"."VAT %")
+                        "Sales Invoice Line"."VAT %")
                         {
                         }
                         column(VATLinePrint;
                         VATLinePrint)
                         {
                         }
-                        column(Curr1;
-                        Curr1)
-                        {
-                        }
-                        column(Curr2;
-                        Curr2)
-                        {
-                        }
-                        column(Curr1Cptn;
-                        Curr1Cptn)
-                        {
-                        }
-                        column(Curr2Cptn;
-                        Curr2Cptn)
-                        {
-                        }
-                        column(TotalSubTotalC1;
-                        TotalSubTotalC1)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
+
+
+
                         column(TotalInvDiscountAmountC1;
                         TotalInvDiscountAmountC1)
                         {
                             AutoFormatExpression = 'USD';
                             AutoFormatType = 1;
                         }
-                        column(TotalAmountVATC1;
-                        TotalAmountVATC1)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalAmountInclVATC1;
-                        TotalAmountInclVATC1)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalPaymentDiscOnVATC1;
-                        TotalPaymentDiscOnVATC1)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalAmountC1;
-                        TotalAmountC1)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalSubTotalC2;
-                        TotalSubTotalC2)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
+
+
                         column(TotalInvDiscountAmountC2;
                         TotalInvDiscountAmountC2)
                         {
                             AutoFormatExpression = 'USD';
                             AutoFormatType = 1;
                         }
-                        column(TotalAmountVATC2;
-                        TotalAmountVATC2)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalAmountInclVATC2;
-                        TotalAmountInclVATC2)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalPaymentDiscOnVATC2;
-                        TotalPaymentDiscOnVATC2)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalAmountC2;
-                        TotalAmountC2)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalPreVATEUR;
-                        TotalPreVATEUR)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalVATEUR;
-                        TotalVATEUR)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(TotalEUR;
-                        TotalEUR)
-                        {
-                            AutoFormatExpression = 'USD';
-                            AutoFormatType = 1;
-                        }
-                        column(VATText;
-                        VATText)
-                        {
-                        }
-                        column(TotalInclVATLbl;
-                        TotalInclVATLbl)
-                        {
-                        }
-                        column(TotalExclVATLbl;
-                        TotalExclVATLbl)
-                        {
-                        }
+
+
                         column(Period_Start;
                         Format("FBM_Period Start", 0, '<Day,2>-<Month Text,3>-<Year4>'))
                         {
@@ -898,6 +1037,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         Format("FBM_Period End", 0, '<Day,2>-<Month Text,3>-<Year4>'))
                         {
                         }
+
                         //BFT-001 -- end
                         dataitem("Sales Shipment Buffer";
                         "Integer")
@@ -927,8 +1067,8 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
 
                             trigger OnPreDataItem()
                             begin
-                                SalesShipmentBuffer.SetRange("Document No.", "Sales Line"."Document No.");
-                                SalesShipmentBuffer.SetRange("Line No.", "Sales Line"."Line No.");
+                                SalesShipmentBuffer.SetRange("Document No.", "Sales Invoice Line"."Document No.");
+                                SalesShipmentBuffer.SetRange("Line No.", "Sales Invoice Line"."Line No.");
                                 SetRange(Number, 1, SalesShipmentBuffer.Count);
                             end;
                         }
@@ -971,7 +1111,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                             trigger OnPreDataItem()
                             begin
                                 if not ShowInternalInfo then CurrReport.Break;
-                                DimSetEntry2.SetRange("Dimension Set ID", "Sales Line"."Dimension Set ID");
+                                DimSetEntry2.SetRange("Dimension Set ID", "Sales Invoice Line"."Dimension Set ID");
                             end;
                         }
                         dataitem(AsmLoop;
@@ -1008,7 +1148,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                                     TempPostedAsmLine.FindSet
                                 else
                                     TempPostedAsmLine.Next;
-                                if ItemTranslation.Get(TempPostedAsmLine."No.", TempPostedAsmLine."Variant Code", "Sales Header"."Language Code") then TempPostedAsmLine.Description := ItemTranslation.Description;
+                                if ItemTranslation.Get(TempPostedAsmLine."No.", TempPostedAsmLine."Variant Code", "Sales Invoice Header"."Language Code") then TempPostedAsmLine.Description := ItemTranslation.Description;
                             end;
 
                             trigger OnPreDataItem()
@@ -1020,38 +1160,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                                 SetRange(Number, 1, TempPostedAsmLine.Count);
                             end;
                         }
-                        trigger OnAfterGetRecord()
-                        begin
-                            // InitializeShipmentBuffer;
-                            if (Type = Type::"G/L Account") and (not ShowInternalInfo) then "No." := '';
-                            VATAmountLine.Init;
-                            VATAmountLine."VAT Identifier" := "VAT Identifier";
-                            VATAmountLine."VAT Calculation Type" := "VAT Calculation Type";
-                            VATAmountLine."Tax Group Code" := "Tax Group Code";
-                            VATAmountLine."VAT %" := "VAT %";
-                            VATAmountLine."VAT Base" := Amount;
-                            VATAmountLine."Amount Including VAT" := "Amount Including VAT";
-                            VATAmountLine."Line Amount" := "Line Amount";
-                            if "Allow Invoice Disc." then VATAmountLine."Inv. Disc. Base Amount" := "Line Amount";
-                            VATAmountLine."Invoice Discount Amount" := "Inv. Discount Amount";
-                            VATAmountLine."VAT Clause Code" := "VAT Clause Code";
-                            VATAmountLine.InsertLine;
-                            CalcVATAmountLineLCY("Sales Header", VATAmountLine, TempVATAmountLineLCY, VATBaseRemainderAfterRoundingLCY, AmtInclVATRemainderAfterRoundingLCY);
-                            TotalSubTotal += "Line Amount";
-                            TotalInvDiscAmount -= "Inv. Discount Amount";
-                            TotalAmount += Amount;
-                            TotalAmountVAT += "Amount Including VAT" - Amount;
-                            TotalAmountInclVAT += "Amount Including VAT";
-                            TotalPaymentDiscOnVAT += -("Line Amount" - "Inv. Discount Amount" - "Amount Including VAT");
-                            //BFT1.00
-                            CalculateCurrencyTotals("Sales Header", Curr1, Curr2);
-                            //BFT
-                            if ("Sales Line"."VAT %" = 0) then
-                                VATLinePrint := '-'
-                            else
-                                VATLinePrint := StrSubstNo('%1%', "Sales Line"."VAT %");
-                            //BFT
-                        end;
+
 
                         trigger OnPreDataItem()
                         begin
@@ -1077,31 +1186,31 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         column(VATAmtLineVATBase;
                         VATAmountLine."VAT Base")
                         {
-                            // AutoFormatExpression = "Sales Line".GetCurrencyCode;
+                            AutoFormatExpression = "Sales Invoice Line".GetCurrencyCode;
                             AutoFormatType = 1;
                         }
                         column(VATAmtLineVATAmt;
                         VATAmountLine."VAT Amount")
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(VATAmtLineLineAmt;
                         VATAmountLine."Line Amount")
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(VATAmtLineInvDiscBaseAmt;
                         VATAmountLine."Inv. Disc. Base Amount")
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(VATAmtLineInvDiscAmt;
                         VATAmountLine."Invoice Discount Amount")
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(VATAmtLineVATPer;
@@ -1159,7 +1268,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         column(VATClauseAmount;
                         VATAmountLine."VAT Amount")
                         {
-                            AutoFormatExpression = "Sales Header"."Currency Code";
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
                         column(VATClausesCaption;
@@ -1178,7 +1287,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         begin
                             VATAmountLine.GetLine(Number);
                             if not VATClause.Get(VATAmountLine."VAT Clause Code") then CurrReport.Skip;
-                            VATClause.TranslateDescription("Sales Header"."Language Code");
+                            VATClause.TranslateDescription("Sales Invoice Header"."Language Code");
                         end;
 
                         trigger OnPreDataItem()
@@ -1196,10 +1305,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         VALSpecLCYHeader)
                         {
                         }
-                        column(VALExchRate;
-                        VALExchRate)
-                        {
-                        }
+
                         column(VALVATBaseLCY;
                         VALVATBaseLCY)
                         {
@@ -1228,7 +1334,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
 
                         trigger OnPreDataItem()
                         begin
-                            if (not GLSetup."Print VAT specification in LCY") or ("Sales Header"."Currency Code" = '') then CurrReport.Break;
+                            if (not GLSetup."Print VAT specification in LCY") or ("Sales Invoice Header"."Currency Code" = '') then CurrReport.Break;
                             SetRange(Number, 1, VATAmountLine.Count);
                             Clear(VALVATBaseLCY);
                             Clear(VALVATAmountLCY);
@@ -1236,8 +1342,8 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                                 VALSpecLCYHeader := Text007 + Text008
                             else
                                 VALSpecLCYHeader := Text007 + Format(GLSetup."LCY Code");
-                            CurrExchRate.FindCurrency("Sales Header"."Posting Date", "Sales Header"."Currency Code", 1);
-                            CalculatedExchRate := Round(1 / "Sales Header"."Currency Factor" * CurrExchRate."Exchange Rate Amount", 0.000001);
+                            CurrExchRate.FindCurrency("Sales Invoice Header"."Posting Date", "Sales Invoice Header"."Currency Code", 1);
+                            CalculatedExchRate := Round(1 / "Sales Invoice Header"."Currency Factor" * CurrExchRate."Exchange Rate Amount", 0.000001);
                             VALExchRate := StrSubstNo(Text009, CalculatedExchRate, CurrExchRate."Exchange Rate Amount");
                         end;
                     }
@@ -1263,7 +1369,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         var
                             PaymentServiceSetup: Record "Payment Service Setup";
                         begin
-                            PaymentServiceSetup.CreateReportingArgs(PaymentReportingArgument, "Sales Header");
+                            PaymentServiceSetup.CreateReportingArgs(PaymentReportingArgument, "Sales Invoice Header");
                             if IsEmpty then CurrReport.Break;
                         end;
                     }
@@ -1273,7 +1379,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         DataItemTableView = SORTING(Number) WHERE(Number = CONST(1));
 
                         column(SelltoCustNo_SalesInvHdr;
-                        "Sales Header"."Sell-to Customer No.")
+                        "Sales Invoice Header"."Sell-to Customer No.")
                         {
                         }
                         column(ShipToAddr1;
@@ -1313,7 +1419,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         {
                         }
                         column(SelltoCustNo_SalesInvHdrCaption;
-                        "Sales Header".FieldCaption("Sell-to Customer No."))
+                        "Sales Invoice Header".FieldCaption("Sell-to Customer No."))
                         {
                         }
                         trigger OnPreDataItem()
@@ -1331,15 +1437,24 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         {
                         }
                         trigger OnAfterGetRecord()
+
                         begin
+
                             if not DisplayAdditionalFeeNote then CurrReport.Break;
                             if Number = 1 then begin
                                 if not TempLineFeeNoteOnReportHist.FindSet then CurrReport.Break
                             end
                             else
                                 if TempLineFeeNoteOnReportHist.Next = 0 then CurrReport.Break;
+
+
+
+
                         end;
+
+
                     }
+
                 }
                 trigger OnAfterGetRecord()
                 begin
@@ -1347,78 +1462,207 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                         CopyText := FormatDocument.GetCOPYText;
                         OutputNo += 1;
                     end;
-                    TotalSubTotal := 0;
-                    TotalInvDiscAmount := 0;
-                    TotalAmount := 0;
-                    TotalAmountVAT := 0;
-                    TotalAmountInclVAT := 0;
-                    TotalPaymentDiscOnVAT := 0;
-                    ResetLCYValues();
+
                 end;
 
                 trigger OnPostDataItem()
                 begin
-                    if not IsReportInPreviewMode then CODEUNIT.Run(CODEUNIT::"Sales Inv.-Printed", "Sales Header");
+                    if not IsReportInPreviewMode then CODEUNIT.Run(CODEUNIT::"Sales Inv.-Printed", "Sales Invoice Header");
+
                 end;
 
-                trigger OnPreDataItem()
+                trigger
+                                    OnPreDataItem()
+
                 begin
+
                     NoOfLoops := Abs(NoOfCopies) + Cust."Invoice Copies" + 1;
                     if NoOfLoops <= 0 then NoOfLoops := 1;
                     CopyText := '';
                     SetRange(Number, 1, NoOfLoops);
                     OutputNo := 1;
+
+
+
+
+                    // NoOfLoops := Abs(NoOfCopies) + Cust."Invoice Copies" + 1;
+                    // if NoOfLoops <= 0 then NoOfLoops := 1;
+                    CopyText := '';
+                    //SetRange(Number, 1, NoOfLoops);
+                    OutputNo := 1;
+
+
                 end;
+
             }
+
+            trigger
+            OnPreDataItem()
+            begin
+                TotalSubTotal := 0;
+                TotalInvDiscAmount := 0;
+                TotalAmount := 0;
+                TotalAmountVAT := 0;
+                TotalAmountInclVAT := 0;
+                TotalPaymentDiscOnVAT := 0;
+                ResetLCYValues();
+            end;
+
+
             trigger OnAfterGetRecord()
             var
                 Handled: Boolean;
+                tcrec: record FBM_TermsConditions;
+                sl: record "Sales Invoice Line";
+                sh: record "Sales Invoice Header";
+                cr: char;
+                lf: char;
             begin
+                //      trigger OnPostDataItem()
+                // begin
+                // OnAfterPostDataItem("Sales Invoice Header");
+                TotalSubTotal := 0;
+                TotalInvDiscAmount := 0;
+                TotalAmount := 0;
+                TotalAmountVAT := 0;
+                TotalAmountInclVAT := 0;
+                TotalPaymentDiscOnVAT := 0;
+                ResetLCYValues();
+                // end;
 
+                g_customer.get("Sales Invoice Header"."Bill-to Customer No.");
+                tcrec.SetRange(DocType, tcrec.DocType::SI);
+                tcrec.SetRange(Country, g_Customer."Country/Region Code");
+                if tcrec.FindFirst() then
+                    repeat
+                        if ((g_Customer."Country/Region Code" = 'MX') OR (g_Customer."Country/Region Code" = 'PH')) then begin
+                            if (TCrec.Country <> g_Customer."Country/Region Code") then tcrec.Next();
+                        end
+                        else
+                            if (TCrec.Country <> '') then tcrec.Next();
+                        cr := 13;
+                        lf := 10;
+                        tandc := tandc + tcrec."Terms Conditions" + cr + lf;
+                    until tcrec.Next() = 0;
                 CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
-
-                FormatSiteAddress("Sales Header");
-                FormatAddressFields("Sales Header");
-                FormatDocumentFields("Sales Header");
+                clear(SiteAddr);
+                FormatSiteAddress("Sales Invoice Header");
+                FormatAddressFields("Sales Invoice Header");
+                FormatDocumentFields("Sales Invoice Header");
                 if not Cust.Get("Bill-to Customer No.") then Clear(Cust);
                 DimSetEntry1.SetRange("Dimension Set ID", "Dimension Set ID");
                 GetLineFeeNoteOnReportHist("No.");
                 //BFT1.00
-                SetReportCurrencies(Curr1, Curr2, "Sales Header");
+
+                curr1 := "Sales Invoice Header"."Currency Code";
+                curr2 := "Sales Invoice Header".FBM_Currency2;
+
+
+                //CalculateCurrencyTotals("Sales Invoice Header", Curr1, Curr2);
+                SetReportCurrencies(Curr1, Curr2, "Sales Invoice Header");
                 //HasVAT := InvoiceHasVAT("Sales Invoice Header");
-                OnAfterGetRecordSalesInvoiceHeader("Sales Header");
+                OnAfterGetRecordSalesInvoiceHeader("Sales Invoice Header");
                 //OnGetReferenceText("Sales Invoice Header", ReferenceText, Handled);
                 //BFT-001
-                g_Customer.SetFilter(g_Customer."No.", "Sales Header"."Bill-to Customer No.");
+                g_Customer.SetFilter(g_Customer."No.", "Sales Invoice Header"."Bill-to Customer No.");
                 g_Customer.FindFirst;
                 PrintTIN := false;
+                if currency.get(curr1) then
+                    Curr1Name := currency.Description;
+                if currency.get(curr2) then
+                    Curr2Name := currency.Description;
+                if country.get(g_Customer."Country/Region Code") then
+                    if country.FBM_Account = '' then
+                        IBANCaption := 'IBAN'
+                    else
+                        IBANCaption := country.FBM_Account;
                 if (g_Customer."Country/Region Code" = 'MX') then begin
                     RFCCaption := 'RFC:';
-                    InqEmail := 'collections-mx@fbm.mt';
+                    InqEmail := 'adm.clientes@fbm.mt';
+
                 end
                 else
                     if (g_Customer."Country/Region Code" = 'PH') then begin
                         RFCCaption := 'TIN:';
-                        InqEmail := 'collections-ph@fbm.mt';
+                        InqEmail := 'adm.customers@fbm.mt';
                         PrintTIN := true;
+
                     end
                     else begin
                         RFCCaption := 'VAT:';
-                        InqEmail := 'collections@fbm.mt' //Probably needs changing
+                        InqEmail := 'adm.customers@fbm.mt';
+                        PrintTIN := false;
                     end;
+
+                CompanyInfo.get;
+                if CompanyInfo."Country/Region Code" = 'US' then begin
+                    InqEmail := 'admin@fbmgaming.com';
+
+                end;
+
+
+
                 FormatBankInfo(g_Customer);
                 //BFT-001
+                begin
+                    //if not ShowInternalInfo then CurrReport.Break;
+
+                    // sh.CopyFilter("No.", "Sales Invoice Header"."No.");
+                    // sh.FindFirst();
+                    sh.get("Sales Invoice Header"."No.");
+                    sl.SetRange("Document No.", "Sales Invoice Header"."No.");
+                    //sl.SetRange("Document No.", "Sales Invoice Header".GetFilter("No."));
+                    if sl.FindFirst() then
+                        repeat
+                            InitializeShipmentBuffer;
+                            if (sl.Type = sl.Type::"G/L Account") and (not ShowInternalInfo) then sl."No." := '';
+                            VATAmountLine.Init;
+                            VATAmountLine."VAT Identifier" := sl."VAT Identifier";
+                            VATAmountLine."VAT Calculation Type" := sl."VAT Calculation Type";
+                            VATAmountLine."Tax Group Code" := sl."Tax Group Code";
+                            VATAmountLine."VAT %" := sl."VAT %";
+                            VATAmountLine."VAT Base" := sl.Amount;
+                            VATAmountLine."Amount Including VAT" := sl."Amount Including VAT";
+                            VATAmountLine."Line Amount" := sl."Line Amount";
+                            if sl."Allow Invoice Disc." then VATAmountLine."Inv. Disc. Base Amount" := sl."Line Amount";
+                            VATAmountLine."Invoice Discount Amount" := sl."Inv. Discount Amount";
+                            VATAmountLine."VAT Clause Code" := sl."VAT Clause Code";
+                            VATAmountLine.InsertLine;
+                            CalcVATAmountLineLCY("Sales Invoice Header", VATAmountLine, TempVATAmountLineLCY, VATBaseRemainderAfterRoundingLCY, AmtInclVATRemainderAfterRoundingLCY);
+                            TotalSubTotal += sl."Line Amount";
+                            TotalInvDiscAmount -= sl."Inv. Discount Amount";
+                            TotalAmount += sl.Amount;
+                            TotalAmountVAT += sl."Amount Including VAT" - sl.Amount;
+                            TotalAmountInclVAT += sl."Amount Including VAT";
+                            TotalPaymentDiscOnVAT += -(sl."Line Amount" - sl."Inv. Discount Amount" - sl."Amount Including VAT");
+                            GLSetup.get;
+
+                            curr1 := sh."Currency Code";
+                            curr2 := sh.FBM_Currency2;
+
+                            //BFT1.00
+
+                            //BFT
+                            if (sl."VAT %" = 0) then
+                                VATLinePrint := '-'
+                            else
+                                VATLinePrint := StrSubstNo('%1%', sl."VAT %");
+                        //BFT
+                        until sl.Next() = 0;
+                    CalculateCurrencyTotals(sh, Curr1, Curr2);
+                end;
             end;
 
-            trigger OnPostDataItem()
-            begin
-                OnAfterPostDataItem("Sales Header");
-            end;
+
+
+
+
         }
         //BFT-001
 
         //BFT-001
     }
+
     requestpage
     {
         SaveValues = true;
@@ -1439,6 +1683,12 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                                   ToolTip = 'Specifies how many copies of the document to print.';
                               }
                               */
+                    field(Showperiod; Showperiod)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Show Periods';
+
+                    }
                     field(ShowInternalInfo; ShowInternalInfo)
                     {
                         ApplicationArea = Basic, Suite;
@@ -1479,30 +1729,38 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         begin
             InitLogInteraction;
             LogInteractionEnable := LogInteraction;
+            Showperiod := true;
         end;
+
+
     }
     labels
     {
     }
+
     trigger OnInitReport()
+
     begin
         GLSetup.Get;
         SalesSetup.Get;
         CompanyInfo.Get;
         FormatDocument.SetLogoPosition(SalesSetup."Logo Position on Documents", CompanyInfo1, CompanyInfo2, CompanyInfo3);
         OnAfterInitReport;
+
+
+
     end;
 
     trigger OnPostReport()
     begin
         if LogInteraction and not IsReportInPreviewMode then
-            if "Sales Header".FindSet then
+            if "Sales Invoice Header".FindSet then
                 repeat
-                //  if "Sales Header"."Bill-to Contact No." <> '' then
-                //    SegManagement.LogDocument(SegManagement.SalesInvoiceInterDocType, "Sales Header"."No.", 0, 0, DATABASE::Contact, "Sales Header"."Bill-to Contact No.", "Sales Header"."Salesperson Code", "Sales Header"."Campaign No.", "Sales Header"."Posting Description", '')
-                //else
-                //   SegManagement.LogDocument(SegManagement.SalesInvoiceInterDocType, "Sales Header"."No.", 0, 0, DATABASE::Customer, "Sales Header"."Bill-to Customer No.", "Sales Header"."Salesperson Code", "Sales Header"."Campaign No.", "Sales Header"."Posting Description", '');
-                until "Sales Header".Next = 0;
+                    if "Sales Invoice Header"."Bill-to Contact No." <> '' then
+                        SegManagement.LogDocument(enum::"Interaction Log Entry Document Type"::"Sales Inv.".AsInteger(), "Sales Invoice Header"."No.", 0, 0, DATABASE::Contact, "Sales Invoice Header"."Bill-to Contact No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '')
+                    else
+                        SegManagement.LogDocument(enum::"Interaction Log Entry Document Type"::"Sales Inv.".AsInteger(), "Sales Invoice Header"."No.", 0, 0, DATABASE::Customer, "Sales Invoice Header"."Bill-to Customer No.", "Sales Invoice Header"."Salesperson Code", "Sales Invoice Header"."Campaign No.", "Sales Invoice Header"."Posting Description", '');
+                until "Sales Invoice Header".Next = 0;
     end;
 
     trigger OnPreReport()
@@ -1627,6 +1885,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         EmailCaption: Label 'Email';
         PhoneCaption: Label 'Phone';
         PaymentCaption: Label 'PLEASE SEND PAYMENT TO:';
+        ForPaymentCaption: Label 'For Payments in';
         SWIFTCaption: Label 'SWIFT: ';
         AccountCaption: Label 'Account';
         BankAddressCaption: Label 'Bank Address: ';
@@ -1634,13 +1893,16 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         TitleCaption: Label 'INVOICE';
         SiteCaption: Label 'Site:';
         IntBankCaption: Label 'Intermediary Bank: ';
-        IBANCaption: Label 'Account: ';
+        IBANCaption: Text;
         BankCurrencyCaption: Label 'Currency: ';
         FurtherTransferCaption: Label 'FOR FURTHER TRANSFER TO BE FOWARDED TO:';
         PeriodStartCaption: Label 'Period Start';
         PeriodEndCaption: Label 'Period End';
         Curr1: Code[10];
         Curr2: Code[10];
+        currency: record Currency;
+        Curr1Name: text;
+        Curr2Name: text;
         Curr1Cptn: Text[10];
         Curr2Cptn: Text[10];
         TotalSubTotalC1: Decimal;
@@ -1670,6 +1932,9 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         BankDetails: array[8] of Text[250];
         HasBank: Boolean;
         HasIntBank: Boolean;
+        BankDetails2: array[8] of Text[250];
+        HasBank2: Boolean;
+        HasIntBank2: Boolean;
         VATLinePrint: Text[10];
         TotalPreVATEUR: Decimal;
         TotalVATEUR: Decimal;
@@ -1677,8 +1942,19 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         VATText: Text[200];
         InqEmail: Text[200];
         PrintTIN: Boolean;
-
+        country: record "Country/Region";
         reportcaption: Text;
+        Showperiod: Boolean;
+        BenBank: text[250];
+        BenBank2: text[250];
+        TandC: Text;
+        vatpct: Decimal;
+        vatsetup: record "VAT Posting Setup";
+        curr: code[10];
+        addcurr: code[10];
+        gdprtxt: label 'In accordance with the provisions of Regulation (EU) 2016/679 of 27 April 2016 (GDPR), we inform you that the personal data and email address, collected from the interested party will be processed under the responsibility of %1 for the management of billing, administration and taxation on the products or services provided to our clients and will be retained as long as there is a purpose for it. The personal data will not be shared to third parties, unless legally obligation. We inform you that you have the right to access, rectification, portability and erasure of your personal data and those of limitation and opposition to their processing by contacting us at %2, or by sending an e-mail to %3. If you consider that the processing does not comply with current regulations, you may submit a complaint with the supervisory authority at %4';
+
+
     //BFT-001 -- end
     procedure InitLogInteraction()
     begin
@@ -1698,17 +1974,17 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         TempSalesShipmentBuffer: Record "Sales Shipment Buffer" temporary;
     begin
         NextEntryNo := 1;
-        if "Sales Line"."Shipment No." <> '' then if SalesShipmentHeader.Get("Sales Line"."Shipment No.") then exit;
-        if "Sales Header"."No." = '' then exit;
-        case "Sales Line".Type of
-            "Sales Line".Type::Item:
-                GenerateBufferFromValueEntry("Sales Line");
-            "Sales Line".Type::"G/L Account", "Sales Line".Type::Resource, "Sales Line".Type::"Charge (Item)", "Sales Line".Type::"Fixed Asset":
-                GenerateBufferFromShipment("Sales Line");
+        if "Sales Invoice Line"."Shipment No." <> '' then if SalesShipmentHeader.Get("Sales Invoice Line"."Shipment No.") then exit;
+        if "Sales Invoice Header"."Order No." = '' then exit;
+        case "Sales Invoice Line".Type of
+            "Sales Invoice Line".Type::Item:
+                GenerateBufferFromValueEntry("Sales Invoice Line");
+            "Sales Invoice Line".Type::"G/L Account", "Sales Invoice Line".Type::Resource, "Sales Invoice Line".Type::"Charge (Item)", "Sales Invoice Line".Type::"Fixed Asset":
+                GenerateBufferFromShipment("Sales Invoice Line");
         end;
         SalesShipmentBuffer.Reset;
-        SalesShipmentBuffer.SetRange("Document No.", "Sales Line"."Document No.");
-        SalesShipmentBuffer.SetRange("Line No.", "Sales Line"."Line No.");
+        SalesShipmentBuffer.SetRange("Document No.", "Sales Invoice Line"."Document No.");
+        SalesShipmentBuffer.SetRange("Line No.", "Sales Invoice Line"."Line No.");
         if SalesShipmentBuffer.Find('-') then begin
             TempSalesShipmentBuffer := SalesShipmentBuffer;
             if SalesShipmentBuffer.Next = 0 then begin
@@ -1717,14 +1993,14 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                 exit;
             end;
             SalesShipmentBuffer.CalcSums(Quantity);
-            if SalesShipmentBuffer.Quantity <> "Sales Line".Quantity then begin
+            if SalesShipmentBuffer.Quantity <> "Sales Invoice Line".Quantity then begin
                 SalesShipmentBuffer.DeleteAll;
                 exit;
             end;
         end;
     end;
 
-    local procedure GenerateBufferFromValueEntry(SalesInvoiceLine2: Record "Sales Line")
+    local procedure GenerateBufferFromValueEntry(SalesInvoiceLine2: Record "Sales Invoice Line")
     var
         ValueEntry: Record "Value Entry";
         ItemLedgerEntry: Record "Item Ledger Entry";
@@ -1734,7 +2010,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         TotalQuantity := SalesInvoiceLine2."Quantity (Base)";
         ValueEntry.SetCurrentKey("Document No.");
         ValueEntry.SetRange("Document No.", SalesInvoiceLine2."Document No.");
-        ValueEntry.SetRange("Posting Date", "Sales Header"."Posting Date");
+        ValueEntry.SetRange("Posting Date", "Sales Invoice Header"."Posting Date");
         ValueEntry.SetRange("Item Charge No.", '');
         ValueEntry.SetFilter("Entry No.", '%1..', FirstValueEntryNo);
         if ValueEntry.Find('-') then
@@ -1751,19 +2027,19 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
             until (ValueEntry.Next = 0) or (TotalQuantity = 0);
     end;
 
-    local procedure GenerateBufferFromShipment(SalesInvoiceLine: Record "Sales Line")
+    local procedure GenerateBufferFromShipment(SalesInvoiceLine: Record "Sales Invoice Line")
     var
-        SalesInvoiceHeader: Record "Sales Header";
-        SalesInvoiceLine2: Record "Sales Line";
+        SalesInvoiceHeader: Record "Sales Invoice Header";
+        SalesInvoiceLine2: Record "Sales Invoice Line";
         SalesShipmentHeader: Record "Sales Shipment Header";
         SalesShipmentLine: Record "Sales Shipment Line";
         TotalQuantity: Decimal;
         Quantity: Decimal;
     begin
         TotalQuantity := 0;
-        SalesInvoiceHeader.SetCurrentKey("No.");
-        SalesInvoiceHeader.SetFilter("No.", '..%1', "Sales Header"."No.");
-        SalesInvoiceHeader.SetRange("No.", "Sales Header"."No.");
+        SalesInvoiceHeader.SetCurrentKey("Order No.");
+        SalesInvoiceHeader.SetFilter("No.", '..%1', "Sales Invoice Header"."No.");
+        SalesInvoiceHeader.SetRange("Order No.", "Sales Invoice Header"."Order No.");
         if SalesInvoiceHeader.Find('-') then
             repeat
                 SalesInvoiceLine2.SetRange("Document No.", SalesInvoiceHeader."No.");
@@ -1777,7 +2053,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     until SalesInvoiceLine2.Next = 0;
             until SalesInvoiceHeader.Next = 0;
         SalesShipmentLine.SetCurrentKey("Order No.", "Order Line No.");
-        SalesShipmentLine.SetRange("Order No.", "Sales Header"."No.");
+        SalesShipmentLine.SetRange("Order No.", "Sales Invoice Header"."Order No.");
         SalesShipmentLine.SetRange("Order Line No.", SalesInvoiceLine."Line No.");
         SalesShipmentLine.SetRange("Line No.", SalesInvoiceLine."Line No.");
         SalesShipmentLine.SetRange(Type, SalesInvoiceLine.Type);
@@ -1786,7 +2062,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         SalesShipmentLine.SetFilter(Quantity, '<>%1', 0);
         if SalesShipmentLine.Find('-') then
             repeat
-                if "Sales Header"."Get Shipment Used" then CorrectShipment(SalesShipmentLine);
+                if "Sales Invoice Header"."Get Shipment Used" then CorrectShipment(SalesShipmentLine);
                 if Abs(SalesShipmentLine.Quantity) <= Abs(TotalQuantity - SalesInvoiceLine.Quantity) then
                     TotalQuantity := TotalQuantity - SalesShipmentLine.Quantity
                 else begin
@@ -1801,7 +2077,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
 
     local procedure CorrectShipment(var SalesShipmentLine: Record "Sales Shipment Line")
     var
-        SalesInvoiceLine: Record "Sales Line";
+        SalesInvoiceLine: Record "Sales Invoice Line";
     begin
         SalesInvoiceLine.SetCurrentKey("Shipment No.", "Shipment Line No.");
         SalesInvoiceLine.SetRange("Shipment No.", SalesShipmentLine."Document No.");
@@ -1812,7 +2088,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
             until SalesInvoiceLine.Next = 0;
     end;
 
-    local procedure AddBufferEntry(SalesInvoiceLine: Record "Sales Line";
+    local procedure AddBufferEntry(SalesInvoiceLine: Record "Sales Invoice Line";
     QtyOnShipment: Decimal;
     PostingDate: Date)
     begin
@@ -1841,9 +2117,9 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
     var
         DocCaption: Text;
     begin
-        OnBeforeGetDocumentCaption("Sales Header", DocCaption);
+        OnBeforeGetDocumentCaption("Sales Invoice Header", DocCaption);
         if DocCaption <> '' then exit(DocCaption);
-        //if "Sales Header"."Prepayment Invoice" then exit(Text010);
+        if "Sales Invoice Header"."Prepayment Invoice" then exit(Text010);
         exit(Text004);
     end;
 
@@ -1858,7 +2134,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         DisplayAssemblyInformation := DisplayAsmInfo;
     end;
 
-    local procedure FormatDocumentFields(SalesInvoiceHeader: Record "Sales Header")
+    local procedure FormatDocumentFields(SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
         begin
             //BFT-001
@@ -1866,22 +2142,32 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
             FormatDocument.SetSalesPerson(SalesPurchPerson, SalesInvoiceHeader."Salesperson Code", SalesPersonText);
             FormatDocument.SetPaymentTerms(PaymentTerms, SalesInvoiceHeader."Payment Terms Code", SalesInvoiceHeader."Language Code");
             FormatDocument.SetShipmentMethod(ShipmentMethod, SalesInvoiceHeader."Shipment Method Code", SalesInvoiceHeader."Language Code");
-            OrderNoText := FormatDocument.SetText(SalesInvoiceHeader."No." <> '', SalesInvoiceHeader.FieldCaption("No."));
+            OrderNoText := FormatDocument.SetText(SalesInvoiceHeader."Order No." <> '', SalesInvoiceHeader.FieldCaption("Order No."));
             ReferenceText := FormatDocument.SetText(SalesInvoiceHeader."Your Reference" <> '', SalesInvoiceHeader.FieldCaption("Your Reference"));
             VATNoText := FormatDocument.SetText(SalesInvoiceHeader."VAT Registration No." <> '', SalesInvoiceHeader.FieldCaption("VAT Registration No."));
         end;
     end;
 
-    local procedure FormatAddressFields(SalesInvoiceHeader: Record "Sales Header")
+    local procedure FormatAddressFields(SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
         //BFT-001
         //FormatAddr.GetCompanyAddr(SalesInvoiceHeader."Responsibility Center", RespCenter, CompanyInfo, CompanyAddr);
         FormatAddrCountry.GetCompanyAddrCountry(SalesInvoiceHeader."Responsibility Center", RespCenter, CompanyInfo, CompanyAddr);
         //FormatAddr.SalesInvBillTo(CustAddr, SalesInvoiceHeader);
-        FormatAddr.SalesHeaderBillTo(CustAddr, SalesInvoiceHeader);
-        ShowShippingAddr := FormatAddr.SalesHeaderShipTo(ShipToAddr, CustAddr, SalesInvoiceHeader);
+        formataddr.SalesInvSellTo(CustAddr, SalesInvoiceHeader);
+        ShowShippingAddr := FormatAddr.SalesInvShipTo(ShipToAddr, CustAddr, SalesInvoiceHeader);
     end;
+    //  local procedure SalesInvSellTo2(var AddrArray: array[8] of Text[100]; var SalesInvHeader: Record "Sales Invoice Header")
+    //     var
+    //        customer:record customer;
+    //     begin
+    //        customer.get("Sales Invoice Header"."Sell-to Customer No.")
 
+    //         with SalesInvHeader do
+    //             formataddr.FormatAddr(
+    //               AddrArray, customer.Name, customer."Name 2", "Sell-to Contact", customer.address, customer."Address 2",
+    //                customer, "Sell-to Post Code", "Sell-to County", "Sell-to Country/Region Code");
+    //     end;
     local procedure CollectAsmInformation()
     var
         ValueEntry: Record "Value Entry";
@@ -1891,12 +2177,12 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         SalesShipmentLine: Record "Sales Shipment Line";
     begin
         TempPostedAsmLine.DeleteAll;
-        if "Sales Line".Type <> "Sales Line".Type::Item then exit;
+        if "Sales Invoice Line".Type <> "Sales Invoice Line".Type::Item then exit;
         begin
             ValueEntry.SetCurrentKey("Document No.");
-            ValueEntry.SetRange("Document No.", "Sales Line"."Document No.");
+            ValueEntry.SetRange("Document No.", "Sales Invoice Line"."Document No.");
             ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Sales Invoice");
-            ValueEntry.SetRange("Document Line No.", "Sales Line"."Line No.");
+            ValueEntry.SetRange("Document Line No.", "Sales Invoice Line"."Line No.");
             ValueEntry.SetRange(Adjustment, false);
             if not ValueEntry.FindSet then exit;
         end;
@@ -1974,7 +2260,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         end;
     end;
 
-    local procedure CalcVATAmountLineLCY(SalesInvoiceHeader: Record "Sales Header";
+    local procedure CalcVATAmountLineLCY(SalesInvoiceHeader: Record "Sales Invoice Header";
     TempVATAmountLine2: Record "VAT Amount Line" temporary;
     var TempVATAmountLineLCY2: Record "VAT Amount Line" temporary;
     var VATBaseRemainderAfterRoundingLCY2: Decimal;
@@ -2009,7 +2295,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
 
     local procedure SetReportCurrencies(var Currency1: Code[10];
     var Currency2: Code[10];
-    SIH: Record "Sales Header")
+    SIH: Record "Sales Invoice Header")
     var
         l_GLSetup: record "General Ledger Setup";
     begin
@@ -2023,30 +2309,30 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                 Curr2Cptn := GLSetup."Additional Reporting Currency";
             end
             else*/
-        if ((SIH."Currency Code" <> '') AND (SIH."Currency Code" <> GLSetup."LCY Code")) then //if not in LCY, values should be shown in FCY & LCY
-     begin
-            Currency1 := SIH."Currency Code";
-            Currency2 := GLSetup."LCY Code";
-            Curr1Cptn := SIH."Currency Code";
-            Curr2Cptn := GLSetup."LCY Code";
-        end
-        else begin //if in LCY, values should be shown in LCY;
-            Currency1 := GLSetup."LCY Code";
-            Currency2 := '';
-            Curr1Cptn := GLSetup."LCY Code";
-            Curr2Cptn := '';
-        end;
+        // if ((SIH."Currency Code" <> '') AND (SIH."Currency Code" <> GLSetup."LCY Code")) then //if not in LCY, values should be shown in FCY & LCY
+
+        Currency1 := SIH."Currency Code";
+        Currency2 := sih.FBM_Currency2;
+        Curr1Cptn := SIH."Currency Code";
+        Curr2Cptn := sih.FBM_Currency2;
+        // else begin //if in LCY, values should be shown in LCY;
+        //     Currency1 := GLSetup."LCY Code";
+        //     Currency2 := '';
+        //     Curr1Cptn := GLSetup."LCY Code";
+        //     Curr2Cptn := '';
+
+        // end;
     end;
     //end;
     //BFT-001 -- begin
-    local procedure CalculateCurrencyTotals(var SIHeader: record "Sales Header";
+    local procedure CalculateCurrencyTotals(var SIHeader: record "Sales Invoice Header";
     Currency1: Code[10];
     Currency2: Code[10])
     var
         GLSetup: Record "General Ledger Setup";
     begin
         GLSetup.get();
-        if ((Currency1 = GLSetup."LCY Code") AND (Currency2 = '')) then begin
+        if ((Currency1 = GLSetup."LCY Code") AND (Currency2 = '') and (SIHeader.FBM_Currency2 = '')) then begin
             //calculate LCY only
             CalcLCY();
         end
@@ -2057,15 +2343,19 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                     CalcLCYARC(SIHeader."Posting Date", ARC);
                 end*/
         else
-            if ((Currency1 <> GLSetup."LCY Code") AND (Currency2 = GLSetup."LCY Code")) then begin
+            if (SIHeader.FBM_Currency2 = '') and ((Currency1 <> GLSetup."LCY Code") AND (Currency2 = GLSetup."LCY Code")) or ((SIHeader.FBM_Currency2 = '') and (Currency1 = GLSetup."LCY Code") AND (Currency2 <> GLSetup."LCY Code")) then begin
                 //calculate FCY & LCY
                 CalcFCYLCY(SIHeader);
-            end;
+            end
+            else
+                // if SIHeader.FBM_Currency2 <> '' then
+                    calcC1C2(siheader);
         CalcVATEUR(SIHeader."Posting Date");
     end;
 
     local procedure CalcLCY()
     begin
+        ResetLCYValues();
         TotalSubTotalC1 := TotalSubTotal;
         TotalInvDiscountAmountC1 := TotalInvDiscAmount;
         TotalAmountC1 := TotalAmount;
@@ -2120,19 +2410,21 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         if CurrencyExchangeRate.FindLast() then begin
             exchRate := CurrencyExchangeRate."Exchange Rate Amount";
         end;
-        If (Curr1 = GLSetup."LCY Code") then begin
+        If (Curr1 = 'EUR') then begin
+            TotalPreVATEUR := TotalSubTotalC1;
+            TotalVATEUR := TotalAmountVATC1;
+            TotalEUR := TotalAmountInclVATC1;
+        end
+        else begin
             TotalPreVATEUR := TotalSubTotalC1 * exchrate;
             TotalVATEUR := TotalAmountVATC1 * exchrate;
             TotalEUR := TotalAmountInclVATC1 * exchrate;
-        end
-        else begin
-            TotalPreVATEUR := TotalSubTotalC2 * exchrate;
-            TotalVATEUR := TotalAmountVATC2 * exchrate;
-            TotalEUR := TotalAmountInclVATC2 * exchrate;
         end;
+
+
     end;
 
-    local procedure CalcFCYLCY(SIHeader: Record "Sales Header")
+    local procedure CalcFCYLCY(SIHeader: Record "Sales Invoice Header")
     begin
         exchRate := SIHeader."Currency Factor";
         TotalSubTotalC1 := TotalSubTotal;
@@ -2148,6 +2440,26 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         TotalAmountInclVATC2 := TotalAmountInclVAT / exchRate;
         TotalPaymentDiscOnVATC2 := TotalPaymentDiscOnVAT / exchRate;
     end;
+
+    local procedure CalcC1C2(SIHeader: Record "Sales Invoice Header")
+    begin
+
+        TotalSubTotalC1 := TotalSubTotal;
+
+        TotalAmountC1 := TotalAmount;
+        TotalAmountVATC1 := TotalAmountVAT;
+        TotalAmountInclVATC1 := TotalAmountInclVAT;
+
+        TotalSubTotalC2 := SIHeader.FBM_LocalCurrAmt;
+
+        TotalAmountC2 := SIHeader.FBM_LocalCurrAmt;
+        ;
+        TotalAmountVATC2 := 0;
+        TotalAmountInclVATC2 := SIHeader.FBM_LocalCurrAmt;
+        ;
+
+    end;
+
 
     local procedure ResetLCYValues()
     begin
@@ -2165,7 +2477,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
         TotalPaymentDiscOnVATC2 := 0;
     end;
 
-    local procedure InvoiceHasVAT(VATSIH: Record "Sales Header"): Boolean
+    local procedure InvoiceHasVAT(VATSIH: Record "Sales Invoice Header"): Boolean
     begin
         VATSIH.CalcFields("Amount Including VAT");
         VATSIH.CalcFields(Amount);
@@ -2176,19 +2488,19 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
     end;
     //BFT-001 -- end
     [IntegrationEvent(false, false)]
-    procedure OnAfterGetRecordSalesInvoiceHeader(SalesInvoiceHeader: Record "Sales Header")
+    procedure OnAfterGetRecordSalesInvoiceHeader(SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnBeforeGetDocumentCaption(SalesInvoiceHeader: Record "Sales Header";
+    local procedure OnBeforeGetDocumentCaption(SalesInvoiceHeader: Record "Sales Invoice Header";
     var DocCaption: Text)
     begin
     end;
 
     [IntegrationEvent(false, false)]
     [Scope('OnPrem')]
-    procedure OnGetReferenceText(SalesInvoiceHeader: Record "Sales Header";
+    procedure OnGetReferenceText(SalesInvoiceHeader: Record "Sales Invoice Header";
     var ReferenceText: Text[80];
     var Handled: Boolean)
     begin
@@ -2200,16 +2512,19 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
     end;
 
     [IntegrationEvent(TRUE, false)]
-    local procedure OnAfterPostDataItem(var SalesInvoiceHeader: Record "Sales Header")
+    local procedure OnAfterPostDataItem(var SalesInvoiceHeader: Record "Sales Invoice Header")
     begin
     end;
 
-    local procedure FormatSiteAddress(var SalesInvoiceHeader: Record "Sales Header")
+    local procedure FormatSiteAddress(var SalesInvoiceHeader: Record "Sales Invoice Header")
     var
         Cnt: Record "Country/Region";
     begin
+
+
         if (SalesInvoiceHeader.FBM_Site <> '') then begin
-            Site.SetFilter(Site."Site Code", SalesInvoiceHeader.FBM_Site);
+            site.Reset();
+            Site.Setrange(Site."Site Code", SalesInvoiceHeader.FBM_Site);
             Site.SetRange(ActiveRec, true);
             if (Site.FindFirst()) then begin
                 site.CalcFields(Address_FF, "Address 2_FF", "Site Name_FF", City_FF, "Post Code_FF", "Country/Region Code_FF", County_FF);
@@ -2223,7 +2538,7 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                 else
                     SiteAddr[4] := Site.City_FF;
                 SiteAddr[5] := Site."Post Code_FF";
-                Cnt.Get(Site."Country/Region Code_FF");
+                if Cnt.Get(Site."Country/Region Code_FF") then;
                 SiteAddr[6] := Cnt.Name;
                 SiteAddr[7] := Site."Site Code";
             end
@@ -2238,9 +2553,13 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
     var
         PaymentBank: Record "Bank Account";
     begin
+
+        CompanyInfo.Get();
+        GLSetup.Get();
         if (Cust."FBM_Payment Bank Code" <> '') then begin
             PaymentBank.SetFilter("No.", Cust."FBM_Payment Bank Code");
             if (PaymentBank.FindFirst()) then begin
+                BenBank := PaymentBank.FBM_Beneficiary;
                 // BankDetails[1] := PaymentBank."Intermediary Bank";
                 // BankDetails[2] := PaymentBank."Intermediary SWIFT";
                 BankDetails[3] := PaymentBank.Name;
@@ -2255,10 +2574,42 @@ report 60102 "FBM_Drako Sales-Invnotpost_CO"
                 else
                     HasIntBank := true;
             end
-            else
+            else begin
+                BenBank := CompanyInfo.Name;
+                // BankDetails[1] := CompanyInfo."Intermediary Bank";
+                // BankDetails[2] := CompanyInfo."Intermediary SWIFT";
+                BankDetails[3] := CompanyInfo."Bank Name";
+                BankDetails[4] := CompanyInfo."SWIFT Code";
+                BankDetails[5] := CompanyInfo.IBAN;
+                BankDetails[6] := GLSetup."LCY Code";
+                BankDetails[7] := CompanyInfo.FBM_BankAddress;
+                //BankDetails[8] := CompanyInfo."Bank Address 2"
                 HasBank := false;
+            end;
         end
         else
             HasBank := false;
+        if (Cust."FBM_Payment Bank Code2" <> '') then begin
+            PaymentBank.SetFilter("No.", Cust."FBM_Payment Bank Code2");
+            if (PaymentBank.FindFirst()) then begin
+                BenBank2 := PaymentBank.FBM_Beneficiary;
+                // BankDetails2[1] := PaymentBank."Intermediary Bank";
+                // BankDetails2[2] := PaymentBank."Intermediary SWIFT";
+                BankDetails2[3] := PaymentBank.Name;
+                BankDetails2[4] := PaymentBank."SWIFT Code";
+                BankDetails2[5] := PaymentBank.IBAN;
+                BankDetails2[6] := PaymentBank."Currency Code";
+                BankDetails2[7] := PaymentBank.Address;
+                BankDetails2[8] := PaymentBank."Address 2";
+                HasBank2 := true;
+                if ((BankDetails2[1] = '') OR (BankDetails2[2] = '')) then
+                    HasIntBank2 := false
+                else
+                    HasIntBank2 := true;
+            end;
+
+        end
+        else
+            HasBank2 := false;
     end;
 }

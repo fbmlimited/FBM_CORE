@@ -289,6 +289,7 @@ Last(Fields!CheckToAddr5.Value), 2)</Hidden>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -358,7 +359,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
         <Height>0.52989cm</Height>
         <Style />
       </Body>
-      <Width>20.07349cm</Width>
+      <Width>20.18956cm</Width>
       <Page>
         <PageHeader>
           <Height>6cm</Height>
@@ -383,9 +384,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.256cm</Top>
-              <Left>15.096cm</Left>
-              <Height>0.52883cm</Height>
+              <Top>0.99142cm</Top>
+              <Left>15.781cm</Left>
+              <Height>0.79341cm</Height>
               <Width>0.52918cm</Width>
               <Style>
                 <Border />
@@ -401,7 +402,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= "*"+Code.GetData(3,2)+"*"</Value>
+                      <Value>=Code.GetData(3,2)</Value>
                       <Style>
                         <FontFamily>IDAutomationSec1B</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -430,7 +431,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetData(1,2)+"****"</Value>
+                      <Value>=Code.GetData(1,2)</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -457,7 +458,7 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>="**" + Code.GetData(5,3) + "**"</Value>
+                      <Value>= Code.GetData(5,3)</Value>
                       <Style>
                         <FontFamily>IDAutomationSec1B</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -469,9 +470,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                 </Paragraph>
               </Paragraphs>
               <Top>2.043cm</Top>
-              <Left>14.712cm</Left>
+              <Left>15.15297cm</Left>
               <Height>0.59939cm</Height>
-              <Width>4.30923cm</Width>
+              <Width>3.86826cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border />
@@ -497,9 +498,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.256cm</Top>
-              <Left>15.528cm</Left>
-              <Height>0.52883cm</Height>
+              <Top>0.99142cm</Top>
+              <Left>16.213cm</Left>
+              <Height>0.79341cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
@@ -526,9 +527,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.256cm</Top>
-              <Left>16.299cm</Left>
-              <Height>0.52883cm</Height>
+              <Top>0.99142cm</Top>
+              <Left>16.984cm</Left>
+              <Height>0.79341cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
@@ -555,9 +556,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.256cm</Top>
-              <Left>16.807cm</Left>
-              <Height>0.52883cm</Height>
+              <Top>0.99142cm</Top>
+              <Left>17.492cm</Left>
+              <Height>0.79341cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>6</ZIndex>
               <Style>
@@ -584,9 +585,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.256cm</Top>
-              <Left>17.492cm</Left>
-              <Height>0.52883cm</Height>
+              <Top>0.99142cm</Top>
+              <Left>18.177cm</Left>
+              <Height>0.79341cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>7</ZIndex>
               <Style>
@@ -613,9 +614,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.256cm</Top>
-              <Left>17.992cm</Left>
-              <Height>0.52883cm</Height>
+              <Top>0.99142cm</Top>
+              <Left>18.677cm</Left>
+              <Height>0.79341cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>8</ZIndex>
               <Style>
@@ -642,9 +643,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.256cm</Top>
-              <Left>18.491cm</Left>
-              <Height>0.52883cm</Height>
+              <Top>0.99142cm</Top>
+              <Left>19.176cm</Left>
+              <Height>0.79341cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>9</ZIndex>
               <Style>
@@ -671,9 +672,9 @@ CStr(Last(Fields!VoidText.Value))+ Chr(177) , 3)</Hidden>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.256cm</Top>
-              <Left>18.982cm</Left>
-              <Height>0.52883cm</Height>
+              <Top>0.99142cm</Top>
+              <Left>19.667cm</Left>
+              <Height>0.79341cm</Height>
               <Width>0.52256cm</Width>
               <ZIndex>10</ZIndex>
               <Style>

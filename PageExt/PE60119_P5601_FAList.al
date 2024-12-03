@@ -187,7 +187,7 @@ pageextension 60119 FBM_FAListExt_CO extends "Fixed Asset List"
 
             until comp.Next() = 0;
         end;
-#if not JYM
+#if MAIN
         fale.SetRange("FA No.", rec."No.");
         fale.SetRange("FA Posting Type", fale."FA Posting Type"::"Acquisition Cost");
 

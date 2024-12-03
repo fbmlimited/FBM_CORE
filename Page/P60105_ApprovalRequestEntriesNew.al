@@ -2,11 +2,11 @@ page 60105 "FBM_ApprRequest Entries New_CO"
 {
 
     ApplicationArea = Suite;
-    Caption = 'Approval Request Entries New';
+    Caption = 'Approval Request Entries';
     Editable = false;
     PageType = List;
     SourceTable = "Approval Entry";
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
 
     layout
     {

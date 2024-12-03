@@ -1,4 +1,4 @@
-report 60121 "FBM_Aged AccRec New_CO"
+report 60148 "FBM_Aged AccRec New_CO"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './RDLC/R50006Aged Accounts Receivable New.rdl';
@@ -758,8 +758,8 @@ report 60121 "FBM_Aged AccRec New_CO"
 
         GLSetup.Get;
 
-        evaluate(PeriodLength, '<6M>');
-        EndingDate := Today;
+
+
 
         CalcDates;
         CreateHeadings;
@@ -977,5 +977,6 @@ report 60121 "FBM_Aged AccRec New_CO"
         if Customer.GetFilter("Global Dimension 2 Filter") <> '' then
             CustLedgerEntry.SetFilter("Global Dimension 2 Code", Customer.GetFilter("Global Dimension 2 Filter"));
     end;
+
 }
 

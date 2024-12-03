@@ -45,7 +45,50 @@ pageextension 60157 FBM_PurchOrdSubExt_CO extends "Purchase Order Subform"
             Visible = ises;
         }
 #endif
-
+        addlast(Control1)
+        {
+            field(FBM_IsFreight; Rec.FBM_IsFreight)
+            {
+                ApplicationArea = all;
+            }
+            field(FBM_IsWht; Rec.FBM_IsWht)
+            {
+                ApplicationArea = all;
+            }
+        }
+        addlast(Control19)
+        {
+            field(TotProd; TotalPurchaseLine.FBM_TotProd)
+            {
+                Caption = 'Total Products';
+                ApplicationArea = all;
+            }
+            field(TotDisc; TotalPurchaseLine.FBM_TotDiscount)
+            {
+                Caption = 'Total Discount';
+                ApplicationArea = all;
+            }
+            field(TotFreight; TotalPurchaseLine.FBM_TotFreight)
+            {
+                Caption = 'Total Freight';
+                ApplicationArea = all;
+            }
+            field(TotWht; TotalPurchaseLine.FBM_TotWht)
+            {
+                Caption = 'Total Withholding';
+                ApplicationArea = all;
+            }
+            field(TotVAT; TotalPurchaseLine.FBM_TotVAT)
+            {
+                Caption = 'Total VAT';
+                ApplicationArea = all;
+            }
+            field(GrandTot; TotalPurchaseLine.FBM_GrandTot)
+            {
+                Caption = 'Grand Total';
+                ApplicationArea = all;
+            }
+        }
 
     }
     trigger

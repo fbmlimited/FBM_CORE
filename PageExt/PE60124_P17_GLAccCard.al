@@ -37,6 +37,15 @@ pageextension 60124 FBM_GLAccCardExt_CO extends "G/L Account Card"
             {
                 ApplicationArea = all;
             }
+            field(FBM_IsFreight; Rec.FBM_IsFreight)
+            {
+                ApplicationArea = all;
+            }
+            field(FBM_IsWht; Rec.FBM_IsWht)
+            {
+                ApplicationArea = all;
+            }
+
         }
     }
     actions

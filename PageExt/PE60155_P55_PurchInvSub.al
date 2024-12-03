@@ -22,6 +22,18 @@ pageextension 60155 FBM_PurchInvSubExt_CO extends "Purch. Invoice Subform"
             }
 
         }
+        addlast(Control15)
+        {
+            field(FBM_IsFreight; Rec.FBM_IsFreight)
+            {
+                ApplicationArea = all;
+            }
+            field(FBM_IsWht; Rec.FBM_IsWht)
+            {
+                ApplicationArea = all;
+            }
+        }
+
 
     }
 
