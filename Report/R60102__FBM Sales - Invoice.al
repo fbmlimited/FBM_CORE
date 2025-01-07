@@ -14,7 +14,9 @@ report 60102 FBM_FBMSalesInvoice_CO
             DataItemTableView = SORTING("No.");
             RequestFilterFields = "No.";//, "Sell-to Customer No.", "No. Printed";
             RequestFilterHeading = 'Posted Sales Invoice';
-
+            column(iseu; iseu)
+            {
+            }
             column(CustomerNo;
             g_Customer."No.")
             {
@@ -719,9 +721,9 @@ report 60102 FBM_FBMSalesInvoice_CO
                                 if not DimSetEntry1.FindSet then CurrReport.Break;
                             end
                             else
-                                if not Continue then CurrReport.Break;
+                                if not Cont then CurrReport.Break;
                             Clear(DimText);
-                            Continue := false;
+                            Cont := false;
                             repeat
                                 OldDimText := DimText;
                                 if DimText = '' then
@@ -730,7 +732,7 @@ report 60102 FBM_FBMSalesInvoice_CO
                                     DimText := StrSubstNo('%1, %2 %3', DimText, DimSetEntry1."Dimension Code", DimSetEntry1."Dimension Value Code");
                                 if StrLen(DimText) > MaxStrLen(OldDimText) then begin
                                     DimText := OldDimText;
-                                    Continue := true;
+                                    Cont := true;
                                     exit;
                                 end;
                             until DimSetEntry1.Next = 0;
@@ -1091,9 +1093,9 @@ report 60102 FBM_FBMSalesInvoice_CO
                                     if not DimSetEntry2.FindSet then CurrReport.Break;
                                 end
                                 else
-                                    if not Continue then CurrReport.Break;
+                                    if not Cont then CurrReport.Break;
                                 Clear(DimText);
-                                Continue := false;
+                                Cont := false;
                                 repeat
                                     OldDimText := DimText;
                                     if DimText = '' then
@@ -1102,7 +1104,7 @@ report 60102 FBM_FBMSalesInvoice_CO
                                         DimText := StrSubstNo('%1, %2 %3', DimText, DimSetEntry2."Dimension Code", DimSetEntry2."Dimension Value Code");
                                     if StrLen(DimText) > MaxStrLen(OldDimText) then begin
                                         DimText := OldDimText;
-                                        Continue := true;
+                                        Cont := true;
                                         exit;
                                     end;
                                 until DimSetEntry2.Next = 0;
@@ -1517,6 +1519,8 @@ report 60102 FBM_FBMSalesInvoice_CO
                 sh: record "Sales Invoice Header";
                 cr: char;
                 lf: char;
+                country: record "Country/Region";
+                cinfo: record "Company Information";
             begin
                 //      trigger OnPostDataItem()
                 // begin
@@ -1529,7 +1533,9 @@ report 60102 FBM_FBMSalesInvoice_CO
                 TotalPaymentDiscOnVAT := 0;
                 ResetLCYValues();
                 // end;
-
+                cinfo.get();
+                if country.get(cinfo."Country/Region Code") then
+                    iseu := country."EU Country/Region Code" <> '';
                 g_customer.get("Sales Invoice Header"."Bill-to Customer No.");
                 tcrec.SetRange(DocType, tcrec.DocType::SI);
                 tcrec.SetRange(Country, g_Customer."Country/Region Code");
@@ -1815,7 +1821,7 @@ report 60102 FBM_FBMSalesInvoice_CO
         DimText: Text[120];
         OldDimText: Text[75];
         ShowInternalInfo: Boolean;
-        Continue: Boolean;
+        Cont: Boolean;
         LogInteraction: Boolean;
         VALVATBaseLCY: Decimal;
         VALVATAmountLCY: Decimal;
@@ -1953,7 +1959,7 @@ report 60102 FBM_FBMSalesInvoice_CO
         curr: code[10];
         addcurr: code[10];
         gdprtxt: label 'In accordance with the provisions of Regulation (EU) 2016/679 of 27 April 2016 (GDPR), we inform you that the personal data and email address, collected from the interested party will be processed under the responsibility of %1 for the management of billing, administration and taxation on the products or services provided to our clients and will be retained as long as there is a purpose for it. The personal data will not be shared to third parties, unless legally obligation. We inform you that you have the right to access, rectification, portability and erasure of your personal data and those of limitation and opposition to their processing by contacting us at %2, or by sending an e-mail to %3. If you consider that the processing does not comply with current regulations, you may submit a complaint with the supervisory authority at %4';
-
+        iseu: Boolean;
 
     //BFT-001 -- end
     procedure InitLogInteraction()

@@ -529,9 +529,9 @@ report 60115 "FBM_NTT Sales - Invoice_CO"
                                 if not DimSetEntry1.FindSet then CurrReport.Break;
                             end
                             else
-                                if not Continue then CurrReport.Break;
+                                if not cont then CurrReport.Break;
                             Clear(DimText);
-                            Continue := false;
+                            cont := false;
                             repeat
                                 OldDimText := DimText;
                                 if DimText = '' then
@@ -540,7 +540,7 @@ report 60115 "FBM_NTT Sales - Invoice_CO"
                                     DimText := StrSubstNo('%1, %2 %3', DimText, DimSetEntry1."Dimension Code", DimSetEntry1."Dimension Value Code");
                                 if StrLen(DimText) > MaxStrLen(OldDimText) then begin
                                     DimText := OldDimText;
-                                    Continue := true;
+                                    cont := true;
                                     exit;
                                 end;
                             until DimSetEntry1.Next = 0;
@@ -944,9 +944,9 @@ report 60115 "FBM_NTT Sales - Invoice_CO"
                                     if not DimSetEntry2.FindSet then CurrReport.Break;
                                 end
                                 else
-                                    if not Continue then CurrReport.Break;
+                                    if not cont then CurrReport.Break;
                                 Clear(DimText);
-                                Continue := false;
+                                cont := false;
                                 repeat
                                     OldDimText := DimText;
                                     if DimText = '' then
@@ -955,7 +955,7 @@ report 60115 "FBM_NTT Sales - Invoice_CO"
                                         DimText := StrSubstNo('%1, %2 %3', DimText, DimSetEntry2."Dimension Code", DimSetEntry2."Dimension Value Code");
                                     if StrLen(DimText) > MaxStrLen(OldDimText) then begin
                                         DimText := OldDimText;
-                                        Continue := true;
+                                        cont := true;
                                         exit;
                                     end;
                                 until DimSetEntry2.Next = 0;
@@ -1573,7 +1573,7 @@ report 60115 "FBM_NTT Sales - Invoice_CO"
         DimText: Text[120];
         OldDimText: Text[75];
         ShowInternalInfo: Boolean;
-        Continue: Boolean;
+        cont: Boolean;
         LogInteraction: Boolean;
         VALVATBaseLCY: Decimal;
         VALVATAmountLCY: Decimal;

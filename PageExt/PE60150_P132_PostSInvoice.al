@@ -74,6 +74,16 @@ pageextension 60150 FBM_PostSIExt_CO extends "Posted Sales Invoice"
                 ApplicationArea = All;
                 Editable = false;
             }
+            field(Amount; Rec.Amount)
+            {
+                ApplicationArea = All;
+                Editable = false;
+            }
+            field("Amount Including VAT"; Rec."Amount Including VAT")
+            {
+                ApplicationArea = All;
+                Editable = false;
+            }
 
 
         }

@@ -6,6 +6,28 @@ pageextension 60166 FBM_SalesOrdSubExt_CO extends "Sales Order Subform"
         {
             Visible = true;
         }
+#if MAIN
+        modify("IDPIRPF IRPF Group")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF IRPF")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF IRPF Amount")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF Total IRPF Amount")
+        {
+            Visible = ises;
+        }
+        modify("IDPIRPF TotalAmountWithVATWithoutIRPF")
+        {
+            Visible = ises;
+        }
+#endif
         addafter("VAT Prod. Posting Group")
         {
 
@@ -77,10 +99,21 @@ pageextension 60166 FBM_SalesOrdSubExt_CO extends "Sales Order Subform"
         }
 
     }
+    trigger OnOpenPage()
 
+    begin
+
+        if compinfo.Get() then begin
+
+
+            ises := compinfo."Country/Region Code" = 'ES';
+        end;
+
+
+    end;
 
     var
-
+        compinfo: record "Company Information";
         showsite: Boolean;
 
         DimensionValue: Record "Dimension Value";
@@ -89,4 +122,5 @@ pageextension 60166 FBM_SalesOrdSubExt_CO extends "Sales Order Subform"
         SD3: Code[20];
         SD4: Code[20];
         Text000: Label 'You need to choose an operator first!';
+        ises: Boolean;
 }

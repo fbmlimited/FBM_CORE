@@ -28,6 +28,49 @@ pageextension 60168 FBM_SalesSetupExt_CO extends "Sales & Receivables Setup"
 
             }
         }
+        addafter(General)
+        {
+            group(BIR)
+            {
+
+                Visible = isph;
+
+
+                field(FBM_SI_PTU; Rec.FBM_SI_PTU)
+                {
+                    ApplicationArea = All;
+
+                }
+                field(FBM_SI_DateIssued; Rec.FBM_SI_DateIssued)
+                {
+                    ApplicationArea = All;
+
+                }
+                field(FBM_CM_PTU; Rec.FBM_CM_PTU)
+                {
+                    ApplicationArea = All;
+
+                }
+                field(FBM_CM_DateIssued; Rec.FBM_CM_DateIssued)
+                {
+                    ApplicationArea = All;
+
+                }
+                field(FBM_BS_PTU; Rec.FBM_BS_PTU)
+                {
+                    ApplicationArea = All;
+
+                }
+                field(FBM_BS_DateIssued; Rec.FBM_BS_DateIssued)
+                {
+                    ApplicationArea = All;
+
+                }
+
+
+
+            }
+        }
     }
     actions
     {

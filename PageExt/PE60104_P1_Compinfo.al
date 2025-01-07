@@ -93,6 +93,7 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
             }
             group(GDPR)
             {
+                visible = iseu;
                 field(FBM_GDPR_Company; Rec.FBM_GDPR_Company)
                 {
                     ApplicationArea = all;
@@ -107,6 +108,7 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
                 }
                 field(FBM_GDPR_Url; Rec.FBM_GDPR_Url)
                 {
+
                     ApplicationArea = all;
                 }
             }
@@ -123,7 +125,11 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
     trigger
     OnOpenPage()
     begin
-        issuper := uper.IsSuper(UserSecurityId())
+        issuper := uper.IsSuper(UserSecurityId());
+        cinfo.get();
+        if country.get(cinfo."Country/Region Code") then
+            iseu := country."EU Country/Region Code" <> '';
+
     end;
 
     trigger
@@ -145,6 +151,8 @@ pageextension 60104 FBM_CompInfoExt_CO extends "Company Information"
         isph: Boolean;
         issuper: Boolean;
         uper: Codeunit "User Permissions";
-
+        iseu: Boolean;
+        cinfo: record "Company Information";
+        country: record "Country/Region";
 
 }

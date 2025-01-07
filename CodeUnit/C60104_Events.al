@@ -703,4 +703,35 @@ codeunit 60104 FBM_Events_CO
         TotalPurchaseLine2.FBM_GrandTot := TotalPurchaseLine2."Amount Including VAT";
 
     end;
+
+    [EventSubscriber(ObjectType::Table, 112, 'OnBeforePrintRecords', '', false, false)]
+    procedure OnBeforePrintRecords(var ReportSelections: Record "Report Selections"; var SalesInvoiceHeader: Record "Sales Invoice Header"; ShowRequestPage: Boolean; var IsHandled: Boolean)
+    var
+        sinvline: record "Sales Invoice Line";
+        vatentry: record "VAT Entry";
+    begin
+        if SalesInvoiceHeader.findfirst then begin
+            sinvline.SetRange("Document No.", SalesInvoiceHeader."No.");
+            sinvline.SetFilter("Line Amount", '>%1', 0);
+            sinvline.CalcSums("Line Amount");
+            SalesInvoiceHeader.FBM_TotSales := sinvline."Line Amount";
+            sinvline.SetFilter("Line Amount", '<%1', 0);
+            sinvline.CalcSums("Line Amount");
+            SalesInvoiceHeader.FBM_TotDeductions := sinvline."Line Amount";
+
+            vatentry.SetRange("Document No.", SalesInvoiceHeader."No.");
+            vatentry.SetFilter("VAT Prod. Posting Group", '%1|%2', 'SERV12', 'GOODS12');
+            vatentry.CalcSums(Base);
+            SalesInvoiceHeader.FBM_VATable := vatentry.Base;
+            vatentry.SetFilter("VAT Prod. Posting Group", '%1', 'EXEMPT');
+            vatentry.CalcSums(Base);
+            SalesInvoiceHeader.FBM_VATexempt := vatentry.Base;
+            vatentry.SetFilter("VAT Prod. Posting Group", '%1', 'ZEROV');
+            vatentry.CalcSums(Base);
+            SalesInvoiceHeader.FBM_ZeroRated := vatentry.Base;
+            SalesInvoiceHeader.Modify();
+            commit;
+        end;
+    end;
+
 }

@@ -4,7 +4,7 @@ report 60119 "D2R Sales - Invoice2"
     RDLCLayout = './RDLC/R50030 D2R Sales Invoice.rdl';
     Caption = 'Sales Invoice';
     Permissions = TableData "Sales Shipment Buffer" = rimd, tabledata "Sales Invoice Header" = rimd;
-    PreviewMode = PrintLayout;
+    //PreviewMode = PrintLayout;
 
     dataset
     {
@@ -19,6 +19,7 @@ report 60119 "D2R Sales - Invoice2"
             g_Customer."No.")
             {
             }
+
             column(No_SalesInvHdr;
             ConvertStr("No.", '.', ' '))
             {
@@ -39,6 +40,7 @@ report 60119 "D2R Sales - Invoice2"
             vatsales)
             {
             }
+
 
             column(DocumentDateCaption;
             DocumentDateCaptionLbl)
@@ -84,12 +86,43 @@ report 60119 "D2R Sales - Invoice2"
             DisplayAdditionalFeeNote)
             {
             }
+
+            column(BeneficiaryBank2; BenBank2)
+            {
+            }
+
+            column(TandC; TandC)
+            {
+            }
+            column(PTU; SalesSetup.FBM_SI_PTU)
+            {
+            }
+            column(dateIssued; SalesSetup.FBM_SI_DateIssued)
+            {
+            }
+
             column(signature_pic; FBM_Signature_pic)
             {
             }
-            column(titletxt; titletxt)
+            column(TotSales; FBM_TotSales)
             {
             }
+            column(TotDeductions; FBM_TotDeductions)
+            {
+            }
+            column(TotVAT; tvat)
+            {
+            }
+            column(VATable; -FBM_VATable)
+            {
+            }
+            column(VATexempt; -FBM_VATexempt)
+            {
+            }
+            column(ZeroRated; -FBM_ZeroRated)
+            {
+            }
+
             dataitem(CopyLoop;
             "Integer")
             {
@@ -184,10 +217,15 @@ report 60119 "D2R Sales - Invoice2"
                     CompanyInfo."Giro No.")
                     {
                     }
+                    column(BenBank; CompanyInfo.Name)
+                    {
+
+                    }
                     column(CompanyInfoBankName;
                     CompanyInfo."Bank Name")
                     {
                     }
+
                     column(CompanyInfoBankAccNo;
                     CompanyInfo."Bank Account No.")
                     {
@@ -1343,31 +1381,31 @@ report 60119 "D2R Sales - Invoice2"
                     dataitem(TC;
                     FBM_TermsConditions)
                     {
+
                         DataItemLinkReference = "Sales Invoice Header";
-                        DataItemLink = Country = field("Sell-to Country/Region code");
 
                         column(TermsConditions;
                         "Terms Conditions")
                         {
                         }
-                        column(termslineno;
-                        "Line No.")
-                        {
-                        }
-                        trigger
-                        OnPreDataItem()
+                        trigger OnAfterGetRecord()
+                        var
+                            cr: char;
+                            lf: char;
+
                         begin
-                            SetRange(DocType, DocType::SI);
+                            g_Customer.SetFilter(g_Customer."No.", "Sales Invoice Header"."Bill-to Customer No.");
+                            g_Customer.FindFirst;
+                            if ((g_Customer."Country/Region Code" = 'MX') OR (g_Customer."Country/Region Code" = 'PH')) then begin
+                                if (TC.Country <> g_Customer."Country/Region Code") then CurrReport.Skip();
+                            end
+                            else
+                                if (TC.Country <> '') then CurrReport.Skip();
+                            cr := 13;
+                            lf := 10;
+                            tandc := tandc + tc."Terms Conditions" + cr + lf;
                         end;
 
-                        trigger OnAfterGetRecord()
-                        begin
-                            // if ((g_Customer."Country/Region Code" = 'MX') OR (g_Customer."Country/Region Code" = 'PH')) then begin
-                            //     if (TC.Country <> g_Customer."Country/Region Code") then CurrReport.Skip();
-                            // end
-                            // else
-                            //     if (TC.Country <> '') then CurrReport.Skip();
-                        end;
                     }
 
                     //BFT-001
@@ -1431,8 +1469,18 @@ report 60119 "D2R Sales - Invoice2"
             trigger OnAfterGetRecord()
             var
                 Handled: Boolean;
+                tcrec: record FBM_TermsConditions;
                 mediaid: Guid;
+                cr: char;
+                lf: char;
+
             begin
+
+                "Sales Invoice Header".CalcFields(Amount, "Amount Including VAT");
+                tvat := "Sales Invoice Header"."Amount Including VAT" - "Sales Invoice Header".Amount;
+
+
+
                 if "Sales Invoice Header"."FBM_Billing Statement" then
                     titletxt := billinvtxt
                 else
@@ -1451,8 +1499,24 @@ report 60119 "D2R Sales - Invoice2"
                         TenantMedia.CALCFIELDS(Content);
                     END;
                 END;
+                g_Customer.SetFilter(g_Customer."No.", "Sales Invoice Header"."Bill-to Customer No.");
+                g_Customer.FindFirst;
                 glentry.SetRange("Document No.", "Sales Invoice Header"."No.");
                 if glentry.FindFirst() then begin end;
+                tcrec.SetRange(DocType, tcrec.DocType::SI);
+                tcrec.SetRange(Country, g_Customer."Country/Region Code");
+                if tcrec.FindFirst() then
+                    repeat
+                        if ((g_Customer."Country/Region Code" = 'MX') OR (g_Customer."Country/Region Code" = 'PH')) then begin
+                            if (TCrec.Country <> g_Customer."Country/Region Code") then tcrec.Next();
+                        end
+                        else
+                            if (TCrec.Country <> '') then tcrec.Next();
+                        cr := 13;
+                        lf := 10;
+                        tandc := tandc + tcrec."Terms Conditions" + cr + lf;
+                    until tcrec.Next() = 0;
+
                 CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
                 FormatSiteAddress("Sales Invoice Header");
                 FormatAddressFields("Sales Invoice Header");
@@ -1467,8 +1531,7 @@ report 60119 "D2R Sales - Invoice2"
                 //OnGetReferenceText("Sales Invoice Header", ReferenceText, Handled);
                 //BFT-001
                 RFCCaption := 'RFC:';
-                g_Customer.SetFilter(g_Customer."No.", "Sales Invoice Header"."Bill-to Customer No.");
-                g_Customer.FindFirst;
+
                 if (g_Customer."Country/Region Code" = 'PH') then begin
                     RFCCaption := 'TIN:';
                 end;
@@ -1734,13 +1797,20 @@ report 60119 "D2R Sales - Invoice2"
         BankDetails: array[8] of Text[250];
         HasBank: Boolean;
         HasIntBank: Boolean;
+        BankDetails2: array[8] of Text[250];
+        HasBank2: Boolean;
+        HasIntBank2: Boolean;
+
         VATLinePrint: Text[10];
         TotalPreVATEUR: Decimal;
         TotalVATEUR: Decimal;
         TotalEUR: Decimal;
         VATText: Text[200];
         InqEmail: Text[200];
+        BenBank: text[250];
+        BenBank2: text[250];
 
+        TandC: Text;
         nonvatsales: Decimal;
         vatsales: Decimal;
         glentry: record "G/L Entry";
@@ -1754,6 +1824,7 @@ report 60119 "D2R Sales - Invoice2"
         salinvtxt: label 'SALES INVOICE';
         billinvtxt: label 'BILLING INVOICE';
         titletxt: Text;
+        tvat: Decimal;
 
     procedure InitLogInteraction()
     begin
@@ -2313,9 +2384,12 @@ report 60119 "D2R Sales - Invoice2"
     var
         PaymentBank: Record "Bank Account";
     begin
+        CompanyInfo.get;
         if (Cust."FBM_Payment Bank Code" <> '') then begin
             PaymentBank.SetFilter("No.", Cust."FBM_Payment Bank Code");
             if (PaymentBank.FindFirst()) then begin
+                BenBank := CompanyInfo.Name;
+                //BenBank := PaymentBank.FBM_Beneficiary;
                 // BankDetails[1] := PaymentBank."Intermediary Bank";
                 // BankDetails[2] := PaymentBank."Intermediary SWIFT";
                 BankDetails[3] := PaymentBank.Name;
@@ -2331,9 +2405,45 @@ report 60119 "D2R Sales - Invoice2"
                     HasIntBank := true;
             end
             else
+                //HasBank := false; el codigo que sigue agregado por ACG para tener el BenBank
+                begin
+                BenBank := CompanyInfo.Name;
+                // BankDetails[1] := CompanyInfo."Intermediary Bank";
+                // BankDetails[2] := CompanyInfo."Intermediary SWIFT";
+                BankDetails[3] := CompanyInfo."Bank Name";
+                BankDetails[4] := CompanyInfo."SWIFT Code";
+                BankDetails[5] := CompanyInfo.IBAN;
+                BankDetails[6] := GLSetup."LCY Code";
+                BankDetails[7] := CompanyInfo.FBM_BankAddress;
+                //BankDetails[8] := CompanyInfo."Bank Address 2"
                 HasBank := false;
+            end;
         end
         else
+            //HasBank := false; el código que sigue agregado por ACG para tener el BenBank
             HasBank := false;
+        if (Cust."FBM_Payment Bank Code2" <> '') then begin
+            PaymentBank.SetFilter("No.", Cust."FBM_Payment Bank Code2");
+            if (PaymentBank.FindFirst()) then begin
+                BenBank2 := PaymentBank.FBM_Beneficiary;
+                // BankDetails2[1] := PaymentBank."Intermediary Bank";
+                // BankDetails2[2] := PaymentBank."Intermediary SWIFT";
+                BankDetails2[3] := PaymentBank.Name;
+                BankDetails2[4] := PaymentBank."SWIFT Code";
+                BankDetails2[5] := PaymentBank.IBAN;
+                BankDetails2[6] := PaymentBank."Currency Code";
+                BankDetails2[7] := PaymentBank.Address;
+                BankDetails2[8] := PaymentBank."Address 2";
+                HasBank2 := true;
+                if ((BankDetails2[1] = '') OR (BankDetails2[2] = '')) then
+                    HasIntBank2 := false
+                else
+                    HasIntBank2 := true;
+            end;
+
+        end
+        //Else agregado por ACG para tener el BenBank
+        else
+            HasBank2 := false;
     end;
 }

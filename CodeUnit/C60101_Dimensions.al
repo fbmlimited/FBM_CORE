@@ -620,7 +620,7 @@ codeunit 60101 FBM_Dimensions_CO
                 until salescrmemoline.Next() = 0;
         end;
         if nvat > 1 then
-            error('The document %1 has more than one %2 Vat Account, Use Correction Dimensions', SalesCrMemoHdrNo + SalesInvHdrNo, 'Sales');
+            Message('The document %1 has more than one %2 Vat Account, Use Correction Dimensions', SalesCrMemoHdrNo + SalesInvHdrNo, 'Sales');
         if glentry.FindFirst() then begin
             AccountNo := glentry."G/L Account No.";
             // IF dimdefault.get(15, AccountNo, 'BUDGET_ACCOUNT') then
@@ -720,7 +720,7 @@ codeunit 60101 FBM_Dimensions_CO
                 until purchcrmemoline.Next() = 0;
         end;
         if nvat > 1 then
-            error('The document %1 has more than one %2 Vat Account, Use Correction Dimensions', PurchCrMemoHdrNo + PurchInvHdrNo, 'Purchase');
+            message('The document %1 has more than one %2 Vat Account, Use Correction Dimensions', PurchCrMemoHdrNo + PurchInvHdrNo, 'Purchase');
 
         if glentry.FindFirst() then begin
             AccountNo := glentry."G/L Account No.";

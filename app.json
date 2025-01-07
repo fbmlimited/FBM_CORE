@@ -2,7 +2,7 @@
   "id": "e6857996-833b-464e-91d1-e5102f622d69",
   "name": "FBM_CORE",
   "publisher": "FBM Group",
-  "version": "122.1.156.220",
+  "version": "122.1.156.310",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -17,7 +17,7 @@
       "id": "9d836a4f-3b97-4179-ae7d-608f099ba7f3",
       "name": "FBM Data Dictionary",
       "publisher": "FBM Group",
-      "version": "122.1.156.120"
+      "version": "122.1.156.210"
     },
     {
       "id": "abc622d1-0d07-40e3-9518-9a9adc77322a",

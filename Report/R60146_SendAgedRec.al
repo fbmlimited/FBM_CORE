@@ -23,6 +23,7 @@ report 60146 FBM_SendAgedRec_CO
             tmpBlob.CreateInStream(InStr);
             txtB64 := cnv64.ToBase64(InStr, true);
             glsetup.Get();
+
             emailMsg.Create(glsetup.FBM_EmailAR, 'Aged AR', 'Best Regards');
             emailMsg.AddAttachment('AgedAR.pdf', 'application/pdf', txtB64);
             email.send(emailMsg);
