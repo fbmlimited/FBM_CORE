@@ -1,7 +1,7 @@
 report 60119 "D2R Sales - Invoice2"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './RDLC/R50030 D2R Sales Invoice.rdl';
+    RDLCLayout = './RDLC/R50030 PH Sales Invoice.rdl';
     Caption = 'Sales Invoice';
     Permissions = TableData "Sales Shipment Buffer" = rimd, tabledata "Sales Invoice Header" = rimd;
     //PreviewMode = PrintLayout;

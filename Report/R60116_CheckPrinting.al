@@ -388,7 +388,7 @@ report 60116 FBM_Check_CO
                     column(DescriptionLine2; DescriptionLine[2])
                     {
                     }
-                    column(DescriptionLine1; DescriptionLine[1])
+                    column(DescriptionLine1; DescriptionLine[1] + ' ONLY')
                     {
                     }
                     column(CheckToAddr1Control7; CheckToAddr[1])
@@ -461,6 +461,7 @@ report 60116 FBM_Check_CO
                                 CheckLedgEntry."Bank Payment Type" := GenJnlLine."Bank Payment Type";
                                 CheckLedgEntry."Bal. Account Type" := BalancingType;
                                 CheckLedgEntry."Bal. Account No." := BalancingNo;
+
                                 if FoundLast and AddedRemainingAmount then begin
                                     if TotalLineAmount <= 0 then
                                         Error(
@@ -780,7 +781,7 @@ report 60116 FBM_Check_CO
                 CompanyInfo.Get();
                 if not TestPrint then begin
                     FormatAddr.Company(CompanyAddr, CompanyInfo);
-                    BankAcc2.Get(BankAcc2."No.");
+                    BankAcc2.Get(GenJnlLine."Bal. Account No.");
                     BankAcc2.TestField(Blocked, false);
 
                     Copy(VoidGenJnlLine);
@@ -859,6 +860,7 @@ report 60116 FBM_Check_CO
 
             }
 
+
         }
 
         actions
@@ -870,13 +872,14 @@ report 60116 FBM_Check_CO
 
             InitializeRequest(BankAcc2."No.", BankAcc2."Last Check No.", OneCheckPrVendor, ReprintChecks, TestPrint, PreprintedStub);
 
-            if BankAcc2."No." <> '' then
-                if BankAcc2.Get(BankAcc2."No.") then
-                    UseCheckNo := BankAcc2."Last Check No."
-                else begin
-                    BankAcc2."No." := '';
-                    UseCheckNo := '';
-                end;
+            // if BankAcc2."No." <> '' then
+            // if BankAcc2.Get(BankAcc2."No.") then
+            //     UseCheckNo := BankAcc2."Last Check No."
+            // else begin
+            if bacc <> '' then bankacc2.get(bacc);
+            BankAcc2."No." := bacc;
+            UseCheckNo := bankacc2."Last Check No.";
+            // end;
         end;
     }
 
@@ -1027,6 +1030,8 @@ report 60116 FBM_Check_CO
         TransportCaptionLbl: Label 'Transport';
         BlockedEmplForCheckErr: Label 'You cannot print check because employee %1 is blocked due to privacy.', Comment = '%1 - Employee no.';
         AlreadyAppliedToEmployeeErr: Label ' is already applied to %1 %2 for employee %3.', Comment = '%1 = Document type, %2 = Document No., %3 = Employee No.';
+        bacc: code[20];
+        lcheck: code[20];
 
     procedure FormatNoText(var NoText: array[2] of Text[80]; No: Decimal; CurrencyCode: Code[10])
     var
@@ -1274,7 +1279,7 @@ report 60116 FBM_Check_CO
     begin
         if BankAcc <> '' then
             if BankAcc2.Get(BankAcc) then begin
-                UseCheckNo := LastCheckNo;
+                //UseCheckNo := LastCheckNo;
                 OneCheckPrVendor := NewOneCheckPrVend;
                 ReprintChecks := NewReprintChecks;
                 TestPrint := NewTestPrint;
@@ -1443,6 +1448,12 @@ report 60116 FBM_Check_CO
                     Text031,
                     VendLedgEntry3."Document Type", VendLedgEntry3."Document No.",
                     VendLedgEntry3."Vendor No."));
+    end;
+
+    procedure passpar(bankno: code[20]; lastcheck: code[20])
+    begin
+        bacc := bankno;
+        UseCheckNo := lastcheck;
     end;
 
     [IntegrationEvent(false, false)]

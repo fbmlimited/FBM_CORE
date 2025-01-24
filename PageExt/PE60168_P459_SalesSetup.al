@@ -18,6 +18,7 @@ pageextension 60168 FBM_SalesSetupExt_CO extends "Sales & Receivables Setup"
                 ApplicationArea = All;
 
             }
+
         }
         addlast("Number Series")
         {

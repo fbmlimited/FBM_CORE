@@ -695,7 +695,7 @@ codeunit 60104 FBM_Events_CO
         TotalPurchaseLine2.SetRange(fbm_iswht, true);
         TotalPurchaseLine2.CalcSums(amount);
         TotalPurchaseLine2.FBM_TotWht := TotalPurchaseLine2.Amount;
-        TotalPurchLine.FBM_TotVAT := VATAmount;
+        TotalPurchaseLine2.FBM_TotVAT := VATAmount;
         TotalPurchaseLine2.Reset();
         TotalPurchaseLine2.SetRange("Document Type", TotalPurchHeader."Document Type");
         TotalPurchaseLine2.SetRange("Document No.", TotalPurchHeader."No.");
@@ -709,7 +709,26 @@ codeunit 60104 FBM_Events_CO
     var
         sinvline: record "Sales Invoice Line";
         vatentry: record "VAT Entry";
+
+
+        COMPINFO: RECORD "Company Information";
+        DummyReportSelections: Record "Report Selections";
+        DocumentSendingProfile: Record "Document Sending Profile";
     begin
+#if MAIN
+        COMPINFO.get();
+        if COMPINFO."Country/Region Code" = 'PH' then begin
+            if SalesInvoiceHeader."FBM_Billing Statement" then begin
+
+
+                DocumentSendingProfile.TrySendToPrinter(
+                  DummyReportSelections.Usage::"S.Billing Statement".AsInteger(), SalesInvoiceHeader, SalesInvoiceHeader.FieldNo("Bill-to Customer No."), ShowRequestPage);
+                ishandled := true;
+            end
+
+            else
+                IsHandled := false;
+        end;
         if SalesInvoiceHeader.findfirst then begin
             sinvline.SetRange("Document No.", SalesInvoiceHeader."No.");
             sinvline.SetFilter("Line Amount", '>%1', 0);
@@ -721,8 +740,9 @@ codeunit 60104 FBM_Events_CO
 
             vatentry.SetRange("Document No.", SalesInvoiceHeader."No.");
             vatentry.SetFilter("VAT Prod. Posting Group", '%1|%2', 'SERV12', 'GOODS12');
-            vatentry.CalcSums(Base);
+            vatentry.CalcSums(Base,Amount);
             SalesInvoiceHeader.FBM_VATable := vatentry.Base;
+            
             vatentry.SetFilter("VAT Prod. Posting Group", '%1', 'EXEMPT');
             vatentry.CalcSums(Base);
             SalesInvoiceHeader.FBM_VATexempt := vatentry.Base;
@@ -732,6 +752,30 @@ codeunit 60104 FBM_Events_CO
             SalesInvoiceHeader.Modify();
             commit;
         end;
+#endif
     end;
 
+
+
+
+    [EventSubscriber(ObjectType::page, 306, 'OnInitUsageFilterOnElseCase', '', false, false)]
+    procedure OnInitUsageFilterOnElseCase(ReportUsage: Enum "Report Selection Usage"; var ReportUsage2: Enum "Report Selection Usage Sales")
+    begin
+#if MAIN
+        if ReportUsage = enum::"Report Selection Usage"::"S.Billing Statement" then
+            ReportUsage2 := enum::"Report Selection Usage Sales"::"S.Billing Statement";
+#ENDIF
+    end;
+
+    [EventSubscriber(ObjectType::page, 306, 'OnSetUsageFilterOnAfterSetFiltersByReportUsage', '', false, false)]
+    procedure OnSetUsageFilterOnAfterSetFiltersByReportUsage(var Rec: Record "Report Selections"; ReportUsage2: Option)
+    var
+        ee: enum "Report Selection Usage Sales";
+    begin
+#IF MAIN
+        ee := enum::"Report Selection Usage Sales"::"S.Billing Statement";
+        if ReportUsage2 = ee.AsInteger() then
+            Rec.SetRange(Usage, Enum::"Report Selection Usage"::"S.Billing Statement");
+#ENDIF
+    end;
 }

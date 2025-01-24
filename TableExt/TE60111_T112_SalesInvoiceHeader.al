@@ -28,4 +28,5 @@ tableextension 60111 FBM_SInvHeaderExt_CO extends "Sales Invoice Header"
     }
 
 
+
 }

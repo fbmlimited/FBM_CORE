@@ -67,6 +67,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
                     DocumentPrint: Codeunit "Document-Print";
                     bankacc: record "Bank Account";
                     repsel: Record "Report Selections";
+                    rep: report FBM_Check_CO;
                 begin
 
                     GenJournalLine.Reset();
@@ -75,9 +76,11 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
                     GenJournalLine.SetRange("Journal Batch Name", Rec."Journal Batch Name");
                     bankacc.get(rec."Bal. Account No.");
                     rls.SetTempLayoutSelected(BankAcc."FBM_Check Layout Code");
+                    rep.passpar(rec."Bal. Account No.", format(bankacc."Last Check No."));
+                    rep.RunModal();
                     repsel.setrange(Usage, repsel.Usage::"B.Check");
-                    if repsel.FindFirst() then
-                        report.RunModal(repsel."Report ID");
+                    // if repsel.FindFirst() then
+                    //     report.RunModal(repsel."Report ID");
                     //DocumentPrint.PrintCheck(GenJournalLine);
                     CODEUNIT.Run(CODEUNIT::"Adjust Gen. Journal Balance", Rec);
                 end;

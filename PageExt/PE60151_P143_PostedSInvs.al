@@ -39,6 +39,7 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
     }
     actions
     {
+
         addfirst(Navigation)
         {
             action("Print Billing Statement")
@@ -92,8 +93,15 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
                     selrep: record "Report Selections";
                     repinv: report "FBM_Drako Sales - Invoice_CO";
                     RPL: TEXT;
+                    rls: record "Report Layout Selection";
+                    salsetup: record "Sales & Receivables Setup";
+                    COMPINFO: RECORD "Company Information";
                 begin
-                    //SalesInvHeader := Rec;
+                    SalesInvHeader := Rec;
+
+
+
+
                     CurrPage.SetSelectionFilter(SalesInvHeader);
                     SalesInvHeader.MarkedOnly(true);
                     if SalesInvHeader.count > 1 then begin
@@ -102,11 +110,16 @@ pageextension 60151 FBM_PostSInvsExt_CO extends "Posted Sales Invoices"
                         repeat
                             sinv.SETRANGE("No.", SalesInvHeader."No.");
                             SINV.FindFirst();
-                            // selrep.setrange(Usage, selrep.Usage::"S.Invoice");
-                            // selrep.FindFirst();
-                            // RPL:=REPORT.RunRequestPage(SELREP."Report ID");
-                            //report.runmodal(selrep."Report ID", true, true, sinv);
-                            SInv.PrintRecords(true);
+#IF MAIN
+                            if rec."FBM_Billing Statement" then
+                                selrep.setrange(Usage, selrep.Usage::"S.Billing Statement")
+                            else
+#ENDIF
+                            selrep.setrange(Usage, selrep.Usage::"S.Invoice");
+                            selrep.FindFirst();
+                            RPL := REPORT.RunRequestPage(SELREP."Report ID");
+                            report.runmodal(selrep."Report ID", true, true, sinv);
+                        //SInv.PrintRecords(true);
                         //REPORT.Print(selrep."Report ID",RPL);
 
                         until SalesInvHeader.Next() = 0;

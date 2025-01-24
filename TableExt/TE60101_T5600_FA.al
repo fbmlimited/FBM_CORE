@@ -24,6 +24,7 @@ tableextension 60101 FBM_FAExt_CO extends "Fixed Asset"
             begin
                 FA.Reset();
                 FA.SetFilter("Serial No.", Rec."Serial No.");
+                fa.SetFilter("No.", '<>%1', rec."No.");
                 if FA.FindFirst() then error(Text000, FA."No.");
             end;
         }
