@@ -3,6 +3,7 @@ xmlport 60103 FBM_CustomerSite
     Direction = Export;
     Format = VariableText;
     FileName = 'CustomerSite.bak';
+
     schema
     {
         textelement(cust)

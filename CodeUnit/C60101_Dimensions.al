@@ -519,61 +519,7 @@ codeunit 60101 FBM_Dimensions_CO
             PSCRM.MODIFY;
         END;
     end;
-    //DEV008 START
-    [EventSubscriber(ObjectType::codeunit, 12, 'OnBeforeInsertVATForGLEntry', '', true, true)]
-    local procedure OnBeforeInsertVATForGLEntry(var GenJnlLine: Record "Gen. Journal Line"; VATPostingSetup: Record "VAT Posting Setup"; GLEntryVATAmount: Decimal; SrcCurrGLEntryVATAmt: Decimal; UnrealizedVAT: Boolean; var IsHandled: Boolean; var VATEntry: Record "VAT Entry"; TaxJurisdiction: Record "Tax Jurisdiction"; SrcCurrCode: Code[10])
-    var
-        TmpDimensionSetEntry: record "Dimension Set Entry" temporary;
-    begin
-        AccountNo := GenJnlLine."Account No.";
-        IF dimdefault.get(15, AccountNo, 'BUDGET_ACCOUNT') then
-            DIM1 := dimdefault."Dimension Value Code";
-        //GLEntry.Validate("Global Dimension 1 Code", DIM1);
-        IF dimdefault.get(15, AccountNo, 'BUDGET_PROJECT') then
-            DIM2 := dimdefault."Dimension Value Code";
-        //GLEntry.Validate("Global Dimension 2 Code", DIM2);
-        IF dimdefault.get(15, AccountNo, 'BUDGET_GROUP') then
-            DIM3 := dimdefault."Dimension Value Code";
 
-
-        IF DimValue.GET('BUDGET_ACCOUNT', DIM1) then begin
-            TmpDimensionSetEntry.INIT;
-            TmpDimensionSetEntry."Dimension Set ID" := -1;
-            TmpDimensionSetEntry.validate("Dimension Code", 'BUDGET_ACCOUNT');
-            TmpDimensionSetEntry.validate("Dimension Value Code", DIM1);
-            TmpDimensionSetEntry."Dimension Value ID" := Dimvalue."Dimension Value ID";
-            if not TmpDimensionSetEntry.INSERT then
-                TmpDimensionSetEntry.Modify;
-        END;
-        IF DimValue.GET('BUDGET_PROJECT', DIM2) then begin
-            TmpDimensionSetEntry.INIT;
-            TmpDimensionSetEntry."Dimension Set ID" := -1;
-            TmpDimensionSetEntry.validate("Dimension Code", 'BUDGET_PROJECT');
-            TmpDimensionSetEntry.validate("Dimension Value Code", DIM2);
-            TmpDimensionSetEntry."Dimension Value ID" := Dimvalue."Dimension Value ID";
-            if not TmpDimensionSetEntry.INSERT then
-                TmpDimensionSetEntry.Modify;
-        END;
-
-        IF DimValue.GET('BUDGET_GROUP', DIM3) then begin
-            TmpDimensionSetEntry.INIT;
-            TmpDimensionSetEntry."Dimension Set ID" := -1;
-            TmpDimensionSetEntry.validate("Dimension Code", 'BUDGET_GROUP');
-            TmpDimensionSetEntry.validate("Dimension Value Code", DIM3);
-            TmpDimensionSetEntry."Dimension Value ID" := Dimvalue."Dimension Value ID";
-            if not TmpDimensionSetEntry.INSERT then
-                TmpDimensionSetEntry.Modify;
-
-        end;
-        if GenJnlLine."Journal Template Name" <> '' then begin
-
-            GenJnlLine."Dimension Set ID" := DimMgMt.GetDimensionSetID(TmpDimensionSetEntry);
-            //GLEntry.Modify();
-            // GenJnlLine.Modify();
-        end;
-        TmpDimensionSetEntry.DeleteAll();
-        CLEAR(TmpDimensionSetEntry);
-    END;
 
     [EventSubscriber(ObjectType::codeunit, 80, 'OnAfterPostSalesDoc', '', true, true)]
     procedure OnAfterPostSalesDoc(var SalesHeader: Record "Sales Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; SalesShptHdrNo: Code[20]; RetRcpHdrNo: Code[20]; SalesInvHdrNo: Code[20]; SalesCrMemoHdrNo: Code[20]; CommitIsSuppressed: Boolean; InvtPickPutaway: Boolean; var CustLedgerEntry: Record "Cust. Ledger Entry"; WhseShip: Boolean; WhseReceiv: Boolean)

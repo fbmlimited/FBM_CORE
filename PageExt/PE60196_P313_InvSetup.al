@@ -28,6 +28,12 @@ pageextension 60196 FBM_InvSetupExt_CO extends "Inventory Setup"
 
 
             }
+            field(FBM_SendAlertEmail; Rec.FBM_SendAlertEmail)
+            {
+                ApplicationArea = all;
+
+
+            }
 
 
         }

@@ -644,6 +644,7 @@ report 60116 FBM_Check_CO
 
             trigger OnAfterGetRecord()
             begin
+
                 if OneCheckPrVendor and ("Currency Code" <> '') and
                    ("Currency Code" <> Currency.Code)
                 then begin

@@ -33,7 +33,24 @@ pageextension 60155 FBM_PurchInvSubExt_CO extends "Purch. Invoice Subform"
                 ApplicationArea = all;
             }
         }
-
+#if MAIN
+        modify("IDPIRPF IRPF")
+        {
+            Visible = false;
+        }
+        modify("IDPIRPF IRPF Amount")
+        {
+            Visible = false;
+        }
+        modify("IDPIRPF IRPF Group")
+        {
+            Visible = false;
+        }
+        modify("IDPIRPF Total IRPF Amount")
+        {
+            Visible = false;
+        }
+#endif
 
     }
 

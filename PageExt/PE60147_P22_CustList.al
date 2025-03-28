@@ -89,7 +89,7 @@ pageextension 60147 FBMCustomerListExt_CO extends "Customer List"
             //CurrPage.Close();
             custlist2.SetTableView(customer);
             custlist2.Run();
-            error('');
+              
 
 
         end;

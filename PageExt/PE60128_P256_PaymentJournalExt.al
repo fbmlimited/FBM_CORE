@@ -60,6 +60,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
                 Ellipsis = true;
                 Image = PrintCheck;
                 ToolTip = 'Prepare to print the check.';
+                Visible = isph;
 
                 trigger OnAction()
                 var
@@ -89,7 +90,7 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
         }
         modify(PrintCheck)
         {
-            Visible = false;
+            Visible = not isph;
 
         }
     }
@@ -97,9 +98,13 @@ pageextension 60128 FBM_PaymentJournalExt_CO extends "Payment Journal"
         rls: record "Report Layout Selection";
         UserSetup: Record "User Setup";
         SeeLCY: Boolean;
+        isph: Boolean;
+        cinfo: record "Company Information";
 
     trigger OnOpenPage()
     begin
+        cinfo.Get();
+        isph := cinfo."Country/Region Code" = 'PH';
         UserSetup.Reset();
         if UserSetup.Get(USERID) then
             SeeLCY := UserSetup."FBM_See LCY in Journals"

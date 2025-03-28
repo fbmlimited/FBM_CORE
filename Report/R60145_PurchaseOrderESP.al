@@ -127,7 +127,6 @@ report 60145 "FBM_PurchaseOrderESP_CO"
             {
             }
 
-
             dataitem(CopyLoop; "Integer")
             {
                 DataItemTableView = SORTING(Number);
@@ -549,6 +548,22 @@ report 60145 "FBM_PurchaseOrderESP_CO"
                             AutoFormatExpression = "Purchase Header"."Currency Code";
                             AutoFormatType = 1;
                         }
+                        column(FBM_TotProd; totprod)
+                        {
+                        }
+                        column(FBM_TotFreight; TotFreight)
+                        {
+                        }
+                        column(FBM_TotWht; TotWht)
+                        {
+                        }
+                        column(FBM_TotVAT; TotVAT)
+                        {
+                        }
+                        column(FBM_GrandTot; grandtot)
+                        {
+                        }
+
                         column(DirectUniCostCaption; DirectUniCostCaptionLbl)
                         {
                         }
@@ -639,6 +654,14 @@ report 60145 "FBM_PurchaseOrderESP_CO"
                             TotalSubTotal += "Purchase Line"."Line Amount";
                             TotalInvoiceDiscountAmount -= "Purchase Line"."Inv. Discount Amount";
                             TotalAmount += "Purchase Line".Amount;
+                            if not "Purchase Line".FBM_IsFreight and not "Purchase Line".FBM_IsWht then
+                                TotProd += "Purchase Line"."Line Amount";
+                            if "Purchase Line".FBM_IsFreight then
+                                TotFreight += "Purchase Line"."Line Amount";
+                            if "Purchase Line".FBM_IsWht then
+                                TotWht += "Purchase Line"."Line Amount";
+                            TotVat += "Purchase Line".GetLineAmountInclVAT() - "Purchase Line".GetLineAmountExclVAT();
+                            grandtot += "Purchase Line".GetLineAmountInclVAT();
                         end;
 
                         trigger OnPostDataItem()
@@ -1337,6 +1360,11 @@ report 60145 "FBM_PurchaseOrderESP_CO"
         EnumAssignmentMgt: Codeunit "Enum Assignment Management";
         user: record User;
         purchphone: text[100];
+        TotProd: Decimal;
+        TotFreight: Decimal;
+        TotWht: Decimal;
+        TotVat: Decimal;
+        grandtot: Decimal;
 
 
     procedure InitializeRequest(NewNoOfCopies: Integer; NewShowInternalInfo: Boolean; NewArchiveDocument: Boolean; NewLogInteraction: Boolean)

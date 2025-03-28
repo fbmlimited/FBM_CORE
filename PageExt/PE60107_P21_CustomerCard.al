@@ -172,21 +172,21 @@ pageextension 60107 FBM_CustomerCardExt_CO extends "Customer Card"
         {
 
 
-            action(Notes)
-            {
-                ApplicationArea = All;
-                Image = Notes;
-                Caption = 'Agenda CRM';
+            // action(Notes)
+            // {
+            //     ApplicationArea = All;
+            //     Image = Notes;
+            //     Caption = 'Agenda CRM';
 
-                trigger OnAction()
-                var
-                    pnote: page FBM_NotesCustList_CO;
-                begin
-                    pnote.passpar(rec."No.");
-                    pnote.Run();
-                    clear(pnote);
-                end;
-            }
+            //     trigger OnAction()
+            //     var
+            //         pnote: page FBM_NotesCustList_CO;
+            //     begin
+            //         pnote.passpar(rec."No.");
+            //         pnote.Run();
+            //         clear(pnote);
+            //     end;
+            // }
             action(sol)
             {
                 ApplicationArea = All;

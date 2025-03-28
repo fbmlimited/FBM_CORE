@@ -441,7 +441,7 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
         COS.SetFilter(COS."Customer No.", CustomerSite."Customer No.");
         COS.SetFilter(COS."Site Code", xCustomerSite."Site Code");
         if COS.FindFirst() then begin
-            if COS."Site Code" <> CustomerSite."Site Code" then COS.Rename(CustomerSite."Customer No.", CustomerSite."Customer No.", CustomerSite."Site Code");
+            if COS."Site Code" <> CustomerSite."Site Code" then COS.Rename(CustomerSite."Customer No.", CustomerSite."Customer No.", CustomerSite."Site Code", customersite.version);
         end;
     end;
 
@@ -454,7 +454,7 @@ codeunit 60103 FBM_FixedAssetDimMgt_CO
         // COS.SetFilter(COS."Customer No.", CustomerSite."Customer No.");
         COS.SetFilter(COS."Site Code", xCustomerSite."Site Code");
         if COS.FindFirst() then begin
-            if COS."Site Code" <> CustomerSite."Site Code" then COS.Rename(cos."Customer No.", cos."Customer No.", CustomerSite."Site Code");
+            if COS."Site Code" <> CustomerSite."Site Code" then COS.Rename(cos."Customer No.", cos."Customer No.", CustomerSite."Site Code", customersite.version);
         end;
     end;
 

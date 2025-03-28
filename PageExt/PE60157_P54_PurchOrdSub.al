@@ -63,11 +63,11 @@ pageextension 60157 FBM_PurchOrdSubExt_CO extends "Purchase Order Subform"
                 Caption = 'Total Products';
                 ApplicationArea = all;
             }
-            field(TotDisc; TotalPurchaseLine.FBM_TotDiscount)
-            {
-                Caption = 'Total Discount';
-                ApplicationArea = all;
-            }
+            // field(TotDisc; TotalPurchaseLine.FBM_TotDiscount)
+            // {
+            //     Caption = 'Total Discount';
+            //     ApplicationArea = all;
+            // }
             field(TotFreight; TotalPurchaseLine.FBM_TotFreight)
             {
                 Caption = 'Total Freight';

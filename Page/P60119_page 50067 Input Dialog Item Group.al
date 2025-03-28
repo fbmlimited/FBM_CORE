@@ -2,8 +2,7 @@ page 60119 "FBM_Input Dialog Post Group_CO"
 {
 
 
-    CaptionML = ENU = 'Input Dialog',
-                SQI = 'Input Dialog';
+    Caption = 'Input Dialog';
     PageType = StandardDialog;
 
     layout
@@ -12,8 +11,7 @@ page 60119 "FBM_Input Dialog Post Group_CO"
         {
             group(General)
             {
-                CaptionML = ENU = 'General',
-                            SQI = 'General';
+                Caption = 'General';
                 field(Info; search)
                 {
                     Editable = false;

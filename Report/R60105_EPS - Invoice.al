@@ -1402,7 +1402,7 @@ report 60105 "EPS Sales - Invoice_CO"
                 Handled: Boolean;
             begin
 
-                CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
+                CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
 
                 FormatSiteAddress("Sales Invoice Header");
                 FormatAddressFields("Sales Invoice Header");
@@ -1565,7 +1565,7 @@ report 60105 "EPS Sales - Invoice_CO"
         TempPostedAsmLine: Record "Posted Assembly Line" temporary;
         VATClause: Record "VAT Clause";
         TempLineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist." temporary;
-        Language: Codeunit Language;
+        Lang: Codeunit Language;
         FormatAddr: Codeunit "Format Address";
         FormatDocument: Codeunit "Format Document";
         SegManagement: Codeunit SegManagement;
@@ -1998,7 +1998,7 @@ report 60105 "EPS Sales - Invoice_CO"
             until LineFeeNoteOnReportHist.Next = 0;
         end
         else begin
-            LineFeeNoteOnReportHist.SetRange("Language Code", Language.GetUserLanguageCode);
+            LineFeeNoteOnReportHist.SetRange("Language Code", Lang.GetUserLanguageCode);
             if LineFeeNoteOnReportHist.FindSet then
                 repeat
                     InsertTempLineFeeNoteOnReportHist(LineFeeNoteOnReportHist, TempLineFeeNoteOnReportHist);

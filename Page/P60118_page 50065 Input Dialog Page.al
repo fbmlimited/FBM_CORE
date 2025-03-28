@@ -2,8 +2,8 @@ page 60118 "FBM_Input Dialog Page_CO"
 {
     // version NAVW111.00
 
-    CaptionML = ENU = 'Input Dialog',
-                SQI = 'Input Dialog';
+    Caption = 'Input Dialog';
+
     PageType = StandardDialog;
 
     layout
@@ -12,8 +12,7 @@ page 60118 "FBM_Input Dialog Page_CO"
         {
             group(General)
             {
-                CaptionML = ENU = 'General',
-                            SQI = 'General';
+                Caption = 'General';
                 field(Info; search)
                 {
                     Editable = false;

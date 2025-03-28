@@ -18,6 +18,14 @@ pageextension 60121 FBM_GenJnlExt_CO extends "General Journal"
                 Editable = false;
             }
         }
+        addafter(Comment)
+        {
+            field(FBM_Site; Rec.FBM_Site)
+            {
+                ApplicationArea = All;
+
+            }
+        }
         // modify(ShortcutDimCode3)
         // {
         //     trigger OnLookup(var Text: Text): Boolean
@@ -145,8 +153,36 @@ pageextension 60121 FBM_GenJnlExt_CO extends "General Journal"
     {
         addlast(processing)
         {
+            action("Adjust B. Account")
+            {
+                ApplicationArea = chaBasic, Suite;
+                Caption = 'Adjust B. Account';
+                Image = AdjustEntries;
+                Visible = True;
+
+
+                trigger OnAction()
+                var
+
+                    genjl: record "Gen. Journal Line";
+                    gls: record "General Ledger Setup";
+
+                begin
+                    gls.Get();
+                    gls.TestField(FBM_BAccountCloseInc);
+                    genjl.SetRange("Journal Template Name", rec."Journal Template Name");
+                    genjl.SetRange("Journal Batch Name", rec."Journal Batch Name");
+                    if genjl.FindFirst() then
+                        repeat
+                            genjl.Validate("Shortcut Dimension 1 Code", gls.FBM_BAccountCloseInc);
+                            genjl.Modify();
+
+                        until genjl.Next() = 0;
+                end;
+            }
             group("Exchange")
             {
+
                 action("Add Exchange")
                 {
                     ApplicationArea = Basic, Suite;

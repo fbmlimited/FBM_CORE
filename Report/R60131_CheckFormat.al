@@ -19,8 +19,8 @@ report 60131 FBM_CheckDrako_CO
 
             trigger OnPreDataItem()
             begin
-                if CurrReport.Preview then
-                    Error(Text000);
+                // if CurrReport.Preview then
+                //     Error(Text000);
 
                 if UseCheckNo = '' then
                     Error(Text001);

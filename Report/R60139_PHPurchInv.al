@@ -787,7 +787,7 @@ report 60139 "FBM_PurchaseInvoice"
 
             trigger OnAfterGetRecord()
             begin
-                CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
+                CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
                 PostApprovalEntries.SetRange("Document No.", "No.");
                 purchsetup.get;
                 if PostApprovalEntries.findlast then
@@ -899,7 +899,7 @@ report 60139 "FBM_PurchaseInvoice"
         BuyFromContact: Record Contact;
         PayToContact: Record Contact;
         RemitAddressBuffer: Record "Remit Address Buffer";
-        Language: Codeunit Language;
+        Lang: Codeunit Language;
         FormatAddr: Codeunit "Format Address";
         FormatDocument: Codeunit "Format Document";
         SegManagement: Codeunit SegManagement;

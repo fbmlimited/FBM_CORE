@@ -10,6 +10,13 @@ pageextension 60123 FBM_GLSetupExt_CO extends "General Ledger Setup"
         // {
         //     Editable = false;
         // }
+        addlast(General)
+        {
+            field(FBM_BAccountCloseInc; Rec.FBM_BAccountCloseInc)
+            {
+                ApplicationArea = all;
+            }
+        }
         addlast(Reporting)
         {
             field(FBM_EmailAR; Rec.FBM_EmailAR)

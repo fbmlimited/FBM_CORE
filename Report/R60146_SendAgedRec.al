@@ -26,7 +26,7 @@ report 60146 FBM_SendAgedRec_CO
 
             emailMsg.Create(glsetup.FBM_EmailAR, 'Aged AR', 'Best Regards');
             emailMsg.AddAttachment('AgedAR.pdf', 'application/pdf', txtB64);
-            email.send(emailMsg);
+            email.send(emailMsg, enum::"Email Scenario"::Reminder);
         end;
     end;
 

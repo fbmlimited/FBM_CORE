@@ -1485,7 +1485,7 @@ report 60138 "D2R Sales - CrMemo_CO"
                         tandc := tandc + tcrec."Terms Conditions" + cr + lf;
                     until tcrec.Next() = 0;
 
-                CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
+                CurrReport.Language := Lang.GetLanguageIdOrDefault("Language Code");
                 FormatSiteAddress("Sales Cr.Memo Header");
                 FormatAddressFields("Sales Cr.Memo Header");
                 FormatDocumentFields("Sales Cr.Memo Header");
@@ -1633,7 +1633,7 @@ report 60138 "D2R Sales - CrMemo_CO"
         TempPostedAsmLine: Record "Posted Assembly Line" temporary;
         VATClause: Record "VAT Clause";
         TempLineFeeNoteOnReportHist: Record "Line Fee Note on Report Hist." temporary;
-        Language: Codeunit Language;
+        Lang: Codeunit Language;
         FormatAddr: Codeunit "Format Address";
         FormatDocument: Codeunit "Format Document";
         SegManagement: Codeunit SegManagement;
@@ -2157,7 +2157,7 @@ report 60138 "D2R Sales - CrMemo_CO"
             until LineFeeNoteOnReportHist.Next = 0;
         end
         else begin
-            LineFeeNoteOnReportHist.SetRange("Language Code", Language.GetUserLanguageCode);
+            LineFeeNoteOnReportHist.SetRange("Language Code", Lang.GetUserLanguageCode);
             if LineFeeNoteOnReportHist.FindSet then
                 repeat
                     InsertTempLineFeeNoteOnReportHist(LineFeeNoteOnReportHist, TempLineFeeNoteOnReportHist);

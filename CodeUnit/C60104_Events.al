@@ -659,13 +659,15 @@ codeunit 60104 FBM_Events_CO
 
     begin
         if (not PurchaseLine.FBM_IsFreight) and (not PurchaseLine.FBM_IsWht) then
-            TotalPurchaseLine.FBM_TotProd += (PurchaseLine.Amount - xPurchaseLine.Amount - PurchaseLine."Inv. Discount Amount" + xPurchaseLine."Inv. Discount Amount" - PurchaseLine."Line Discount Amount" + xPurchaseLine."Line Discount Amount");
-        TotalPurchaseLine.FBM_TotDiscount += (PurchaseLine."Inv. Discount Amount" + PurchaseLine."Line Discount Amount" - xPurchaseLine."Inv. Discount Amount" - xPurchaseLine."Line Discount Amount");
+            //TotalPurchaseLine.FBM_TotProd += (PurchaseLine.Amount - xPurchaseLine.Amount - PurchaseLine."Inv. Discount Amount" + xPurchaseLine."Inv. Discount Amount" - PurchaseLine."Line Discount Amount" + xPurchaseLine."Line Discount Amount");
+        TotalPurchaseLine.FBM_TotProd += (PurchaseLine.Amount - xPurchaseLine.Amount);
+        //TotalPurchaseLine.FBM_TotDiscount += (PurchaseLine."Inv. Discount Amount" + PurchaseLine."Line Discount Amount" - xPurchaseLine."Inv. Discount Amount" - xPurchaseLine."Line Discount Amount");
         if PurchaseLine.FBM_IsFreight then
             TotalPurchaseLine.FBM_TotFreight += (PurchaseLine.Amount - xPurchaseLine.Amount - PurchaseLine."Inv. Discount Amount" + xPurchaseLine."Inv. Discount Amount" - PurchaseLine."Line Discount Amount" + xPurchaseLine."Line Discount Amount");
         if PurchaseLine.FBM_IsWht then
             TotalPurchaseLine.FBM_TotWht += (PurchaseLine.Amount - xPurchaseLine.Amount - PurchaseLine."Inv. Discount Amount" + xPurchaseLine."Inv. Discount Amount" - PurchaseLine."Line Discount Amount" + xPurchaseLine."Line Discount Amount");
-        TotalPurchaseLine.FBM_TotVAT := VATAmount;
+        //TotalPurchaseLine.FBM_TotVAT := VATAmount;
+        TotalPurchaseLine.FBM_TotVAT += (PurchaseLine.GetLineAmountInclVAT() - PurchaseLine.GetLineAmountExclVAT()) - (xPurchaseLine.GetLineAmountInclVAT() - xPurchaseLine.GetLineAmountExclVAT());
         TotalPurchaseLine.FBM_GrandTot += (PurchaseLine."Amount Including VAT" - xPurchaseLine."Amount Including VAT");
 
     end;
@@ -685,7 +687,7 @@ codeunit 60104 FBM_Events_CO
         TotalPurchaseLine2.SetRange("Document Type", TotalPurchHeader."Document Type");
         TotalPurchaseLine2.SetRange("Document No.", TotalPurchHeader."No.");
         TotalPurchaseLine2.CalcSums("Inv. Discount Amount", "Line Discount Amount");
-        TotalPurchaseLine2.FBM_TotDiscount := TotalPurchaseLine2."Inv. Discount Amount" + TotalPurchaseLine2."Line Discount Amount";
+        //TotalPurchaseLine2.FBM_TotDiscount := TotalPurchaseLine2."Inv. Discount Amount" + TotalPurchaseLine2."Line Discount Amount";
         TotalPurchaseLine2.SetRange("Document Type", TotalPurchHeader."Document Type");
         TotalPurchaseLine2.SetRange("Document No.", TotalPurchHeader."No.");
         TotalPurchaseLine2.SetRange(fbm_isfreight, true);
@@ -740,9 +742,9 @@ codeunit 60104 FBM_Events_CO
 
             vatentry.SetRange("Document No.", SalesInvoiceHeader."No.");
             vatentry.SetFilter("VAT Prod. Posting Group", '%1|%2', 'SERV12', 'GOODS12');
-            vatentry.CalcSums(Base,Amount);
+            vatentry.CalcSums(Base, Amount);
             SalesInvoiceHeader.FBM_VATable := vatentry.Base;
-            
+
             vatentry.SetFilter("VAT Prod. Posting Group", '%1', 'EXEMPT');
             vatentry.CalcSums(Base);
             SalesInvoiceHeader.FBM_VATexempt := vatentry.Base;
